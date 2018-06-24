@@ -1,0 +1,9 @@
+apply plugin: 'java'
+
+version = '1.0'
+
+dependencies {
+    compile group: 'net.sf.ezmorph', name: 'ezmorph', version: '1.0.6'
+    compile group: 'net.sf.json-lib', name: 'json-lib', version: '2.4',classifier:'jdk15'
+    compile group: 'xom', name: 'xom', version: '1.2.5'
+}
