@@ -1,0 +1,23 @@
+apply plugin: 'java'
+//apply plugin: 'application'
+
+sourceCompatibility = 1.7
+version = '1.0'
+
+subprojects {
+    repositories {
+        repositories {
+            maven {
+                url "E:\\.m2\\repository"
+            }
+        }
+//        mavenLocal()
+        mavenCentral()
+    }
+
+    /**解决build中文乱码问题**/
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+}
+
