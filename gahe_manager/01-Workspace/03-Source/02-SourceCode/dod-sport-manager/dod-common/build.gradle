@@ -1,0 +1,43 @@
+apply plugin: 'java'
+
+version = '1.0'
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile group: 'com.google.guava', name: 'guava', version: '19.0'
+    compile group: 'org.apache.curator', name: 'curator-framework', version: '3.1.0'
+    compile group: 'org.apache.curator', name: 'curator-recipes', version: '3.1.0'
+    compile group: 'org.springframework.data', name: 'spring-data-redis', version: '1.7.1.RELEASE'
+    compile group: 'org.apache.commons', name: 'commons-pool2', version: '2.4.2'
+    compile group: 'redis.clients', name: 'jedis', version: '2.8.1'
+    compile group: 'com.dangdang', name: 'sharding-jdbc-core', version: '1.2.0'
+    compile group: 'org.springframework', name: 'spring-jms', version: '4.3.0.RELEASE'
+    compile group: 'org.springframework', name: 'spring-web', version: '4.3.0.RELEASE'
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.1.0.RELEASE'
+    compile group: 'javax.jms', name: 'javax.jms-api', version: '2.0.1'
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.12'
+    compile group: 'commons-io', name: 'commons-io', version: '2.4'
+    compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
+    compile group: 'org.apache.ant', name: 'ant', version: '1.8.2'
+    compile group:'org.apache.poi', name: 'poi', version:'3.12'
+    compile group:'org.apache.poi', name: 'poi-ooxml', version:'3.12'
+    compile group:'javax.servlet', name: 'javax.servlet-api', version:'3.1.0'
+    compile group:'dom4j', name:"dom4j", version:'1.6.1'
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.2.8'
+    compile group: 'org.lucee', name: 'commons-httpclient', version: '3.1'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.2'
+    compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.5.2'
+    compile fileTree(dir:'libs',include:['*.jar'])
+    compile group: 'net.sourceforge.jexcelapi', name: 'jxl', version: '2.6.12'
+    compile group: 'javax', name: 'javaee-api', version: '7.0'
+    //跨域请求组件
+    // https://mvnrepository.com/artifact/com.thetransactioncompany/cors-filter
+    compile group: 'com.thetransactioncompany', name: 'cors-filter', version: '2.5'
+    // https://mvnrepository.com/artifact/com.thetransactioncompany/java-property-utils
+    compile group: 'com.thetransactioncompany', name: 'java-property-utils', version: '1.10'
+//    极光推送插件
+    // https://mvnrepository.com/artifact/cn.jpush.api/jpush-client
+    compile group: 'cn.jpush.api', name: 'jpush-client', version: '3.3.0'
+    compile project(':dod-domain')
+}
