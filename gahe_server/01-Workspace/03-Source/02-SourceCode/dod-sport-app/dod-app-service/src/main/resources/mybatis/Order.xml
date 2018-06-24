@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dod.sport.dao.IOrderDao">
+
+    <!--获取最大充值编号-->
+    <select id="getOrderSerialIdMax" resultType="String">
+        SELECT IFNULL(MAX(order_serial_id),0) AS order_serial_id FROM bs_order
+        WHERE  order_serial_id LIKE '%${dateTimeStr}%'
+    </select>
+
+    <!--新增订单-->
+    <insert id="addOrder">
+        INSERT INTO bs_order
+        (id,
+        order_serial_id,
+        <if test="userId!=''">
+            user_id,
+        </if>
+        total_price,
+        order_status,
+        member_id,
+        store_id)
+        VALUES (
+        #{id},
+        #{orderSerialId},
+        <if test="userId!=''">
+        #{userId},
+        </if>
+        #{totalPrice},
+        #{orderStatus},
+        #{memberId},
+        #{storeId}
+        )
+    </insert>
+
+    <!--根据订单id查询订单信息-->
+    <select id="getOrderById" resultType="Order">
+        SELECT
+        id,
+        order_serial_id,
+        user_id,
+        total_price,
+        order_status,
+        member_id,
+        store_id
+        create_time
+        FROM bs_order
+        WHERE id = #{id}
+    </select>
+
+    <!--更新订单信息-->
+    <update id="updateOrder">
+        UPDATE bs_order
+        SET
+        order_status = #{orderStatus}
+        WHERE order_serial_id = #{orderSerialId}
+    </update>
+
+    <!--新增销售信息 -->
+    <insert id="addOrderDetail">
+        INSERT INTO bs_sale_detail(
+        id,
+        order_id,
+        product_id,
+        product_price,
+        procuct_count,
+        discount,
+        amount_money,
+        sale_type)
+        VALUES (
+        #{id},
+        #{orderId},
+        #{productId},
+        #{productPrice},
+        #{procuctCount},
+        #{discount},
+        #{amountMoney},
+        #{saleType})
+    </insert>
+
+    <!--根据订单号获取订单信息-->
+    <select id="getOrderInfoByOrderSerialId" resultType="ResponseOrder">
+        SELECT
+        mo.id,
+        mo.modify_serial_id,
+        IFNULL( mo.modify_type,9)AS modify_type,
+        mo.member_id,
+        mo.tarmember_id,
+        mo.membercard_relation_id,
+        mo.times,
+        mo.months,
+        mo.nominal_amount,
+        mo.newcard_id,
+        mo.oldcard_id,
+        mo.give_times,
+        mo.validity_type,
+        mo.new_times,
+        mo.old_times,
+        mo.residue_times,
+        mo.new_validity_time,
+        mo.old_validity_time,
+        mo.discount_price,
+        mo.price_spread,
+        mo.store_id,
+        mo.status,
+        mo.creator,
+        mo.modify_time,
+        mo.remark,
+        st.store_name,
+        newcard.membcard_name AS newcardName,
+        oldcard.membcard_name AS oldcardName,
+        newcard.membcard_type,
+        sorder.order_serial_id,
+        sorder.total_price,
+        sorder.create_time,
+        sorder.order_status,
+        sale.amount_money,
+        sorder.total_price,
+        sale.sale_type,
+        sorder.user_id,
+        lea.start_time,
+        lea.duration,
+        lea.end_time,
+        rec.expense_serial_id,
+        rec.pay_time,
+        rec.pay_mode
+        FROM bs_order sorder
+        INNER JOIN bs_storeinfo st ON st.id = sorder.store_id
+        INNER JOIN bs_sale_detail sale ON  sale.order_id= sorder.id
+        INNER JOIN bs_user us ON us.id = sorder.user_id
+        INNER JOIN bs_member member ON member.id = sorder.member_id
+        LEFT JOIN bs_membercard_modify mo ON mo.id = sale.product_id
+        LEFT JOIN bs_membership_card newcard ON newcard.id = mo.newcard_id
+        LEFT JOIN bs_membership_card oldcard ON oldcard.id = mo.oldcard_id
+        LEFT JOIN bs_member_leave lea ON lea.id = sale.product_id
+        LEFT JOIN bs_expense_record rec ON rec.order_id = sorder.order_serial_id
+        WHERE
+        sorder.order_serial_id = #{orderSerialId}
+    </select>
+
+    <!--获取会员卡开卡和充值订单 -->
+    <select id="listRechargeOrOpenOrderRecord" resultType="ResponseOrder">
+        SELECT
+        mo.id,
+        mo.modify_serial_id,
+        mo.modify_type,
+        mo.member_id,
+        mo.membercard_relation_id,
+        mo.times,
+        mo.months,
+        mo.nominal_amount,
+        mo.newcard_id,
+        mo.validity_type,
+        mo.store_id,
+        mo.status,
+        mo.creator,
+        mo.modify_time,
+        mo.remark,
+        st.store_name,
+        newcard.membcard_name AS newcardName,
+        newcard.membcard_type,
+        sorder.order_serial_id,
+        sorder.total_price,
+        sorder.create_time,
+        sorder.order_status,
+        sale.amount_money,
+        sorder.total_price,
+        sale.sale_type,
+        sorder.user_id,
+        rec.expense_serial_id,
+        rec.pay_time,
+        rec.pay_mode
+        FROM bs_order sorder
+        INNER JOIN bs_storeinfo st ON st.id = sorder.store_id
+        INNER JOIN bs_sale_detail sale ON  sale.order_id= sorder.id
+        INNER JOIN bs_user us ON us.id = sorder.user_id
+        INNER JOIN bs_member member ON member.id = sorder.member_id
+        LEFT JOIN bs_membercard_modify mo ON mo.id = sale.product_id
+        LEFT JOIN bs_membership_card newcard ON newcard.id = mo.newcard_id
+        LEFT JOIN bs_membership_card oldcard ON oldcard.id = mo.oldcard_id
+        LEFT JOIN bs_expense_record rec ON rec.order_id = sorder.order_serial_id
+        WHERE
+        mo.membercard_relation_id = #{membercardRelationId} AND (mo.modify_type = 7 OR  mo.modify_type = 10) GROUP BY  sorder.create_time
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取要取消的的订单号-->
+    <select id="listToCancelOrder" resultType="String">
+        SELECT  order_serial_id
+        FROM bs_order
+        WHERE
+        order_status =1
+        <![CDATA[
+            AND create_time <= DATE_SUB(NOW(), INTERVAL 12 HOUR)
+          ]]>
+    </select>
+</mapper>

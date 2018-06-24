@@ -1,0 +1,1414 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dod.sport.dao.ICourseDao">
+
+    <sql id="baseSql">
+        id,
+        course_serial_id,
+        course_name,
+        business_id,
+        duration,
+        course_type,
+        course_means,
+        course_status,
+        is_experience,
+        remark,
+        status,
+        creator,
+        create_time
+    </sql>
+
+    <!--获取课程信息列表-->
+    <select id="listCourseInfo" resultType="Course">
+      SELECT
+        cous.id,
+        cous.course_serial_id,
+        cous.course_name,
+        cous.business_id,
+        cous.duration,
+        cous.course_type_id,
+        cous.course_means,
+        cous.course_status,
+        cous.is_experience,
+        cous.icon_path,
+        cous.remark,
+        cous.status,
+        cous.creator,
+        cous.create_time,
+        costype.course_type_name
+      FROM bs_course cous INNER JOIN bs_course_type costype
+      ON cous.course_type_id=costype.id
+      WHERE cous.status=1 AND cous.business_id=#{businessId}
+    </select>
+
+    <!--根据课程名称获取课程列表 -->
+    <select id="listCourseByName" resultType="Course">
+         SELECT
+        cous.id,
+        cous.course_serial_id,
+        cous.course_name,
+        cous.business_id,
+        cous.duration,
+        cous.course_type_id,
+        cous.course_means,
+        cous.course_status,
+        cous.is_experience,
+        cous.icon_path,
+        cous.remark,
+        cous.status,
+        cous.creator,
+        cous.create_time,
+        costype.course_type_name
+      FROM bs_course cous INNER JOIN bs_course_type costype
+      ON cous.course_type_id=costype.id
+      WHERE cous.status=1 AND cous.business_id=#{businessId} AND cous.course_name LIKE '%${courseName}%'
+    </select>
+    <!--获取课程信息-->
+    <select id="getCourseInfo" resultType="Course">
+        SELECT
+        cous.id,
+        cous.course_serial_id,
+        cous.course_name,
+        cous.business_id,
+        cous.duration,
+        cous.course_type_id,
+        cous.course_means,
+        cous.course_status,
+        cous.is_experience,
+        cous.remark,
+        cous.STATUS,
+        cous.creator,
+        cous.create_time,
+        costype.course_type_name
+        FROM bs_course cous INNER JOIN bs_course_type costype
+        ON cous.course_type_id=costype.id
+        WHERE cous.id=#{id}
+    </select>
+
+    <!--新增课程数据-->
+    <insert id="addCourse" parameterType="Course">
+        INSERT INTO bs_course(
+            id,
+            course_serial_id,
+            course_name,
+            business_id,
+            duration,
+            course_type_id,
+            course_means,
+            course_status,
+            is_experience,
+            remark,
+            creator
+            )
+        VALUES (
+            #{id},
+            #{courseSerialId},
+            #{courseName},
+            #{businessId},
+            #{duration},
+            #{courseTypeId},
+            #{courseMeans},
+            #{courseStatus},
+            #{isExperience},
+            #{remark},
+            #{creator}
+            )
+    </insert>
+
+    <!--更新课程信息-->
+    <update id="updateCourseInfo" parameterType="Course">
+        UPDATE bs_course SET
+            course_name=#{courseName},
+            duration=#{duration},
+            course_type_id=#{courseTypeId},
+            course_means=#{courseMeans},
+            course_status=#{courseStatus},
+            is_experience=#{isExperience},
+            icon_path=#{iconPath},
+            remark=#{remark}
+        WHERE id=#{id}
+    </update>
+
+    <!--更新课程信息
+        不更新图片信息-->
+    <update id="updateCourseInfoNoIcon" parameterType="Course">
+        UPDATE bs_course SET
+            course_name=#{courseName},
+            duration=#{duration},
+            course_type_id=#{courseTypeId},
+            course_means=#{courseMeans},
+            course_status=#{courseStatus},
+            is_experience=#{isExperience},
+            remark=#{remark}
+        WHERE id=#{id}
+    </update>
+
+    <!--获取课程类型列表-->
+    <select id="listCourseType" resultType="CourseType">
+        SELECT
+          id,
+          coursetype_serial_id,
+          course_type_name,
+          business_id,
+          STATUS,
+          creator,
+          create_time
+        FROM bs_course_type
+        WHERE status=1 AND business_id=#{businessId}
+    </select>
+
+    <!--获取课程类型数据-->
+    <select id="getCourseType" resultType="CourseType">
+        SELECT
+        id,
+        coursetype_serial_id,
+        course_type_name,
+        business_id,
+        STATUS,
+        creator,
+        create_time
+        FROM bs_course_type
+        WHERE id=#{id}
+    </select>
+
+    <!--添加课程类型-->
+    <insert id="addCourseType" parameterType="CourseType">
+        insert into bs_course_type(
+                id,
+                coursetype_serial_id,
+                course_type_name,
+                business_id,
+                creator
+            )
+            values(
+                #{id},
+                #{coursetypeSerialId},
+                #{courseTypeName},
+                #{businessId},
+                #{creator}
+            )
+    </insert>
+
+    <select id="listCourseAndCard" resultType="CourseAndCard">
+        SELECT
+          card.id AS membcard_id,
+          card.membcard_name,
+          card.membcard_type,
+          cdc.course_id,
+          IFNULL(cdc.enable,1) ENABLE
+        FROM bs_membership_card card
+        LEFT JOIN (SELECT course_id,membcard_id,ENABLE FROM bs_course_card
+        WHERE course_id=#{courseId}) cdc ON card.id=cdc.membcard_id
+        WHERE card.business_id=#{businessId}
+    </select>
+
+    <!--获取老师-课程关联信息-->
+    <select id="listTeacherAndCourse" resultType="TeacherAndCourse">
+        SELECT
+            tc.employee_id,
+            emp.employee_name,
+            cous.id AS courseId,
+            cous.course_name,
+            cous.course_means,
+            IFNULL(tc.enable,0) ENABLE
+        FROM bs_course cous
+        LEFT JOIN (SELECT employee_id,course_id,ENABLE FROM bs_teacherandcourse
+        WHERE employee_id=#{employeeId}) tc ON cous.id=tc.course_id
+        LEFT JOIN bs_empbusiness_relation empr ON empr.id=tc.employee_id
+        LEFT JOIN bs_employee emp ON emp.id = empr.emp_id
+        WHERE cous.business_id=#{businessId}
+    </select>
+
+    <!--新增课程卡关系表数据-->
+    <insert id="addCourseAndCard" parameterType="CourseAndCard">
+        INSERT INTO bs_course_card(
+            id,
+            course_id,
+            membcard_id
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.courseId},
+            #{item.membcardId}
+            )
+        </foreach>
+    </insert>
+
+    <!--新增课程卡关系表数据-->
+    <insert id="addTeacherAndCard" parameterType="TeacherAndCourse">
+        INSERT INTO bs_teacherandcourse(
+            id,
+            employee_id,
+            course_id
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.employeeId},
+            #{item.courseId}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="deleteCourseAndCard">
+        DELETE FROM bs_course_card
+        WHERE course_id=#{courseId}
+    </delete>
+
+    <delete id="deleteTeacherAndCourse">
+        DELETE FROM bs_teacherandcourse
+        WHERE employee_id=#{employeeId}
+    </delete>
+
+    <!--更新课程卡关系表-->
+    <update id="updateCourseAndCard" parameterType="CourseAndCard">
+        UPDATE bs_course_card SET enable=#{enable}
+        WHERE course_id=#{courseId} AND membcard_id=#{membcardId}
+    </update>
+
+    <!--获取团课排课信息-->
+    <select id="getCoursePlanInfo" resultType="CoursePlan">
+        SELECT
+            csp.id,
+            csp.store_id,
+            csp.course_id,
+            csp.classroom_id,
+            csp.employee_id,
+            csp.low_persons,
+            csp.upper_persons,
+            csp.class_datetime,
+            csp.enable,
+            csp.is_experience,
+            csp.remark,
+            cs.course_name,
+            cs.duration,
+            cr.classroom_name,
+            emp.employee_name,
+            sto.store_name
+        FROM bs_course_plan csp
+        INNER JOIN bs_course cs ON csp.course_id=cs.id
+        INNER JOIN bs_classroom cr ON csp.classroom_id=cr.id
+        INNER JOIN bs_empbusiness_relation empr ON csp.employee_id=empr.id
+        INNER JOIN bs_employee emp ON empr.emp_id=emp.id
+        INNER JOIN bs_storeinfo sto ON csp.store_id=sto.id
+        WHERE csp.id=#{id}
+    </select>
+
+    <select id="getCoursePlanInfoBySignId" resultType="CoursePlan">
+        SELECT
+            csp.id,
+            csp.store_id,
+            csp.course_id,
+            csp.classroom_id,
+            csp.employee_id,
+            csp.low_persons,
+            csp.upper_persons,
+            csp.class_datetime,
+            csp.enable,
+            csp.is_experience,
+            cous.duration,
+            csp.remark
+        FROM bs_course_plan csp
+        INNER JOIN bs_course_sign cs ON csp.id=cs.courseplan_id
+        INNER JOIN bs_course cous ON csp.course_id=cous.id
+        WHERE cs.id=#{courseSignId}
+    </select>
+
+    <!--根据教师id获取团课排课信息-->
+    <select id="listCoursePlanByEmployeeId" resultType="CoursePlan">
+        SELECT
+            csp.id,
+            csp.store_id,
+            csp.course_id,
+            csp.classroom_id,
+            csp.employee_id,
+            csp.low_persons,
+            csp.upper_persons,
+            csp.class_datetime,
+            csp.enable,
+            csp.is_experience,
+            csp.remark,
+            cs.course_name,
+            cs.duration,
+            cr.classroom_name,
+            emp.employee_name
+        FROM bs_course_plan csp
+        INNER JOIN bs_course cs ON csp.course_id=cs.id
+        INNER JOIN bs_classroom cr ON csp.classroom_id=cr.id
+        INNER JOIN bs_empbusiness_relation empr ON  csp.employee_id=empr.id
+        INNER JOIN bs_employee emp ON empr.emp_id=emp.id
+        WHERE csp.store_id=#{storeId} AND
+               csp.employee_id=#{employeeId} AND
+               DATE_FORMAT(csp.class_datetime,'%Y-%m-%d')=#{classDate}
+    </select>
+
+    <!--新增排课信息-->
+    <insert id="addCoursePlan" parameterType="CoursePlan">
+        INSERT INTO bs_course_plan(
+        id,
+        store_id,
+        course_id,
+        classroom_id,
+        employee_id,
+        low_persons,
+        upper_persons,
+        class_datetime,
+        enable,
+        is_experience,
+        remark,
+        creator
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.storeId},
+            #{item.courseId},
+            #{item.classroomId},
+            #{item.employeeId},
+            #{item.lowPersons},
+            #{item.upperPersons},
+            #{item.classDatetime},
+            #{item.enable},
+            #{item.isExperience},
+            #{item.remark},
+            #{item.creator}
+            )
+        </foreach>
+    </insert>
+
+    <!--更新排课信息-->
+    <update id="updateCoursePlan" parameterType="CoursePlan">
+        UPDATE bs_course_plan SET
+            course_id=#{courseId},
+            classroom_id=#{classroomId},
+            employee_id=#{employeeId},
+            low_persons=#{lowPersons},
+            upper_persons=#{upperPersons},
+            class_datetime=#{classDatetime},
+            enable=#{enable},
+            is_experience=#{isExperience},
+            remark=#{remark}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteCoursePlan">
+        DELETE FROM bs_course_plan
+        WHERE id=#{id}
+    </delete>
+
+    <!--获取教室状态-->
+    <select id="getClassroomFreeStatus" resultType="Integer">
+        <![CDATA[
+        SELECT COUNT(*) AS COUNT
+        FROM bs_course_plan
+        WHERE store_id=#{storeId} AND classroom_id=#{classroomId}
+        AND class_datetime>=#{beginDatetime} AND class_datetime<=#{endDatetime}
+        ]]>
+    </select>
+
+    <!--获取教师空闲状态-->
+    <select id="getEmployeeFreeStatus" resultType="Integer">
+        <![CDATA[
+        SELECT COUNT(*) AS COUNT
+        FROM bs_course_plan
+        WHERE store_id=#{storeId} AND employee_id=#{employeeId}
+        AND class_datetime>=#{beginDatetime} AND class_datetime<=#{endDatetime}
+        ]]>
+    </select>
+
+    <!--获取课程计划列表
+        以一个星期为单位-->
+    <select id="listCoursePlanByWeek" resultType="CoursePlan">
+        <![CDATA[
+        SELECT
+            csp.id,
+            csp.store_id,
+            csp.course_id,
+            csp.classroom_id,
+            csp.employee_id,
+            csp.low_persons,
+            csp.upper_persons,
+            csp.class_datetime,
+            csp.enable,
+            csp.is_experience,
+            csp.remark,
+            csp.creator,
+            cs.course_name,
+            cs.duration,
+            cr.classroom_name,
+            emp.employee_name,
+            csign.class_status
+        FROM bs_course_plan csp
+        INNER JOIN bs_course cs ON csp.course_id=cs.id
+        INNER JOIN bs_classroom cr ON csp.classroom_id=cr.id
+        INNER JOIN bs_empbusiness_relation empr ON csp.employee_id=empr.id
+        INNER JOIN bs_employee emp ON empr.emp_id=emp.id
+        INNER JOIN bs_course_sign csign ON csign.courseplan_id = csp.id
+        WHERE csp.store_id=#{storeId} AND csp.class_datetime>=#{beginDate} AND csp.class_datetime<#{endDate}
+        ]]>
+        <if test="employeeId != null and employeeId != ''">
+            AND csp.employee_id=#{employeeId}
+        </if>
+        ORDER BY csp.class_datetime
+    </select>
+
+    <!--课程签到内容(团课)-->
+    <select id="listCourseSignInfo" resultType="CourseSign">
+        SELECT
+            couss.id,
+            couss.courseplan_id,
+            couss.sign_status,
+            couss.sign_time1,
+            couss.sign_time2,
+            couss.sign_persons,
+            couss.cancel_persons,
+            couss.nosign_persons,
+            couss.class_status,
+            cous.course_name,
+            emp.employee_name,
+            cla.classroom_name,
+            (SELECT COUNT(*)
+              FROM bs_course_order csod
+              WHERE csod.courseplan_id=couss.courseplan_id AND csod.order_status=1
+            ) AS orderPersons
+        FROM bs_course_sign couss
+        INNER JOIN bs_course_plan cousp ON couss.courseplan_id=cousp.id
+        INNER JOIN bs_course cous ON cousp.course_id=cous.id
+        INNER JOIN bs_empbusiness_relation empr ON cousp.employee_id=empr.id
+        INNER JOIN bs_employee emp ON empr.emp_id=emp.id
+        INNER JOIN bs_classroom cla ON cousp.classroom_id=cla.id
+        WHERE DATE_FORMAT(cousp.class_datetime,'%Y-%m-%d')=#{classDate} AND cous.course_means=#{courseMeans}
+    </select>
+
+    <!--根据id获取课程签到内容(团课)-->
+    <select id="getCourseSignInfoById" resultType="CourseSign">
+        SELECT
+            couss.id,
+            couss.courseplan_id,
+            cousp.employee_id,
+            couss.sign_status,
+            couss.sign_time1,
+            couss.sign_time2,
+            couss.sign_persons,
+            couss.cancel_persons,
+            couss.nosign_persons,
+            couss.class_status,
+            cous.course_name,
+            emp.employee_name,
+            cla.classroom_name,
+            (SELECT COUNT(*)
+            FROM bs_course_order csod
+            WHERE csod.courseplan_id=couss.courseplan_id AND csod.order_status=1
+            ) AS orderPersons
+        FROM bs_course_sign couss
+        INNER JOIN bs_course_plan cousp ON couss.courseplan_id=cousp.id
+        INNER JOIN bs_course cous ON cousp.course_id=cous.id
+        INNER JOIN bs_empbusiness_relation empr ON cousp.employee_id=empr.id
+        INNER JOIN bs_employee emp ON empr.emp_id=emp.id
+        INNER JOIN bs_classroom cla ON cousp.classroom_id=cla.id
+        WHERE couss.id=#{id}
+    </select>
+
+    <!--获取课程预约会员列表-->
+    <select id="listCourseOrder" resultType="CourseOrder">
+        SELECT
+            csod.id,
+            csod.courseplan_id,
+            csod.coursesign_id,
+            csod.member_id,
+            csod.cardrelation_id,
+            csod.order_time,
+            csod.order_status,
+            us.user_name,
+            us.nick_name,
+            us.sex,
+            us.head_portrait,
+            card.membcard_name,
+            csp.employee_id,
+            csod.remark
+        FROM bs_course_order csod
+        INNER JOIN bs_member memb ON csod.member_id=memb.id
+        INNER  JOIN bs_user us  ON  us.id = memb.user_id
+        INNER JOIN bs_membercard_relation mrela ON csod.cardrelation_id=mrela.id
+        INNER JOIN bs_membership_card card ON mrela.membcard_id=card.id
+        INNER JOIN bs_course_plan csp ON csp.id=csod.courseplan_id
+        WHERE csod.coursesign_id=#{courseSignId}
+        limit #{startPage},#{endPage}
+    </select>
+
+    <!--获取课程全部预约会员列表-->
+    <select id="listCourseOrderMember" resultType="String">
+        SELECT
+            csod.member_id
+        FROM bs_course_order csod
+        WHERE coursesign_id=#{courseSignId}
+        <if test="orderStatus!='' and orderStatus!=null">
+            AND order_status=#{orderStatus}
+        </if>
+    </select>
+
+    <!--获取剩余预约人数(团课)-->
+    <select id="getRemainsOrder" resultType="String">
+        SELECT upper_persons -
+        (SELECT COUNT(*) AS orders FROM bs_course_order WHERE courseplan_id=#{courseplanId} AND order_status=1) AS remains
+        FROM bs_course_plan
+        WHERE id=#{coursePlanId}
+    </select>
+
+    <!--获取私课课预约人数-->
+    <select id="getPrivateRemainsOrder" resultType="String">
+        SELECT COUNT(*) remains FROM bs_course_order
+        WHERE courseplan_id=#{courseplanId} AND class_time=#{classTime} AND order_status=1
+    </select>
+
+    <!--获取可预约状态(团课)-->
+    <select id="getCanOrderStatus" resultType="String">
+        SELECT
+        CASE WHEN class_datetime > DATE_ADD(NOW(),INTERVAL #{prevMin} MINUTE) THEN 1
+        ELSE 0 END AS status
+        FROM bs_course_plan
+        WHERE id=#{courseplanId}
+    </select>
+
+    <!--更新会员预约状态-->
+    <update id="updateCourseOrderStatusById">
+        UPDATE bs_course_order SET order_status=#{orderStatus}
+        WHERE id=#{id}
+    </update>
+
+    <!--获取团课排课-课程签到关系信息(团课)-->
+    <select id="listCoursePlanSignInfo" resultType="CoursePlanSign">
+        SELECT
+            couss.id,
+            cp.id AS courseplan_id,
+            CONCAT(DATE_FORMAT(cp.class_datetime, '%H:%i'),'-',
+            DATE_FORMAT(DATE_ADD(cp.class_datetime,INTERVAL cs.duration MINUTE), '%H:%i')) AS class_time,
+            (SELECT COUNT(*) AS Persons FROM bs_course_order
+             WHERE courseplan_id=cp.id AND (order_status=1 OR order_status=2)) AS persons,
+            couss.sign_status,
+            couss.class_status,
+            emp.employee_name,
+            cs.course_name,
+            csrm.classroom_name
+        FROM bs_course_plan cp
+        INNER JOIN bs_course_sign couss ON cp.id=couss.courseplan_id
+        INNER JOIN bs_empbusiness_relation empr ON cp.employee_id=empr.id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        INNER JOIN bs_course cs ON cp.course_id=cs.id
+        INNER JOIN bs_classroom csrm ON cp.classroom_id=csrm.id
+        WHERE cp.store_id=#{storeId}
+        AND  couss.class_status = 1
+        <if test="employeeId !=null and employeeId != ''">
+            AND cp.employee_id=#{employeeId}
+        </if>
+--         当前数据
+        <if test="dataType == 1" >
+            <![CDATA[
+            AND DATE_ADD(cp.class_datetime, INTERVAL cs.duration MINUTE)>=NOW()
+            AND DATE_FORMAT(cp.class_datetime, '%Y-%m-%d')=#{classDate}
+            ]]>
+        </if>
+--         历史数据
+        <if test="dataType == 2" >
+            <![CDATA[
+            AND DATE_ADD(cp.class_datetime, INTERVAL cs.duration MINUTE)<NOW()
+            AND DATE_FORMAT(cp.class_datetime, '%Y-%m-%d')=#{classDate}
+            ]]>
+        </if>
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取私教排课-课程签到关系信息(私课)-->
+    <select id="listPrivateCoursePlanSignInfo" resultType="CoursePlanSign">
+        SELECT
+            csign.id,
+            csign.courseplan_id,
+            csord.class_time,
+            (SELECT COUNT(*) AS Persons FROM bs_course_order
+            WHERE coursesign_id=csign.id AND (order_status=1 OR order_status=2)) AS persons,
+            csign.sign_status,
+            csign.class_status,
+            emp.employee_name,
+            cs.course_name,
+            csrm.classroom_name
+        FROM bs_course_sign csign
+        INNER JOIN bs_private_courseplan pcs ON csign.courseplan_id=pcs.id
+        INNER JOIN bs_course_order csord ON csord.courseplan_id=pcs.id AND csord.coursesign_id=csign.id
+        INNER JOIN bs_empbusiness_relation empr ON pcs.employee_id=empr.id
+        INNER JOIN bs_employee emp ON emp.id= empr.emp_id
+        INNER JOIN bs_course cs ON csord.course_id=cs.id
+        INNER JOIN bs_classroom csrm ON pcs.classroom_id=csrm.id
+        WHERE pcs.store_id=#{storeId}
+        <if test="employeeId !=null and employeeId != ''">
+            AND pcs.employee_id=#{employeeId}
+        </if>
+        --         当前数据
+        <if test="dataType == 1" >
+            <![CDATA[
+            AND DATE_ADD(CONCAT(DATE_FORMAT(pcs.class_date,'%Y-%m-%d '),LEFT(csord.class_time,5)), INTERVAL cs.duration MINUTE)>=NOW()
+            AND DATE_FORMAT(pcs.class_date, '%Y-%m-%d')=#{classDate}
+            ]]>
+        </if>
+        --         历史数据
+        <if test="dataType == 2" >
+            <![CDATA[
+            AND DATE_ADD(CONCAT(DATE_FORMAT(pcs.class_date,'%Y-%m-%d '),LEFT(csord.class_time,5)), INTERVAL cs.duration MINUTE)<NOW()
+            AND DATE_FORMAT(pcs.class_date, '%Y-%m-%d')=#{classDate}
+            ]]>
+        </if>
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--更新课程状态-->
+    <update id="updateCourseStatus">
+        UPDATE bs_course_sign SET class_status=#{classStatus}
+        WHERE id=#{id}
+    </update>
+
+    <!--更新课程签到状态-->
+    <update id="updateCourseSignStatus">
+        UPDATE bs_course_sign SET sign_status=#{signStatus}
+        <if test="signTime1 != null and signTime1!=''">
+            ,sign_time1=#{signTime1}
+        </if>
+        <if test="signTime2 != null and signTime2!=''">
+            ,sign_time2=#{signTime2}
+        </if>
+        WHERE id=#{id}
+    </update>
+
+    <!--获取私教排课数据列表-->
+    <select id="listPrivateCoursePlan" resultType="PrivateCoursePlan">
+        SELECT
+            pcp.id,
+            pcp.store_id,
+            pcp.classroom_id,
+            pcp.employee_id,
+            pcp.class_date,
+            pcp.class_datetime,
+            pcp.remark,
+            pcp.creator,
+            pcp.create_time,
+            cls.classroom_name,
+            emp.employee_name,
+            empr.job_title
+        FROM bs_private_courseplan pcp
+        INNER JOIN bs_classroom cls ON pcp.classroom_id=cls.id
+        INNER JOIN bs_empbusiness_relation empr ON pcp.employee_id=empr.id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        WHERE pcp.store_id=#{storeId}
+        <if test="classDate != null and classDate!=''">
+            AND DATE_FORMAT(pcp.class_date, '%Y-%m-%d')=#{classDate}
+        </if>
+        <if test="employeeName != null and employeeName !=''">
+            AND emp.employee_name LIKE '%${employeeName}%'
+        </if>
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取私教排课数据-->
+    <select id="getPrivateCoursePlanInfoById" resultType="PrivateCoursePlan">
+        SELECT
+            pcp.id,
+            pcp.store_id,
+            pcp.classroom_id,
+            pcp.employee_id,
+            pcp.class_date,
+            pcp.class_datetime,
+            pcp.remark,
+            pcp.creator,
+            pcp.create_time,
+            cls.classroom_name,
+            emp.employee_name,
+            empr.job_title
+        FROM bs_private_courseplan pcp
+        INNER JOIN bs_classroom cls ON pcp.classroom_id=cls.id
+        INNER JOIN bs_empbusiness_relation empr ON empr.id = pcp.employee_id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        WHERE pcp.id=#{id}
+    </select>
+
+    <select id="getPrivateCoursePlanCountByClassTime" resultType="Integer">
+        SELECT COUNT(*) AS COUNT FROM bs_private_courseplan pcp
+        WHERE class_date=#{classDate} AND employee_id=#{employeeId}
+    </select>
+
+    <!--新增私教课程排课数据-->
+    <insert id="addPrivateCoursePlan" parameterType="PrivateCoursePlan">
+        INSERT INTO bs_private_courseplan(
+            id,
+            store_id,
+            classroom_id,
+            employee_id,
+            class_date,
+            class_datetime,
+            remark,
+            creator
+        )
+        VALUES(
+            #{id},
+            #{storeId},
+            #{classroomId},
+            #{employeeId},
+            #{classDate},
+            #{classDatetime},
+            #{remark},
+            #{creator}
+        )
+    </insert>
+
+    <!--更新私教排课信息-->
+    <update id="updatePrivateCoursePlan" parameterType="PrivateCoursePlan">
+        UPDATE bs_private_courseplan
+        <set>
+            <if test="classroomId !=null and classroomId!=''">
+                classroom_id=#{classroomId},
+            </if>
+            <if test="employeeId !=null and employeeId!=''">
+                employee_id=#{employeeId},
+            </if>
+            <if test="classDate !=null and classDate!=''">
+                class_date=#{classDate},
+            </if>
+            <if test="classDatetime !=null and classDatetime!=''">
+                class_datetime=#{classDatetime},
+            </if>
+            <if test="remark !=null and remark!=''">
+                remark=#{remark}
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <!--删除私教排课信息-->
+    <delete id="deletePrivateCoursePlan">
+        DELETE FROM bs_private_courseplan
+        WHERE id=#{id}
+    </delete>
+
+    <!--获取课程预约人数-->
+    <select id="getCourseOrderCount" resultType="String">
+        SELECT
+          COUNT(*) persons
+        FROM bs_course_order
+        WHERE coursesign_id=#{coursesignId} AND order_status =1
+    </select>
+
+    <!--根据排课信息添加课程签到数据-->
+    <insert id="addCourseSign" parameterType="CourseSign">
+        INSERT INTO bs_course_sign(
+          id,
+          courseplan_id
+          )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+        (
+          #{item.id},
+          #{item.courseplanId}
+        )
+        </foreach>
+    </insert>
+
+    <!--更新会员约课状态(根据课程信息更新)-->
+    <update id="updateOrderStatusByCourser" parameterType="CourseOrder">
+        UPDATE bs_course_order SET order_status=#{orderStatus}
+        WHERE courseplan_id=#{courseplanId} and coursesign_id=#{coursesignId}
+    </update>
+
+    <!--获取课程类型编号-->
+    <select id="getMaxCourseTypeId" resultType="String">
+        SELECT IFNULL(MAX(coursetype_serial_id),0) AS coursetype_serial_id FROM bs_course_type
+        WHERE business_id=#{businessId}
+    </select>
+
+    <!--获取课程编号-->
+    <select id="getMaxCourseId" resultType="String">
+        SELECT IFNULL(MAX(course_serial_id),0) AS course_serial_id FROM bs_course
+        WHERE business_id=#{businessId}
+    </select>
+
+    <!--获取员工的课程表 -->
+    <select id="listQueryEmpCourseByEmpId" resultType="Course">
+        SELECT
+          c.id,
+          c.course_name
+        FROM bs_course c
+        INNER JOIN bs_course_plan AS plan ON plan.course_id = c.id
+        INNER JOIN bs_empbusiness_relation empr ON empr.id =plan.employee_id AND empr.store_id = plan.store_id
+        WHERE empr.id = #{id} AND c.status = 1
+    </select>
+
+    <!--新增教室 -->
+    <insert id="addClassroom">
+        INSERT INTO bs_classroom
+        (
+            id,
+            classroom_serial_id,
+            classroom_name,
+            store_id,
+            creator
+        )
+        VALUES
+        (
+            #{id},
+            #{classroomSerialId},
+            #{classroomName},
+            #{storeId},
+            #{creator}
+        )
+    </insert>
+
+    <!--查询教室详情 -->
+    <select id="getClassroomInfoById" resultType="Classroom">
+        SELECT
+          id,
+          classroom_serial_id,
+          classroom_name,
+          store_id,
+          remark,
+          status,
+          creator,
+          create_time
+        FROM bs_classroom
+        WHERE id = #{id}
+    </select>
+
+    <!--查询门店中所有教室 -->
+    <select id="listClassroomByStoreId" resultType="Classroom">
+        SELECT
+            id,
+            classroom_serial_id,
+            classroom_name,
+            store_id,
+            remark,
+            creator,
+            create_time
+        FROM bs_classroom
+        WHERE store_id = #{storeId} AND status='1'
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取教室记录笔数-->
+    <select id="getClassroomCount" resultType="String">
+        SELECT
+        COUNT(*) AS ct
+        FROM bs_classroom
+        WHERE store_id = #{storeId}
+    </select>
+
+    <!--更新教室-->
+    <update id="updateClassroom">
+        UPDATE bs_classroom
+        <set>
+            <if test="classroomName !=null and classroomName!=''">
+                classroom_name = #{classroomName}
+            </if>
+        </set>
+        WHERE id = #{classroomId};
+    </update>
+
+    <!--客户端团课约课列表-->
+    <select id="listClientCourseOrder" resultType="ClientCourseOrder">
+        SELECT
+            couss.id,
+            couss.courseplan_id,
+            emp.employee_name,
+            cousp.course_id,
+            cous.course_name,
+            cous.duration,
+            cous.icon_path,
+            cla.classroom_name,
+            IFNULL(csord.order_status,0) orderStatus,
+            DATE_FORMAT(cousp.class_datetime, '%H:%i') AS class_datetime,
+            cousp.upper_persons-
+            (SELECT COUNT(*)
+              FROM bs_course_order csod
+              WHERE csod.courseplan_id=couss.courseplan_id AND csod.order_status=1
+            ) AS permitPersons,
+            csord.id AS courseOrderId,
+            csord.cardrelation_id
+        FROM bs_course_sign couss
+        INNER JOIN bs_course_plan cousp ON couss.courseplan_id=cousp.id
+        INNER JOIN bs_course cous ON cousp.course_id=cous.id
+        INNER JOIN bs_empbusiness_relation empr ON empr.id =cousp.employee_id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        INNER JOIN bs_classroom cla ON cousp.classroom_id=cla.id
+        LEFT JOIN (SELECT id, courseplan_id,coursesign_id,order_status,cardrelation_id
+        FROM bs_course_order WHERE member_id=#{memberId}) csord
+        ON csord.courseplan_id=cousp.id
+        <![CDATA[
+        WHERE cousp.class_datetime>#{classDate} AND cousp.class_datetime < #{endDate} AND cousp.store_id=#{storeId}
+           ]]>
+        AND cousp.enable=1
+        AND couss.class_status !=3
+        <if test="isExperience!='' and isExperience!=null">
+            AND cousp.is_experience=1
+        </if>
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--某老师团课约课列表-->
+    <select id="listCourseOrderByTeacher" resultType="ClientCourseOrder">
+        SELECT
+            couss.id,
+            couss.courseplan_id,
+            emp.employee_name,
+            cous.id AS courseId,
+            cous.course_name,
+            cous.duration,
+            cous.icon_path,
+            cla.classroom_name,
+            IFNULL(csord.order_status,0) orderStatus,
+            cousp.class_datetime,
+            cousp.upper_persons-
+            (SELECT COUNT(*)
+              FROM bs_course_order csod
+              WHERE csod.courseplan_id=couss.courseplan_id AND csod.order_status=1
+            ) AS permitPersons,
+           csord.id AS courseOrderId,
+           csord.cardrelation_id
+        FROM bs_course_sign couss
+        INNER JOIN bs_course_plan cousp ON couss.courseplan_id=cousp.id
+        INNER JOIN bs_course cous ON cousp.course_id=cous.id
+        INNER JOIN bs_empbusiness_relation empr ON empr.id = cousp.employee_id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        INNER JOIN bs_classroom cla ON cousp.classroom_id=cla.id
+        LEFT JOIN (SELECT id, courseplan_id,coursesign_id,order_status,cardrelation_id
+        FROM bs_course_order WHERE member_id=#{memberId}) csord
+        ON csord.courseplan_id=cousp.id
+        <![CDATA[
+        WHERE cousp.class_datetime>=#{beginDate} AND cousp.class_datetime<#{endDate}
+        ]]>
+        AND cousp.store_id=#{storeId} AND cousp.employee_id=#{employeeId}
+        AND couss.class_status !=3
+        <if test="isExperience!='' and isExperience!=null">
+            AND cousp.is_experience=1
+        </if>
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取排课老师列表-->
+    <select id="listCourseOrderTeacher" resultType="CoachInfo">
+        SELECT empr.id,emp.employee_name,empr.job_title,emp.emp_head
+        FROM bs_course_plan cousp
+        INNER JOIN bs_course_sign cousg ON cousp.id=cousg.courseplan_id
+        INNER JOIN bs_empbusiness_relation empr ON empr.id = cousp.employee_id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        WHERE cousp.store_id=#{storeId} AND cousg.class_status=1 AND class_datetime>#{classDate}
+        GROUP BY employee_id
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取私教排课老师列表 -->
+    <select id="listPrevateCoursePlanTeacher" resultType="CoachInfo">
+        SELECT
+          DISTINCT empr.id,
+          emp.employee_name,
+          empr.job_title,
+          emp.emp_head
+        FROM bs_private_courseplan plan
+        INNER JOIN bs_empbusiness_relation empr ON empr.id = plan.employee_id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        WHERE plan.store_id =#{storeId} AND plan.class_date>=#{classDate}
+        GROUP BY employee_id
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--团课约课详细信息-->
+    <select id="getCourseOrderInfo" resultType="CourseOrderInfo">
+        SELECT
+            css.id AS coursesign_id,
+            css.courseplan_id,
+            cs.course_name,
+            emp.employee_name,
+            cls.classroom_name,
+            csp.class_datetime,
+            cs.remark,
+            low_persons,
+            (SELECT COUNT(*)
+             FROM bs_course_order csod
+             WHERE csod.courseplan_id=css.courseplan_id AND (csod.order_status=1 OR csod.order_status=2)
+             ) AS orderPersons,
+             IFNULL(csord.order_status,0) orderStatus,
+             csord.cardrelation_id,
+             csord.membcard_name,
+             csord.id AS courseOrderId
+        FROM bs_course_sign css
+        INNER JOIN bs_course_plan csp ON css.courseplan_id=csp.id
+        INNER JOIN bs_course cs ON csp.course_id=cs.id
+        INNER JOIN bs_classroom cls ON csp.classroom_id=cls.id
+        INNER JOIN bs_empbusiness_relation empr ON csp.employee_id=empr.id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        LEFT JOIN (SELECT corder.id, corder.courseplan_id,corder.coursesign_id,corder.cardrelation_id,corder.order_status,card.membcard_name
+		            FROM bs_course_order corder
+		            LEFT JOIN bs_membercard_relation relation ON relation.id = corder.cardrelation_id
+		            LEFT JOIN bs_membership_card card ON card.id = relation.membcard_id
+		            WHERE corder.member_id=#{memberId}) csord ON csord.coursesign_id = css.id
+        WHERE css.id=#{id}
+    </select>
+    
+    <!--获取可约课会员卡-->
+    <select id="listCourseOrderCard" resultType="Membercardrelation">
+        SELECT DISTINCT mrel.id,memcd.id AS membcardId,memcd.membcard_name, memcd.order_course_type FROM bs_course_card cscd
+        INNER JOIN bs_membership_card memcd ON cscd.membcard_id=memcd.id  AND memcd.order_course_type =2 OR memcd.order_course_type=3
+        INNER JOIN bs_membercard_relation mrel ON mrel.membcard_id=memcd.id
+        WHERE cscd.course_id=#{courseId} AND mrel.member_id=#{memberId} AND memcd.business_id=#{businessId}
+    </select>
+
+    <!--获取老师私教课程列表-->
+    <select id="listPrevateCourse" resultType="Course">
+        SELECT
+        DISTINCT course.id,
+        course.course_name,
+        course.icon_path,
+        course.duration
+        FROM bs_course course
+        INNER JOIN bs_teacherandcourse teach ON teach.course_id = course.id
+        INNER JOIN bs_private_courseplan plan ON plan.employee_id = teach.employee_id
+         <![CDATA[
+        WHERE plan.employee_id =#{employeeId} AND plan.store_id = #{storeId} AND plan.class_date>=#{beginDate}AND plan.class_date<#{endDate}
+        GROUP BY course.id
+        LIMIT #{startPage},#{endPage}
+         ]]>
+    </select>
+
+    <!--获取老师私教的可预约时间  -->
+    <select id="listDateTimeByEmpId" resultType="PrivateOrderDateTime">
+        SELECT
+          plan.id,
+          plan.class_date,
+          plan.class_datetime
+        FROM bs_private_courseplan plan
+        INNER JOIN  bs_empbusiness_relation empr ON empr.id = plan.employee_id
+          <![CDATA[
+        WHERE plan.employee_id = #{employeeId}AND plan.store_id = #{storeId} AND plan.class_date>=#{beginDate} AND plan.class_date <#{endDate}
+        GROUP  BY  plan.class_date ASC
+         ]]>
+    </select>
+
+    <!--获取可以预约该私教课程的会员卡 -->
+    <select id="listPrevateCourseMembercard" resultType="Membercardrelation">
+        SELECT
+          DISTINCT  relation.id,
+          relation.times,
+          card.membcard_type,
+          card.order_course_type,
+          card.membcard_name
+        FROM bs_membership_card card
+          <![CDATA[
+        INNER JOIN bs_membercard_relation relation  ON relation.membcard_id = card.id
+        INNER JOIN bs_course_card courca ON courca.membcard_id = card.id
+        INNER JOIN bs_course course ON course.id = courca.course_id
+        INNER JOIN bs_member mem ON mem.id = relation.member_id
+        WHERE courca.course_id = #{courseId} AND  mem.id=#{memberId} AND card.order_course_type !=2
+        AND card.status = 1 AND relation.card_status!=2 AND relation.card_status!=3 AND card. membcard_type =1 AND relation.times>0
+        LIMIT #{startPage},#{endPage}
+          ]]>
+    </select>
+
+    <!--查询已预约的时间 -->
+    <select id="listExistsDateTimeByEmpId" resultType="PrivateOrderDateTime">
+        SELECT
+          plan.id,
+          plan.class_date,
+          corder.class_time
+        FROM bs_course_order corder
+        INNER JOIN bs_private_courseplan plan ON plan.id = corder.courseplan_id
+        INNER JOIN bs_course_sign csign ON csign.id = corder.coursesign_id
+        INNER JOIN bs_teacherandcourse teac ON teac.course_id = corder.course_id
+          <![CDATA[
+        WHERE teac.employee_id=#{employeeId} AND plan.id=#{id} AND plan.class_date>#{beginDate}AND plan.class_date <#{endDate}
+          ]]>
+    </select>
+
+    <select id="getPrivateOrderByPlan" resultType="CourseOrder">
+        SELECT
+          corder.id,
+          corder.courseplan_id,
+          corder.course_id,
+          corder.coursesign_id,
+          corder.class_time,
+          corder.member_id,
+          corder.cardrelation_id,
+          corder.order_time,
+          corder.order_status
+        FROM bs_course_order corder
+        INNER JOIN bs_private_courseplan pplan ON pplan.id = corder.courseplan_id
+        WHERE corder.courseplan_id = #{courseplanId} AND corder.class_time = #{classTime} AND pplan.class_date = #{classDate}
+    </select>
+
+    <!-- 判断该私教时间是否已预约 -->
+    <select id="getlistExistsDateTime" resultType="PrivateOrderDateTime">
+         SELECT
+          plan.id,
+          plan.class_date,
+          corder.class_time
+        FROM bs_course_order corder
+        INNER JOIN bs_private_courseplan plan ON plan.id = corder.courseplan_id
+        INNER JOIN bs_course_sign csign ON csign.id = corder.coursesign_id
+        INNER JOIN bs_teacherandcourse teac ON teac.course_id = corder.course_id
+        WHERE teac.employee_id=#{employeeId} AND plan.id=#{planId} AND plan.class_date=#{classDate} AND corder.class_time=#{classTime} AND corder.order_status=1
+    </select>
+
+    <!--增加团课约课记录-->
+    <insert id="addCourseOrder" parameterType="CourseOrder">
+        INSERT INTO bs_course_order(
+            id,
+            member_id,
+            courseplan_id,
+            coursesign_id,
+            course_id,
+            class_time,
+            cardrelation_id
+        )
+        VALUES(
+            #{id},
+            #{memberId},
+            #{courseplanId},
+            #{coursesignId},
+            #{courseId},
+            #{classTime},
+            #{cardrelationId}
+        )
+    </insert>
+
+    <select id="getCourseOrderEnable" resultType="CourseOrderEnable">
+        SELECT
+            css.id,
+            css.courseplan_id,
+            cousp.class_datetime,
+            css.class_status,
+            cousp.enable,
+            cousp.upper_persons-
+            (SELECT COUNT(*)
+              FROM bs_course_order csod
+              WHERE csod.courseplan_id=css.courseplan_id AND csod.order_status=1
+            ) AS permitPersons
+        FROM bs_course_sign css
+        INNER JOIN bs_course_plan cousp ON css.courseplan_id=cousp.id
+        WHERE css.id=#{id}
+    </select>
+
+    <!--获取该时间段私教是否取消-->
+    <select id="getPrivateCourseOrderEnable" resultType="PrivateOrderDateTime">
+        SELECT
+          plan.id,
+          plan.class_date,
+          plan.class_datetime
+        FROM bs_private_courseplan plan
+        WHERE plan.id=#{courseplanId}
+    </select>
+
+    <!--获取会员的已预约私教列表  -->
+      <select id="listPrivateOrderRecordById" resultType="PrivateOrderRecord">
+            SELECT
+              corder.id,
+              course.icon_path,
+              course.course_name,
+              course.duration,
+              corder.coursesign_id,
+              plan.class_date,
+              corder.class_time,
+              corder.order_status,
+              emp.employee_name,
+              emp.emp_head,
+              empr.job_title,
+              room.classroom_name
+            FROM bs_course_order corder
+            INNER JOIN bs_course_sign csign ON csign.id = corder.coursesign_id
+            INNER JOIN bs_member mem ON mem.id = corder.member_id
+            INNER JOIN bs_course course ON course.id = corder.course_id
+            INNER JOIN bs_private_courseplan plan ON plan.id = corder.courseplan_id
+            INNER JOIN bs_classroom room ON room.id = plan.classroom_id
+            INNER JOIN bs_empbusiness_relation empr ON empr.id = plan.employee_id
+            INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+            WHERE corder.member_id = #{memberdId}
+             <![CDATA[
+            AND DATE_FORMAT(CONCAT(plan.class_date,' ',corder.class_time),'%Y-%m-%d %T')>NOW()
+                 ]]>
+
+            AND plan.store_id=#{storeId} AND corder.order_status =1
+            LIMIT #{startPage},#{endPage}
+        </select>
+
+    <!--判断是否有体验过该课程-->
+    <select id="getIsOrderExperienceCourse" resultType="String">
+        SELECT COUNT(*) AS ct
+        FROM bs_course_order csord
+        INNER JOIN bs_course_plan csp ON csord.courseplan_id=csp.id
+        INNER JOIN bs_storeinfo st ON csp.store_id=st.id
+        WHERE st.business_id=#{businessId} AND csord.member_id=#{memberId}
+        AND csord.order_status=2 AND IFNULL(csord.cardrelation_id,'')=''
+    </select>
+
+    <!--根据课程预约id查询预约信息-->
+    <select id="getCourseOrderInfoById" resultType="BaseCourseOrderInfo">
+        SELECT id,courseplan_id,coursesign_id,cardrelation_id,course_id,member_id,class_time,order_status,order_time,remark,class_date
+        FROM(SELECT corder.id,corder.courseplan_id,corder.coursesign_id,corder.cardrelation_id,corder.course_id,corder.member_id,corder.class_time,corder.order_status,corder.order_time,corder.remark,
+        DATE_FORMAT(cplan.class_datetime, '%Y-%m-%d') AS class_date
+        FROM bs_course_order corder
+        INNER JOIN bs_course_plan cplan ON cplan.id = corder.courseplan_id
+        WHERE corder.id =  #{id}
+        UNION
+        SELECT corder.id,corder.courseplan_id,corder.coursesign_id,corder.cardrelation_id,corder.course_id,corder.member_id,corder.class_time,corder.order_status,corder.order_time,corder.remark,
+        pplan.class_date
+        FROM bs_course_order corder
+        INNER JOIN bs_private_courseplan pplan ON pplan.id = corder.courseplan_id
+        WHERE corder.id =  #{id}
+        ) AS corder
+    </select>
+
+    <!--取消私教预约 -->
+  <update id="cancelCourseOrder">
+      UPDATE bs_course_order
+        SET
+          order_status = #{orderStatus}
+        WHERE id = #{id};
+  </update>
+
+    <!--查询平台用户所有的预约记录详情 -->
+    <select id="listMemberAllOrderByPhoneNum" resultType="BackCourseOrderInfo">
+     SELECT id, courseplan_id,course_id,coursesign_id,class_time,member_id,order_time,order_status,remark,course_name,employee_name,classroom_name,class_datetime,duration,course_means,store_name, cardrelationId,membcard_name,low_persons,class_date,orderTotal
+        FROM(
+        SELECT corder.id,corder.courseplan_id, corder.course_id, corder.coursesign_id,corder.class_time, corder.member_id, corder.cardrelation_id, corder.order_time, corder.order_status, corder.remark, course.course_name,
+        emp.employee_name,room.classroom_name,cplan.class_datetime,course.duration,course.course_means,st.store_name,mre.id AS cardrelationId,card.membcard_name,cplan.low_persons,NULL AS class_date,
+        (SELECT COUNT(*)
+        FROM bs_course_order csod
+        WHERE csod.courseplan_id=cplan.id AND csod.order_status=1) AS orderTotal
+        FROM bs_course_order corder
+        INNER JOIN bs_member member ON member.id = corder.member_id
+        INNER JOIN bs_user us ON us.id = member.user_id
+        INNER JOIN bs_course_plan cplan ON cplan.id = corder.courseplan_id
+        LEFT JOIN bs_course course ON course.id = cplan.course_id
+        INNER JOIN bs_classroom room ON room.id =cplan.classroom_id
+        INNER JOIN bs_empbusiness_relation empr ON empr.id = cplan.employee_id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        INNER JOIN bs_storeinfo st ON st.id = cplan.store_id
+        LEFT JOIN bs_membercard_relation mre ON mre.id = corder.cardrelation_id
+        LEFT JOIN bs_membership_card card ON card.id = mre.membcard_id
+        WHERE
+          us.phone_num = #{phoneNum}
+        <if test="orderStatus !=null and orderStatus !='' and orderStatus!=0">
+            AND corder.order_status = #{orderStatus}
+        </if>
+        UNION
+        SELECT corder.id,corder.courseplan_id, corder.course_id, corder.coursesign_id,corder.class_time, corder.member_id, corder.cardrelation_id, corder.order_time, corder.order_status, corder.remark, course.course_name,
+        emp.employee_name,room.classroom_name,NULL, course.duration,course.course_means,st.store_name,mre.id AS cardrelationId,card.membcard_name,NULL,pplan.class_date,
+        (SELECT COUNT(*)
+        FROM bs_course_order csod
+        WHERE csod.courseplan_id=pplan.id AND csod.order_status=1) AS orderTotal
+        FROM bs_course_order corder
+        INNER JOIN bs_member member ON member.id = corder.member_id
+        INNER JOIN bs_user us ON us.id = member.user_id
+        INNER JOIN bs_private_courseplan pplan ON pplan.id = corder.courseplan_id
+        INNER JOIN bs_course course ON course.id = corder.course_id
+        INNER JOIN bs_classroom room ON room.id =pplan.classroom_id
+        INNER JOIN bs_empbusiness_relation empr ON empr.id = pplan.employee_id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        INNER JOIN bs_storeinfo st ON st.id = pplan.store_id
+        INNER JOIN bs_membercard_relation mre ON mre.id = corder.cardrelation_id
+        INNER JOIN bs_membership_card card ON card.id = mre.membcard_id
+        WHERE us.phone_num = #{phoneNum}
+        <if test="orderStatus !=null and orderStatus !='' and orderStatus!=0">
+            AND corder.order_status = #{orderStatus}
+        </if>
+        ) AS corder  ORDER BY order_time DESC
+    </select>
+
+    <!--获取员工预约记录数-->
+    <select id="getEmpOrderSumByEmpId" resultType="String">
+         SELECT
+          COUNT(corder.id)AS orderTotal
+        FROM bs_course_order corder
+        INNER JOIN bs_member member ON member.id = corder.member_id
+        INNER JOIN bs_user us ON us.id = member.user_id
+        WHERE us.phone_num = #{phoneNum}
+        <if test="businessId!=null and businessId!=''">
+            AND member.business_id = #{businessId}
+        </if>
+        <if test="orderStatus!=null and orderStatus!=''">
+            AND corder.order_status = #{orderStatus}
+        </if>
+    </select>
+
+    <!--获取团课预约记录详情 -->
+    <select id="getPublicCourseOrderByPlanId" resultType="BaseCourseOrderInfo">
+        SELECT
+          corder.id,
+          corder.courseplan_id,
+          corder.course_id,
+          corder.coursesign_id,
+          corder.class_time,
+          corder.member_id,
+          corder.cardrelation_id,
+          corder.order_time,
+          corder.order_status,
+          corder.remark
+        FROM bs_course_order corder
+        INNER JOIN bs_course_plan cplan ON cplan.id = corder.courseplan_id
+        WHERE
+        corder.courseplan_id = #{courseplanId}
+        AND corder.coursesign_id = #{coursesignId}
+        AND corder.member_id = #{memberId}
+    </select>
+
+    <!--获取私教预约记录 -->
+    <select id="getPrivateCourseOrderByPlanId" resultType="BaseCourseOrderInfo">
+         SELECT
+          corder.id,
+          corder.courseplan_id,
+          corder.course_id,
+          corder.coursesign_id,
+          corder.class_time,
+          corder.member_id,
+          corder.cardrelation_id,
+          corder.order_time,
+          corder.order_status,
+          corder.remark,
+          pplan.class_date
+        FROM bs_course_order corder
+        INNER JOIN bs_private_courseplan pplan ON pplan.id = corder.courseplan_id
+        WHERE
+         corder.courseplan_id = #{courseplanId}
+        AND corder.member_id = #{memberId}
+        AND corder.class_time = #{classTime}
+        AND  pplan.class_date = #{classDate}
+    </select>
+    <!--更新预约记录 -->
+    <update id="updateCourseOrder">
+        UPDATE bs_course_order
+        SET
+          order_time = #{orderTime},
+          order_status = #{orderStatus},
+          cardrelation_id = #{cardrelationId}
+        WHERE id = #{id}
+    </update>
+
+    <!--获取课程签到详情-->
+    <select id="getCourseSignById" resultType="CourseSign">
+        SELECT
+          id,
+          courseplan_id,
+          sign_status,
+          sign_time1,
+          sign_time2,
+          sign_persons,
+          cancel_persons,
+          nosign_persons,
+          class_status
+        FROM bs_course_sign
+        WHERE id  = #{id}
+    </select>
+    <!--更新课程签到表取消人数 -->
+    <update id="updateCourseSign">
+        UPDATE bs_course_sign
+        SET
+          cancel_persons = #{cancelPersons}
+        WHERE id = #{id};
+    </update>
+</mapper>

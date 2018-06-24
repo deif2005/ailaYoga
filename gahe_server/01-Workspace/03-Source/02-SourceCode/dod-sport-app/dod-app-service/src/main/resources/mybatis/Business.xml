@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dod.sport.dao.IBusinessDao">
+    <resultMap id="employeeResultMap" type="com.dod.sport.domain.po.ResponseEmployee">
+        <id property="id" column="id"/>
+        <result property="employeeName" column="employee_name"/>
+        <result property="employeeId" column="employee_serial_id"/>
+        <result property="sex" column="sex"/>
+        <result property="phoneNum" column="phone_num"/>
+        <result property="idCard" column="id_card"/>
+        <result property="businessId" column="business_id"/>
+        <result property="birthday" column="birthday"/>
+        <result property="positionId" column="position_id"/>
+        <result property="storeId" column="store_id"/>
+        <result property="depId" column="dep_id"/>
+        <result property="empType" column="emp_type"/>
+        <result property="empRela" column="emp_rela"/>
+        <result property="empPicture" column="emp_picture"/>
+        <result property="jobTitle" column="job_title"/>
+        <result property="status" column="status"/>
+        <collection property="businessList" ofType="com.dod.sport.domain.po.Base.BaseBusinessInfo">
+            <id property="id" column="id"/>
+            <result property="businessSerialId" column="business_serial_id"/>
+            <result property="businessName" column="business_name"/>
+        </collection>
+    </resultMap>
+
+    <sql id="baseSql">
+       id, business_serial_id, business_name,owenr,logo,business_picture, idcard_picture_a,idcard_picture_b, other_information, email,area,
+       address,phone_num, phone_num2, business_type,custom_type,remark,status,creator,create_time
+    </sql>
+
+    <!--商家门店-->
+    <sql id="storeInfoBase" >
+         st.id, st.store_serial_id,st.business_id,st.store_name,st.manager_name,st.phone_num,st.phone_num2,st.email,st.contact_way, st.area,st.address, st.door_picture,st.classroom_picture,st.reception_picture,
+        st.license_picture,st.start_time, st.end_time, st.service_introduction,st.status,st.creator,st.create_time
+    </sql>
+
+    <sql id="busiDepartmentSql">
+        id,dep_serial_id,dep_name,business_id,status,creator,create_time
+    </sql>
+
+    <sql id="baseDepartmentSql">
+        id,dep_serial_id,dep_name,status,creator,create_time
+    </sql>
+
+    <select id="listBusinessInfo" resultType="BusinessInfo">
+        SELECT <include refid="baseSql" /> FROM bs_businessInfo
+        WHERE status='1'
+        <if test="businessType != null and businessType != 0 ">
+            AND business_type = #{businessType}
+        </if>
+    </select>
+
+    <!--获取商家信息-->
+    <select id="getBusinessInfoById" resultType="BusinessInfo">
+        SELECT <include refid="baseSql" /> FROM bs_businessInfo
+        WHERE id=#{id} AND status='1'
+    </select>
+
+    <!--根据商家id获取商家所有分店-->
+    <select id="listStoreByBusinessId" resultType="StoreInfo">
+        SELECT <include refid="storeInfoBase"/>
+        FROM bs_storeinfo st
+        INNER JOIN bs_businessinfo b ON b.id = st.business_id
+        WHERE business_id =  #{businessId}
+    </select>
+
+    <!--获取员工所在的所有商家信息-->
+    <select id="getBusinessListByPhoneNum" parameterType="String" resultType="BusinessInfo">
+        SELECT DISTINCT b.id, b.business_serial_id,b.business_name
+        FROM  bs_businessinfo b
+        INNER JOIN bs_empbusiness_relation empr ON empr.business_id = b.id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        WHERE emp.phone_num = #{phoneNum};
+    </select>
+
+    <insert id="addBusinessInfo" parameterType="BusinessInfo">
+        INSERT INTO bs_businessinfo(
+          id,
+          business_serial_id,
+          business_name,
+          address,
+          phone_num,
+          phone_num2,
+          business_type,
+          creator
+        )
+        VALUES (
+        #{id},
+        #{businessSerialId},
+        #{businessName},
+        #{address},
+        #{phoneNum},
+        #{phoneNum2},
+        #{businessType},
+        #{creator}
+        )
+    </insert>
+
+    <!--获取部门列表-->
+    <select id="listDepartmentInfo" resultType="Department">
+        SELECT <include refid="baseDepartmentSql" /> FROM bs_department
+        WHERE status='1'
+    </select>
+
+    <!--添加部门信息-->
+    <insert id="addDepartmentInfo" parameterType="Department">
+        INSERT INTO bs_department(
+          id,
+          dep_serial_id,
+          dep_name,
+          creator
+        )
+        VALUES (
+          #{id},
+          #{depSerialId},
+          #{depName},
+          #{creator}
+        )
+    </insert>
+
+    <!--添加门店信息-->
+    <insert id="addStoreInfo" parameterType="StoreInfo">
+        INSERT INTO bs_storeinfo(
+        id,
+        store_serial_id,
+        business_id,
+        boss_name,
+        boss_phone,
+        boss_email,
+        other_ways,
+        store_name,
+        phone_num,
+        door_photo_id,
+        classroom_photos_id,
+        reception_photos_id,
+        business_license_id,
+        business_start_time,
+        business_end_time,
+        store_picture,
+        address,
+        product_service,
+        creator
+        )
+        VALUES (
+        #{id},
+        #{storeSerialId},
+        #{businessId},
+        #{bossName},
+        #{bossPhone},
+        #{bossEmail},
+        #{otherWays},
+        #{storeName},
+        #{phoneNum},
+        #{doorPhotoId},
+        #{classroomPhotosId},
+        #{receptionPhotosId},
+        #{businessLicenseId},
+        #{businessStartTime},
+        #{businessEndTime},
+        #{storePicture},
+        #{address},
+        #{productService},
+        #{creator}
+        )
+    </insert>
+    <select id="getStoreInfoById" resultType="StoreInfo">
+        SELECT
+          id,
+          store_serial_id,
+          business_id,
+          store_name,
+          manager_name,
+          phone_num,
+          phone_num2,
+          email,
+          contact_way,
+          AREA,
+          address,
+          door_picture,
+          classroom_picture,
+          reception_picture,
+          license_picture,
+          start_time,
+          end_time,
+          service_introduction,
+          STATUS,
+          creator,
+          create_time
+        FROM bs_storeinfo
+        WHERE id = #{id}
+    </select>
+
+    <!--获取部门信息-->
+    <select id="getDepartmentInfoById" resultType="Department">
+        SELECT <include refid="baseDepartmentSql" /> FROM bs_department
+        WHERE id=#{id} AND status='1'
+    </select>
+
+    <!--获取商家部门列表-->
+    <select id="listBusiDepartmentInfo" resultType="Department">
+        SELECT <include refid="busiDepartmentSql" /> FROM bs_business_department
+        WHERE status='1'
+    </select>
+
+    <!--添加商家部门信息-->
+    <insert id="addBusiDepartmentInfo" parameterType="Department">
+        INSERT INTO bs_business_department(
+        id,
+        business_id,
+        dep_serial_id,
+        dep_name,
+        creator
+        )
+        VALUES (
+        #{id},
+        #{businessId},
+        #{depSerialId},
+        #{depName},
+        #{creator}
+        )
+    </insert>
+
+    <!--获取商家部门信息-->
+    <select id="getBusiDepartmentInfoById" resultType="Department">
+        SELECT <include refid="busiDepartmentSql" /> FROM bs_business_department
+        WHERE id=#{id} AND status='1'
+    </select>
+
+    <!--获取商家部门信息-->
+    <select id="getBusiDepartmentListByBusinessId" resultType="Department">
+        SELECT <include refid="busiDepartmentSql" /> FROM bs_business_department
+        WHERE business_id=#{businessId} AND status='1'
+    </select>
+
+    <!--获取部门最大编号-->
+    <select id="getMaxDepartmentId" resultType="String">
+        SELECT IFNULL(MAX(dep_serial_id),0) AS dep_serial_id FROM bs_department
+    </select>
+
+    <!--获取商家部门最大编号-->
+    <select id="getMaxBusiDepartmentId" resultType="String">
+        SELECT IFNULL(MAX(dep_serial_id),0) AS dep_serial_id FROM bs_business_department
+        WHERE business_id=#{businessId}
+    </select>
+
+    <!--获取商家最大编号-->
+    <select id="getMaxBusinessId" resultType="String">
+        SELECT IFNULL(MAX(business_serial_id),0) AS business_serial_id FROM bs_businessinfo
+    </select>
+
+    <!--获取商家门店最大编号-->
+    <select id="getMaxStoreId" resultType="String">
+         SELECT IFNULL(MAX(store_serial_id),0) AS store_serial_id FROM bs_storeinfo
+         WHERE business_id = #{businessId};
+    </select>
+
+    <!--获取相册信息-->
+    <select id="getAlbumList" resultType="Album" parameterType="Album">
+        SELECT
+        t.id,
+        t.store_id,
+        t.album_name,
+        t.describes,
+        (select  url  from  bs_photo where album_id =t.id ORDER BY create_time LIMIT 1) as url
+
+        FROM bs_album t
+        WHERE t.store_id= #{storeId}
+        <if test="id != null and id != '' ">
+            AND t.id = #{id}
+        </if>
+    </select>
+
+
+    <!--新增相册信息-->
+    <insert id="addAlbumInfo" parameterType="Album">
+        INSERT INTO bs_album(
+        id,
+        store_id,
+        album_name,
+        describes,
+        creator
+        )
+        VALUES (
+        #{id},
+        #{storeId},
+        #{albumName},
+        #{describes},
+        #{creator}
+        )
+    </insert>
+
+    <!--修改相册信息-->
+    <update id="updateAlbumById" parameterType="Album">
+        update  bs_album SET
+        store_id =  #{storeId},
+        album_name = #{albumName},
+        describes = #{describes},
+        creator =#{creator}
+        where  id = #{id}
+    </update>
+
+    <!--删除相册信息-->
+    <delete id="deleteAlbumById" parameterType="Album">
+          DELETE FROM bs_album where  id = #{id}
+    </delete>
+
+    <!--新增照片信息-->
+    <insert id="addPhotoInfo" parameterType="Photo">
+        INSERT INTO bs_photo(
+        id,
+        album_id,
+        url,
+        creator
+        )
+        VALUES (
+        #{id},
+        #{albumId},
+        #{url},
+        #{creator}
+        )
+    </insert>
+
+    <resultMap id="PhotoMap" type="com.dod.sport.domain.po.Base.Album" >
+        <id column="id" property="id"  />
+        <result column="store_id" property="storeId"  />
+        <result column="creator" property="creator"  />
+        <result column="album_name" property="albumName"  />
+        <result column="describes" property="describes"  />
+        <collection property="photoList" ofType="com.dod.sport.domain.po.Photo" column="id">
+            <id column="photoId" property="id"  />
+            <result column="url" property="url"  />
+        </collection>
+    </resultMap>
+
+
+    <!--获取照片信息-->
+    <select id="getPhotoList"  resultMap="PhotoMap" >
+        SELECT
+        t.id,
+        t.store_id,
+        t.album_name,
+        t.describes,
+        t1.url  ,
+        t1.id as photoId
+        FROM bs_album t
+        LEFT JOIN bs_photo t1 on t1.album_id = t.id
+        WHERE  t.id = #{albumId}
+    </select>
+    <!--&lt;!&ndash;根据ID获取照片信息&ndash;&gt;-->
+    <select id="getPhotoListById"  resultType="Photo" >
+        SELECT
+        t1.url,
+        t1.id
+        FROM bs_photo t1
+        WHERE  t1.id = #{id}
+    </select>
+
+    <!--修改照片信息-->
+    <update id="updatePhotoById" parameterType="Album">
+        update  bs_photo SET
+        id= #{id},
+        album_id=#{albumId},
+        url=#{url},
+        creator= #{creator}
+    </update>
+
+    <!--删除相册信息-->
+    <delete id="deletePhotoById" parameterType="Album">
+        DELETE FROM bs_photo where  id = #{id}
+    </delete>
+
+    <!--新增门店照片信息-->
+    <insert id="addStorePhotoInfo"  parameterType="StorePhoto">
+        INSERT INTO bs_store_photo(
+        id,
+        door_photo,
+        classroom_photos,
+        reception_photos,
+        business_license,
+        teacher_photo,
+        class_photos
+        )
+        VALUES (
+        #{id},
+        #{doorPhoto},
+        #{classroomPhotos},
+        #{receptionPhotos},
+        #{businessLicense},
+        #{teacherPhoto},
+        #{classPhotos}
+        )
+    </insert>
+
+</mapper>

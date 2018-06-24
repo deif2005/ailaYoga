@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dod.sport.dao.IRechargegradDao">
+
+    <sql id="rechargegradSql">
+    id,
+    membcard_id,
+    times,
+    months,
+    nominal_amount,
+    enabled,
+    creator,
+    create_time
+    </sql>
+
+    <insert id="addRechargegrad">
+         INSERT INTO bs_rechargegrad
+            (id,
+             membcard_id,
+        <if test="times != null and times!='' ">
+            times,
+        </if>
+        <if test="months != null and months!='' ">
+            months,
+        </if>
+             nominal_amount,
+             creator)
+        VALUES (
+                #{id},
+                #{membcardId},
+        <if test="times != null and times!='' ">
+            #{times},
+        </if>
+        <if test="months != null and months!='' ">
+            #{months},
+        </if>
+            #{nominalAmount},
+            #{creator});
+    </insert>
+
+    <!--根据会员卡ID获取相应的充值梯度-->
+    <select id="queryRechargegradListByType"  resultType="BaseRechargegrad">
+        SELECT <include refid="rechargegradSql"/>
+        FROM bs_rechargegrad
+        WHERE membcard_id = #{membcardId} ORDER BY times,months ASC
+    </select>
+
+    <!--根据梯度id查询充值梯度-->
+    <select id="queryRechargegradById" resultType="BaseRechargegrad">
+        SELECT <include refid="rechargegradSql"/>
+        FROM bs_rechargegrad
+        WHERE id = #{id}
+    </select>
+    <!--查询冲值梯度详情-->
+    <select id="queryRechargegradInfo" resultType="BaseRechargegrad">
+        SELECT <include refid="rechargegradSql"/>
+        FROM bs_rechargegrad
+        <where>
+            <if test="membcardId != null and membcardId!='' ">
+                membcard_id = #{membcardId}
+            </if>
+            <if test="times != null and times!='' ">
+                and times = #{times}
+            </if>
+            <if test="months != null and months!=''">
+               and  months = #{months}
+            </if>
+            <if test="id != null and id!='' ">
+               and  id = #{id}
+            </if>
+        </where>
+    </select>
+
+    <delete id="delRechargegradById">
+        DELETE
+        FROM bs_rechargegrad
+        WHERE id = #{id}
+    </delete>
+
+</mapper>

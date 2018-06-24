@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dod.sport.dao.IAdminManagementDao">
+
+    <!--返回单据基础数据用于单据概要显示-->
+    <sql id="baseBillSql">
+        id,bill_id,bill_type,employee_id,approve_status,status,create_time ,start_time as startTime,duration,end_time as endTime
+    </sql>
+
+    <!--&lt;!&ndash;返回所有正常单据概要信息列表&ndash;&gt;-->
+    <!--<select id="listBillInfo" resultType="BaseBill">-->
+    <!--SELECT-->
+    <!--id,-->
+    <!--bill_id,-->
+    <!--bill_type,-->
+    <!--employee_id,-->
+    <!--approve_status,-->
+    <!--status,create_time ,-->
+    <!--start_time as startTime,-->
+    <!--start_Day as startDay,-->
+    <!--duration,-->
+    <!--end_time as endTime,-->
+    <!--end_Day as endDay,-->
+    <!--(select emp.employee_name from bs_employee emp where emp.id = employee_id ) as employeeName-->
+    <!--FROM bs_billinfo-->
+    <!--WHERE store_id = #{storeId} AND status='1'-->
+    <!--<if test="billType != null and billType != '' and billType != 0">-->
+    <!--AND bill_type = #{billType}-->
+    <!--</if>-->
+    <!--<if test="id != null and id != ''">-->
+    <!--AND employee_id = #{id}-->
+    <!--</if>-->
+    <!--ORDER BY create_time-->
+    <!--LIMIT #{startPage},#{endPage}-->
+    <!--</select>-->
+
+    <!--返回所有正常单据概要信息列表-->
+    <select id="listSummaryBillInfo" resultType="SummaryBill">
+        SELECT
+        bill.id,
+        bill.bill_id,
+        bill.bill_type,
+        bill.employee_id,
+        bill.store_id,
+        bill.approve_status,
+        bill.create_time,
+        bill.start_time,
+        bill.end_time,
+        bill.duration,
+        bill.description,
+        bill.position_id,
+        bill.vacation_type,
+        bill.account,
+        start_Day as startDay,
+        end_Day as endDay,
+        emp.employee_name,
+        empr.entry_date,
+        emp.phone_num,
+        empr.store_id,
+        st.store_name,
+        dep.dep_name,
+        pos.position_name,
+        pos1.position_name AS transferPositionName,
+        (select dep.dep_name from bs_business_department dep where dep.id = bill.transfer_dep_id) as transferDepName
+
+        FROM bs_billinfo bill
+        INNER JOIN  bs_empbusiness_relation empr ON bill.employee_id=empr.id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        INNER JOIN bs_storeinfo st ON empr.store_id=st.id
+        INNER JOIN bs_business_department dep ON empr.dep_id=dep.id
+        INNER JOIN bs_business_position pos ON empr.position_id=pos.id
+        LEFT JOIN bs_business_position pos1 ON bill.transfer_position_id=pos1.id
+        LEFT JOIN bs_business_position pos2 ON bill.position_id=pos2.id
+        WHERE bill.store_id = #{storeId} AND bill.status='1'
+        <if test="billType != null and billType != '' and billType != 0">
+            AND bill_type = #{billType}
+        </if>
+        AND bill_type != 6
+        <if test="approveStatus == 1 ">
+            AND approve_status = 1
+        </if>
+        <if test="approveStatus == 2">
+            and   (approve_status = 2 or  approve_status = 3)
+        </if>
+        ORDER BY create_time
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--返回所有正常单据概要信息列表-->
+    <select id="getUserBillInfoList" resultType="SummaryBill">
+        SELECT
+        bill.id,
+        bill.bill_id,
+        bill.bill_type,
+        bill.employee_id,
+        bill.store_id,
+        bill.approve_status,
+        bill.create_time,
+        bill.start_time,
+        bill.end_time,
+        bill.description,
+        bill.duration,
+        bill.position_id,
+        bill.vacation_type,
+        bill.account,
+        start_Day AS startDay,
+        end_Day AS endDay,
+        emp.employee_name,
+        emp.phone_num,
+        emp.sex,
+        emp.id_card,
+        empr.employee_serial_id,
+        empr.entry_date,
+        empr.emp_rela,
+        empr.emp_type,
+        empr.is_coach,
+        empr.job_title,
+        empr.self_introduction,
+        st.store_name,
+        dep.dep_name,
+        pos.position_name,
+        pos1.position_name AS transferPositionName,
+        pos2.position_name AS entryPositionName
+        FROM bs_billinfo bill
+        INNER JOIN  bs_empbusiness_relation empr ON bill.employee_id=empr.id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        INNER JOIN bs_business_department dep ON empr.dep_id=dep.id
+        INNER JOIN bs_storeinfo st ON empr.store_id=st.id
+        INNER JOIN bs_business_position pos ON empr.position_id=pos.id
+        LEFT JOIN bs_business_position pos1 ON bill.transfer_position_id=pos1.id
+        LEFT JOIN bs_business_position pos2 ON bill.position_id=pos2.id
+        WHERE bill.store_id = #{storeId} AND bill.status='1'
+        <if test="billType != null and billType != '' and billType != 0">
+            AND bill_type = #{billType}
+        </if>
+        <if test="employeeId != null and employeeId != ''">
+            AND employee_id = #{employeeId}
+        </if>
+        ORDER BY create_time
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--根据单据id号查询假期单据信息-->
+    <select id="getVacationBillDetailById" resultType="VacationBill">
+        SELECT
+        bill.id,
+        bill.bill_id,
+        bill.bill_type,
+        bill.business_id,
+        bill.store_id,
+        bill.employee_id,
+        bill.vacation_type,
+        bill.start_time,
+        bill.start_day,
+        bill.end_time,
+        bill.duration,
+        bill.description,
+        bill.approver,
+        bill.approve_status,
+        bill.approve_desc,
+        bill.create_time,
+        emp.employee_name as employeeName,
+        empr.employee_serial_id  as employeeSerialId,
+        (select dep.dep_name from bs_business_department dep where dep.id = empr.dep_id) as depName
+        FROM bs_billinfo bill
+        LEFT JOIN  bs_empbusiness_relation empr ON bill.employee_id=empr.id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        WHERE bill.id=#{id}
+    </select>
+
+
+    <!--新增转正单信息-->
+    <insert id="addRegularBill" parameterType="RegularBill">
+        INSERT INTO bs_billinfo(
+        id,
+        bill_id,
+        business_id,
+        store_id,
+        employee_id,
+        bill_type,
+        position_desc,
+        approver,
+        work_desc,
+        suggestion
+        )VALUES (
+        #{id},
+        #{billId},
+        #{businessId},
+        #{storeId},
+        #{employeeId},
+        #{billType},
+        #{positionDesc},
+        #{approver},
+        #{workDesc},
+        #{suggestion}
+        )
+    </insert>
+
+    <!--新增离职单信息-->
+    <insert id="addLeaveBill" parameterType="LeaveBill">
+        INSERT INTO bs_billinfo(
+        id,
+        bill_id,
+        business_id,
+        store_id,
+        employee_id,
+        bill_type,
+        end_time,
+        handler,
+        approver,
+        leave_reason,
+        handle_item
+        )VALUES (
+        #{id},
+        #{billId},
+        #{businessId},
+        #{storeId},
+        #{employeeId},
+        #{billType},
+        #{endTime},
+        #{handler},
+        #{approver},
+        #{leaveReason},
+        #{handleItem}
+        )
+    </insert>
+
+    <!--调岗单信息-->
+    <insert id="addTransferBill" parameterType="TransferBill">
+        INSERT INTO bs_billinfo(
+        id,
+        bill_id,
+        business_id,
+        store_id,
+        bill_type,
+        employee_id,
+        approver,
+        transfer_date,
+        transfer_reason,
+        transfer_position_id,
+
+        transfer_dep_id)
+        VALUES (
+        #{id},
+        #{billId},
+        #{businessId},
+        #{storeId},
+        #{billType},
+        #{employeeId},
+        #{approver},
+        str_to_date(#{transferDate},'%Y-%m-%d %H:%i:%s'),
+        #{transferReason},
+        #{transferPositionId},
+        #{transferDepId}
+        )
+    </insert>
+
+    <!--根据id号查询转正单据详细信息-->
+    <select id="getRegularBillDetailById" resultType="RegularBill">
+        SELECT
+        distinct
+        bill.id,
+        bill.bill_id,
+        bill.bill_type,
+        bill.business_id,
+        bill.store_id,
+        bill.employee_id,
+        bill.position_desc,
+        bill.work_desc,
+        bill.suggestion,
+        bill.approver,
+        bill.approve_status,
+        bill.approve_desc,
+        bill.create_time,
+        emp.employee_name,
+        empr.entry_date,
+        pos.position_name,
+        billentry.start_time,
+        depa.dep_name
+        FROM bs_billinfo bill
+        LEFT JOIN  bs_empbusiness_relation empr ON bill.employee_id=empr.id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        INNER JOIN bs_business_position pos ON empr.position_id=pos.id
+        LEFT JOIN bs_billinfo billentry ON bill.business_id=billentry.business_id AND
+        bill.store_id=billentry.store_id
+        AND bill.employee_id=billentry.employee_id
+        LEFT JOIN bs_business_department depa ON depa.id=billentry.dep_id
+        WHERE bill.id=#{id} AND billentry.bill_type=5
+    </select>
+
+    <!--根据单据编号查询离职单据信息-->
+    <select id="getLeaveBillDetailById" parameterType="String" resultType="LeaveBill">
+        SELECT
+        bill.id,
+        bill.bill_id,
+        bill.business_id,
+        bill.store_id,
+        bill.employee_id,
+        bill.end_time,
+        bill.approver,
+        bill.approve_status,
+        bill.leave_reason,
+        bill.handle_item,
+        empr1.employee_serial_id ,
+        emp1.employee_name,
+        empr1.position_id,
+        emp2.employee_name AS approverName,
+        emp3.employee_name AS HANDLER,
+        po.position_name AS positionName,
+        bill1.start_time
+        FROM bs_billinfo bill
+        INNER JOIN  bs_empbusiness_relation empr1 ON bill.employee_id=empr1.id
+        INNER JOIN  bs_empbusiness_relation empr2 ON bill.approver=empr2.id
+        INNER JOIN  bs_empbusiness_relation empr3 ON bill.handler=empr3.id
+        INNER JOIN bs_employee emp1 ON emp1.id = empr1.emp_id
+        INNER JOIN bs_employee emp2 ON emp2.id = empr2.emp_id
+        INNER JOIN bs_employee emp3 ON emp3.id = empr3.emp_id
+        INNER JOIN bs_business_position po ON empr1.position_id=po.id
+        INNER JOIN bs_billinfo bill1 ON bill.employee_id=bill1.employee_id
+        WHERE bill.id=#{id} AND bill1.bill_type=6
+    </select>
+
+    <!--根据单据编号查询调岗单据信息-->
+    <select id="getTransferBillInfoById" resultType="TransferBill">
+        SELECT
+        bill.id,
+        bill.bill_id,
+        bill.business_id,
+        bill.store_id,
+        bill.employee_id,
+        bill.approve_status,
+        bill.transfer_reason,
+        empr1.employee_serial_id AS empId,
+        emp1.employee_name,
+        emp1.id_card,
+        dep.dep_name,
+        st.store_name,
+        po.position_name,
+        empr1.entry_date,
+        bill.transfer_date,
+        dep1.dep_name AS transferDepName,
+        po1.position_name AS transferPositionName
+        FROM bs_billinfo bill
+        INNER JOIN  bs_empbusiness_relation empr1 ON bill.employee_id=empr1.id
+        INNER JOIN bs_employee emp1 ON emp1.id = empr1.emp_id
+        INNER JOIN bs_storeinfo st ON empr1.store_id=st.id
+        INNER JOIN bs_business_department dep ON empr1.dep_id=dep.id
+        INNER JOIN bs_business_position po ON empr1.position_id=po.id
+        INNER JOIN bs_business_department dep1 ON bill.transfer_dep_id=dep1.id
+        INNER JOIN bs_business_position po1 ON bill.transfer_position_id=po1.id
+
+        WHERE bill.id=#{id}
+    </select>
+
+    <select id="getExpenseAccountBillInfoById" resultType="ExpenseAccountBill">
+        SELECT
+        bill.id,
+        bill.bill_id,
+        bill.business_id,
+        bill.store_id,
+        bill.employee_id,
+        bill.description,
+        bill.account,
+        bill.account_bill,
+        bill.approve_date,
+        bill.approve_status,
+        bill.create_time
+        FROM bs_billinfo bill
+        WHERE bill.id=#{id}
+    </select>
+
+    <!--新增请假单-->
+    <insert id="addVacationBill" parameterType="VacationBill">
+        INSERT INTO bs_billinfo(
+        id,
+        bill_id,
+        business_id,
+        store_id,
+        bill_type,
+        vacation_type,
+        employee_id,
+        start_time,
+        start_day,
+        end_time,
+        end_day,
+        approver,
+        duration,
+        description
+        )
+        VALUES (
+        #{id},
+        #{billId},
+        #{businessId},
+        #{storeId},
+        #{billType},
+        #{vacationType},
+        #{employeeId},
+        #{startTime},
+        #{startDay},
+        #{endTime},
+        #{endDay},
+        #{approver},
+        #{duration},
+        #{description}
+        )
+    </insert>
+
+    <!--新增报销单-->
+    <insert id="addExpenseAccountBill" parameterType="ExpenseAccountBill">
+        INSERT INTO bs_billinfo(
+        id,
+        bill_id,
+        business_id,
+        store_id,
+        bill_type,
+        employee_id,
+        description,
+        approver,
+        account,
+        account_bill
+        )
+        VALUES (
+        #{id},
+        #{billId},
+        #{businessId},
+        #{storeId},
+        #{billType},
+        #{employeeId},
+        #{description},
+        #{approver},
+        #{account},
+        #{accountBill}
+        )
+    </insert>
+
+    <!--获取职位信息列表-->
+    <select id="listPositionInfo" resultType="Position">
+        SELECT
+        id,
+        position_serial_id,
+        position_name,
+        status,
+        creator,
+        create_time
+        FROM bs_position
+        WHERE status=1
+    </select>
+
+    <!--新增入职单-->
+    <insert id="addEntryBill">
+        INSERT INTO bs_billinfo(
+        id,
+        bill_id,
+        business_id,
+        store_id,
+        bill_type,
+        employee_id,
+        start_time,
+        dep_id,
+        position_id
+        )
+        VALUES (
+        #{id},
+        #{billId},
+        #{businessId},
+        #{storeId},
+        #{billType},
+        #{employeeId},
+        #{startTime},
+        #{depId},
+        #{positionId}
+        )
+    </insert>
+
+    <!--获取门店中所有员工的入职单-->
+    <select id="queryEntryBillListByStoreId" resultType="EntryBill">
+        SELECT
+        bill.id,
+        bill.bill_id,
+        bill.business_id,
+        bill.store_id,
+        bill.employee_id,
+        bill.start_time,
+        empr.employee_serial_id,
+        emp.employee_name,
+        emp.phone_num,
+        emp.id_card,
+        empr.emp_rela,
+        dep.dep_name,
+        po.position_name AS positionName
+        FROM bs_billinfo bill
+        INNER JOIN  bs_empbusiness_relation empr ON bill.employee_id=empr.id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        INNER JOIN bs_storeinfo st ON empr.store_id=st.id
+        INNER JOIN bs_business_position po ON empr.position_id=po.id
+        INNER JOIN bs_business_department dep ON bill.dep_id=dep.id
+        INNER JOIN bs_billinfo bill1 ON bill.employee_id=bill1.employee_id
+        WHERE bill1.bill_type=6 AND bill.store_id = #{storeId}
+    </select>
+
+    <!--根据员工id查询入职详情-->
+    <select id="queryentryBillByEmpId"  resultType="EntryBill">
+        SELECT
+        bill.id,
+        bill.bill_id,
+        bill.business_id,
+        bill.store_id,
+        bill.employee_id,
+        bill.start_time,
+        empr.employee_serial_id,
+        emp.employee_name,
+        emp.phone_num,
+        emp.id_card,
+        empr.emp_rela,
+        dep.dep_name,
+        po.position_name AS positionName
+        FROM bs_billinfo bill
+        INNER JOIN  bs_empbusiness_relation empr ON bill.employee_id=empr.id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        INNER JOIN bs_storeinfo st ON empr.store_id=st.id
+        INNER JOIN bs_business_position po ON empr.position_id=po.id
+        INNER JOIN bs_business_department dep ON bill.dep_id=dep.id
+        INNER JOIN bs_billinfo bill1 ON bill.employee_id=bill1.employee_id
+        WHERE bill.employee_id=#{employeeId} AND bill1.bill_type=6
+    </select>
+
+    <!--查询入职详情-->
+    <update id="auditDocument">
+        <![CDATA[
+     UPDATE   bs_billinfo set approve_status = #{approveStatus},
+                              approver =#{approver},
+                              approve_desc=#{approveDesc},
+                               approve_date =SYSDATE()
+          WHERE  id = #{id}
+           ]]>
+    </update>
+
+    <!--根据id删除未审核的单据-->
+    <update id="delBillById" >
+        UPDATE bs_billinfo
+        SET
+          status = 2
+        WHERE id =#{id} AND  approve_status = 1
+    </update>
+
+    <!--获取职位信息-->
+    <select id="getPositionInfo" resultType="Position">
+        SELECT
+        id,
+        position_serial_id,
+        position_name,
+        status,
+        creator,
+        create_time
+        FROM bs_position
+        WHERE id=#{id}
+    </select>
+
+    <!--添加职位信息-->
+    <insert id="addPosition" parameterType="Position">
+        INSERT INTO bs_position(
+            id,
+            position_serial_id,
+            position_name,
+            creator
+        )
+        VALUES(
+            #{id},
+            #{positionSerialId},
+            #{positionName},
+            #{creator}
+        )
+    </insert>
+
+    <!--获取商家职位信息列表-->
+    <select id="listBusiPositionInfo" resultType="Position">
+        SELECT
+            id,
+            position_serial_id,
+            position_name,
+            business_id,
+            status,
+            creator,
+            create_time
+        FROM bs_business_position
+        WHERE status=1 AND business_id=#{businessId}
+    </select>
+
+    <!--获取商家职位信息-->
+    <select id="getBusiPositionInfo" resultType="Position">
+        SELECT
+            id,
+            position_serial_id,
+            position_name,
+            business_id,
+            status,
+            creator,
+            create_time
+        FROM bs_business_position
+        WHERE id=#{id}
+    </select>
+
+    <!--添加商家职位信息-->
+    <insert id="addBusiPosition" parameterType="Position">
+        INSERT INTO bs_business_position(
+            id,
+            position_serial_id,
+            position_name,
+            business_id,
+            creator
+        )
+        VALUES(
+            #{id},
+            #{positionSerialId},
+            #{positionName},
+            #{businessId},
+            #{creator}
+        )
+    </insert>
+
+    <!--获取最大职位编号-->
+    <select id="getMaxPositionId" resultType="String">
+        SELECT IFNULL(MAX(position_serial_id),0) AS position_serial_id FROM bs_position
+    </select>
+
+    <!--获取最大职位编号-->
+    <select id="getMaxBusiPositionId" resultType="String">
+        SELECT IFNULL(MAX(position_serial_id),0) AS position_serial_id FROM bs_business_position
+        WHERE business_id=#{businessId}
+    </select>
+
+    <!--返回所有正常单据概要信息列表-->
+    <select id="getSummaryBillEmpId" resultType="BaseBill">
+        SELECT
+           bill.id,
+        bill.bill_id,
+        bill.bill_type,
+        bill.employee_id,
+        bill.store_id,
+        bill.approve_status,
+        bill.create_time,
+        bill.start_time,
+        bill.end_time,
+        bill.duration,
+        bill.description,
+        bill.position_id,
+        bill.vacation_type,
+        bill.account
+        FROM bs_billinfo bill
+        WHERE bill.store_id = #{storeId}
+        AND bill.status='1'
+        AND bill_type =  #{billType}
+        AND bill_type != 6
+        AND   (approve_status =1 or  approve_status = 2)
+        AND bill.employee_id=#{employeeId}
+    </select>
+
+    <!--根据单据id号查询假期单据信息-->
+    <select id="getVacationBillEmpById" resultType="BaseBill">
+        SELECT
+        bill.id
+        FROM bs_billinfo bill
+        WHERE bill.employee_id= #{employeeId}
+         AND bill.bill_type = #{billType}
+         and bill.end_time > #{startTime}
+    </select>
+
+</mapper>

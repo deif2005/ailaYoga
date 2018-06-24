@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dod.sport.dao.IClientUserDao">
+
+    <sql id="basesql">
+      id,
+      user_serial_id,
+      user_name,
+      nick_name,
+      head_portrait,
+      height,
+      weight,
+      birthday,
+      sex,
+      hobby,
+      phone_num,
+      balance,
+      email,
+      status,
+      create_time
+    </sql>
+
+    <!--新增平台用户-->
+    <insert id="addClientUser">
+        INSERT INTO bs_user
+            (id,
+             user_serial_id,
+             nick_name,
+             password,
+            <if test="birthday !=null ">
+             birthday,
+           </if>
+             sex,
+             phone_num)
+        VALUES (
+            #{id},
+            #{userSerialId},
+            #{nickName},
+            #{password},
+        <if test="birthday !=null ">
+            #{birthday},
+        </if>
+            #{sex},
+            #{phoneNum}
+        )
+    </insert>
+
+    <!--获取平台用户详情-->
+    <select id="getClientUserInfo" resultType="ClientUser">
+        SELECT
+         <include refid="basesql"/>
+        FROM bs_user
+        <where>
+            <if test="id !=null and id !=''">
+                id = #{id}
+            </if>
+            <if test="password !=null and password !=''">
+                AND password = #{password}
+            </if>
+            <if test="phoneNum !=null and phoneNum !=''">
+                AND phone_num = #{phoneNum}
+            </if>
+        </where>
+    </select>
+
+    <!--登陆-->
+    <select id="loginClientUserInfo" resultType="ResponseMember">
+        SELECT
+        <include refid="basesql"/>
+        FROM bs_user
+        <where>
+            <if test="password !=null and password !=''">
+                AND password = #{password}
+            </if>
+            <if test="phoneNum !=null and phoneNum !=''">
+                AND phone_num = #{phoneNum}
+            </if>
+        </where>
+    </select>
+
+    <!--获取平台用户列表-->
+    <select id="listClientUserInfo" resultType="ClientUser">
+        SELECT
+        <include refid="basesql"/>
+        FROM bs_user
+        WHERE
+        sex = #{sex}  GROUP BY create_time
+        LIMIT #{statsPage},#{endPage}
+    </select>
+
+    <!--更新平台用户信息-->
+    <update id="updateClientUser">
+        UPDATE bs_user
+        <set>
+            <if test="userName !=null ">
+                user_name = #{userName},
+            </if>
+            <if test="nickName !=null  ">
+                nick_name = #{nickName},
+            </if>
+            <if test="password !=null">
+                password = #{password},
+            </if>
+            <if test="height !=null">
+                height = #{height},
+            </if>
+            <if test="weight !=null">
+                weight = #{weight},
+            </if>
+            <if test="birthday !=null  ">
+                birthday = #{birthday},
+            </if>
+            <if test="headPortrait !=null  ">
+                head_portrait = #{headPortrait},
+            </if>
+            <if test="hobby !=null ">
+                hobby = #{hobby},
+            </if>
+            <if test="sex !=null ">
+                sex = #{sex},
+            </if>
+            <if test="email !=null ">
+                email = #{email},
+            </if>
+            <if test="phoneNum !=null  ">
+                phone_num = #{phoneNum},
+            </if>
+            <if test="balance !=null ">
+                balance = #{balance}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!--获取平台用户最大编号-->
+    <select id="getMaxClientUserId" resultType="String">
+        SELECT IFNULL(MAX(user_serial_id),0) AS user_serial_id FROM bs_user
+    </select>
+
+    <!--根据电话获取平台用户信息-->
+    <select id="getClientUserByPhone" resultType="ClientUser">
+        SELECT <include refid="basesql"/>
+        FROM bs_user
+        WHERE
+        phone_num = #{phoneNum}
+    </select>
+
+    <!--获取平台用户商家列表-->
+    <select id="listClientUserBusiness" resultType="BaseBusinessInfo">
+        SELECT b.id, b.business_serial_id,b.business_name
+        FROM bs_businessinfo b
+        INNER JOIN bs_member member ON member.business_id = b.id
+        INNER JOIN bs_user us  ON us.id = member.user_id
+        WHERE us.phone_num =#{phoneNum}
+    </select>
+
+    <!--获取用户会员卡列表-->
+    <select id="listUserMembercard" resultType="MembercardRelation">
+        SELECT
+          rel.id,
+          rel.opencard_serial_id,
+          rel.member_id,
+          rel.membcard_id,
+          rel.validity_type,
+          rel.validity_time,
+          rel.card_status,
+          rel.specact_time,
+          rel.act_time,
+          rel.times,
+          rel.give_times,
+          rel.flag_type,
+          rel.store_id,
+          rel.remark,
+          rel.opencard_date,
+          rel.creator,
+          rel.create_time,
+          card.membcard_name,
+          card.membcard_type,
+          card.order_course_type,
+          st.store_name
+        FROM bs_membercard_relation rel
+        INNER JOIN bs_membership_card card ON card.id = rel.membcard_id
+        INNER JOIN bs_member mem ON mem.id = rel.member_id
+        INNER JOIN bs_user us ON us.id = mem.user_id
+        INNER JOIN bs_storeinfo st ON st.id = rel.store_id
+        INNER JOIN bs_businessinfo busi ON busi.id = st.business_id
+        WHERE us.id = #{userId} and st.business_id =#{businessId}
+    </select>
+</mapper>

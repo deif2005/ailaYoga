@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dod.sport.dao.IMemberDao">
+
+   <resultMap id="memberResultMap" type="BusinessMember">
+        <id property="id" column="id"/>
+        <result property="sex" column="sex"/>
+        <result property="birthday" column="birthday"/>
+        <result property="phoneNum" column="phone_num"/>
+        <result property="memberHead" column="member_head"/>
+        <collection property="list" ofType="com.dod.sport.domain.po.Member.MembercardRelation">
+            <id property="id" column="id"/>
+            <result property="memberSerialId" column="opencard_serial_id"/>
+            <result property="membcardId" column="membcard_id"/>
+            <result property="cardStatus" column="card_status"/>
+            <result property="times" column="times"/>
+            <result property="validityType" column="validity_type"/>
+            <result property="validityTime" column="validity_time"/>
+        </collection>
+    </resultMap>
+    
+
+    <sql id="baseSql">
+        member.id,
+        member.member_serial_id,
+        member.business_id,
+        member.store_id,
+        member.member_tags,
+        member.creator,
+        member.status,
+        member.create_time,
+        member.remark,
+        member.user_id,
+        us.user_serial_id,
+        us.user_name,
+        us.nick_name,
+        us.head_portrait,
+        us.height,
+        us.weight,
+        us.birthday,
+        us.sex,
+        us.hobby,
+        us.phone_num,
+        us.balance,
+        us.email,
+        us.create_time
+    </sql>
+
+    <!--通过会员电话获取门店会员信息-->
+    <select id="queryMemberInfo" resultType="ResponseMember">
+        SELECT <include refid="baseSql"/> , st.store_name,busi.business_name FROM bs_member member
+        INNER JOIN bs_user us ON us.id = member.user_id
+        INNER JOIN bs_storeinfo st ON st.id = member.store_id
+        INNER JOIN bs_businessinfo busi ON busi.id = st.business_id
+        <where>
+            <if test="phoneNum != null and phoneNum!=''">
+                us.phone_num=#{phoneNum}
+            </if>
+            <if test="businessId != null and businessId !=''">
+                AND  member.business_id=#{businessId}
+            </if>
+            <if test="id != null and id!=''">
+                AND  member.id=#{id}
+            </if>
+        </where>
+    </select>
+
+    <!--根据用户id获取信息-->
+    <select id="getBuseinessMemberByUserId" resultType="ResponseMember">
+        SELECT <include refid="baseSql"/> , st.store_name,busi.business_name FROM bs_member member
+        INNER JOIN bs_user us ON us.id = member.user_id
+        INNER JOIN bs_storeinfo st ON st.id = member.store_id
+        INNER JOIN bs_businessinfo busi ON busi.id = st.business_id
+        <where>
+            AND  member.business_id=#{businessId}
+            AND  member.user_id = #{userId}
+        </where>
+    </select>
+    <!--通过用户id获取会员信息列表-->
+    <select id="listMemberInfoByUserId" resultType="ResponseMember">
+        SELECT <include refid="baseSql"/> , st.store_name,busi.business_name FROM bs_member member
+        INNER JOIN bs_user us ON us.id = member.user_id
+        INNER JOIN bs_storeinfo st ON st.id = member.store_id
+        INNER JOIN bs_businessinfo busi ON busi.id = st.business_id
+        where us.id=#{userId} AND member.status = 1 group by member.create_time
+    </select>
+
+    <!--新增会员-->
+    <insert id="addMemberInfo" >
+        INSERT INTO bs_member(
+            id,
+            member_serial_id,
+            business_id,
+        <if test="memberTags != null and memberTags != 0">
+            member_tags,
+        </if>
+            store_id,
+            creator,
+        <if test="remark != null and remark != ''">
+            remark,
+        </if>
+            user_id
+        )
+        VALUES(
+            #{id},
+            #{memberSerialId},
+            #{businessId},
+        <if test="memberTags != null and memberTags != 0">
+            #{memberTags},
+        </if>
+            #{storeId},
+            #{creator},
+        <if test="remark != null and remark != ''">
+            #{remark},
+        </if>
+            #{userId}
+        )
+    </insert>
+
+    <!--获取会员编号-->
+    <select id="getMaxMemberId" resultType="String">
+        SELECT IFNULL(MAX(member_serial_id),0) AS member_serial_id FROM bs_member
+        WHERE business_id=#{businessId}
+    </select>
+
+    <!--获取门店所有会员信息-->
+    <select id="queryMemberListByStoreId" resultType="ResponseMember">
+        SELECT<include refid="baseSql"/> , st.store_name,busi.business_name FROM bs_member member
+        INNER JOIN bs_user us ON us.id = member.user_id
+        INNER JOIN bs_storeinfo st ON st.id = member.store_id
+        INNER JOIN bs_businessinfo busi ON busi.id = st.business_id
+        WHERE member.store_id = #{storeId} AND member.status =1  GROUP BY us.create_time
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--根据名称获取门店会员信息-->
+    <select id="queryMemberListByStoreIdAndName" resultType="ResponseMember">
+        SELECT<include refid="baseSql"/> ,st.store_name,busi.business_name
+        FROM bs_member member
+        INNER JOIN bs_user us ON us.id = member.user_id
+        INNER JOIN bs_storeinfo st ON st.id = member.store_id
+        INNER JOIN bs_businessinfo busi ON busi.id = st.business_id
+        WHERE
+        <if test="requeryParam != null and requeryParam != ''">
+            us.user_name LIKE '%${requeryParam}%'OR
+            us.phone_num LIKE '%${requeryParam}%'AND
+        </if>
+        member.store_id = #{storeId}
+        AND member.status =1
+        GROUP BY member.create_time DESC
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--设置会员标签-->
+    <update id="updatememberTags">
+        UPDATE bs_member
+        SET
+        member_tags = #{memberTags}
+        WHERE id = #{id};
+    </update>
+
+    <!--编辑会员信息-->
+    <update id="updateMeberInfo">
+        UPDATE bs_member
+        <set>
+        <if test="memberTags != null and memberTags != 0">
+            member_tags = #{memberTags},
+        </if>
+        <if test=" remark != null">
+              remark = #{remark}
+        </if>
+        </set>
+        WHERE id = #{id};
+    </update>
+
+    <insert id="addMemberLeaveInfo" parameterType="MemberLeave">
+        INSERT INTO bs_member_leave(
+        id,
+        member_id,
+        start_time,
+        duration,
+        end_time,
+        fee,
+        remark,
+        approver,
+        approve_date,
+        create_time,
+        creator
+        )
+        VALUES(
+        #{id},
+        #{memberId},
+        #{startTime},
+        #{duration},
+        #{endTime},
+        #{fee},
+        #{remark},
+        #{approver},
+        #{approveDate},
+        sysdate(),
+        #{creator}
+        )
+    </insert>
+
+    <!--获取请假单-->
+    <select id="getMemberLeaveById" resultType="MemberLeave">
+        select
+        id,
+        member_id,
+        start_time,
+        duration,
+        end_time,
+        fee,
+        remark,
+        approve_status,
+        approver,
+        approve_date,
+        status,
+        create_time,
+        creator
+
+        FROM bs_member_leave
+        where status= 1 and
+        member_id = #{memberId}
+         and  approve_status= #{approveStatus}
+
+    </select>
+
+
+    <!--编辑会员信息-->
+    <update id="memberApprove" parameterType="MemberLeave">
+        UPDATE bs_member_leave
+        SET
+          approve_status = #{approveStatus},
+          approver = #{approver},
+          approve_date= sysdate()
+
+        WHERE id = #{id};
+    </update>
+
+    <!--删除会员信息-->
+    <update id="deleteMemberApprove" parameterType="MemberLeave">
+        UPDATE bs_member_leave
+        SET
+           status = 2
+        WHERE id = #{id}
+        <!--   <if test=" endTime != ''">
+         and end_time = #{endTime}
+              and approve_status = 2
+          </if>-->
+      </update>
+
+       <!--获取商家会员请假基础信息-->
+    <select id="getBusinessMemberLeaveInfo" resultType="BussinessMemberLeave">
+        select
+      t.id,
+      t.bussiness_id,
+      t.appointment_day,
+      t.give_course,
+      t.leave_fee,
+      t.duration,
+      t.leave_number
+        FROM bs_leave t
+        where t.bussiness_id = #{bussinessId}
+    </select>
+
+    <!--获取最大编号-->
+    <select id="getMemberEvaluateIdMax" resultType="String">
+        SELECT IFNULL(MAX(evaluate_serial_id),0) AS evaluate_serial_id FROM bs_member_evaluate
+        WHERE emp_id=#{empRelationId}
+    </select>
+
+    <!--新增会员评价 -->
+    <insert id="addMemberEvaluate">
+        INSERT INTO bs_member_evaluate
+        (
+        id,
+        member_id,
+        emp_id,
+        course_id,
+        teach_level,
+        service_level,
+        environment_level,
+        evaluate_str)
+        VALUES (
+        #{id},
+        #{memberId},
+        #{empId},
+        #{courseId},
+        #{teachLevel},
+        #{serviceLevel},
+        #{environmentLevel},
+        #{evaluateStr})
+    </insert>
+
+
+</mapper>

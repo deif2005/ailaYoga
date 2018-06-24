@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dod.sport.dao.IMemberCardDao">
+    <sql id="baseSql">
+      id,
+      membcard_serial_id,
+      membcard_name,
+      membcard_type,
+      order_course_type,
+      STATUS,
+      remark,
+      creator,
+      create_time
+    </sql>
+
+    <!--获取卡信息列表-->
+    <select id="listMemberCardInfo" resultType="MemberCard">
+        SELECT
+        card.id,
+        card.membcard_serial_id,
+        card.membcard_name,
+        card.membcard_type,
+        card.order_course_type,
+        card.status,
+        card.remark,
+        card.creator,
+        card.create_time
+        FROM bs_membership_card card
+        WHERE card.status=1 AND card.business_id=#{businessId}
+    </select>
+
+    <!--根据卡类型获取会员卡列表-->
+    <select id="listMemberCardInfoByType" resultType="MemberCard">
+        SELECT
+        card.id,
+        card.membcard_serial_id,
+        card.membcard_name,
+        card.membcard_type,
+        card.order_course_type,
+        card.status,
+        card.remark,
+        card.creator,
+        card.create_time
+        FROM bs_membership_card card
+        WHERE card.status=1 AND card.card.membcard_type, = #{membcardType} AND card.business_id=#{businessId}
+    </select>
+
+    <!--根据卡id获取卡信息-->
+    <select id="getMemberCardInfo" resultType="MemberCard">
+      SELECT
+        card.id,
+        card.membcard_serial_id,
+        card.membcard_name,
+        card.membcard_type,
+        card.order_course_type,
+        card.status,
+        card.remark,
+        card.creator,
+        card.create_time
+      FROM bs_membership_card card
+      WHERE card.id=#{id}
+    </select>
+
+    <!--添加卡信息-->
+    <insert id="addMemberCard" parameterType="MemberCard">
+        INSERT INTO bs_membership_card(
+        id,
+        business_id,
+        membcard_serial_id,
+        membcard_name,
+        membcard_type,
+        order_course_type,
+        remark,
+        creator
+        )
+        VALUES(
+        #{id},
+        #{businessId},
+        #{membcardSerialId},
+        #{membcardName},
+        #{membcardType},
+        #{orderCourseType},
+        #{remark},
+        #{creator}
+        )
+    </insert>
+
+    <!--获取会员卡编号-->
+    <select id="getMaxMemberCardId" resultType="String">
+        SELECT IFNULL(MAX(membcard_serial_id),0) AS membcard_serial_id FROM bs_membership_card
+        WHERE business_id=#{businessId}
+    </select>
+
+    <!--软删除会员卡 -->
+    <update id="delMembercardById">
+        UPDATE bs_membership_card
+        SET status = 2
+        WHERE  id = #{id}
+    </update>
+
+    <!--编辑会员卡-->
+    <update id="updateMembercard">
+        UPDATE bs_membership_card
+        <set>
+        <if test="membcardName != null and membcardName != '' ">
+            membcard_name =#{membcardName},
+        </if>
+        <if test="membcardType != '' and membcardType != 0 ">
+            membcard_type = #{membcardType},
+        </if>
+        <if test=" remark != '' ">
+            remark =#{remark},
+        </if>
+        <if test="orderCourseType != null and orderCourseType != '' and orderCourseType != 0 ">
+            order_course_type =#{orderCourseType},
+        </if>
+        </set>
+        WHERE id = #{id};
+    </update>
+
+    <!--获取获取会员卡持卡人数信息-->
+    <select id="queryMembercardSum" resultType="MemberCard">
+        SELECT
+        card.id,
+        card.membcard_serial_id,
+        card.membcard_name,
+        card.membcard_type,
+        card.order_course_type,
+        card.status,
+        card.remark,
+        card.creator,
+        card.create_time,
+        COUNT(me.membcard_id) AS sumcard
+        FROM  bs_membership_card card
+        LEFT JOIN  bs_membercard_relation me ON card.id = me.membcard_id AND  me.card_status !=3
+        WHERE card.business_id = #{businessId}
+        GROUP BY card.membcard_name
+    </select>
+
+    <!--获取所有商家门店和会员卡关联门店信息-->
+    <select id="queryStoreInfoList" resultType="StoreInfo">
+        SELECT st.id ,st.store_name,st.status, me.membcard_id AS cid FROM bs_storeinfo st
+        LEFT JOIN bs_membercard_store me ON me.store_id = st.id AND  me.membcard_id=#{membcardId}
+        WHERE st.business_id = #{businessId}
+    </select>
+
+    <!--查询会员卡关联门店列表-->
+    <select id="queryMembercardStoreRelationListByCardId" resultType="Memcardstorerelation">
+        select id, membcard_id,store_id FROM bs_membercard_store WHERE membcard_id = #{membcardId}
+    </select>
+
+    <!--删除关联门店 -->
+    <delete id="delMemcardstorerelation">
+        DELETE
+        FROM bs_membercard_store
+        WHERE id = #{id}
+    </delete>
+
+    <!--新增会员卡与门店关联 -->
+    <insert id="addMembercardStoreRelation">
+        INSERT INTO bs_membercard_store
+            (id,
+             membcard_id,
+             store_id)
+        VALUES (
+            #{id},
+            #{membcardId},
+            #{storeId})
+    </insert>
+
+    <!--获取关联该门店的会员卡列表 -->
+    <select id="queryMembercardListByStoreId" resultType="MemberCard">
+        SELECT
+          card.id,
+          card.membcard_name,
+          card.membcard_type,
+          card.status,
+          card.order_course_type
+        FROM bs_membership_card card
+        INNER JOIN bs_membercard_store s ON s.membcard_id = card.id
+        WHERE s.store_id=#{stordId}
+         <if test="membcardType !=null and membcardType!=0">
+             AND card.membcard_type = #{membcardType}
+         </if>
+          AND card.status = 1
+    </select>
+
+    <!--获取关联该门店的会员卡列表 -->
+    <select id="getUserMemberCardListById" resultType="MemberCard">
+
+        select
+        t1.membcard_name,
+        t3.id,
+        t3.opencard_serial_id,
+        t3.member_id,
+        t3.membcard_id,
+        t3.membcard_type,
+        t3.validity_type,
+        t3.validity_time,
+        t3.card_status,
+        t3.specact_time,
+        t3.act_time,
+        t3.act_status,
+        t3.times,
+        t3.give_times,
+        t3.balance,
+        t3.flag_type,
+        t3.business_id,
+        t3.store_id,
+        t3.remark,
+        t3.creator,
+        t3.create_time
+        from bs_membership_card t1 , bs_member t2 ,bs_membercard_relation t3 ,bs_user t4
+        where
+        t1.id = t3.membcard_id  and  t2.user_id = t4.id and t2.id =  t3.member_id
+        and t2.id = t3.member_id
+        <if test="businessId !=null and businessId !=''">
+            and t1.business_id = #{businessId}
+        </if>
+        and  t4.phone_num =#{phoneNum};
+    </select>
+
+    <!--获取关联该门店的会员卡列表 -->
+    <select id="getMemberCardDetail" resultType="MemberCardDetail">
+
+        select
+        t1.membcard_name,
+        t3.id,
+        t3.opencard_serial_id,
+        t3.member_id,
+        t3.membcard_id,
+        t3.membcard_type,
+        t3.validity_type,
+        t3.validity_time,
+        t3.card_status,
+        t3.specact_time,
+        t3.act_time,
+        t3.act_status,
+        t3.times,
+        t3.give_times,
+        t3.balance,
+        t3.flag_type,
+        t3.business_id,
+        t3.store_id,
+        t3.remark,
+        t3.creator,
+        t3.create_time
+
+        from bs_membership_card t1 ,bs_membercard_relation t3
+        where
+        t1.id = t3.membcard_id
+        and t3.id = #{id};
+    </select>
+    <!--根据id和类型获取变更记录-->
+    <select id="getMemberRecharegeRecord" resultType="MembercardRechargeRecord">
+        SELECT
+         id,
+        member_id,
+        membrelation_id,
+        membcard_type,
+        times,
+        months,
+        nominal_amount,
+        store_id,
+        recharge_time,
+        remark,
+        creator
+        FROM bs_membercard_recharge
+        where 1=1
+        <if test="id !=null and id !=''">
+            and id = #{id}
+        </if>
+        <if test="storeId !=null and storeId !=''">
+            and  store_id = #{storeId}
+        </if>
+        <if test="membrelationId !=null and membrelationId !=''">
+            and  membrelation_id = #{membrelationId}
+        </if>
+
+    </select>
+
+</mapper>

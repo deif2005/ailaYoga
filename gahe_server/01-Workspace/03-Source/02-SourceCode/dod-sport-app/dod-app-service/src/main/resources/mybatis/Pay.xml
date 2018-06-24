@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dod.sport.dao.IPayDao">
+
+    <!--新增支付记录-->
+    <insert id="addPayRecord">
+        INSERT INTO bs_expense_record
+        (
+        id,
+        expense_serial_id,
+        user_id,
+        expense_classify,
+        order_id,
+        pay_money,
+        pay_mode,
+        pay_time,
+        remark
+
+        )
+        VALUES (
+        #{id},
+        #{expenseSerialId},
+        #{userId},
+        #{expenseClassify},
+        #{order_id},
+        #{pay_money},
+        #{pay_mode},
+        #{pay_time}
+        #{remark}
+        )
+    </insert>
+
+    <!--获取支付记录-->
+    <select id="getPayRecordList" resultType="PayRecord">
+        SELECT
+          id,
+        expense_serial_id,
+        user_id,
+        expense_classify,
+        order_id,
+        pay_money,
+        pay_mode,
+        pay_time,
+        remark
+        FROM bs_expense_record
+        WHERE  user_id = #{userId}
+    </select>
+
+</mapper>

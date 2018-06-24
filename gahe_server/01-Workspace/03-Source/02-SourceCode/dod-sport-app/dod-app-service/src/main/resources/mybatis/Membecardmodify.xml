@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dod.sport.dao.IMembercardmodifyDao">
+    <sql id="cardmodifySql">
+          id,
+          modify_serial_id,
+          modify_type,
+          member_id,
+          tarmember_id,
+          membercard_relation_id,
+          newcard_id,
+          oldcard_id,
+          give_times,
+          validity_type,
+          times,
+          validity_time,
+          new_times,
+          new_validity_time,
+          store_id,
+          creator,
+          modify_time,
+          remark
+    </sql>
+    <sql id="rechargeSql">
+     id,
+     recharge_serial_id,
+     membercard_relation_id,
+     times,
+     months,
+     nominal_amount,
+     store_id,
+     recharge_time,
+     remark
+    </sql>
+
+    <sql id="orderSql">
+        id,
+      order_serial_id,
+      user_id,
+      total_price,
+      order_status,
+      member_id,
+      store_id,
+      create_time
+    </sql>
+
+    <!--获取最大充值编号-->
+    <select id="getRechargeIdMax" resultType="String">
+        SELECT IFNULL(MAX(recharge_serial_id),0) AS recharge_serial_id FROM bs_membercard_recharge
+        WHERE member_id=#{memberId}
+    </select>
+
+    <!--新增充值记录-->
+    <insert id="addMembecardRecharge">
+        INSERT INTO bs_membercard_recharge
+            (id,
+             recharge_serial_id,
+             membercard_relation_id,
+        <if test=" times !=null and times!=0 ">
+            times,
+        </if>
+        <if test="months !=null and months!=0 ">
+            months,
+        </if>
+             nominal_amount,
+             creator,
+        <if test="remark != null and remark !='' ">
+             remark,
+        </if>
+             store_id
+        )
+        VALUES (
+                #{id},
+                #{rechargeSerialId},
+                #{membercardRelationId},
+        <if test="times !=null and times!=0 ">
+                #{times},
+        </if>
+        <if test="months !=null and months!=0 ">
+               #{months},
+        </if>
+                #{nominalAmount},
+                #{creator},
+        <if test="remark != null and remark !='' ">
+               #{remark},
+        </if>
+               #{storeId}
+        )
+    </insert>
+
+    <!--获取会员变更最大编号-->
+    <select id="getModifyIdMax" resultType="String">
+        SELECT IFNULL(MAX(modify_serial_id),0) AS modify_serial_id FROM bs_membercard_modify
+        WHERE modify_serial_id LIKE '%${dateStr}%'
+    </select>
+
+    <!--新增变更记录表-->
+    <insert id="addMembercardModify">
+        INSERT INTO bs_membercard_modify
+            (id,
+             modify_serial_id,
+             modify_type,
+             member_id,
+             tarmember_id,
+             membercard_relation_id,
+            <if test=" times !=''and times !='0'">
+                times,
+            </if>
+            <if test=" months !='' and months !='0' ">
+                months,
+            </if>
+             nominal_amount,
+             newcard_id,
+             oldcard_id,
+        <if test=" giveTimes !=''">
+            give_times,
+        </if>
+        <if test=" validityType !=''">
+            validity_type,
+        </if>
+             new_times,
+             old_times,
+             residue_times,
+             new_validity_time,
+             old_validity_time,
+             discount_price,
+             price_spread,
+             store_id,
+            <if test="status !=null and status !='' and status !='0'">
+                status,
+            </if>
+             creator,
+             modify_time,
+             remark)
+        VALUES (
+                #{id},
+                #{modifySerialId},
+                #{modifyType},
+                #{memberId},
+                #{tarmemberId},
+                #{membercardRelationId},
+                <if test=" times !=''and times !='0'">
+                    #{times},
+                </if>
+                <if test=" months !='' and months !='0' ">
+                    #{months},
+                </if>
+                #{nominalAmount},
+                #{newcardId},
+                #{oldcardId},
+                <if test=" giveTimes !=''">
+                    #{giveTimes},
+                </if>
+                <if test=" validityType !=''">
+                    #{validityType},
+                </if>
+                #{newTimes},
+                #{oldTimes},
+                #{residueTimes},
+                #{newValidityTime},
+                #{oldValidityTime},
+                #{discountPrice},
+                #{priceSpread},
+                #{storeId},
+                <if test="status !=null and status !='' and status !='0'">
+                    #{status},
+                </if>
+                #{creator},
+                #{modifyTime},
+                #{remark})
+    </insert>
+    <!--更新变更记录-->
+    <update id="updateMembercardModify">
+        UPDATE bs_membercard_modify
+        SET
+          status = #{status},
+          modify_time = #{modifyTime}
+        WHERE id = #{id}
+    </update>
+    <!--根据会员卡关系id 查询变更信息-->
+    <select id="queryModifyByIdAndType" resultType="MembercardModify">
+        SELECT
+          id,
+          modify_serial_id,
+          modify_type,
+          member_id,
+          tarmember_id,
+          membercard_relation_id,
+          newcard_id,
+          oldcard_id,
+          give_times,
+          validity_type,
+          times,
+          validity_time,
+          store_id,
+          creator,
+          modify_time,
+          remark
+        FROM bs_membercard_modify
+        WHERE membercard_relation_id = #{membercardRelationId} AND status =1
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取会员所有订单列表 -->
+    <select id="listMemberOrderInfo" resultType="ResponseOrder">
+        SELECT
+        mo.id,
+        mo.modify_serial_id,
+        IFNULL( mo.modify_type,9)AS modify_type,
+        mo.member_id,
+        mo.tarmember_id,
+        mo.membercard_relation_id,
+        mo.times,
+        mo.months,
+        mo.nominal_amount,
+        mo.newcard_id,
+        mo.oldcard_id,
+        mo.give_times,
+        mo.validity_type,
+        mo.new_times,
+        mo.old_times,
+        mo.residue_times,
+        mo.new_validity_time,
+        mo.old_validity_time,
+        mo.discount_price,
+        mo.price_spread,
+        mo.store_id,
+        mo.status,
+        mo.creator,
+        mo.modify_time,
+        mo.remark,
+        st.store_name,
+        newcard.membcard_name AS newcardName,
+        oldcard.membcard_name AS oldcardName,
+        newcard.membcard_type,
+        sorder.order_serial_id,
+        sorder.total_price,
+        sorder.create_time,
+        sorder.order_status,
+        sale.amount_money,
+        sorder.total_price,
+        sale.sale_type,
+        sorder.user_id,
+        lea.start_time,
+        lea.duration,
+        lea.end_time,
+        rec.expense_serial_id,
+        rec.pay_time,
+        rec.pay_mode
+        FROM bs_order sorder
+        INNER JOIN bs_storeinfo st ON st.id = sorder.store_id
+        INNER JOIN bs_sale_detail sale ON  sale.order_id= sorder.id
+        INNER JOIN bs_user us ON us.id = sorder.user_id
+        INNER JOIN bs_member member ON member.id = sorder.member_id
+        LEFT JOIN bs_membercard_modify mo ON mo.id = sale.product_id
+        LEFT JOIN bs_membership_card newcard ON newcard.id = mo.newcard_id
+        LEFT JOIN bs_membership_card oldcard ON oldcard.id = mo.oldcard_id
+        LEFT JOIN bs_member_leave lea ON lea.id = sale.product_id
+        LEFT JOIN bs_expense_record rec ON rec.order_id = sorder.order_serial_id
+        <where>
+            <if test="orderSerialId !=null and orderSerialId!=''">
+                sorder.order_serial_id = #{orderSerialId}
+            </if>
+            <if test="userId !=null and userId!=''">
+                AND us.id = #{userId}
+            </if>
+            <if test="orderStatus !=null and orderStatus!=''">
+                AND sorder.order_status =#{orderStatus}
+            </if>
+        </where>
+        ORDER by  sorder.create_time
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+</mapper>

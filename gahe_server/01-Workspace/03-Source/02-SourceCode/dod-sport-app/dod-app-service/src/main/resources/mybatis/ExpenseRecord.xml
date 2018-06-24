@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dod.sport.dao.IExpenseRecordDao">
+
+    <sql id="basesql">
+         id,
+         expense_serial_id,
+         expense_classify,
+         pay_type,
+         pay_money,
+         trading_object,
+         trading_content,
+         store_id,
+         client_user_id,
+         pay_status,
+         pay_time,
+         remark
+    </sql>
+
+    <!--新增消费记录-->
+    <insert id="addExpenseRecord">
+        INSERT INTO bs_expense_record
+            (id,
+             expense_serial_id,
+             expense_classify,
+             pay_type,
+             pay_money,
+             trading_object,
+             trading_content,
+             store_id,
+             client_user_id,
+             pay_status,
+             remark)
+        values (
+            #{id},
+            #{expenseSerialId},
+            #{expenseClassify},
+            #{payType},
+            #{payMoney},
+            #{tradingObject},
+            #{tradingContent},
+            #{storeId},
+            #{clientUserId},
+            #{payStatus},
+            #{remark})
+    </insert>
+
+    <!--获取用户的所有消费记录-->
+    <select id="listUserExpenseRecord" resultType="ResponseExpenseRecord">
+        SELECT
+          rec.id,
+          rec.expense_serial_id,
+          rec.expense_classify,
+          rec.pay_type,
+          rec.pay_money,
+          rec.trading_object,
+          rec.trading_content,
+          rec.pay_status,
+          rec.pay_time,
+          rec.remark,
+          st.store_name,
+          bu.nick_name,
+          DATE_FORMAT(rec.pay_time,'%Y') AS the_year,
+          DATE_FORMAT(rec.pay_time,'%m') AS the_month,
+          DATE_FORMAT(rec.pay_time,'%d') AS the_day,
+          DATE_FORMAT(rec.pay_time,'%H:%i') AS the_time
+        FROM bs_expense_record rec
+        INNER JOIN bs_storeinfo st ON st.id = rec.store_id
+        INNER JOIN bs_user bu ON bu.id = rec.client_user_id
+        WHERE bu.id = #{id} GROUP BY rec.pay_time DESC
+         limit #{startPage},#{endPage}
+    </select>
+
+    <!--获取消费记录最大编号-->
+    <select id="getMaxExponseRecordId" resultType="String">
+         SELECT IFNULL(MAX(expense_serial_id),0) AS expense_serial_id
+          FROM bs_expense_record WHERE  expense_serial_id LIKE '%${dateTimeStr}%'
+    </select>
+</mapper>

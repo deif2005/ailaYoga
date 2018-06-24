@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dod.sport.dao.IPersonalIncomeDao">
+
+    <!--获取卡类型列表-->
+    <select id="getPersonalIncomeList" resultType="SalarySetting">
+        SELECT  id,
+            store_id,
+            base_pay,
+            position_pay,
+            seniority_pay,
+            tendance_pay,
+            housing_subsidies,
+            meal_allowance,
+            phone_subsidy,
+            travel_allowance,
+            attendance_reward,
+            management_allowance,
+            other,
+            overtime_pay,
+            weekend_overtimepay,
+            holiday_overtimepay,
+            achievement_percentage,
+            achievement_id,
+            junior_coach,
+            intermediate_coach,
+            senior_coach,
+            concurrent_post,
+            private_concurrent_post,
+            private_junior_coach,
+            private_intermediate_coach,
+            private_senior_coach,
+            ocial_security,
+            accumulation_fund,
+            personal_tax
+            FROM   bs_salary
+            where store_id =#{storeId}
+    </select>
+    <!--获取团课课次数-->
+    <select id="getCourseplanCount" resultType="String">
+          select count(0) from bs_course_plan t1
+                      LEFT JOIN bs_course_sign t2 on t1.id = t2.courseplan_id
+                      where t1.store_id =#{storeId}  and t1.employee_id =#{employeeId} and t2.sign_status = 3
+                       and  DATE_FORMAT(sign_time2,'%Y-%m') = #{signTime}
+    </select>
+    <!--获取私课次数-->
+    <select id="getPrivateCourseCount" resultType="String">
+        select count(0) from  bs_private_courseplan pc
+        where pc.store_id =#{storeId} and pc.employee_id =#{employeeId}   and DATE_FORMAT(class_datetime,'%Y-%m') = #{classDatetime}
+    </select>
+    <!--获取员工职位-->
+    <select id="getEmployeePositioninfo" resultType="ResponseEmployee">
+        select  emp_rela , job_title,coach_exists from bs_employee emp  LEFT JOIN bs_position pos on emp.position_id = pos.id
+             where emp.store_id=#{storeId}  and emp.id =#{employeeId}
+    </select>
+
+    <!--获取业绩金额-->
+    <select id="getEmployeeAchievementById" resultType="String">
+        select  sum(balance)  from  bs_membercard_relation bs where store_id = #{storeId} and creator  = #{employeeId}
+        and DATE_FORMAT(creator_time,'%Y-%m') = #{queryTime}
+    </select>
+
+    <!--获取业绩提成比例-->
+    <select id="getIncomeProportionById" resultType="PersonalIncome">
+        select id,
+        store_id,
+        achievement,
+        commission
+        from  bs_achievement_commission where store_id = #{storeId}
+    </select>
+
+
+</mapper>

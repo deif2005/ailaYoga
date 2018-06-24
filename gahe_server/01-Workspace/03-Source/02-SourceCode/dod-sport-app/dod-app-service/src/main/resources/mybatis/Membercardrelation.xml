@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dod.sport.dao.IMembercardRelationDao">
+    <sql id="membercardRelationBaseSql">
+          rel.id,
+          rel.opencard_serial_id,
+          rel.member_id,
+          rel.membcard_id,
+          rel.validity_type,
+          rel.validity_time,
+          rel.card_status,
+          rel.specact_time,
+          rel.act_time,
+          rel.times,
+          rel.give_times,
+          rel.flag_type,
+          rel.store_id,
+          rel.remark,
+          rel.opencard_date,
+          rel.creator,
+          rel.create_time,
+    </sql>
+    <sql id="membercardRelationInfoSql">
+          rel.id,
+          rel.opencard_serial_id,
+          rel.member_id,
+          rel.membcard_id,
+          rel.validity_type,
+          rel.validity_time,
+          rel.card_status,
+          rel.specact_time,
+          rel.act_time,
+          rel.times,
+          rel.give_times,
+          rel.flag_type,
+          rel.store_id,
+          rel.remark,
+          rel.opencard_date,
+          rel.creator,
+          rel.create_time,
+          card.membcard_name,
+          card.membcard_type,
+          card.order_course_type,
+          st.store_name,
+          st.business_id,
+          busi.business_name
+    </sql>
+
+    <!--根据id获取会员的会员卡信息-->
+    <select id="queryMembercardrelationById" resultType="MembercardRelation">
+        SELECT
+        <include refid="membercardRelationInfoSql"/>
+        FROM bs_membercard_relation rel
+        INNER JOIN bs_membership_card card ON card.id = rel.membcard_id
+        INNER JOIN bs_storeinfo st on st.id =  rel.store_id
+        INNER JOIN bs_businessinfo busi ON busi.id =st.business_id
+        WHERE rel.id=#{id};
+    </select>
+
+    <!--获取会员的会员卡列表-->
+    <select id="queryMembercardrelationListByMemberId" resultType="MembercardRelation">
+       SELECT
+        <include refid="membercardRelationInfoSql"/>
+         FROM bs_membercard_relation rel
+         INNER JOIN bs_storeinfo st on st.id =  rel.store_id
+         INNER JOIN bs_businessinfo busi ON busi.id =st.business_id
+         INNER JOIN bs_membership_card card ON card.id = rel.membcard_id
+         WHERE rel.member_id=#{memberId}
+    </select>
+
+    <!--会员赠送-->
+    <update id="memberCardGive" parameterType="MembercardRelation" >
+        UPDATE bs_membercard_relation
+        <set>
+            <if test="validityTime != '' ">
+                validity_time = #{validityTime},
+            </if>
+            <if test="giveTimes != '' and giveTimes !=0 ">
+                give_times = #{giveTimes}
+            </if>
+        </set>
+
+        WHERE id = #{id};
+    </update>
+
+    <!--换卡和校准 -->
+    <update id="memberCardChange">
+        UPDATE bs_membercard_relation
+        <set>
+            <if test="flagType !=  ''and flagType !=0 ">
+                flag_type = #{flagType},
+            </if>
+            <if test="membcardId != ''  ">
+                membcard_id = #{membcardId},
+            </if>
+            <if test="validityType !=  '' and validityType !=0 ">
+                validity_type=#{validityType},
+            </if>
+            <if test="times !=  '' and times !=0 ">
+                 times=#{times},
+            </if>
+            <if test="validityTime !=  '' ">
+                validity_time = #{validityTime}
+            </if>
+        </set>
+        WHERE id = #{id};
+    </update>
+
+    <!--开卡-->
+    <insert id="addMemberCardRelation">
+       INSERT INTO bs_membercard_relation
+            (id,
+             opencard_serial_id,
+             member_id,
+             membcard_id,
+        <if test="validityType !=  '' ">
+            validity_type,
+        </if>
+            specact_time,
+        <if test="times !=  '' and times !=0 ">
+            times,
+        </if>
+             store_id,
+             remark,
+             creator)
+      VALUES (
+        #{id},
+        #{opencardSerialId},
+        #{memberId},
+        #{membcardId},
+        <if test="validityType !=  '' ">
+            #{validityType},
+        </if>
+            #{specactTime},
+        <if test="times !=  '' and times !=0 ">
+            #{times},
+        </if>
+            #{storeId},
+            #{remark},
+            #{creator});
+    </insert>
+
+    <!--获取会员卡关系表最大编号-->
+    <select id="getMaxMembercardOpencardSerialId" resultType="String">
+        SELECT IFNULL(MAX(opencard_serial_id),0) AS opencard_serial_id FROM bs_membercard_relation
+        WHERE  membcard_id =#{membcardId}
+    </select>
+
+    <!--充值-->
+    <update id="memberCardRecharge">
+        UPDATE bs_membercard_relation
+        <set>
+            <if test="validityTime !=null ">
+                validity_time = #{validityTime},
+            </if>
+            <if test="times != null and times !=0 ">
+                times = #{times}
+            </if>
+        </set>
+        WHERE id = #{id};
+    </update>
+
+    <!--会员卡过户-->
+    <update id="memberCardTransfer">
+        UPDATE bs_membercard_relation
+        SET
+           member_id = #{memberId}
+         WHERE id = #{id};
+    </update>
+
+    <!--停卡或启用或删除或请假 -->
+    <update id="memberCardStopOrStart">
+        UPDATE bs_membercard_relation
+        SET
+          card_status = #{cardStatus}
+        WHERE id = #{id};
+    </update>
+
+    <!--会员卡激活-->
+    <update id="actMemebercardRelation">
+          UPDATE bs_membercard_relation
+            SET
+              act_time = NOW()
+         WHERE id = #{id};
+    </update>
+
+    <!--查询门店中开卡信息-->
+    <select id="queryOpencardInfo" resultType="MembercardRelation">
+        SET @i := 0;
+        SELECT @i := @i + 1 AS rownum,a.* FROM
+        (SELECT
+        re.id,
+        re.opencard_serial_id,
+        re.member_id,
+        re.membcard_id,
+        re.validity_time,
+        re.card_status,
+        re.times,
+        re.give_times,
+        re.store_id,
+        re.create_time,
+        card.membcard_type,
+        us.user_name,
+        us.nick_name,
+        us.phone_num,
+        card.membcard_name
+        FROM bs_membercard_relation re
+        INNER JOIN bs_member me ON me.id = re.member_id
+        INNER JOIN bs_user us ON us.id = me.user_id
+        INNER JOIN bs_membership_card card ON card.id = re.membcard_id
+        WHERE
+        <if test="queryParameter != null and queryParameter != ''">
+            us.nick_name = #{queryParameter} OR
+            us.phone_num = #{queryParameter} OR
+            re.opencard_serial_id = #{queryParameter} AND
+        </if>
+        re.store_id= #{storeId}
+        <if test="membcardId !=null and membcardId !=''">
+            AND re.membcard_id = #{membcardId}
+        </if>
+        <if test="flagtimes!=2">
+            AND card.membcard_type = 1
+            GROUP BY re.times ASC
+        </if>
+        <if test="flagdays!=2">
+            AND card.membcard_type = 2
+            GROUP BY re.validity_time DESC
+        </if>
+        <if test="flagtimes !=1 and flagdays !=1">
+            GROUP BY re.create_time
+        </if>
+        ) a
+        LIMIT #{startPage},#{endPage}
+    </select>
+   <!-- /*GROUP BY rownum DESC*/-->
+    <!--查询该卡的刷卡记录 -->
+    <select id="queryRecordListBycardId" resultType="MembercardRecord">
+        SELECT
+          tarmemberName,modify_time,employee_name,order_status,course_name,modify_type,times,months,nominal_amount,give_times,validity_type,new_times,
+          old_times,residue_times,new_validity_time,old_validity_time, discount_price,price_spread,newcard_name,oldcard_name
+        FROM(
+        SELECT
+          us.nick_name AS tarmemberName,
+          mo.modify_time, emp.employee_name,NULL AS order_status,NULL AS course_name,mo.modify_type, mo.times,mo.months, mo.nominal_amount,
+          mo.give_times, mo.validity_type,mo.new_times,mo.old_times,mo.residue_times,mo.new_validity_time,mo.old_validity_time, mo.discount_price,
+          mo.price_spread, newcard.membcard_name AS newcard_name,oldcard.membcard_name AS oldcard_name
+        FROM bs_membercard_modify mo
+        INNER JOIN bs_membership_card newcard ON newcard.id = mo.newcard_id
+        LEFT JOIN bs_membership_card oldcard ON oldcard.id = mo.oldcard_id
+        LEFT JOIN bs_member member ON member.id = mo.tarmember_id
+        LEFT JOIN bs_user us ON us.id = member.user_id
+        LEFT JOIN bs_empbusiness_relation erel ON erel.id = mo.creator
+        LEFT JOIN bs_employee emp ON emp.id = erel.emp_id
+        WHERE mo.status = 2 AND mo.membercard_relation_id = #{membercardRelationId}
+        UNION
+        SELECT
+        NULL AS tarmemberName,corder.order_time AS modify_time,emp.employee_name,corder.order_status,cour.course_name,NULL AS modify_type,NULL AS times,NULL AS months,
+        NULL AS nominal_amount,NULL AS give_times,NULL AS validity_type,NULL AS new_times,NULL AS old_times,NULL AS residue_times,
+        NULL AS new_validity_time,NULL AS old_validity_time,NULL AS discount_price,NULL AS price_spread,NULL AS newcard_name ,
+        NULL AS oldcard_name
+        FROM bs_course_order corder
+        INNER JOIN bs_membercard_relation r ON r.id = corder.cardrelation_id
+        INNER JOIN bs_member m ON m.id= corder.member_id
+        INNER JOIN bs_user us ON us.id = m.user_id
+        INNER JOIN bs_course cour ON cour.id = corder.course_id
+        INNER JOIN bs_course_plan plan ON plan.course_id= corder.course_id
+        INNER JOIN bs_empbusiness_relation empr ON empr.id= plan.employee_id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        WHERE corder.cardrelation_id = #{membercardRelationId}
+        ) AS record GROUP BY modify_time
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取要激活的的会员卡 -->
+    <select id="getMembercardrelationActive" resultType="MembercardRelation">
+        SELECT
+          m.id,
+          m.specact_time,
+          m.act_time
+        FROM bs_membercard_relation m
+          <![CDATA[
+        WHERE  m.specact_time>=NOW()
+           ]]>
+    </select>
+
+    <!--判断会员卡是否已激活-->
+    <select id="isMemberCardActivate" resultType="String">
+        SELECT act_status  FROM bs_membercard_relation WHERE id=#{id}
+    </select>
+
+    <!--会员卡激活 -->
+    <update id="activateMembercardRelation">
+        UPDATE bs_membercard_relation
+        SET
+          act_time = #{actTime}
+        WHERE id = #{id};
+    </update>
+
+    <!--更新会员卡信息 -->
+    <update id="updateMembercardRelation">
+        UPDATE bs_membercard_relation
+        <set>
+        <if test="validityType !=''">
+            validity_type = #{validityType},
+        </if>
+        <if test="validityTime !=''">
+            validity_time = #{validityTime},
+        </if>
+        <if test="cardStatus !='' and cardStatus !=0">
+            card_status = #{cardStatus},
+        </if>
+        <if test="actTime !=''">
+            act_time = #{actTime},
+        </if>
+        <if test="times !=''">
+            times = #{times},
+        </if>
+        <if test="giveTimes !=''">
+            give_times = #{giveTimes},
+        </if>
+        <if test="flagType !='' and flagType !=0">
+            flag_type = #{flagType}
+        </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <update id="MembercardResumptionLeave">
+        UPDATE bs_membercard_relation
+        SET
+          validity_tim = #{validityTime},
+          card_status = #{cardStatus},
+        WHERE id = #{id}
+    </update>
+
+    <!--更新次卡的次数-->
+    <update id="updateMembercardrelationTimes">
+         UPDATE bs_membercard_relation
+        SET
+        <if test="flag=1">
+            give_times = #{times},
+        </if>
+        <if test="flag=2">
+            times = #{times}
+        </if>
+        WHERE id = #{id}
+    </update>
+
+    <!--根据商家和会员卡获取卡卷操作记录信息 -->
+    <select id="listBusinessCardRecord" resultType="MembercardRecord">
+        SELECT
+          us.nick_name AS tarmemberName,
+          mo.modify_time,
+          emp.employee_name,
+          mo.modify_type,
+          mo.times,
+          mo.months,
+          mo.nominal_amount,
+          mo.give_times,
+          mo.validity_type,
+          mo.new_times,
+          mo.old_times,
+          mo.residue_times,
+          mo.new_validity_time,
+          mo.old_validity_time,
+          mo.discount_price,
+          mo.price_spread,
+          newcard.membcard_name AS newcard_name,
+          newcard.membcard_type,
+          oldcard.membcard_name AS oldcard_name,
+          st.store_name
+        FROM bs_membercard_modify mo
+        INNER JOIN bs_storeinfo st ON  st.id = mo.store_id
+        INNER JOIN bs_businessinfo busi ON busi.id = st.business_id
+        INNER JOIN bs_membership_card newcard ON newcard.id = mo.newcard_id
+        LEFT JOIN bs_membership_card oldcard ON oldcard.id = mo.oldcard_id
+        LEFT JOIN bs_member member ON member.id = mo.tarmember_id
+        LEFT JOIN bs_user us ON us.id = member.user_id
+        LEFT JOIN bs_empbusiness_relation erel ON erel.id = mo.creator
+        LEFT JOIN bs_employee emp ON emp.id = erel.emp_id
+        WHERE mo.status = 2
+         <if test="businessId !=null and businessId!=''">
+             AND busi.id = #{businessId}
+         </if>
+        <if test="membercardRelationId !=null and membercardRelationId!=''">
+            AND  mo.membercard_relation_id = #{membercardRelationId}
+        </if>
+        GROUP BY  mo.modify_time
+        LIMIT #{startPage},#{endPage}
+    </select>
+</mapper>

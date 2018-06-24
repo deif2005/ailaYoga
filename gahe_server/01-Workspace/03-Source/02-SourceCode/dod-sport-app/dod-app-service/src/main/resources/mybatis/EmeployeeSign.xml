@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dod.sport.dao.IEmployeeSignSetDao">
+    <sql id="employeeSignSql">
+         sign.id,
+         sign.employee_id,
+         sign.store_id,
+         sign.sign_type,
+         sign.dep_id,
+         sign.sign_status,
+         sign.sign_time,
+         sign.signed_addr,
+         sign.over_time
+    </sql>
+    <sql id="signTimeSql">
+         id,
+         scheduling_type,
+         store_id,
+         first_time,
+         last_time,
+         time_scope,
+         creator
+    </sql>
+    <sql id="signScopeSql">
+         id,
+         store_id,
+         radius,
+         creator
+    </sql>
+
+    <!--添加员工签到记录-->
+    <insert id="addEmployeeSignTime">
+        INSERT INTO bs_employee_sign
+            (id,
+             store_id,
+             sign_type,
+             dep_id,
+             sign_time,
+             sign_status,
+        <if test="signedAddr !=null and signedAddr !=''  ">
+            signed_addr,
+        </if>
+        <if test="overTime !=0 ">
+            over_time,
+        </if>
+        employee_id
+             )
+        VALUES (#{id},
+                #{storeId},
+                #{signType},
+                #{depId},
+                #{signTime},
+                #{signStatus},
+        <if test="signedAddr !=null and signedAddr !=''  ">
+                #{signedAddr},
+        </if>
+        <if test="overTime !=0 ">
+                #{overTime},
+        </if>
+                #{employeeId}
+                );
+    </insert>
+
+    <!-- 查询员工签到列表-->
+    <select id="queryEmployeeSignListByEmployeeId" resultType="EmployeeSign">
+        SELECT <include refid="employeeSignSql"/>
+        FROM bs_employee_sign sign
+        WHERE sign.employee_id = #{employeeId} AND sign.store_id = #{storeId}
+    </select>
+
+    <insert id="signTimeSet">
+        INSERT INTO bs_sign_time
+            (
+             id,
+             scheduling_type,
+             store_id,
+             first_time,
+             last_time,
+             creator
+             )
+        VALUES (
+            #{id},
+            #{schedulingType},
+            #{storeId},
+            #{firstTime},
+            #{lastTime},
+            #{creator}
+            );
+    </insert>
+
+    <!--添加WiFi-->
+    <insert id="addStoreWifi">
+        INSERT INTO bs_store_wifi
+            (id,
+             store_id,
+             wifi_id)
+        VALUES (
+            #{id},
+            #{storeId},
+            #{wifiId}
+        );
+    </insert>
+    <insert id="addSignScope">
+        INSERT INTO bs_sign_scope
+            (id,
+             store_id,
+             radius,
+             vacation_days,
+             reissue_times,
+             sign_add,
+             lng,
+             lat,
+             creator)
+        VALUES (
+            #{id},
+            #{storeId},
+            #{radius},
+            #{vacationDays},
+            #{reissueTimes},
+            #{signAdd},
+            #{lng},
+            #{lat},
+            #{creator}
+            );
+    </insert>
+
+    <!--获取商家所有WiFi热点-->
+    <select id="queryAllWifiByStoreId" resultType="StoreWifi">
+        SELECT
+          id,
+          store_id,
+          wifi_id,
+          create_time
+        FROM bs_store_wifi
+        WHERE store_id =#{storeId}
+    </select>
+
+    <!--获取商家设定的打卡范围半径-->
+    <select id="querySignScopeByStoreId" resultType="SignScope">
+        SELECT
+          id,
+          store_id,
+          radius,
+          creator,
+          vacation_days,
+          reissue_times,
+          sign_add,
+          lng,
+          lat,
+          create_time
+        FROM bs_sign_scope
+        WHERE store_id= #{storeId}
+    </select>
+
+    <!--查询排班详情-->
+    <select id="querySignTimeByType"  resultType="SignTime">
+          SELECT
+            id,
+            scheduling_type,
+            store_id,
+            first_time,
+            last_time,
+            time_scope,
+            creator,
+            create_time
+        FROM bs_sign_time
+        WHERE store_id =#{storeId} and scheduling_type = #{type}
+    </select>
+
+    <!--删除排班-->
+    <delete id="delSignTimeById">
+     DELETE   FROM bs_sign_time WHERE id = #{id};
+    </delete>
+
+    <!--删除签到范围半径-->
+    <delete id="delSignScope">
+        DELETE FROM bs_sign_scope WHERE id=#{id}
+    </delete>
+
+    <!--获取门店签到规则-->
+    <select id="querySignTimeByStoreId" resultType="SignTime">
+        SELECT
+       <include refid="signTimeSql"/> FROM bs_sign_time
+        WHERE store_id= #{storeId}
+    </select>
+
+    <select id="querywifiInfo" resultType="StoreWifi">
+        SELECT  id,
+        store_id,
+        wifi_id,
+        create_time
+        FROM bs_store_wifi
+        WHERE wifi_id=#{wifiId} AND #{storeId}
+    </select>
+
+    <select id="queryWifiById" resultType="StoreWifi">
+        SELECT  id,
+          store_id,
+          wifi_id,
+          create_time
+        FROM bs_store_wifi
+        WHERE id=#{id}
+    </select>
+
+    <delete id="delStoreWifi">
+        DELETE
+        FROM bs_store_wifi
+        WHERE store_id = #{storeId}
+    </delete>
+
+    <!--获取员工的考勤迟到/早退/正常-->
+    <select id="querySignListByStoreId" resultType="BaseResultSign">
+        SELECT
+          sg.id,sg.employee_id,
+          sg.sign_status,
+          em.employee_serial_id,
+          emp.employee_name,
+          dep.dep_name,
+          po.position_name,
+          sg.store_id,
+          sg.sign_type,
+        DAYOFWEEK(DATE_FORMAT(sign_time,'%Y-%m-%d')) AS week_num,sign_time
+        FROM bs_empbusiness_relation AS em
+        INNER JOIN bs_employee emp ON emp.id = em.emp_id
+        INNER JOIN bs_employee_sign AS sg ON sg.employee_id =  em.id
+        INNER JOIN bs_business_department AS dep ON dep.id=  em.dep_id
+        INNER JOIN bs_business_position AS po ON po.id =  em.position_id
+        WHERE
+        <if test="queryTime != null and  queryTime != '' ">
+            STRCMP(DATE_FORMAT(sg.sign_time,'%Y-%m'),#{queryTime}) = 0 AND
+        </if>
+        sg.store_id = #{storeId}AND
+        sg.employee_id = #{employeeId}
+        <if test="signStatus ==1 || signStatus == 2 || signStatus == 3 ">
+            AND sign_status=#{signStatus}
+        </if>
+    </select>
+
+
+    <!--获取上班星期-->
+    <select id="getWorkWeekById" resultType="WorkWeek">
+        SELECT   week_num   from     bs_workweek where store_id = #{storeId}
+    </select>
+
+    <!--查询请假记录上班星期-->
+    <select id="getEmpolyeeBaseBillById" resultType="String">
+        <![CDATA[
+       select employee_id from   bs_billinfo  bill
+       where bill.store_id = #{storeId} and bill.employee_id =#{employeeId} and
+      bill.bill_type=1 and bill.bill_type=7 and
+       DATE_FORMAT(end_time,'%Y-%m-%d') <= #{queryTime} and
+        DATE_FORMAT(start_time,'%Y-%m-%d') >= #{queryTime}
+   ]]>
+    </select>
+    <!--or (STRCMP(DATE_FORMAT(end_time,'%Y-%m-%d'),#{queryTime}) = -1 and  STRCMP(DATE_FORMAT(start_time,'%Y-%m-%d'),#{queryTime})=1)-->
+
+    <!--获取员工的考勤未签到的-->
+    <select id="queryEmpolyeeSignListById" resultType="BaseResultSign">
+        SELECT
+        sg.id,sg.employee_id,
+        sg.sign_status,
+        em.employee_serial_id,
+        emp.employee_name,
+        dep.dep_name,
+        po.position_name,
+        sg.store_id,
+        sg.sign_type,
+        DAYOFWEEK(DATE_FORMAT(sign_time,'%Y-%m-%d')) AS week_num,
+        DATE_FORMAT(sign_time,'%Y-%m-%d') as sign_time
+        FROM
+        bs_empbusiness_relation AS em
+        INNER JOIN bs_employee emp ON emp.id = em.emp_id
+        INNER JOIN bs_employee_sign AS sg ON sg.employee_id =  em.id
+        INNER JOIN bs_business_department  AS dep ON dep.id=  em.dep_id
+        INNER JOIN bs_business_position AS po ON po.id =  em.position_id
+        WHERE
+        <if test="queryTime != null and  queryTime != '' ">
+            STRCMP(DATE_FORMAT(sg.sign_time,'%Y-%m'),#{queryTime}) = 0 AND
+        </if>
+        sg.store_id = #{storeId}AND
+        sg.employee_id = #{employeeId}
+    </select>
+
+    <!--获取签到规则列表-->
+    <select id="querySignTimeList" resultType="BaseResultSign">
+        SELECT si.first_time,si.last_time,si.scheduling_type,si.time_scope,si.id
+        ,sc.radius,sc.reissue_times,sc.vacation_days
+        FROM bs_sign_time si
+        LEFT JOIN bs_sign_scope sc ON sc.store_id = si.store_id
+        WHERE si.store_id =#{storeId}
+    </select>
+
+    <select id="getempSignByTime" resultType="EmployeeSign">
+        SELECT
+          id,
+          employee_id,
+          store_id,
+          sign_type,
+          dep_id,
+          sign_time,
+          sign_status,
+          signed_addr,
+          over_time
+        FROM bs_employee_sign
+        WHERE employee_id = #{employeeId} AND DATE_FORMAT(sign_time,'%Y-%c-%d') =#{nowDate} AND sign_type = #{signType}
+    </select>
+
+</mapper>
