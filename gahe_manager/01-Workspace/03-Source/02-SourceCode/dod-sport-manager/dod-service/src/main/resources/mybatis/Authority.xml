@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dod.sport.dao.ISystemAuthDao">
+
+    <insert id="addSystemModel" parameterType="SystemModel">
+        INSERT INTO man_system_model(
+            id,
+            model_serial_id,
+            model_name,
+            platform
+        )
+        VALUES(
+            #{id},
+            #{modelSerialId},
+            #{modelName},
+            #{platform}
+        )
+    </insert>
+
+    <select id="listSystemModel" resultType="SystemModel">
+        SELECT
+            id,
+            model_serial_id,
+            model_name,
+            platform
+        FROM man_system_model
+        WHERE platform=#{platform}
+        ORDER BY model_serial_id
+        <if test="startPage != null and startPage != 0">
+            LIMIT #{startPage},#{endPage}
+        </if>
+    </select>
+
+    <!--获取功能模块记录笔数-->
+    <select id="getSystemModelCount" resultType="String">
+        SELECT
+          COUNT(*) AS ct
+        FROM man_system_model
+        WHERE platform=#{platform}
+    </select>
+
+    <select id="getSystemModel" resultType="SystemModel">
+        SELECT
+        id,
+        model_serial_id,
+        model_name,
+        platform
+        FROM man_system_model
+        WHERE id=#{id}
+    </select>
+
+    <insert id="addUserRole" parameterType="UserRole">
+        INSERT INTO man_user_role(
+            id,
+            role_code,
+            role_name,
+            business_id,
+            model_serial_idstr,
+            function_serial_idstr,
+            detail_serial_idstr,
+            platform
+        )
+        VALUES(
+            #{id},
+            #{roleCode},
+            #{roleName},
+            #{businessId},
+            #{modelSerialIdstr},
+            #{functionSerialIdstr},
+            #{detailSerialIdstr},
+            #{platform}
+        )
+    </insert>
+
+    <update id="updateUserRole" parameterType="UserRole">
+        UPDATE man_user_role SET
+            role_code=#{roleCode},
+            role_name=#{roleName},
+            model_serial_idstr=#{modelSerialIdstr},
+            function_serial_idstr=#{functionSerialIdstr},
+            detail_serial_idstr=#{detailSerialIdstr},
+            platform=#{platform}
+        WHERE id=#{id}
+    </update>
+
+    <!--获取平台菜单-->
+    <select id="listMenusByPlatform" resultType="PlatformMenus">
+        SELECT
+            model.model_serial_id,
+            model.model_name,
+            fun.function_serial_id,
+            function_name
+        FROM man_system_model model
+        INNER JOIN man_system_function fun ON model.model_serial_id=fun.model_serial_id
+        AND model.platform=fun.platform
+        WHERE model.platform=#{platform}
+        ORDER BY model.model_serial_id
+    </select>
+
+    <!--获取平台接口功能项-->
+    <select id="getUriByPlatform" resultType="PlatformMenus">
+        SELECT
+            model.model_serial_id,
+            model.model_name,
+            fun.function_serial_id,
+            function_name,
+            detail_serial_id,
+            detail_name,
+            detail_uri
+        FROM man_system_model model
+        INNER JOIN man_system_function fun ON model.model_serial_id=fun.model_serial_id AND model.platform=fun.platform
+        LEFT JOIN man_function_detail detl ON model.model_serial_id=detl.model_serial_id AND fun.function_serial_id=detl.function_serial_id
+               AND model.platform=detl.platform
+        WHERE model.platform=#{platform}
+    </select>
+
+    <!--获取角色列表-->
+    <select id="listUserRole" resultType="UserRole">
+        SELECT
+            id,
+            role_code,
+            role_name,
+            business_id,
+            model_serial_idstr,
+            function_serial_idstr,
+            detail_serial_idstr,
+            platform
+        FROM man_user_role
+        WHERE 1=1
+        <if test="platform!=null and platform!=0">
+            AND platform=#{platform}
+        </if>
+        <if test="businessId!=null and businessId!=''">
+            AND business_id=#{businessId}
+        </if>
+        <if test="startPage != null and startPage != 0">
+            LIMIT #{startPage},#{endPage}
+        </if>
+    </select>
+
+    <!--获取角色记录笔数-->
+    <select id="getUserRoleCount" resultType="String">
+        SELECT
+          COUNT(*) AS ct
+        FROM man_user_role
+        WHERE 1=1
+        <if test="platform!=null and platform!=0">
+            AND platform=#{platform}
+        </if>
+        <if test="businessId!=null and businessId!=''">
+            AND business_id=#{businessId}
+        </if>
+    </select>
+
+    <!--获取角色列表-->
+    <select id="getUserRoleById" resultType="UserRole">
+        SELECT
+            id,
+            role_code,
+            role_name,
+            business_id,
+            model_serial_idstr,
+            function_serial_idstr,
+            detail_serial_idstr,
+            platform
+        FROM man_user_role
+        WHERE id=#{id}
+    </select>
+
+    <insert id="addSystemFunction" parameterType="SystemFunction">
+        INSERT INTO man_system_function(
+            id,
+            model_serial_id,
+            function_serial_id,
+            function_name,
+            platform
+        )
+        VALUES(
+            #{id},
+            #{modelSerialId},
+            #{functionSerialId},
+            #{functionName},
+            #{platform}
+        )
+    </insert>
+
+    <insert id="addFunctionDetail" parameterType="FunctionDetail">
+        INSERT INTO man_function_detail(
+            id,
+            model_serial_id,
+            function_serial_id,
+            detail_serial_id,
+            detail_name,
+            detail_uri,
+            platform
+        )
+        VALUES(
+            #{id},
+            #{modelSerialId},
+            #{functionSerialId},
+            #{detailSerialId},
+            #{detailName},
+            #{detailUri},
+            #{platform}
+        )
+    </insert>
+
+    <!--获取系统功能列表-->
+    <select id="listSystemFunction" resultType="SystemFunction">
+        SELECT
+            id,
+            model_serial_id,
+            function_name,
+            function_serial_id,
+            platform
+        FROM man_system_function
+        WHERE model_serial_id=#{modelSerialId} AND platform=#{platform}
+        ORDER BY model_serial_id
+        <if test="startPage != null and startPage != 0">
+            LIMIT #{startPage},#{endPage}
+        </if>
+    </select>
+
+    <!--获取系统功能记录笔数-->
+    <select id="getSystemFunctionCount" resultType="String">
+        SELECT
+          COUNT(*) AS ct
+        FROM man_system_function
+        WHERE model_serial_id=#{modelSerialId} AND platform=#{platform}
+    </select>
+
+    <select id="getSystemFunction" resultType="SystemFunction">
+        SELECT
+            id,
+            function_serial_id,
+            function_name,
+            platform
+        FROM man_system_function
+        WHERE id=#{id}
+    </select>
+
+    <!--获取功能细节-->
+    <select id="getFunctionDetail" resultType="FunctionDetail">
+        SELECT
+            id,
+            model_serial_id,
+            function_serial_id,
+            detail_serial_id,
+            detail_name,
+            detail_uri,
+            platform,
+            isPublic
+        FROM man_function_detail
+        WHERE id=#{id}
+    </select>
+
+    <!--获取功能细节列表-->
+    <select id="listFunctionDetail" resultType="FunctionDetail">
+        SELECT
+            detail.id,
+            detail.model_serial_id,
+            detail.function_serial_id,
+            detail.detail_serial_id,
+            detail.detail_name,
+            detail.detail_uri,
+            detail.platform,
+            detail.is_public,
+            model.model_name,
+            fun.function_name
+        FROM man_function_detail detail
+        INNER JOIN man_system_model model ON detail.model_serial_id=model.model_serial_id
+        AND detail.platform=model.platform
+        INNER JOIN man_system_function fun ON detail.function_serial_id=fun.function_serial_id
+        AND detail.platform=fun.platform
+        WHERE detail.platform=#{platform}
+        <if test="modelSerialId!=null and modelSerialId!=''">
+            AND detail.model_serial_id=#{modelSerialId}
+        </if>
+        <if test="functionSerialId!=null and functionSerialId!=''">
+            AND detail.function_serial_id=#{functionSerialId}
+        </if>
+        <if test="isPublic!=null and isPublic!=''">
+            AND detail.is_public=#{isPublic}
+        </if>
+        <if test="startPage != null and startPage != 0">
+            LIMIT #{startPage},#{endPage}
+        </if>
+    </select>
+
+    <!--获取功能细节记录笔数-->
+    <select id="getFunctionDetailCount" resultType="String">
+        SELECT
+          COUNT(*) AS ct
+        FROM man_function_detail
+        WHERE platform=#{platform}
+        <if test="modelSerialId!=null and modelSerialId!=''">
+            AND model_serial_id=#{modelSerialId}
+        </if>
+        <if test="functionSerialId!=null and functionSerialId!=''">
+            AND function_serial_id=#{functionSerialId}
+        </if>
+        <if test="isPublic!=null and isPublic!=''">
+            AND is_public=#{isPublic}
+        </if>
+    </select>
+
+    <!--删除角色信息-->
+    <delete id="deleteUserRole">
+        DELETE FROM man_user_role
+        WHERE id=#{id}
+    </delete>
+
+    <!--角色是否存在关联用户-->
+    <select id="existsUserByUserRoleId" resultType="String">
+        SELECT
+            COUNT(*) AS ct
+        FROM man_user
+        WHERE role_id=#{roleId}
+    </select>
+
+    <select id="getMaxModelId" resultType="String">
+        SELECT IFNULL(MAX(model_serial_id),0) AS model_serial_id FROM man_system_model
+        WHERE platform=#{platform}
+    </select>
+
+    <select id="getMaxFunctionId" resultType="String">
+        SELECT IFNULL(MAX(function_serial_id),0) AS function_serial_id FROM man_system_function
+        WHERE platform=#{platform}
+    </select>
+
+    <select id="getMaxDetailSerialId" resultType="String">
+        SELECT IFNULL(MAX(detail_serial_id),0) AS detail_serial_id FROM man_function_detail
+        WHERE platform=#{platform}
+    </select>
+
+    <!--根据流水号获取功能url-->
+    <select id="getDetailUrlBySerialId" resultType="FunctionDetail">
+        SELECT
+            id,
+            model_serial_id,
+            function_serial_id,
+            detail_serial_id,
+            detail_name,
+            detail_uri,
+            platform,
+            is_public
+        FROM man_function_detail
+        WHERE detail_serial_id=#{detailSerialId}
+        AND platform=#{platform}
+    </select>
+
+    <!--更新模块内容-->
+    <update id="updateSystemModel" parameterType="SystemModel">
+        UPDATE man_system_model
+        <set>
+            <if test="modelName!=null and modelName!=''">
+                model_name=#{modelName},
+            </if>
+            <if test="platform!=null and platform!=''">
+                platform=#{platform}
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <!--模块是否有关联的功能项-->
+    <select id="existsSystemModelInUsed" resultType="String">
+        SELECT COUNT(*) AS ct FROM man_system_function
+        WHERE model_serial_id=#{modelSerialId} AND platform=#{platform}
+    </select>
+
+    <!--是否在角色中使用该模块-->
+    <select id="IsSystemModelInUserRole" resultType="String">
+        SELECT COUNT(*) AS ct FROM man_user_role
+        WHERE model_serial_idstr LIKE '%${modelSerialId}%' AND platform=#{platform}
+    </select>
+
+    <!--是否有角色使用该功能-->
+    <select id="IsSystemFunctionInUserRole" resultType="String">
+        SELECT COUNT(*) AS ct FROM man_user_role
+        WHERE function_serial_idstr LIKE '%${functionSerialId}%' AND platform=#{platform}
+    </select>
+
+    <!--是否有角色使用该功能细节-->
+    <select id="IsFunctionDetailInUserRole" resultType="String">
+        SELECT COUNT(*) AS ct FROM man_user_role
+        WHERE detail_serial_idstr LIKE '%${detailSerialId}%' AND platform=#{platform}
+    </select>
+
+    <!--删除系统模块-->
+    <delete id="deleteSystemModel">
+        DELETE FROM man_system_model
+        WHERE model_serial_id=#{modelSerialId} AND platform=#{platform}
+    </delete>
+
+    <!--功能是否有关联的细节项-->
+    <select id="existsSystemFunctionInUsed" resultType="String">
+        SELECT COUNT(*) AS ct FROM man_function_detail
+        WHERE function_serial_id=#{functionSerialId} AND platform=#{platform}
+    </select>
+
+    <!--删除系统功能-->
+    <delete id="deleteSystemFunction">
+        DELETE FROM man_system_function
+        WHERE function_serial_id=#{functionSerialId} AND platform=#{platform}
+    </delete>
+
+     <!--删除功能细节项-->
+    <delete id="deleteFunctionDetail">
+        DELETE FROM man_function_detail
+        WHERE detail_serial_id=#{detailSerialId} AND platform=#{platform}
+    </delete>
+
+    <!--更新系统功能-->
+    <update id="updateSystemFunction" parameterType="SystemFunction">
+        UPDATE man_system_function
+        <set>
+            <if test="modelSerialId!=null and modelSerialId!=''">
+                model_serial_id=#{modelSerialId},
+            </if>
+            <if test="functionName!=null and functionName!=''">
+                function_name=#{functionName},
+            </if>
+            <if test="platform!=null and platform!=''">
+                platform=#{platform}
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <!--更新功能细节-->
+    <update id="updateFunctionDetail" parameterType="FunctionDetail">
+        UPDATE man_function_detail
+        <set>
+            <if test="modelSerialId!=null and modelSerialId!=''">
+                model_serial_id=#{modelSerialId},
+            </if>
+            <if test="functionSerialId!=null and functionSerialId!=''">
+                function_serial_id=#{functionSerialId},
+            </if>
+            <if test="detailName!=null and detailName!=''">
+                detail_name=#{detailName},
+            </if>
+            <if test="detailUri!=null and detailUri!=''">
+                detail_uri=#{detailUri},
+            </if>
+            <if test="platform!=null and platform!=''">
+                platform=#{platform},
+            </if>
+            <if test="isPublic!=null and isPublic!=''">
+                is_public=#{isPublic}
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <!--获取所有平台编号-->
+    <select id="getAllPlatform" resultType="String">
+        SELECT DISTINCT(platform) AS platform
+        FROM man_system_model
+        ORDER BY platform
+    </select>
+</mapper>

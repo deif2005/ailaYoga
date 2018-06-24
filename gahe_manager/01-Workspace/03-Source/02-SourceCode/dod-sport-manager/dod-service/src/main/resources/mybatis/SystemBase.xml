@@ -1,0 +1,1605 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dod.sport.dao.ISystemBaseDao">
+
+    <sql id="employeeBase" >
+        e.id,
+        e.employee_serial_id,
+        emp.employee_name,
+        emp.sex,
+        emp.phone_num,
+        emp.id_card,
+        e.business_id,
+        emp.birthday,
+        emp.register_type,
+        e.entry_date,
+        e.position_id,
+        e.store_id,
+        e.dep_id,
+        e.emp_type,
+        e.is_coach,
+        e.emp_rela,
+        e.status,
+        e.emp_picture,
+        emp.emp_head,
+        e.job_title,
+        e.self_introduction,
+        e.role_id
+    </sql>
+
+    <!--添加门店信息-->
+    <insert id="addStoreInfo" parameterType="StoreInfo">
+        INSERT INTO bs_storeinfo(
+           id,
+           store_serial_id,
+           business_id,
+           store_name,
+           manager_name,
+           phone_num,
+           phone_num2,
+           email,
+           contact_way,
+           area,
+           address,
+           door_picture,
+           classroom_picture,
+           reception_picture,
+           license_picture,
+           start_time,
+           end_time,
+           service_introduction,
+           creator
+        )
+        VALUES (
+           #{id},
+           #{storeSerialId},
+           #{businessId},
+           #{storeName},
+           #{managerName},
+           #{phoneNum},
+           #{phoneNum2},
+           #{email},
+           #{contactWay},
+           #{area},
+           #{address},
+           #{doorPicture},
+           #{classroomPicture},
+           #{receptionPicture},
+           #{licensePicture},
+           #{startTime},
+           #{endTime},
+           #{serviceIntroduction},
+           #{creator}
+        )
+    </insert>
+
+    <!--获取平台职位信息列表-->
+    <select id="listPositionInfo" resultType="Position">
+        SELECT
+            id,
+            position_serial_id,
+            position_name,
+            status,
+            creator,
+            create_time
+        FROM man_position
+        WHERE status=1
+        ORDER BY position_serial_id
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取平台职位信息列表-->
+    <select id="getAllPositionInfo" resultType="Position">
+        SELECT
+            id,
+            position_serial_id,
+            position_name,
+            status,
+            creator,
+            create_time
+        FROM man_position
+        WHERE status=1
+    </select>
+
+    <!--获取职位记录笔数-->
+    <select id="getPositionCount" resultType="String">
+        SELECT
+          COUNT(*) AS ct
+        FROM man_position
+        WHERE status=1
+    </select>
+
+    <!--获取职位信息-->
+    <select id="getPositionInfo" resultType="Position">
+        SELECT
+            id,
+            position_serial_id,
+            position_name,
+            status,
+            creator,
+            create_time
+        FROM man_position
+        WHERE id=#{id}
+    </select>
+
+    <!--添加职位信息-->
+    <insert id="addPosition" parameterType="Position">
+        INSERT INTO man_position(
+            id,
+            position_serial_id,
+            position_name,
+            creator
+        )
+        VALUES(
+            #{id},
+            #{positionSerialId},
+            #{positionName},
+            #{creator}
+        )
+    </insert>
+
+    <!--获取商家职位信息列表-->
+    <select id="listBusiPositionInfo" resultType="Position">
+        SELECT
+            id,
+            platform_position_id,
+            position_serial_id,
+            position_name,
+            business_id,
+            status,
+            creator,
+            create_time
+        FROM bs_business_position
+        WHERE status=1 AND business_id=#{businessId}
+        ORDER BY position_serial_id
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取商家所有职位信息-->
+    <select id="getAllBusiPositionInfo" resultType="Position">
+        SELECT
+            id,
+            platform_position_id,
+            position_serial_id,
+            position_name,
+            business_id,
+            status,
+            creator,
+            create_time
+        FROM bs_business_position
+        WHERE status=1 AND business_id=#{businessId}
+    </select>
+
+    <!--获取商家职位记录笔数-->
+    <select id="getBusiPositionCount" resultType="String">
+        SELECT
+           COUNT(*) AS ct
+        FROM bs_business_position
+        WHERE status=1 AND business_id=#{businessId}
+    </select>
+
+    <!--获取商家职位信息-->
+    <select id="getBusiPositionInfo" resultType="Position">
+        SELECT
+            id,
+            platform_position_id,
+            position_serial_id,
+            position_name,
+            business_id,
+            status,
+            creator,
+            create_time
+        FROM bs_business_position
+        WHERE id=#{id}
+    </select>
+
+    <!--添加商家职位信息-->
+    <insert id="addBusiPosition" parameterType="Position">
+        INSERT INTO bs_business_position(
+            id,
+            position_serial_id,
+            platform_position_id,
+            position_name,
+            business_id,
+            creator
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.positionSerialId},
+            #{item.platformPositionId},
+            #{item.positionName},
+            #{item.businessId},
+            #{item.creator}
+            )
+        </foreach>
+    </insert>
+
+    <!--更新平台职位数据状态-->
+    <update id="updatePositionStatus" parameterType="Position">
+        UPDATE man_position SET status=#{status}
+        WHERE id=#{id}
+    </update>
+
+    <!--更新平台职位信息-->
+    <update id="updatePositionInfo" parameterType="Position">
+        UPDATE man_position SET position_name=#{positionName}
+        WHERE id=#{id}
+    </update>
+
+    <!--更新商家职位数据状态-->
+    <update id="updateBusiPositionStatus" parameterType="Position">
+        UPDATE bs_business_position SET
+          status=#{status}
+        WHERE
+        <if test="id != '' and id != null">
+            id=#{id}
+        </if>
+        <if test="platformPositionId != '' and platformPositionId != null">
+            platform_position_id=#{platformPositionId}
+        </if>
+    </update>
+
+    <!--更新商家职位信息-->
+    <update id="updateBusiPositionInfo" parameterType="Position">
+        UPDATE bs_business_department SET
+            position_name=#{positionName}
+        WHERE id=#{id}
+    </update>
+
+    <!--更新商家职位信息数据状态-->
+    <update id="updateBusinessPositionStatus" parameterType="Position">
+        UPDATE bs_business_position SET status#{status}
+        WHERE
+        <if test="id != null and id != ''">
+            id=#{id}
+        </if>
+        <if test="platformPositionId != null and platformPositionId != ''">
+            platform_position_id=#{platformPositionId}
+        </if>
+    </update>
+
+    <!--获取最大职位编号-->
+    <select id="getMaxPositionId" resultType="String">
+        SELECT IFNULL(MAX(position_serial_id),0) AS position_serial_id FROM man_position
+    </select>
+
+    <!--获取最大职位编号-->
+    <select id="getMaxBusiPositionId" resultType="String">
+        SELECT IFNULL(MAX(position_serial_id),0) AS position_serial_id FROM bs_business_position
+        WHERE business_id=#{businessId}
+    </select>
+
+    <!--获取部门列表-->
+    <select id="listDepartmentInfo" resultType="Department">
+        SELECT
+            id,
+            dep_serial_id,
+            dep_name,
+            creator,
+            create_time
+        FROM man_department
+        WHERE status='1'
+        ORDER BY dep_serial_id
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取平台部门记录笔数-->
+    <select id="getDepartmentCount" resultType="String">
+        SELECT
+          count(*) AS ct
+        FROM man_department
+        WHERE status='1'
+    </select>
+
+    <!--获取部门列表-->
+    <select id="listAllDepartmentInfo" resultType="Department">
+        SELECT
+            id,
+            dep_serial_id,
+            dep_name,
+            creator,
+            create_time
+        FROM man_department
+        WHERE status='1'
+        ORDER BY dep_serial_id
+    </select>
+
+    <!--添加部门信息-->
+    <insert id="addDepartmentInfo" parameterType="Department">
+        INSERT INTO man_department(
+        id,
+        dep_serial_id,
+        dep_name,
+        creator
+        )
+        VALUES (
+        #{id},
+        #{depSerialId},
+        #{depName},
+        #{creator}
+        )
+    </insert>
+
+    <!--获取部门信息-->
+    <select id="getDepartmentInfoById" resultType="Department">
+        SELECT
+            id,
+            business_id,
+            dep_serial_id,
+            dep_name,
+            creator,
+            create_time
+        FROM man_department
+        WHERE id=#{id}
+    </select>
+
+    <!--获取商家部门列表-->
+    <select id="listBusiDepartmentInfo" resultType="Department">
+        SELECT
+            id,
+            business_id,
+            platform_dep_id,
+            dep_serial_id,
+            dep_name,
+            creator,
+            create_time
+        FROM bs_business_department
+        WHERE status='1' AND business_id=#{businessId}
+        ORDER BY dep_serial_id
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取商家部门记录笔数-->
+    <select id="getBusinessDepartmentCount" resultType="String">
+        SELECT
+          count(*) AS ct
+        FROM bs_business_department
+        WHERE status='1' AND business_id=#{businessId}
+    </select>
+
+    <!--获取商家所有部门信息-->
+    <select id="listAllBusiDepartmentInfo" resultType="Department">
+        SELECT
+            id,
+            business_id,
+            platform_dep_id,
+            dep_serial_id,
+            dep_name,
+            creator,
+            create_time
+        FROM bs_business_department
+        WHERE status='1' AND business_id=#{businessId}
+        ORDER BY dep_serial_id
+    </select>
+
+    <!--添加商家部门信息-->
+    <insert id="addBusiDepartmentInfo" parameterType="Department">
+        INSERT INTO bs_business_department(
+        id,
+        platform_dep_id,
+        business_id,
+        dep_serial_id,
+        dep_name,
+        creator
+        )
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.platformDepId},
+            #{item.businessId},
+            #{item.depSerialId},
+            #{item.depName},
+            #{item.creator}
+            )
+        </foreach>
+    </insert>
+
+    <!--获取商家部门信息-->
+    <select id="getBusiDepartmentInfoById" resultType="Department">
+        SELECT
+            id,
+            business_id,
+            platform_dep_id,
+            dep_serial_id,
+            dep_name,
+            creator,
+            create_time
+        FROM bs_business_department
+        WHERE id=#{id}
+    </select>
+
+    <!--获取商家部门信息-->
+    <select id="getBusiDepartmentListByBusinessId" resultType="Department">
+        SELECT
+            id,
+            business_id,
+            platform_dep_id,
+            dep_serial_id,
+            dep_name,
+            creator,
+            create_time FROM bs_business_department
+        WHERE business_id=#{businessId} AND status='1'
+    </select>
+
+    <!--更新平台部门数据-->
+    <update id="updateDepartment" parameterType="Department">
+        UPDATE man_department SET
+            dep_name=#{depName}
+        WHERE id=#{id}
+    </update>
+
+    <!--更新平台部门数据状态-->
+    <update id="updateDepartmentStatus" parameterType="Department">
+        UPDATE man_department SET
+            status=#{status}
+        WHERE id=#{id}
+    </update>
+
+    <!--更新平台部门数据-->
+    <update id="updateBusiDepartment" parameterType="Department">
+        UPDATE bs_business_department SET
+            dep_name=#{depName}
+        WHERE id=#{id}
+    </update>
+
+    <!--更新商家部门数据状态-->
+    <update id="updateBusiDepartmentStatus" parameterType="Department">
+        UPDATE bs_business_department SET
+            status=#{status}
+        WHERE
+        <if test="id != '' and id != null">
+            id=#{id}
+        </if>
+        <if test="platformDepId != '' and platformDepId != null">
+            platform_dep_id=#{platformDepId}
+        </if>
+    </update>
+
+    <!--判断是否有添加过该部门数据-->
+    <select id="getBusinessDepartmentByPlatformDepId" resultType="Department">
+        SELECT * FROM bs_business_department
+        WHERE business_id=#{businessId} AND platform_dep_id=#{platformDepId}
+    </select>
+
+    <!--判断是否有添加过该职位数据-->
+    <select id="getBusinessPositionByPlatformPositionId" resultType="Position">
+        SELECT * FROM bs_business_position
+        WHERE business_id=#{businessId} AND platform_position_id=#{platformPositionId}
+    </select>
+
+    <!--获取部门最大编号-->
+    <select id="getMaxDepartmentId" resultType="String">
+        SELECT IFNULL(MAX(dep_serial_id),0) AS dep_serial_id FROM man_department
+    </select>
+
+    <!--获取商家部门最大编号-->
+    <select id="getMaxBusiDepartmentId" resultType="String">
+        SELECT IFNULL(MAX(dep_serial_id),0) AS dep_serial_id FROM bs_business_department
+        WHERE business_id=#{businessId}
+    </select>
+
+    <insert id="addBusinessInfo" parameterType="BusinessInfo">
+        INSERT INTO bs_businessinfo(
+            id,
+            business_serial_id,
+            business_name,
+            owner,
+            other_information,
+            email,
+            area,
+            address,
+            phone_num,
+            phone_num2,
+            logo,
+            business_picture,
+            idcard_picture_a,
+            idcard_picture_b,
+            business_type,
+            custom_type,
+            remark,
+            creator
+            )
+        VALUES(
+            #{id},
+            #{businessSerialId},
+            #{businessName},
+            #{owner},
+            #{otherInformation},
+            #{email},
+            #{area},
+            #{address},
+            #{phoneNum},
+            #{phoneNum2},
+            #{logo},
+            #{businessPicture},
+            #{idcardPictureA},
+            #{idcardPictureB},
+            #{businessType},
+            #{customType},
+            #{remark},
+            #{creator}
+            )
+    </insert>
+
+    <!--获取商家最大编号-->
+    <select id="getMaxBusinessId" resultType="String">
+        SELECT IFNULL(MAX(business_serial_id),0) AS business_serial_id FROM bs_businessinfo
+    </select>
+
+    <!--获取商家门店最大编号-->
+    <select id="getMaxStoreId" resultType="String">
+        SELECT IFNULL(MAX(store_serial_id),0) AS store_serial_id FROM bs_storeinfo
+        WHERE business_id = #{businessId};
+    </select>
+
+    <!--获取商家信息列表-->
+    <select id="listBusinessInfo" resultType="BusinessInfo">
+        SELECT
+            id,
+            business_serial_id,
+            business_name,
+            owner,
+            other_information,
+            email,
+            area,
+            address,
+            phone_num,
+            phone_num2,
+            logo,
+            business_picture,
+            idcard_picture_a,
+            idcard_picture_b,
+            business_type,
+            custom_type,
+            remark,
+            create_time,
+            creator
+        FROM bs_businessInfo
+        WHERE status='1'
+        <if test="businessType != null and businessType != 0 ">
+            AND business_type = #{businessType}
+        </if>
+        ORDER BY business_serial_id
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--更新商家信息-->
+    <update id="updateBusinessInfo" parameterType="BusinessInfo">
+        UPDATE bs_businessinfo
+        <set>
+            <if test="businessName !=null and businessName!=''">
+                business_name=#{businessName},
+            </if>
+            <if test="owner !=null and owner!=''">
+                owner=#{owner},
+            </if>
+            <if test="logo != null">
+                logo=#{logo},
+            </if>
+            <if test="businessPicture != null">
+                business_picture=#{businessPicture},
+            </if>
+            <if test="idcardPictureA != null">
+                idcard_picture_a=#{idcardPictureA},
+            </if>
+            <if test="idcardPictureB != null">
+                idcard_picture_b=#{idcardPictureB},
+            </if>
+            <if test="otherInformation != null">
+                other_information=#{otherInformation},
+            </if>
+            <if test="email != null">
+                email=#{email},
+            </if>
+            <if test="area != null and area != ''">
+                area=#{area},
+            </if>
+            <if test="address != null and address != ''">
+                address=#{address},
+            </if>
+            <if test="phoneNum != null and phoneNum != ''">
+                phone_num=#{phoneNum},
+            </if>
+            <if test="phoneNum2 != null">
+                phone_num2=#{phoneNum2},
+            </if>
+            <if test="businessType != null and businessType != ''">
+                business_type=#{businessType},
+            </if>
+            <if test="customType != null and customType != ''">
+                custom_type=#{customType},
+            </if>
+            <if test="remark != null">
+                remark=#{remark},
+            </if>
+            <if test="status != null and status != ''">
+                status=#{status}
+            </if>
+        </set>
+        WHERE id=#{id};
+    </update>
+
+    <!--编辑门店信息-->
+    <update id="updateStoreInfo" parameterType="StoreInfo">
+        UPDATE bs_storeinfo
+        <set>
+            <if test="businessId != null and businessId != ''">
+                business_id=#{businessId},
+            </if>
+            <if test="storeName != null and storeName != ''">
+                store_name=#{storeName},
+            </if>
+            <if test="managerName != null and managerName != ''">
+                manager_name=#{managerName},
+            </if>
+            <if test="phoneNum != null and phoneNum != ''">
+                phone_num=#{phoneNum},
+            </if>
+            <if test="phoneNum2 != null">
+                phone_num2=#{phoneNum2},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="contactWay != null and contactWay != ''">
+                contact_way=#{contactWay},
+            </if>
+            <if test="area != null and area != ''">
+                area=#{area},
+            </if>
+            <if test="address != null and address != ''">
+                address=#{address},
+            </if>
+            <if test="doorPicture != null">
+                door_picture=#{doorPicture},
+            </if>
+            <if test="classroomPicture != null">
+                classroom_picture=#{classroomPicture},
+            </if>
+            <if test="receptionPicture != null">
+                reception_picture=#{receptionPicture},
+            </if>
+            <if test="licensePicture != null">
+                license_picture=#{licensePicture},
+            </if>
+            <if test="startTime != null and startTime != ''">
+                start_time=#{startTime},
+            </if>
+            <if test="endTime != null and endTime != ''">
+                end_time=#{endTime},
+            </if>
+            <if test="serviceIntroduction != null">
+                service_introduction=#{serviceIntroduction},
+            </if>
+            <if test="status != null and status != ''">
+                status=#{status}
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <!--获取所有商家信息-->
+    <select id="getAllBusinessInfo" resultType="BusinessInfo">
+        SELECT
+            id,
+            business_serial_id,
+            business_name,
+            owner,
+            other_information,
+            email,
+            area,
+            address,
+            phone_num,
+            phone_num2,
+            logo,
+            business_picture,
+            idcard_picture_a,
+            idcard_picture_b,
+            business_type,
+            custom_type,
+            remark,
+            create_time,
+            creator
+        FROM bs_businessInfo
+        WHERE status='1'
+        <if test="businessType != null and businessType != 0 ">
+            AND business_type = #{businessType}
+        </if>
+    </select>
+
+    <!--获取商家记录笔数-->
+    <select id="getBusinessInfoCount" resultType="String">
+        SELECT
+          COUNT(*) AS ct
+        FROM bs_businessInfo
+        WHERE status='1'
+        <if test="businessType != null and businessType != 0 ">
+            AND business_type = #{businessType}
+        </if>
+    </select>
+
+    <!--获取门店信息列表-->
+    <select id="listStoreInfo" resultType="StoreInfo">
+        SELECT
+            id,
+            store_serial_id,
+            business_id,
+            store_name,
+            manager_name,
+            phone_num,
+            phone_num2,
+            email,
+            contact_way,
+            area,
+            address,
+            door_picture,
+            classroom_picture,
+            reception_picture,
+            license_picture,
+            start_time,
+            end_time,
+            service_introduction,
+            creator
+        FROM bs_storeinfo
+        WHERE business_id=#{businessId} AND status='1'
+        ORDER BY store_serial_id
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取所有门店信息-->
+    <select id="getAllStoreInfo" resultType="StoreInfo">
+        SELECT
+            id,
+            store_serial_id,
+            business_id,
+            store_name,
+            manager_name,
+            phone_num,
+            phone_num2,
+            email,
+            contact_way,
+            area,
+            address,
+            door_picture,
+            classroom_picture,
+            reception_picture,
+            license_picture,
+            start_time,
+            end_time,
+            service_introduction,
+            creator
+        FROM bs_storeinfo
+        WHERE status='1' AND business_id=#{businessId}
+    </select>
+
+    <!--获取门店信息-->
+    <select id="getStoreInfo" resultType="StoreInfo">
+        SELECT
+            id,
+            store_serial_id,
+            business_id,
+            store_name,
+            manager_name,
+            phone_num,
+            phone_num2,
+            email,
+            contact_way,
+            area,
+            address,
+            door_picture,
+            classroom_picture,
+            reception_picture,
+            license_picture,
+            start_time,
+            end_time,
+            service_introduction,
+            creator
+        FROM bs_storeinfo
+        WHERE id=#{id}
+    </select>
+
+    <!--获取部门记录笔数-->
+    <select id="getStoreInfoCount" resultType="String">
+        SELECT
+        COUNT(*) AS ct
+        FROM bs_storeinfo
+        WHERE status='1' AND business_id = #{businessId}
+    </select>
+
+    <!--获取商家信息-->
+    <select id="getBusinessInfoById" resultType="BusinessInfo">
+        SELECT
+            id,
+            business_serial_id,
+            business_name,
+            logo,
+            business_picture,
+            email,
+            address,
+            phone_num,
+            phone_num2,
+            business_type,
+            creator,
+            create_time
+        FROM bs_businessInfo
+        WHERE id=#{id} AND status='1'
+    </select>
+
+    <!--获取商家员工基础信息列表-->
+    <select id="listBusinessEmployeeInfo" resultType="EmployeeInfo">
+        SELECT
+            id,
+            base_employee_serial_id,
+            employee_name,
+            sex,
+            birthday,
+            phone_num,
+            id_card,
+            emp_head,
+            register_type,
+            create_time
+        FROM bs_employee
+        WHERE STATUS = 1
+        <if test="employeeName!=null and employeeName!=''">
+          AND employee_name LIKE '%${employeeName}%'
+        </if>
+        ORDER BY base_employee_serial_id
+        LIMIT #{startPage},#{endPage}
+
+    </select>
+
+    <select id="getBusinessEmployeeCount" resultType="String">
+        SELECT
+          COUNT(*) AS ct
+        FROM bs_employee
+        WHERE STATUS = 1
+    </select>
+
+    <!--新增教室 -->
+    <insert id="addClassroom">
+        INSERT INTO bs_classroom
+        (id,
+        classroom_serial_id,
+        classroom_name,
+        store_id,
+        creator)
+        VALUES (
+        #{id},
+        #{classroomSerialId},
+        #{classroomName},
+        #{storeId},
+        #{creator});
+    </insert>
+
+    <!--获取最大教室编号-->
+    <select id="getMaxClassroomId" resultType="String">
+        SELECT IFNULL(MAX(classroom_serial_id),0) AS classroom_serial_id FROM bs_classroom
+        WHERE store_id=#{storeId}
+    </select>
+
+    <!--新增门店照片信息-->
+    <insert id="addStorePhotoInfo"  parameterType="StorePhoto">
+        INSERT INTO bs_store_photo(
+        id,
+        door_photo,
+        classroom_photos,
+        reception_photos,
+        business_license,
+        teacher_photo,
+        class_photos
+        )
+        VALUES (
+        #{id},
+        #{doorPhoto},
+        #{classroomPhotos},
+        #{receptionPhotos},
+        #{businessLicense},
+        #{teacherPhoto},
+        #{classPhotos}
+        )
+    </insert>
+
+    <!--添加课程类型-->
+    <insert id="addCourseType" parameterType="CourseType">
+        insert into bs_course_type(
+        id,
+        coursetype_serial_id,
+        course_type_name,
+        business_id,
+        creator
+        )
+        values(
+        #{id},
+        #{coursetypeSerialId},
+        #{courseTypeName},
+        #{businessId},
+        #{creator}
+        )
+    </insert>
+
+    <!--获取课程类型列表-->
+    <select id="listCourseType" resultType="CourseType">
+        SELECT
+            id,
+            coursetype_serial_id,
+            course_type_name,
+            business_id,
+            STATUS,
+            creator,
+            create_time
+        FROM bs_course_type
+        WHERE status=1 AND business_id=#{businessId}
+        ORDER BY coursetype_serial_id
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取课程类型记录笔数-->
+    <select id="getCourseTypeCount" resultType="String">
+        SELECT
+          COUNT(*) AS ct
+        FROM bs_course_type
+        WHERE status=1 AND business_id=#{businessId}
+    </select>
+
+    <!--更新课程类型数据状态-->
+    <update id="updateCourseTypeStatus" parameterType="CourseType">
+        UPDATE bs_course_type SET status=#{status}
+        WHERE id=#{id}
+    </update>
+
+    <!--更新课程类型数据-->
+    <update id="updateCourseType" parameterType="CourseType">
+        UPDATE bs_course_type SET course_type_name=#{courseTypeName}
+        WHERE id=#{id}
+    </update>
+
+    <!--查询门店中所有教室 -->
+    <select id="listClassroomByStoreId" resultType="Classroom">
+        SELECT
+            id,
+            classroom_serial_id,
+            classroom_name,
+            store_id,
+            remark,
+            creator,
+            create_time
+        FROM bs_classroom
+        WHERE store_id = #{storeId} AND status='1'
+        ORDER BY classroom_serial_id
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取教室记录笔数-->
+    <select id="getClassroomCount" resultType="String">
+        SELECT
+            COUNT(*) AS ct
+        FROM bs_classroom
+        WHERE store_id = #{storeId}
+    </select>
+
+    <!--更新教室-->
+    <update id="updateClassroom" parameterType="Classroom">
+        UPDATE bs_classroom
+        <set>
+            <if test="classroomName !=null and classroomName!=''">
+                classroom_name = #{classroomName},
+            </if>
+            <if test="status !=null and status!=''">
+                status = #{status}
+            </if>
+        </set>
+        WHERE id=#{id};
+    </update>
+
+    <!--获取课程类型编号-->
+    <select id="getMaxCourseTypeId" resultType="String">
+        SELECT IFNULL(MAX(coursetype_serial_id),0) AS coursetype_serial_id FROM bs_course_type
+        WHERE business_id=#{businessId}
+    </select>
+
+    <!--插入员工基础信息-->
+    <insert id="addBaseEmployeeInfo" parameterType="EmployeeInfo">
+        INSERT INTO bs_employee(
+        id,
+        base_employee_serial_id,
+        employee_name,
+        sex,
+        <if test="birthday !=null and birthday!=''">
+            birthday,
+        </if>
+        phone_num,
+        id_card
+        )
+        VALUES (
+        #{id},
+        #{baseEmployeeSerialId},
+        #{employeeName},
+        #{sex},
+        <if test="birthday !=null and birthday!=''">
+            #{birthday},
+        </if>
+        #{phoneNum},
+        #{idCard}
+        )
+    </insert>
+
+    <!--获取员工基础数据最大编号-->
+    <select id="getMaxBaseEmployeeSerialId" resultType="String">
+        SELECT IFNULL(MAX(base_employee_serial_id),0) AS base_employee_serial_id FROM bs_employee
+    </select>
+
+    <!--添加员工信息-->
+    <insert id="addEmpBusinessRelation" parameterType="EmpBusinessRelation">
+        INSERT INTO bs_empbusiness_relation
+        (id,
+        employee_serial_id,
+        emp_id,
+        business_id,
+        store_id,
+        dep_id,
+        position_id,
+        emp_type,
+        emp_rela,
+        role_id,
+        entry_date,
+        emp_picture,
+        <if test="selfIntroduction != null and selfIntroduction!='' ">
+            self_introduction,
+        </if>
+        is_coach,
+        <if test="isCoach==2 ">
+            job_title,
+        </if>
+        creator)
+        VALUES (
+        #{id},
+        #{employeeSerialId},
+        #{empId},
+        #{businessId},
+        #{storeId},
+        #{depId},
+        #{positionId},
+        #{empType},
+        #{empRela},
+        #{roleId},
+        #{entryDate},
+        #{empPicture},
+        <if test="selfIntroduction != null and selfIntroduction!='' ">
+            #{selfIntroduction},
+        </if>
+        #{isCoach},
+        <if test="isCoach==2 ">
+            #{jobTitle},
+        </if>
+        #{creator});
+    </insert>
+
+    <!--根据用户的电话号码和商场编号查询用户-->
+    <select id="queryEmployeeInfoByStoreIdAndPhoneNum" parameterType="ResponseEmployee" resultType="ResponseEmployee">
+        SELECT
+            <include refid="employeeBase"/>,
+            emp.id AS empId
+        FROM  bs_empbusiness_relation e
+        INNER JOIN bs_employee AS emp ON emp.id =  e.emp_id
+        WHERE e.store_id = #{storeId} AND  emp.phone_num = #{phoneNum};
+    </select>
+
+    <!--获取员工详细信息 -->
+    <select id="getEmployeeByPhoneNumAndBusinessIdAndStoreId" resultType="ResponseEmployee">
+        SELECT
+        <include refid="employeeBase"/>,
+            emp.id AS empId,
+            de.dep_name AS depName,
+            po.position_name AS positionName,
+            st.id AS storeId,
+            st.store_name AS storeName,
+            st.address AS storeAddress,
+            bs.business_name AS businessName,
+            bs.address AS businessAddress
+            usrl.role_name
+        FROM bs_empbusiness_relation AS e
+        INNER JOIN bs_employee AS emp ON emp.id =  e.emp_id
+        INNER JOIN bs_storeinfo AS st ON st.id =  e.store_id
+        INNER JOIN bs_business_department AS de ON de.id = e.dep_id
+        INNER JOIN bs_business_position AS po ON  po.id = e.position_id
+        INNER JOIN bs_businessinfo AS bs ON bs.id = e.business_id
+        INNER JOIN man_user_role AS usrl ON e.role_id=usrl.id
+        <where>
+            e.business_id = #{businessId}
+            <if test="phoneNum != null and phoneNum!='' ">
+                AND  emp.phone_num=#{phoneNum}
+            </if>
+
+            <if test="employeeName != null and employeeName!='' ">
+                AND emp.employee_name  LIKE '%${employeeName}%'
+            </if>
+            AND e.store_id = #{storeId}
+        </where>
+    </select>
+
+    <!--获取员工详细信息-->
+    <select id="getEmployeeByPhoneNum" resultType="EmployeeInfo">
+        SELECT
+        emp.id,
+        emp.employee_name,
+        emp.sex,
+        emp.birthday,
+        emp.phone_num,
+        emp.id_card,
+        emp.emp_head,
+        emp.register_type,
+        emp.create_time
+        FROM bs_employee emp
+        WHERE  emp.phone_num = #{phoneNum}
+        <if test="status != null and status != ''">
+            AND status=#{status}
+        </if>
+    </select>
+
+    <!--判断手机号是否已存在-->
+    <select id="isExistsEmployeePhoneNum" resultType="EmployeeInfo">
+        SELECT
+            emp.id,
+            emp.employee_name,
+            emp.sex,
+            emp.birthday,
+            emp.phone_num,
+            emp.id_card,
+            emp.emp_head,
+            emp.register_type,
+            emp.create_time
+        FROM bs_employee emp
+        <![CDATA[
+        WHERE emp.phone_num = #{phoneNum} AND emp.id <> #{id}
+        ]]>
+    </select>
+
+    <!--该会员手机号是否已存在-->
+    <select id="isExistsMemberPhoneNum" resultType="String">
+        SELECT COUNT(*) AS cnt FROM bs_user
+        <![CDATA[
+          WHERE phone_num=#{phoneNum} AND id <> #{id}
+        ]]>
+    </select>
+
+    <!--获取商家员工最大编号-->
+    <select id="queryEmployeeIdMax" resultType="String">
+        SELECT IFNULL(MAX(employee_serial_id),0) AS employee_serial_id
+        FROM bs_empbusiness_relation
+        WHERE business_id=#{businessId}
+    </select>
+
+    <!--根据员工id查询入职详情-->
+    <select id="queryentryBillByEmpId"  resultType="EntryBill">
+        SELECT
+        bill.id,
+        bill.bill_id,
+        bill.business_id,
+        bill.store_id,
+        bill.employee_id,
+        bill.start_time,
+        empr.employee_serial_id,
+        emp.employee_name,
+        emp.phone_num,
+        emp.id_card,
+        empr.emp_rela,
+        dep.dep_name,
+        po.position_name AS positionName
+        FROM bs_billinfo bill
+        INNER JOIN  bs_empbusiness_relation empr ON bill.employee_id=empr.id
+        INNER JOIN bs_employee emp ON emp.id = empr.emp_id
+        INNER JOIN bs_storeinfo st ON empr.store_id=st.id
+        INNER JOIN bs_business_position po ON empr.position_id=po.id
+        INNER JOIN bs_business_department dep ON bill.dep_id=dep.id
+        INNER JOIN bs_billinfo bill1 ON bill.employee_id=bill1.employee_id
+        WHERE bill.employee_id=#{employeeId} AND bill1.bill_type=6
+    </select>
+
+    <!--新增入职单-->
+    <insert id="addEntryBill">
+        INSERT INTO bs_billinfo(
+        id,
+        bill_id,
+        business_id,
+        store_id,
+        bill_type,
+        employee_id,
+        start_time,
+        dep_id,
+        position_id
+        )
+        VALUES (
+        #{id},
+        #{billId},
+        #{businessId},
+        #{storeId},
+        #{billType},
+        #{employeeId},
+        #{startTime},
+        #{depId},
+        #{positionId}
+        )
+    </insert>
+
+    <!--获取门店所有员工信息-->
+    <select id="listEmpBusinessRelationByStoreId" resultType="ResponseEmployee">
+        SELECT <include refid="employeeBase"/>,
+            emp.id AS empId,
+            dep.dep_name,
+            pos.position_name,
+            usrl.role_name
+        FROM bs_empbusiness_relation e
+        INNER JOIN bs_employee AS emp ON emp.id =  e.emp_id
+        INNER JOIN bs_storeinfo AS st ON st.id =  e.store_id
+        INNER JOIN bs_business_department AS dep ON e.dep_id=dep.id
+        INNER JOIN bs_business_position AS pos ON e.position_id=pos.id
+        INNER JOIN man_user_role AS usrl ON e.role_id=usrl.id
+        WHERE e.store_id=#{storeId} AND e.status = 1
+        ORDER BY employee_serial_id
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取门店员工记录笔数-->
+    <select id="getStoreEmployeeCount" resultType="String">
+        SELECT
+          COUNT(*) AS ct
+        FROM bs_empbusiness_relation e
+        WHERE e.store_id=#{storeId} AND e.status = 1
+    </select>
+
+    <!--根据id获取员工详细信息-->
+    <select id="getEmpBusinessRelationById" resultType="ResponseEmployee">
+        SELECT <include refid="employeeBase"/>,
+            emp.id AS empId,
+            de.dep_name AS depName,
+            po.position_name AS positionName,
+            st.id AS storeId,
+            st.store_name AS storeName,
+            st.address AS storeAddress,
+            bs.business_name AS businessName,
+            bs.address AS businessAddress,
+            usrl.role_name
+        FROM bs_empbusiness_relation AS e
+        INNER JOIN bs_employee AS emp ON emp.id =  e.emp_id
+        INNER JOIN bs_storeinfo AS st ON st.id =  e.store_id
+        INNER JOIN bs_business_department AS de ON de.id = e.dep_id
+        INNER JOIN bs_business_position AS po ON  po.id = e.position_id
+        INNER JOIN bs_businessinfo AS bs ON bs.id = e.business_id
+        INNER JOIN man_user_role AS usrl ON e.role_id=usrl.id
+        WHERE  e.id=#{id}
+    </select>
+
+    <!--编辑员工基本信息-->
+    <update id="updateEmployeInfo" parameterType="EmployeeInfo">
+        UPDATE bs_employee
+        <set>
+            <if test="employeeName != null and employeeName!='' ">
+                employee_name = #{employeeName},
+            </if>
+            <if test="empHead != null">
+                emp_head = #{empHead},
+            </if>
+            <if test="idCard != null">
+                id_card = #{idCard},
+            </if>
+            <if test="sex != null and sex!=0 ">
+                sex = #{sex},
+            </if>
+            <if test="phoneNum != null and phoneNum!='' ">
+                phone_num = #{phoneNum},
+            </if>
+            <if test="status != null and status!='' ">
+                status = #{status}
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <!--编辑员工关系表信息 -->
+    <update id="updateEmpBusinessRelation">
+        UPDATE bs_empbusiness_relation
+        <set>
+            <if test="entryDate != null and entryDate!='' ">
+                entry_date = #{entryDate},
+            </if>
+            <if test="positionId != null and positionId!='' ">
+                position_id = #{positionId},
+            </if>
+            <if test="storeId != null and storeId!='' ">
+                store_id = #{storeId},
+            </if>
+            <if test="depId != null and depId!='' ">
+                dep_id = #{depId},
+            </if>
+            <if test="empRela != null and empRela!=0 ">
+                emp_rela = #{empRela},
+            </if>
+            <if test="roleId != null and roleId !='' ">
+                role_id = #{roleId},
+            </if>
+            <if test="empPicture != null">
+                emp_picture = #{empPicture},
+            </if>
+            <if test="jobTitle != null and jobTitle!=1 ">
+                job_title = #{jobTitle},
+            </if>
+            <if test="isCoach != null and isCoach!=0 ">
+                is_coach = #{isCoach},
+            </if>
+            <if test="selfIntroduction != null">
+                self_introduction = #{selfIntroduction},
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status}
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <!--获取会员信息-->
+    <select id="queryMemberInfo" resultType="ResponseMember">
+        SELECT
+            member.id AS memberId,
+            member.member_serial_id,
+            member.business_id,
+            member.store_id,
+            member.member_tags,
+            member.creator,
+            member.status,
+            member.create_time,
+            member.remark,
+            member.user_id,
+            us.user_serial_id,
+            us.user_name,
+            us.head_portrait,
+            us.height,
+            us.weight,
+            us.birthday,
+            us.sex,
+            us.nick_name,
+            us.hobby,
+            us.phone_num,
+            us.balance,
+            us.email,
+            us.create_time,
+            st.store_name,
+            busi.business_name
+        FROM bs_member member
+        INNER JOIN bs_user us ON us.id = member.user_id
+        INNER JOIN bs_storeinfo st ON st.id = member.store_id
+        INNER JOIN bs_businessinfo busi ON busi.id = st.business_id
+        <where>
+            <if test="phoneNum != null and phoneNum!=''">
+                us.phone_num=#{phoneNum}
+            </if>
+            <if test="businessId != null and businessId!=''">
+                AND  member.business_id=#{businessId}
+            </if>
+            <if test="id != null and id!=''">
+                AND  member.id=#{id}
+            </if>
+        </where>
+    </select>
+
+    <!--获取会员编号-->
+    <select id="getMaxMemberId" resultType="String">
+        SELECT IFNULL(MAX(member_serial_id),0) AS member_serial_id FROM bs_member
+        WHERE business_id=#{businessId}
+    </select>
+
+    <!--新增会员-->
+    <insert id="addMemberInfo" parameterType="BusinessMember">
+        INSERT INTO bs_member(
+        id,
+        member_serial_id,
+        business_id,
+        <if test="memberTags != null and memberTags != 0">
+            member_tags,
+        </if>
+        store_id,
+        creator,
+        <if test="remark != null and remark != ''">
+            remark,
+        </if>
+        user_id
+        )
+        VALUES(
+        #{memberId},
+        #{memberSerialId},
+        #{businessId},
+        <if test="memberTags != null and memberTags != 0">
+            #{memberTags},
+        </if>
+        #{storeId},
+        #{creator},
+        <if test="remark != null and remark != ''">
+            #{remark},
+        </if>
+        #{userId}
+        )
+    </insert>
+
+    <!--获取会员卡关系表最大编号-->
+    <select id="getMaxMembercardOpencardSerialId" resultType="String">
+        SELECT IFNULL(MAX(opencard_serial_id),0) AS opencard_serial_id FROM bs_membercard_relation
+        WHERE  membcard_id =#{membcardId}
+    </select>
+
+    <!--增加会员卡关联信息-->
+    <insert id="addMemberCardRelation" parameterType="MembercardRelation">
+        INSERT INTO bs_membercard_relation
+            (id,
+            opencard_serial_id,
+            member_id,
+            membcard_id,
+            validity_time,
+            validity_type,
+            card_status,
+            times,
+            store_id,
+            remark,
+            creator)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.opencardSerialId},
+            #{item.memberId},
+            #{item.membcardId},
+            #{item.validityTime},
+            #{item.validityType},
+            #{item.cardStatus},
+            #{item.times},
+            #{item.storeId},
+            #{item.remark},
+            #{item.creator})
+        </foreach>
+    </insert>
+
+    <!--更新会员卡关系信息-->
+    <update id="updateMemberCardRelation" parameterType="MembercardRelation">
+        UPDATE bs_membercard_relation SET
+            validity_time=#{validityTime},
+            validity_type=#{validityType},
+            card_status=#{cardStatus},
+            times=#{times}
+        WHERE id=#{id}
+    </update>
+
+    <!--删除会员卡关系信息-->
+    <delete id="deleteMemberCardRelation">
+        DELETE FROM bs_membercard_relation
+        WHERE id=#{id}
+    </delete>
+
+    <!--获取商家会员卡信息列表-->
+    <select id="listMemberCardInfo" resultType="MemberCard">
+        SELECT
+            card.id,
+            card.membcard_serial_id,
+            card.membcard_name,
+            card.membcard_type,
+            card.status,
+            card.remark,
+            card.creator,
+            card.create_time
+        FROM bs_membership_card card
+        WHERE card.status=1 AND card.business_id=#{businessId}
+        ORDER BY card.membcard_serial_id
+    </select>
+
+    <!--获取某会员在某商家的所有会员卡-->
+    <select id="listMemberCardByMemberId" resultType="MembercardRelation">
+        SELECT
+            rela.id,
+            rela.opencard_serial_id,
+            rela.member_id,
+            rela.membcard_id,
+            rela.validity_type,
+            rela.validity_time,
+            rela.card_status,
+            rela.specact_time,
+            rela.act_time,
+            rela.times,
+            rela.give_times,
+            rela.flag_type,
+            rela.store_id,
+            rela.remark,
+            rela.opencard_date,
+            rela.creator,
+            rela.create_time,
+            card.membcard_name,
+            card.membcard_type
+        FROM bs_membercard_relation rela
+        INNER JOIN bs_membership_card card ON rela.membcard_id=card.id
+        WHERE card.business_id=#{businessId} AND rela.member_id=#{id}
+        ORDER BY rela.opencard_serial_id
+    </select>
+
+    <!--获取门店所有会员信息-->
+    <select id="queryMemberListByStoreId" resultType="ResponseMember">
+        SELECT
+            member.id,
+            member.member_serial_id,
+            member.business_id,
+            member.store_id,
+            member.member_tags,
+            member.creator,
+            member.status,
+            member.create_time,
+            member.remark,
+            member.user_id,
+            us.user_serial_id,
+            us.user_name,
+            us.nick_name,
+            us.head_portrait,
+            us.height,
+            us.weight,
+            us.birthday,
+            us.sex,
+            us.hobby,
+            us.phone_num,
+            us.balance,
+            us.email,
+            us.create_time,
+            st.store_name,
+            busi.business_name
+        FROM bs_member member
+        INNER JOIN bs_user us ON us.id = member.user_id
+        INNER JOIN bs_storeinfo st ON st.id = member.store_id
+        INNER JOIN bs_businessinfo busi ON busi.id = st.business_id
+        WHERE member.store_id = #{storeId} AND member.status =1
+        GROUP BY us.create_time
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取门店会员记录笔数-->
+    <select id="getMemberCountByStoreId" resultType="String">
+    SELECT
+      COUNT(*) AS ct
+    FROM bs_member
+    WHERE store_id=#{storeId} AND status =1
+    </select>
+
+    <!--编辑会员信息-->
+    <update id="updateBusinessMeberInfo" parameterType="BusinessMember">
+        UPDATE bs_member
+        <set>
+            <if test="memberTags != null and memberTags != 0">
+                member_tags = #{memberTags},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark}
+            </if>
+        </set>
+        WHERE id=#{memberId};
+    </update>
+
+    <delete id="deleteClientUser">
+        DELETE FROM bs_user
+        WHERE id=#{id}
+    </delete>
+
+    <delete id="deleteBusinessMemberInfo">
+        DELETE FROM bs_member
+        WHERE id=#{id}
+    </delete>
+
+    <!--获取用户关联的门店-->
+    <select id="listStoreInfoByClientUserId" resultType="StoreInfo">
+        SELECT sto.id,sto.store_name FROM bs_member memb
+        INNER JOIN bs_storeinfo sto ON memb.store_id=sto.id
+        WHERE memb.user_id=#{id}
+    </select>
+
+    <!--获取用户关联的门店-->
+    <select id="listStoreInfoByEmployeeId" resultType="StoreInfo">
+        SELECT sto.id,sto.store_name FROM bs_empbusiness_relation emp
+        INNER JOIN bs_storeinfo sto ON emp.store_id=sto.id
+        WHERE emp.emp_id=#{id}
+    </select>
+</mapper>

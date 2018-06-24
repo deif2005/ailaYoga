@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dod.sport.dao.IUserDao">
+
+    <sql id="baseSql">
+        id,
+        employee_serial_id,
+        employee_name,
+        password,
+        sex,
+        phone_num,
+        id_card,
+        position_id,
+        dep_id,
+        status,
+        entry_date,
+        leave_date,
+        role_id,
+        creator,
+        create_time
+    </sql>
+
+    <!--管理端用户列表-->
+    <select id="listManagerUser" resultType="ManagerUser" >
+        SELECT
+            usr.id,
+            usr.employee_serial_id,
+            usr.employee_name,
+            usr.password,
+            usr.sex,
+            usr.phone_num,
+            usr.id_card,
+            usr.position_id,
+            usr.dep_id,
+            usr.status,
+            usr.entry_date,
+            usr.leave_date,
+            usr.role_id,
+            usr.creator,
+            usr.create_time,
+            dep.dep_name,
+            pos.position_name,
+            rol.role_name
+        FROM man_user usr
+        LEFT JOIN man_department dep ON usr.dep_id=dep.id
+        LEFT JOIN man_position pos ON usr.position_id=pos.id
+        LEFT JOIN man_user_role rol ON usr.role_id=rol.id
+        WHERE usr.status='1'
+        ORDER BY usr.employee_serial_id
+        LIMIT #{startPage},#{endPage}
+    </select>
+
+    <!--获取管理端员工笔数-->
+    <select id="getManagerUserCount" resultType="String" >
+        SELECT
+          COUNT(*) as ct
+        FROM man_user
+        WHERE status='1'
+    </select>
+
+    <!--查询用户信息-->
+    <select id="getUserInfo" resultType="ManagerUser">
+        SELECT <include refid="baseSql" /> FROM man_user
+        WHERE status ='1' AND password=#{password}
+        <if test="phoneNum!=null and phoneNum!=''">
+            AND  phone_num=#{phoneNum}
+        </if>
+    </select>
+
+    <!--根据电话号码查找用户信息-->
+    <select id="getUserInfoByPhoneNum" resultType="ManagerUser">
+        SELECT <include refid="baseSql"/> FROM man_user
+        WHERE phone_num=#{phoneNum}
+    </select>
+
+    <!--该会员手机号是否已存在-->
+    <select id="isExistsUserPhoneNum" resultType="String">
+        SELECT COUNT(*) AS cnt FROM man_user
+        <![CDATA[
+          WHERE phone_num=#{phoneNum} AND id <> #{id}
+        ]]>
+    </select>
+
+    <!--增加管理端用户-->
+    <insert id="addManagerUser" parameterType="ManagerUser">
+        INSERT INTO man_user(
+        id,
+        employee_serial_id,
+        employee_name,
+        password,
+        sex,
+        phone_num,
+        id_card,
+        position_id,
+        dep_id,
+        entry_date,
+        role_id,
+        creator
+        )
+        VALUES(
+        #{id},
+        #{employeeSerialId},
+        #{employeeName},
+        #{password},
+        #{sex},
+        #{phoneNum},
+        #{idCard},
+        #{positionId},
+        #{depId},
+        #{entryDate},
+        #{roleId},
+        #{creator}
+        )
+    </insert>
+
+    <!--更新管理端用户信息-->
+    <update id="updateManagerUser" parameterType="ManagerUser">
+        UPDATE man_user
+        <set>
+            <if test="employeeName != null and employeeName !=''">
+                employee_name=#{employeeName},
+            </if>
+            <if test="password != null and password != ''">
+                password=#{password},
+            </if>
+            <if test="sex != null and sex !=''">
+                sex=#{sex},
+            </if>
+            <if test="phoneNum != null and phoneNum != ''">
+                phone_num=#{phoneNum},
+            </if>
+            <if test="idCard != null">
+                id_card=#{idCard},
+            </if>
+            <if test="positionId != null and positionId != ''">
+                position_id=#{positionId},
+            </if>
+            <if test="depId != null and depId != ''">
+                dep_id=#{depId},
+            </if>
+            <if test="entryDate != null and entryDate != ''">
+                entry_date=#{entryDate},
+            </if>
+            <if test="status != null and status != ''">
+                status=#{status},
+            </if>
+            <if test="roleId != null and roleId != ''">
+                role_id=#{roleId},
+            </if>
+            <if test="creator != null and creator != ''">
+                creator=#{creator}
+            </if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <!--获取管理端员工最大编号-->
+    <select id="getMaxManagerUserSerialId" resultType="String">
+        SELECT IFNULL(MAX(employee_serial_id),0) AS employee_serial_id FROM man_user
+    </select>
+
+    <!--获取平台用户详情-->
+    <select id="getClientUserInfo" resultType="ClientUser">
+        SELECT
+            id,
+            user_serial_id,
+            user_name,
+            nick_name,
+            password,
+            head_portrait,
+            height,
+            weight,
+            birthday,
+            sex,
+            hobby,
+            phone_num,
+            balance,
+            email,
+            status,
+            register_type,
+            login_time,
+            create_time
+        FROM bs_user
+        <where>
+            <if test="id !=null and id !=''">
+                id = #{id}
+            </if>
+            <if test="password !=null and password !=''">
+                AND password = #{password}
+            </if>
+            <if test="phoneNum !=null and phoneNum !=''">
+                AND phone_num = #{phoneNum}
+            </if>
+        </where>
+    </select>
+
+    <!--获取平台用户详情-->
+    <select id="listClientUser" resultType="ClientUser">
+        SELECT
+            id,
+            user_serial_id,
+            user_name,
+            nick_name,
+            password,
+            head_portrait,
+            height,
+            weight,
+            birthday,
+            sex,
+            hobby,
+            phone_num,
+            balance,
+            email,
+            status,
+            register_type,
+            login_time,
+            create_time
+        FROM bs_user
+        WHERE status='1'
+        ORDER BY user_serial_id
+        LIMIT #{startPage},#{endPage}
+
+    </select>
+
+    <select id="getClientUserCount" resultType="String">
+        SELECT
+          COUNT(*) AS ct
+        FROM bs_user
+        WHERE status='1'
+    </select>
+
+    <!--获取平台用户最大编号-->
+    <select id="getMaxClientUserId" resultType="String">
+        SELECT IFNULL(MAX(user_serial_id),0) AS user_serial_id FROM bs_user
+    </select>
+
+    <!--新增平台用户-->
+    <insert id="addClientUser">
+        INSERT INTO bs_user
+        (id,
+        user_serial_id,
+        user_name,
+        nick_name,
+        password,
+        birthday,
+        sex,
+        phone_num)
+        VALUES (
+        #{id},
+        #{userSerialId},
+        #{userName},
+        #{nickName},
+        #{password},
+        #{birthday},
+        #{sex},
+        #{phoneNum}
+        )
+    </insert>
+
+    <!--更新平台会员基本信息-->
+    <update id="updateClientUser" parameterType="ClientUser">
+        UPDATE bs_user
+        <set>
+            <if test="userName !=null">
+                user_name = #{userName},
+            </if>
+            <if test="password !=null and password !='' ">
+                password = #{password},
+            </if>
+            <if test="height !=null">
+                height = #{height},
+            </if>
+            <if test="weight !=null">
+                weight = #{weight},
+            </if>
+            <if test="birthday !=null">
+                birthday = #{birthday},
+            </if>
+            <if test="nickName !=null">
+                nick_name = #{nickName},
+            </if>
+            <if test="hobby !=null">
+                hobby = #{hobby},
+            </if>
+            <if test="sex !=null and sex !='' ">
+                sex = #{sex},
+            </if>
+            <if test="email !=null">
+                email = #{email},
+            </if>
+            <if test="phoneNum !=null and phoneNum !='' ">
+                phone_num = #{phoneNum},
+            </if>
+            <if test="balance !=null and balance !='' ">
+                balance = #{balance},
+            </if>
+            <if test="registerType !=null">
+                registerType=#{register_type},
+            </if>
+            <if test="loginTime != null">
+                loginTime=#{login_time}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+</mapper>
