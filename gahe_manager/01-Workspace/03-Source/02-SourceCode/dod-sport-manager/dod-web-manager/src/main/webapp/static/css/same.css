@@ -1,0 +1,186 @@
+
+/*左侧导航菜单样式*/
+*{
+    margin: 0;
+    padding: 0;
+    !important;
+}
+
+label{
+    font-weight: normal;
+}
+ul,li{
+    list-style: none;
+}
+html, body{
+    height: 100%;
+}
+.left_side{
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*height: 100%;*/
+    /*min-height: 100%;*/
+    width: 200px;
+    background-color: #304152;
+}
+.right_side{
+    margin-left: 200px;
+    /*height: 100%;*/
+    min-height: 100%;
+    position: relative;
+}
+
+iframe{
+    width: 100%;
+    height: 100%;
+}
+/*头部相同的样式*/
+.header{
+    position: relative;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 20px;
+}
+.name{
+    position: absolute;
+    right: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.dods{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+    font-weight: bold;
+}
+.imgdiv{
+    position: absolute;
+    right: 80px;
+    display:inline-block;
+    margin:0 auto;
+    width:60px;
+    height:60px;
+    border-radius:100px;
+    /*border:2px solid #fff;*/
+    overflow:hidden;
+    -webkit-box-shadow:0 0 3px #ccc;
+    box-shadow:0 0 3px #ccc;
+    vertical-align: middle;
+}
+.imgdiv img{
+    width:100%;
+    min-height:100%;
+    display: inline-block;
+    text-align:center;
+    vertical-align: middle;
+}
+.row{
+    padding: 0;
+    margin: 0;
+}
+select{
+    outline: none;
+}
+input{
+    border: 1px solid #f0f0f0;
+    line-height: normal;
+    text-align: center;
+    outline: none;
+}
+.searchinput{
+    vertical-align: middle;
+}
+.save,.back{
+    width: 70px;
+    height: 30px;
+    display: inline-block;
+    color: #ffffff;
+    vertical-align: middle;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    padding-left: 20px;
+    float: right;
+    margin: 20px 20px;
+    cursor: pointer;
+}
+.save{
+    background: #49aceb;
+    background-image: url("../images/powerbtn/bao_cun.png");
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+.back{
+    background: #959596;
+    background-image: url("../images/powerbtn/fan_hui.png");
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+.deleteCancle{
+    background: #959596;
+    background-image: url("../images/qu_xiao.png");
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+.deleteSure{
+    background: #ff4138;
+    background-image: url("../images/powerbtn/xuan_ze.png");
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+/*
+*确认取消两个按钮的样式
+*/
+.sure, .cancle {
+    height: 30px;
+    width: 90px;
+    background: #49aceb;
+    display: inline-block;
+    color: #ffffff;
+    vertical-align: middle;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    padding-left: 15px;
+    margin-left: 25px;
+    cursor: pointer;
+}
+
+.btnList:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.sure {
+    background-image: url("../images/powerbtn/xuan_ze.png");
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+
+.cancle {
+    background-image: url("../images/powerbtn/fan_hui.png");
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+/*
+*员工 新增教练简介
+*/
+.remark{
+    padding: 0 30px;
+}
+.remark div:nth-child(1){
+    margin-top: 5px;
+}
+.searchcity select{
+    border: 1px solid #f0f0f0;
+}
+.pagination-nick{
+    border-top: 1px solid #f0f0f0;
+}
+.upImageBtn{
+    cursor: pointer;
+}
