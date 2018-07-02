@@ -1,0 +1,116 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+    defaultConfig {
+        applicationId "com.dodsport.consumer"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
+        jackOptions {
+            enabled true
+        }
+        /**极光*/
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "ccaee7bf03c5cf9a1f934626", //JPush上注册的包名对应的appkey.52ea379b74ccf61e3afa3730
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+
+    }
+
+    dexOptions {
+        jumboMode true
+        javaMaxHeapSize "4g"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a', 'x86_64', 'armeabi', 'arm64-v8a', 'mips', 'mips64'
+            // universalApk true
+        }
+    }
+
+    compileOptions {
+
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:2.0.1'
+    }
+}
+
+repositories {
+    //下拉刷新 上滑加载
+    maven { url 'https://jitpack.io' }
+}
+
+
+dependencies {
+    implementation 'com.android.support:support-v4:26.1.0'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    compile files('libs/picasso-2.5.2.jar')
+    compile project(path: ':magicindicator')
+    //compile 'com.yanzhenjie.nohttp:nohttp:1.1.1'
+    //compile 'com.yanzhenjie.nohttp:okhttp:1.1.1'
+    //    compile 'io.reactivex:rxjava:1.1.10'
+    //    compile 'io.reactivex:rxandroid:1.2.1'
+    implementation files('libs/fastjson-1.1.36.jar')
+    //核心基础库，包含绝大多数功能，扩展库必须依赖本库
+    compile 'com.github.dkzwm.SmoothRefreshLayout:core:1.5.0.1'
+    //扩展支持二级刷新库
+    compile 'com.github.dkzwm.SmoothRefreshLayout:ext-two-level:1.5.0.1'
+    //扩展支持横向刷新库
+    //    compile 'com.github.dkzwm.SmoothRefreshLayout:ext-horizontal:1.5.0.1'
+    //net
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    compile 'com.google.code.gson:gson:2.7'
+    //rx
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
+    //rxlifecycle
+    compile 'com.trello:rxlifecycle-components:1.0'
+    //RecyclerView吸附顶
+    implementation project(':RVlibrary')
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v2.6.1'
+    //自定义通用Item
+    compile 'com.maiml:baseitemlayoutlibrary:2.2.3'
+    //图片选择
+    compile 'com.yanzhenjie:album:2.0.1'
+    implementation files('libs/AMap3DMap_5.2.1_AMapNavi_5.2.1_AMapSearch_5.2.1_AMapLocation_3.4.1_20170710.jar')
+    //wx
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    //支付宝
+    implementation project(':alipay')
+    implementation files('libs/alipaySdk-20161009.jar')
+    //极光
+    compile 'cn.jiguang:jpush:2.1.8'
+}

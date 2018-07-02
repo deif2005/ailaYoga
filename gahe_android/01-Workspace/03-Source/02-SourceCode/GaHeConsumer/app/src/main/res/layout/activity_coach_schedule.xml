@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+    <include layout="@layout/head_view"/>
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <ImageView
+            android:layout_marginTop="15dp"
+            android:src="@drawable/welcome"
+            android:background="@null"
+            android:id="@+id/ivUserHead"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"/>
+        <TextView
+            android:id="@+id/tvTeacherName"
+            android:gravity="center_vertical"
+            android:text="李老师"
+            android:textSize="16dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/text_color"
+            android:layout_toRightOf="@+id/ivUserHead"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/tvTeacherTechnicalTitle"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:layout_toRightOf="@+id/tvTeacherName"
+            android:textColor="@color/home_text_normal"
+            android:textSize="16dp"
+            android:text="(初级教练)"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+        <View
+            android:background="@color/eeeeee"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvIntroduce"
+                android:text="个人简介"
+                android:textColor="@color/text_color"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:textScaleX="1.1"
+                android:lineSpacingExtra="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/tvIntroduce"
+                android:id="@+id/tvTeacherIntroduce"
+                android:text="授课老师"
+                android:textColor="@color/text_color"
+                android:textSize="13dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+        <View
+            android:background="@color/eeeeee"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <RelativeLayout
+            android:layout_marginTop="20dp"
+            android:id="@+id/rlTeacher"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <TextView
+                android:id="@+id/tvTeacherIcon"
+                android:gravity="center_vertical"
+                android:text="教练教学照片"
+                android:textSize="16dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/text_color"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/xiayibu"
+                android:background="@null"
+                android:layout_width="16dp"
+                android:layout_height="16dp"/>
+
+        </RelativeLayout>
+        <View
+            android:background="@color/eeeeee"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <LinearLayout
+
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="已排课程"
+            android:textSize="16dp"
+            android:textColor="@color/text_color"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+            <View
+                android:background="@color/eeeeee"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/rlScheduleOfCourses"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llShow"
+                android:layout_marginTop="80dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="该老师暂无排课信息!"
+                    android:textSize="16dp"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

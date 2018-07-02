@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">多点运动助手</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <!--底部导航栏-->
+    <string name="home">俱乐部 </string>
+    <string name="Information">消息 </string>
+    <string name="My">我的</string>
+    <string name="start_activity">立即体验</string>
+
+    <!--首页文字-->
+    <string name="office_hours">营业时间</string>
+    <string name="dial">拨号</string>
+    <string name="member_AboutClass">会员约课</string>
+    <string name="member_AskForLeave">会员请假</string>
+    <string name="applyFor_Tate">申请体验</string>
+    <string name="cardCoupons_Buy">卡券购买</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--网络请求-->
+    <!-- error -->
+    <string name="wait_dialog_title">正在请求，请稍后…</string>
+    <string name="error_please_check_network">请检查网络。</string>
+    <string name="error_timeout">请求超时，网络不好或者服务器不稳定。</string>
+    <string name="error_not_found_server">未发现指定服务器，清切换网络后重试。</string>
+    <string name="error_url_error">URL错误。</string>
+    <string name="error_not_found_cache">没有找到缓存.</string>
+    <string name="error_unknow">未知错误。</string>
+    <string name="error_response_code">服务器响应码%1$d</string>
+    <string name="error_response_code_dex">服务器响应码%1$d，如果你们服务器在这种情况下也返回数据你可以处理。</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">密码</string>
+    <string name="please_agree_to_registration_agreement">请同意用户注册协议</string>
+    <string name="third_party_login">----------------使用第三方登录----------------</string>
+    <string name="telphone_error">请输入正确的手机号码!</string>
+    <string name="password_error">密码长度请保持6到20位</string>
+    <string name="conform_password_error">确认密码错误</string>
+    <string name="code_error">验证码输入错误</string>
+    <string name="agree_to_registration_agreement">我同意</string>
+    <string name="agree_to_agreement">
+    <u>《多点运动助手用户注册协议》</u>
+    </string>
+    <string name="prompt_phone">手机号</string>
+    <string name="registered_code">验证码</string>
+    <string name="please_input_code">六位验证码</string>
+    <string name="request_code">获取验证码</string>
+    <string name="resend_code">%1$d秒后重发</string>
+    <string name="account_get_password">找回密码</string>
+    <string name="account_ok">确 定</string>
+    <string name="account_get_code">验证码</string>
+    <string name="please_input_account_get_code">验证码</string>
+    <string name="already_send_email">已向邮箱发送密码找回邮件，请查阅</string>
+    <string name="title_activity_company_list">CompanyListActivity</string>
+
+</resources>

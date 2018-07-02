@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<me.dkzwm.widget.srl.SmoothRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/SmoothRefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<android.support.design.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dodsport.consumer.activity.MainActivity">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:fitsSystemWindows="true"
+        android:id="@+id/AppBarLayout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_behavior="com.dodsport.consumer.weight.FlingBehavior">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:background="@color/home_text_selected"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_main"/>
+
+
+</android.support.design.widget.CoordinatorLayout>
+
+    </me.dkzwm.widget.srl.SmoothRefreshLayout>

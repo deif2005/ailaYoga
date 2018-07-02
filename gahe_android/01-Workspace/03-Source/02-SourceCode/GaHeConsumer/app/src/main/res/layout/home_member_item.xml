@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:scaleType="center"
+            android:id="@+id/ivMember"
+            android:src="@drawable/hui_yuan_qing_jia"
+            android:background="@drawable/shape_white_point"
+            android:layout_width="60dp"
+            android:layout_height="60dp"/>
+
+        <TextView
+            android:id="@+id/tvMember"
+            android:layout_marginTop="5dp"
+            android:textSize="14dp"
+            android:textColor="@color/text_color"
+            android:text="零度瑜伽馆福田分馆"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</LinearLayout>

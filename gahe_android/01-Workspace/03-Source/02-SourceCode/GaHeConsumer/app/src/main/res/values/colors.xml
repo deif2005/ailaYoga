@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--底部文本颜色-->
+    <color name="home_text_normal">#939393</color>
+    <color name="home_text_selected">#FECF37</color>
+
+    <!--首页按钮颜色-->
+    <color name="member_AboutClass_color">#fecf3f</color>
+    <color name="member_AskForLeave_color">#50e553</color>
+    <color name="applyFor_Tate_color">#01d0ce</color>
+    <color name="cardCoupons_Buy_color">#a54bcf</color>
+    <color name="bookable">#37bc1d</color>
+
+    <!--白色-->
+    <color name="white">#ffffff</color>
+    <color name="bbbbbb">#BBBBBB</color>
+    <color name="eeeeee">#EEEEEE</color>
+    <color name="e_three">#d9d8d8</color>
+    <color name="f0f0f0">#F0F0F0</color>
+    <color name="three">#333333</color>
+    <color name="viewback_color">#BEBEBE</color>
+    <color name="six">#666666</color>
+    <color name="zero">#000000</color>
+    <color name="ash">#999999</color>
+    <color name="tl">#cc000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="translucent">#80000000</color>
+    <color name="trans_five">#c0000000</color>
+    <color name="trans_three_black">#59000000</color>
+    <color name="gray">#ff808080</color>
+    <color name="fcfcfc">#FCFCFC</color>
+    <color name="nine">#999999</color>
+    <color name="text_color">#474747</color>
+    <color name="detail_color">#49ACEB</color>
+    <color name="text_red">#ff4138</color>
+    <color name="cancel_bg">#bcbcbc</color>
+
+
+    <!--pickView颜色-->
+    <color name="pickerview_timebtn_nor">#057dff</color>
+    <color name="pickerview_timebtn_pre">#c2daf5</color>
+    <color name="pickerview_bg_topbar">#f5f5f5</color>
+    <color name="pickerview_topbar_title">#000000</color>
+    <color name="pickerview_wheelview_textcolor_out">#a8a8a8</color>
+    <color name="pickerview_wheelview_textcolor_center">#2a2a2a</color>
+    <color name="pickerview_wheelview_textcolor_divider">#d5d5d5</color>
+    <!--覆盖颜色-->
+    <color name="bgColor_overlay">#60000000</color>
+    <color name="messagetext">#3C2522</color>
+
+    <color name="c_eight">#c8c8c8</color>
+    <color name="fafafa">#fafafa</color>
+
+    <!--完善资料-->
+    <color name="f_zero">#F0F0F0</color>
+    <color name="perfect_tv_color">#428EED</color>
+
+    <!--资讯-->
+    <color name="hotspottext">#C2C2C2</color>
+    <color name="hottext_color">#878787</color>
+
+    <color name="channel_tv_color">#FF6046</color>
+
+    <!--财务管理-->
+    <color name="vip_inverse_proportion">#FEF5D9</color>
+    <color name="mall_inverse_proportion">#D9FCFE</color>
+    <color name="recommend_inverse_proportion">#D6FFD9</color>
+    <color name="ad_inverse_proportion">#FFB9B4</color>
+    <color name="chart">#ffd6b8</color>
+    <color name="scale">#BEFB78</color>
+    <color name="userinfo">#939393</color>
+
+
+    <!--日期选择器-->
+    <color name="normal_day">#424242</color>
+    <color name="selected_day_background">#03A9F4</color>
+    <color name="selected_day_text">#FFFFFF</color>
+    <color name="month_day_label_text">#757575</color>
+    <color name="weekends_day">#BDBDBD</color>
+    <color name="current_day_background">#DDDDDD</color>
+    <color name="normal_month">#03A9F4</color>
+
+    <!--审批text-->
+    <color name="status_color">#1EA802</color>
+    <color name="statusno_color">#FE4138</color>
+    <color name="gray_color">#95a5a6</color>
+    <color name="card_blue_color">#01d0ce</color>
+    <color name="card_green_color">#50e553</color>
+
+</resources>

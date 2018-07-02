@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rlTeacher"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_marginTop="2dp"
+            android:id="@+id/ivUserHead"
+            android:src="@drawable/welcome"
+            android:background="@null"
+            android:layout_width="45dp"
+            android:layout_height="45dp"/>
+        <TextView
+            android:id="@+id/tvTeacherName"
+            android:gravity="center_vertical"
+            android:text="李老师"
+            android:textSize="14dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/text_color"
+            android:layout_toRightOf="@+id/ivUserHead"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/tvTeacherTechnicalTitle"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:layout_toRightOf="@+id/tvTeacherName"
+            android:textColor="@color/home_text_normal"
+            android:textSize="14dp"
+            android:text="(初级教练)"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/xiayibu"
+            android:background="@null"
+            android:layout_width="16dp"
+            android:layout_height="16dp"/>
+
+    </RelativeLayout>
+    <View
+        android:background="@color/eeeeee"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+</LinearLayout>

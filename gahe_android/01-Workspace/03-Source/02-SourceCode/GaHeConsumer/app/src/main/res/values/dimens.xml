@@ -1,0 +1,92 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+
+    <dimen name="button_radius">8dp</dimen>
+    <dimen name="button_radiusback">2dp</dimen>
+    <dimen name="stroke_line_width">2dp</dimen>
+    <dimen name="normal_line_width">1dp</dimen>
+
+    <dimen name="activity_vertical_base_margin">8dp</dimen>
+    <dimen name="title_page_indicator_height">48dp</dimen>
+    <dimen name="title_drawable_height">32dp</dimen>
+
+    <dimen name="drawable_left_padding">8dp</dimen>
+
+    <dimen name="login_text_margin_top">48dp</dimen>
+    <dimen name="main_group_height">48dp</dimen>
+    <dimen name="anchor_user_top">90dp</dimen>
+    <dimen name="anchor_name_top">110dp</dimen>
+
+    <!--日常任务-->
+    <dimen name="daily_task_height">80dp</dimen>
+    <dimen name="daily_task_title_size">20sp</dimen>
+
+    <!--表格布局尺寸-->
+    <dimen name="grid_view_horizontal_spacing">12dp</dimen>
+    <dimen name="grid_view_vertical_spacing">8dp</dimen>
+    <dimen name="grid_view_item_height">80dp</dimen>
+
+
+    <!--字体大小-->
+    <dimen name="normal_text_size">17sp</dimen>
+    <dimen name="hint_text_size">12sp</dimen>
+
+
+    <dimen name="base_info_text_size">20sp</dimen>
+    <dimen name="bases_info_text_size">14sp</dimen>
+    <dimen name="login_hint_text_size">16sp</dimen>
+    <dimen name="edit_hint_text_size">16sp</dimen>
+
+
+    <!--关于我们-->
+    <dimen name="about_us_margin_top">64dp</dimen>
+    <dimen name="about_us_margin_left">64dp</dimen>
+
+    <!--意见反馈-->
+    <dimen name="feedback_content_height">200dp</dimen>
+
+    <!--我的-->
+    <dimen name="line_margin_top">32dp</dimen>
+    <dimen name="my_base_info_height">200dp</dimen>
+    <dimen name="head_image_width">64dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+
+    <dimen name="common_load_more_progress_size">30dp</dimen>
+    <dimen name="common_load_more_padding">20dp</dimen>
+    <dimen name="common_loading_progress_size">35dp</dimen>
+    <dimen name="common_loading_text_margin">10dp</dimen>
+    <dimen name="common_loading_text_lines_spacing">5dp</dimen>
+    <dimen name="small_text">14sp</dimen>
+
+    <!--直播视频的大小-->
+    <dimen name="video_play_height">200dp</dimen>
+
+    <!--房间尺寸-->
+    <dimen name="gift_layout_height">124dp</dimen>
+    <dimen name="gift_item_width">260dp</dimen>
+
+    <!--发表动态-->
+
+    <dimen name="folder_padding">10dp</dimen>
+    <dimen name="folder_cover_size">72dp</dimen>
+    <dimen name="image_size">120dp</dimen>
+    <dimen name="space_size">2dp</dimen>
+    <dimen name="action_text_size">16sp</dimen>
+
+    <dimen name="text_size_day">14sp</dimen>
+    <dimen name="text_size_month">12sp</dimen>
+    <dimen name="text_size_day_name">14sp</dimen>
+    <dimen name="header_month_height">34dip</dimen>
+    <dimen name="selected_day_radius">16dip</dimen>
+    <dimen name="event_dots_radius">2.5dp</dimen>
+    <dimen name="calendar_height">270dip</dimen>
+    <dimen name="month_info_text_size">24sp</dimen>
+
+</resources>
