@@ -1,0 +1,27 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.dodsport.view.LoadingView
+        android:id="@+id/follow_loadView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.dodsport.weight.waveswiperefreshlayout.WaveSwipeRefreshLayout
+            android:id="@+id/wsrlyout"
+            app:above_wave_color="@color/textNormalColor"
+            app:blow_wave_color="@color/textPressedColor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/approveRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+    </android.support.v7.widget.RecyclerView>
+        </com.dodsport.weight.waveswiperefreshlayout.WaveSwipeRefreshLayout>
+    </com.dodsport.view.LoadingView>
+</FrameLayout>

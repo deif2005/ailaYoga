@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rvMembershipCardItem"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/tvNumber"
+            android:textSize="12dp"
+            android:textColor="@color/home_text_normal"
+            android:text=".999"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="@drawable/radio_whitenull_back"
+            android:layout_width="match_parent"
+            android:layout_height="140dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="30dp"
+                android:gravity="center_horizontal"
+                android:layout_weight="1.1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.dodsport.weight.CircleImageView
+                    android:id="@+id/cvUserHead"
+                    android:src="@drawable/user_head"
+                    android:background="@color/transparent"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"/>
+                <TextView
+                    android:layout_marginLeft="2dp"
+                    android:id="@+id/tvUserCardNumber"
+                    android:layout_marginTop="20dp"
+                    android:textSize="12dp"
+                    android:textColor="@color/home_text_normal"
+                    android:text="卡号：888888999"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1.1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvUserName"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="25dp"
+                    android:textColor="@color/home_text_normal"
+                    android:textSize="14dp"
+                    android:text="郑冰"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tvNamePhone"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/home_text_selected"
+                    android:textSize="14dp"
+                    android:text="18888888888"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/home_text_normal"
+                    android:textSize="14dp"
+                    android:text="激活日期"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tvActivationDate"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/home_text_selected"
+                    android:textSize="14dp"
+                    android:text="2017.07.18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <Button
+                    android:id="@+id/btCardStatus"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/shape_card_status_green_style"
+                    android:textSize="12dp"
+                    android:textColor="@color/white"
+                    android:text="使用中"
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"/>
+                <TextView
+                    android:id="@+id/tvCardTypeName"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="12dp"
+                    android:textColor="@color/home_text_normal"
+                    android:text="VIP会员期限卡"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="20dp"
+                            android:textSize="11dp"
+                            android:textColor="@color/home_text_normal"
+                            android:text="剩余时间/次数"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/tvCardNumber"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textSize="12dp"
+                            android:textColor="@color/home_text_selected"
+                            android:text="0次"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_weight="2.2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/tvOperate"
+                            android:layout_marginBottom="10dp"
+                            android:text="操作"
+                            android:textSize="12dp"
+                            android:textColor="@color/home_text_selected"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:background="@color/home_text_normal"
+                            android:layout_width="match_parent"
+                            android:layout_height="2.2dp"/>
+                        <TextView
+                            android:id="@+id/tvRecord"
+                            android:layout_marginTop="10dp"
+                            android:text="记录"
+                            android:textSize="12dp"
+                            android:textColor="@color/home_text_selected"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

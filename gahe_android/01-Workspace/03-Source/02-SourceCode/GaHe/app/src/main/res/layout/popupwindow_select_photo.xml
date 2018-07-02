@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/rl_height"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/l"
+            android:background="@drawable/shape_my_self_write"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+            android:background="@drawable/shape_my_self_write_top"
+            android:id="@+id/photograph"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_above="@+id/line"
+            android:gravity="center"
+            android:textColor="@color/zero"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@+id/albums"
+            android:background="@color/eeeeee" />
+
+            <TextView
+                android:background="@drawable/shape_my_self_write_bottom"
+                android:id="@+id/albums"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_above="@+id/cancel"
+                android:gravity="center"
+                android:textColor="@color/zero"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/llReportVisible"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_above="@+id/albums"
+                    android:background="@color/eeeeee" />
+
+                <TextView
+                    android:background="@drawable/shape_my_self_write_no"
+                    android:id="@+id/tvThree"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_above="@+id/cancel"
+                    android:gravity="center"
+                    android:textColor="@color/zero"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/eeeeee" />
+
+                <TextView
+                    android:background="@drawable/shape_my_self_write_bottom"
+                    android:id="@+id/tvFour"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_above="@+id/cancel"
+                    android:gravity="center"
+                    android:textColor="@color/zero"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/l"
+            android:background="@drawable/shape_my_self_write"
+            android:layout_marginTop="10dp"
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="取 消"
+                android:textColor="@color/nine"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+   >
+
+    <RelativeLayout
+        android:background="@drawable/shape_my_self_write"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/rl_height"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:text="编辑"
+            android:textSize="18dp"
+            android:textColor="@color/home_text_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.2dp"
+            android:background="@color/f0f0f0"/>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:textSize="16dp"
+            android:textColor="@color/home_text_normal"
+            android:text="类型"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/rlCarddType"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <TextView
+                    android:id="@+id/tvCardTypeName"
+                    android:textSize="14dp"
+                    android:textColor="@color/home_text_normal"
+                    android:text="次卡"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:id="@+id/ivType"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/xiayibu"
+                    android:background="@color/transparent"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"/>
+            </RelativeLayout>
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llCardType"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvCardTypeName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                </android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
+            <View
+                android:background="@color/f0f0f0"
+                android:layout_width="match_parent"
+                android:layout_height="1.2dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:textSize="16dp"
+            android:textColor="@color/home_text_normal"
+            android:text="名称"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:background="@drawable/radio_whitenull_back"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+            <EditText
+                android:textSize="14dp"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/evCardName"
+                android:scrollbars="none"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/six"
+                android:hint=""
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:textSize="16dp"
+            android:textColor="@color/home_text_normal"
+            android:text="简介"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/radio_whitenull_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/evCardIntroduce"
+                android:singleLine="true"
+                android:maxLength="15"
+                android:scrollbars="none"
+                android:background="@null"
+                android:gravity="left"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/six"
+                android:hint="简介"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_marginBottom="20dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <Button
+                android:layout_toLeftOf="@+id/btCancel"
+                android:layout_marginRight="20dp"
+                android:id="@+id/btConservation"
+                android:textSize="16dp"
+                android:text="保存"
+                android:background="@drawable/shape_login_style"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp" />
+
+            <Button
+                android:layout_marginRight="10dp"
+                android:id="@+id/btCancel"
+                android:layout_alignParentRight="true"
+                android:textSize="16dp"
+                android:text="取消"
+                android:background="@drawable/shape_cancel_style"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+  </RelativeLayout>
+
+</LinearLayout>

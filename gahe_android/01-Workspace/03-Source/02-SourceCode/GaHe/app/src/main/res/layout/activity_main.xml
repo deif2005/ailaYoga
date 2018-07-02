@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.dodsport.activity.MainActivity">
+
+
+    <FrameLayout
+        android:id="@+id/fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
+    </FrameLayout>
+
+    <ImageView
+        android:background="#bbbbbc"
+        android:layout_width="match_parent"
+        android:layout_height="0.01dp"/>
+
+    <LinearLayout
+        android:id="@+id/mainLinear"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/llEntertainment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/ivEntertainment"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:background="#00000000"
+               />
+
+            <TextView
+                android:id="@+id/tvEntertainment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Entertainment"
+                android:textColor="@drawable/home_text_selector"
+                />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlInformation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:id="@+id/ivMySelf"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:background="#00000000"
+                android:src="@drawable/xiaoxi"
+                />
+            <ImageView
+                android:layout_marginBottom="2dp"
+                android:id="@+id/main_ivRedPoint"
+                android:visibility="gone"
+                android:layout_toRightOf="@+id/ivMySelf"
+                android:layout_width="7dp"
+                android:layout_height="7dp" />
+            <TextView
+                android:textSize="11dp"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:layout_below="@+id/ivMySelf"
+                android:id="@+id/tvInformation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Information"
+                android:textColor="@drawable/home_text_selector"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/llSend"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/ivSend"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="#00000000"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/llOperatingFloor"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_marginBottom="2dp"
+                android:id="@+id/ivOperatingFloor"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:background="#00000000"
+                android:src="@drawable/gongzuotai"
+                />
+
+            <TextView
+                android:textSize="11dp"
+                android:id="@+id/tvOperatingFloor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/OperatingFloor"
+                android:textColor="@drawable/home_text_selector"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/llVocational_work"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_marginBottom="2dp"
+                android:id="@+id/ivVocational_work"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:background="#00000000"
+                android:src="@drawable/lian_meng"
+                />
+
+            <TextView
+                android:textSize="11dp"
+                android:id="@+id/tvVocational_work"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Union"
+                android:textColor="@drawable/home_text_selector"
+                />
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

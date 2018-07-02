@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    >
+
+    <include layout="@layout/head2_view"/>
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="16dp"
+                android:textColor="@color/home_text_normal"
+                android:text="名称"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:background="@drawable/radio_whitenull_back"
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+                <EditText
+                    android:id="@+id/ettext1"
+                    android:textSize="14dp"
+                    android:textColor="@color/home_text_normal"
+                    android:gravity="center_vertical"
+                    android:scrollbars="none"
+                    android:background="@null"
+                    android:layout_marginLeft="5dp"
+                    android:hint="请输入"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="16dp"
+                android:textColor="@color/home_text_normal"
+                android:text="课程时长(分钟)"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:background="@drawable/radio_whitenull_back"
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+                <EditText
+                    android:digits="0123456789"
+                    android:id="@+id/ettext2"
+                    android:textSize="14dp"
+                    android:textColor="@color/home_text_normal"
+                    android:gravity="center_vertical"
+                    android:scrollbars="none"
+                    android:background="@null"
+                    android:layout_marginLeft="5dp"
+                    android:hint="请输入"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="课程分类"
+                android:textSize="16dp"
+                android:textColor="@color/home_text_normal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvCourseType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <RadioButton
+                    android:layout_weight="1"
+                    style="@style/package_radio_style"
+                    android:checked="false"
+                    android:id="@+id/RadioButton1"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    android:text="会员课"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:layout_weight="1"
+                    style="@style/package_radio_style"
+                    android:checked="false"
+                    android:id="@+id/RadioButton2"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    android:text="特色课"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:layout_weight="1"
+                    style="@style/package_radio_style"
+                    android:checked="false"
+                    android:id="@+id/RadioButton3"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    android:text="小班课"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:layout_weight="1"
+                    style="@style/package_radio_style"
+                    android:checked="true"
+                    android:id="@+id/RadioButton4"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    android:text="公开课"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="课程类型"
+                android:textSize="16dp"
+                android:textColor="@color/home_text_normal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <RadioButton
+                    android:layout_weight="1"
+                    style="@style/package_radio_style"
+                    android:checked="false"
+                    android:id="@+id/RadioButton5"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    android:text="私教"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:layout_weight="1"
+                    style="@style/package_radio_style"
+                    android:checked="true"
+                    android:id="@+id/RadioButton6"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    android:text="团课"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:layout_weight="0.9"
+                    style="@style/package_radio_style"
+                    android:checked="false"
+                    android:id="@+id/RadioButton7"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    android:text="私教#团课"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <RadioButton
+                    android:visibility="invisible"
+                    android:layout_weight="1.1"
+                    style="@style/package_radio_style"
+                    android:checked="true"
+                    android:id="@+id/RadioButton8"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    android:text="私教#团课"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="开启状态"
+                android:textSize="16dp"
+                android:textColor="@color/home_text_normal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <RadioButton
+                    android:layout_weight="1"
+                    style="@style/package_radio_style"
+                    android:checked="false"
+                    android:id="@+id/RadioButton9"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    android:text="开启"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:layout_weight="1"
+                    style="@style/package_radio_style"
+                    android:checked="true"
+                    android:id="@+id/RadioButton10"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    android:text="禁用"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <RadioButton
+                    android:visibility="invisible"
+                    android:layout_weight="0.9"
+                    style="@style/package_radio_style"
+                    android:checked="true"
+                    android:id="@+id/RadioButton11"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    android:text="私教#团课"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <RadioButton
+                    android:visibility="invisible"
+                    android:layout_weight="1.1"
+                    style="@style/package_radio_style"
+                    android:checked="true"
+                    android:id="@+id/RadioButton12"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    android:text="私教#团课"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="是否支持申请体验课"
+                android:textColor="@color/home_text_normal"
+                android:textSize="16dp"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+
+                <RadioButton
+                    android:layout_weight="1"
+                    style="@style/package_radio_style"
+                    android:checked="false"
+                    android:id="@+id/RadioButton13"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    android:text="支持"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:layout_weight="1"
+                    style="@style/package_radio_style"
+                    android:checked="true"
+                    android:id="@+id/RadioButton14"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    android:text="不支持"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:visibility="invisible"
+                    android:layout_weight="0.9"
+                    style="@style/package_radio_style"
+                    android:checked="true"
+                    android:id="@+id/RadioButton15"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    android:text="私教#团课"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <RadioButton
+                    android:visibility="invisible"
+                    android:layout_weight="1.1"
+                    style="@style/package_radio_style"
+                    android:checked="true"
+                    android:id="@+id/RadioButton16"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    android:text="私教#团课"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="16dp"
+                android:textColor="@color/home_text_normal"
+                android:text="课程介绍"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:background="@drawable/radio_whitenull_back"
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+                <EditText
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/ettext3"
+                    android:textSize="14dp"
+                    android:textColor="@color/home_text_normal"
+                    android:gravity="left"
+                    android:scrollbars="none"
+                    android:background="@null"
+                    android:layout_marginLeft="5dp"
+                    android:hint="请输入"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="16dp"
+                android:textColor="@color/home_text_normal"
+                android:text="课程图片"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <RelativeLayout
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/ivCourse"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/publish_add"
+                    android:background="@null"
+                    android:scaleType="centerCrop"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"/>
+
+                <ImageView
+                    android:id="@+id/icon_Delete"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_toRightOf="@id/ivCourse"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignTop="@+id/ivCourse"
+                    android:layout_marginLeft="-5dp"
+                    android:layout_marginBottom="3dp"
+                    android:background="@null"
+                    android:src="@drawable/shan"/>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/l"
+                android:background="@drawable/shape_my_self_write"
+                android:layout_marginTop="10dp"
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                >
+                <Button
+                    android:layout_toLeftOf="@+id/btCancel"
+                    android:id="@+id/btConservation"
+                    android:gravity="center"
+                    android:layout_marginRight="20dp"
+                    android:textSize="16dp"
+                    android:background="@drawable/shape_login_style"
+                    android:text="保存"
+                    android:textColor="@color/white"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"/>
+
+                <Button
+                    android:id="@+id/btCancel"
+                    android:background="@drawable/shape_cancel_style"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="取 消"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

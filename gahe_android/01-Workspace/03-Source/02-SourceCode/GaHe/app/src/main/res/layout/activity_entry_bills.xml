@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/head2_view"/>
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--门店名称-->
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:id="@+id/llType"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textSize="14dp"
+                    android:textColor="@color/home_text_normal"
+                    android:id="@+id/tvType"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="门店名称"/>
+
+                <TextView
+                    android:id="@+id/tvTypeSelect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="请选择(必填)"/>
+
+                <ImageView
+                    android:id="@+id/image1"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/transparent"
+                    android:src="@drawable/xiayibu"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="-5dp"
+                android:background="@color/f0f0f0"/>
+
+
+        <!--姓名-->
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="姓         名"
+                android:textColor="@color/home_text_normal"
+                android:textSize="14dp"/>
+
+            <EditText
+                android:singleLine="true"
+                android:maxLength="10"
+                android:textSize="13dp"
+                android:scrollbars="none"
+                android:background="@null"
+                android:hint="请输入(必填)"
+                android:id="@+id/evName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/home_text_normal"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/f0f0f0"/>
+
+
+        <!--电话-->
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="电         话"
+                android:textColor="@color/home_text_normal"
+                android:textSize="14dp"/>
+
+            <EditText
+                android:phoneNumber="true"
+                android:id="@+id/evPhone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="请输入(必填)"
+                android:maxLength="11"
+                android:scrollbars="none"
+                android:singleLine="true"
+                android:textColor="@color/home_text_normal"
+                android:textSize="13dp"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/f0f0f0"/>
+
+        <!--证件号-->
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="证   件  号"
+                android:textColor="@color/home_text_normal"
+                android:textSize="14dp"/>
+
+            <EditText
+                android:singleLine="true"
+                android:maxLength="18"
+                android:textSize="13dp"
+                android:scrollbars="none"
+                android:background="@null"
+                android:hint="请输入(必填)"
+                android:id="@+id/evIDNumber"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/home_text_normal"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/f0f0f0"/>
+
+            <!--入职日期-->
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textSize="14dp"
+                    android:textColor="@color/home_text_normal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="入职日期"/>
+
+                <TextView
+                    android:id="@+id/tvEntryDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="请选择(必填)"/>
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/transparent"
+                    android:src="@drawable/xiayibu"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="-5dp"
+                android:background="@color/f0f0f0"/>
+
+            <!--部门-->
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="部         门"
+                    android:textColor="@color/home_text_normal"/>
+
+                <TextView
+                    android:id="@+id/tvDepartment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="请选择(必填)"/>
+
+                <ImageView
+                    android:id="@+id/image3"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/transparent"
+                    android:src="@drawable/xiayibu"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="-5dp"
+                android:background="@color/f0f0f0"/>
+
+
+        <!--岗位-->
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textSize="14dp"
+                android:textColor="@color/home_text_normal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="岗         位"/>
+
+            <TextView
+                android:id="@+id/tvPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:gravity="center_vertical"
+                android:text="请选择(必填)"/>
+
+            <ImageView
+                android:id="@+id/image4"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:background="@color/transparent"
+                android:src="@drawable/xiayibu"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="-5dp"
+            android:background="@color/f0f0f0"/>
+
+        <!--就职状态-->
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="就职状态"
+                android:textColor="@color/home_text_normal"
+                android:textSize="14dp"/>
+
+            <RelativeLayout
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    style="@style/package_radio_style"
+                    android:checked="true"
+                    android:layout_toLeftOf="@+id/RadioButton2"
+                    android:id="@+id/RadioButton1"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    android:text="全职"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <RadioButton
+                    style="@style/package_radio_style"
+                    android:id="@+id/RadioButton2"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:textSize="14dp"
+                    android:text="兼职"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/f0f0f0"/>
+
+        <!--性别状态-->
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="性        别"
+                android:textColor="@color/home_text_normal"
+                android:textSize="14dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    style="@style/package_radio_style"
+                    android:checked="true"
+                    android:layout_toLeftOf="@+id/RadioButton4"
+                    android:id="@+id/RadioButton3"
+                    android:layout_marginRight="10dp"
+                    android:textSize="15dp"
+                    android:text=" 男  "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <RadioButton
+                    style="@style/package_radio_style"
+                    android:id="@+id/RadioButton4"
+                    android:layout_marginRight="21dp"
+                    android:layout_alignParentRight="true"
+                    android:textSize="15dp"
+                    android:text=" 女  "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/f0f0f0"/>
+
+        <!--教练状态-->
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="是否教练"
+                android:textColor="@color/home_text_normal"
+                android:textSize="14dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    style="@style/package_radio_style"
+                    android:checked="true"
+                    android:layout_toLeftOf="@+id/RadioButton6"
+                    android:id="@+id/RadioButton5"
+                    android:layout_marginRight="10dp"
+                    android:textSize="15dp"
+                    android:text=" 是  "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <RadioButton
+                    android:background="@color/transparent"
+                    style="@style/package_radio_style"
+                    android:id="@+id/RadioButton6"
+                    android:layout_marginRight="21dp"
+                    android:layout_alignParentRight="true"
+                    android:textSize="15dp"
+                    android:text=" 否  "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/f0f0f0"/>
+
+        <LinearLayout
+            android:id="@+id/llAcademicTitle"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_weight="2"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/home_text_normal"
+                android:textSize="15dp"
+                android:text="职称"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:layout_weight="1"
+                style="@style/package_radio_style"
+                android:checked="false"
+                android:layout_toLeftOf="@+id/RadioButton2"
+                android:id="@+id/RadioButton7"
+                android:layout_marginRight="10dp"
+                android:textSize="14dp"
+                android:text="高级教练"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <RadioButton
+                android:layout_weight="1"
+                style="@style/package_radio_style"
+                android:checked="false"
+                android:layout_toLeftOf="@+id/RadioButton2"
+                android:id="@+id/RadioButton8"
+                android:layout_marginRight="10dp"
+                android:textSize="14dp"
+                android:text="中级教练"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <RadioButton
+                android:layout_weight="1"
+                style="@style/package_radio_style"
+                android:checked="true"
+                android:layout_toLeftOf="@+id/RadioButton2"
+                android:id="@+id/RadioButton9"
+                android:layout_marginRight="10dp"
+                android:textSize="14dp"
+                android:text="初级教练"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/llTeacherSynopsis"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="16dp"
+                android:textColor="@color/home_text_normal"
+                android:text="教练简介"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/radio_whitenull_back"
+                android:layout_width="match_parent"
+                android:layout_height="130dp">
+                <EditText
+                    android:imeOptions="actionSend"
+                    android:cursorVisible="true"
+                    android:focusable="true"
+                    android:id="@+id/evTeacherText"
+                    android:maxLength="150"
+                    android:gravity="left"
+                    android:textSize="14dp"
+                    android:textColor="@color/home_text_normal"
+                    android:hint="教练个人介绍"
+                    android:background="@null"
+                    android:scrollbars="none"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
+                    <TextView
+                        android:id="@+id/TeacherText_ets"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/home_text_selected"
+                        android:textSize="12dp"
+                        android:text="150/150"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:id="@+id/llConfirm"
+            android:gravity="center"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:background="@drawable/shape_login_style"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <Button
+                android:id="@+id/btConfirm"
+                android:textSize="14dp"
+                android:textColor="@color/white"
+                android:text="确 定"
+                android:background="@color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

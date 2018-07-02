@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/head2_view"/>
+
+
+    <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <LinearLayout
+            android:id="@+id/llLastWeek"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:background="@drawable/shape_login_style"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/shang_yi_zhou"
+                android:background="@null"
+                android:layout_width="15dp"
+                android:layout_height="15dp"/>
+            <TextView
+                android:layout_marginRight="20dp"
+                android:textSize="14dp"
+                android:textColor="@color/white"
+                android:text="上一周"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llThisWeek"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:background="@drawable/shape_login_style"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textSize="14dp"
+                android:textColor="@color/white"
+                android:text="本周"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/llNextWeek"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:background="@drawable/shape_login_style"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp">
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:textSize="14dp"
+                android:textColor="@color/white"
+                android:text="下一周"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/xia_yi_zhou"
+                android:background="@null"
+                android:layout_width="15dp"
+                android:layout_height="15dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.dodsport.view.LoadingView
+        android:id="@+id/loadingView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/CoordinatorLayout"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:fitsSystemWindows="true">
+
+            <android.support.design.widget.AppBarLayout
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               >
+                <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
+                <!--android:theme="@style/AppTheme.AppBarOverlay"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:popupTheme="@style/AppTheme.PopupOverlay"-->
+                <!--android:layout_height="?attr/actionBarSize"-->
+                <android.support.v7.widget.Toolbar
+                    android:visibility="gone"
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                   />
+
+            </android.support.design.widget.AppBarLayout>
+            <RelativeLayout
+                android:layout_marginTop="-30dp"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+               >
+
+            <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvLeagueClassList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+
+            </RelativeLayout>
+
+        </android.support.design.widget.CoordinatorLayout>
+
+        <include layout="@layout/layout_error_display"/>
+
+
+    </RelativeLayout>
+    </com.dodsport.view.LoadingView>
+
+</LinearLayout>

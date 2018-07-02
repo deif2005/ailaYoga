@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+    <include layout="@layout/head2_view"/>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="@dimen/dp_10"
+            android:layout_weight="2.5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:src="@drawable/user_head"
+                android:background="@null"
+                android:id="@+id/ivUserHead"
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+            </ImageView>
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="张三"
+                android:textSize="14dp"
+                android:textColor="@color/home_text_normal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_marginTop="-10dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tvJobNumber"
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="工号：888888"
+                android:textSize="16dp"
+                android:textColor="@color/home_text_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/linearLayout"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="12dp"/>
+            <LinearLayout
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout">
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:text="2018年08月"
+                    android:textSize="14dp"
+                    android:textColor="@color/home_text_selected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/jiao_zhun_xiang_xia"
+                    android:background="@null"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <com.dodsport.view.LoadingView
+        android:id="@+id/LoadingView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_margin="5dp"
+        android:id="@+id/rvException"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+    </com.dodsport.view.LoadingView>
+</LinearLayout>

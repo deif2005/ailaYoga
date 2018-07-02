@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <include
+        layout="@layout/head2_view"/>
+
+    <com.dodsport.view.LoadingView
+        android:id="@+id/Card_loadView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/scroll_swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--卡记录-->
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/scroll_coordinatorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.dodsport.activity.cardcoupons.membercardreplace.ListViewPager
+                android:id="@+id/scroll_Viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:layout_below="@+id/scroll_pagerSlidingTabStrip_line"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                />
+
+
+            <!--会员信息-->
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/scroll_appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:background="@color/white"
+                    android:id="@+id/scroll_collapsingToolbarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <RelativeLayout
+                        android:background="@color/white"
+                        android:layout_marginBottom="55dp"
+                        android:orientation="vertical"
+                        android:id="@+id/scroll_imageBanner_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipChildren="false">
+                        <LinearLayout
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical"
+                            android:id="@+id/search"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_marginRight="60dp"
+                                android:layout_marginLeft="60dp"
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp">
+                                <LinearLayout
+                                    android:layout_marginRight="10dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/radio_whitenull_back"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp">
+                                    <EditText
+                                        android:id="@+id/etSearchPhone"
+                                        android:scrollbars="none"
+                                        android:background="@null"
+                                        android:layout_marginLeft="5dp"
+                                        android:inputType="number"
+                                        android:hint="手机号"
+                                        android:maxLength="11"
+                                        android:textSize="14dp"
+                                        android:textColor="@color/home_text_normal"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/llSearch"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:gravity="center"
+                                    android:background="@drawable/shape_login_style"
+                                    android:layout_weight="3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+                                    <TextView
+                                        android:textSize="14dp"
+                                        android:textColor="@color/white"
+                                        android:layout_width="wrap_content"
+                                        android:text="搜索"
+                                        android:layout_height="wrap_content"/>
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="20dp"
+                            android:layout_below="@+id/search"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/Layout"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <include layout="@layout/member_info_view"/>
+                            <View
+                                android:background="@color/f0f0f0"
+                                android:layout_width="match_parent"
+                                android:layout_height="1.2dp"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_below="@+id/Layout"
+                            android:id="@+id/llayout"
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:textSize="16dp"
+                                android:textColor="@color/home_text_normal"
+                                android:text="会员卡"
+                                android:layout_marginTop="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                            <net.lucode.hackware.magicindicator.MagicIndicator
+                                android:layout_marginTop="10dp"
+                                android:layout_gravity="center_vertical"
+                                android:id="@+id/magicIndicator"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp">
+
+                            </net.lucode.hackware.magicindicator.MagicIndicator>
+                            <View
+                                android:layout_marginTop="10dp"
+                                android:background="@color/f0f0f0"
+                                android:layout_width="match_parent"
+                                android:layout_height="1.2dp"/>
+                        </LinearLayout>
+
+                        <!--卡信息-->
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_below="@+id/llayout"
+                            android:id="@+id/include"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <include
+                                layout="@layout/card_record_item"
+                                />
+                            <LinearLayout
+                                android:layout_marginTop="10dp"
+                                android:id="@+id/llTitleName"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp">
+                                <TextView
+                                    android:layout_marginLeft="20dp"
+                                    android:gravity="center_vertical"
+                                    android:textSize="14dp"
+                                    android:textColor="@color/home_text_normal"
+                                    android:text="刷卡记录"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+                                <View
+                                    android:id="@+id/view"
+                                    android:layout_marginTop="2dp"
+                                    android:background="@color/f0f0f0"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1.2dp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+
+                    <android.support.v7.widget.Toolbar
+                        android:visibility="gone"
+                        android:id="@+id/scroll_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:minHeight="40dp"/>
+
+                   <FrameLayout
+                       android:id="@+id/frameLayout"
+                       android:layout_marginTop="-50dp"
+                       android:layout_gravity="bottom"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
+                       <LinearLayout
+                           android:orientation="vertical"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content">
+                           <LinearLayout
+                               android:id="@+id/titleLyout"
+                               android:layout_marginRight="10dp"
+                               android:layout_marginLeft="10dp"
+                               android:gravity="center_vertical"
+                               android:orientation="horizontal"
+                               android:layout_width="match_parent"
+                               android:layout_height="40dp">
+                               <TextView
+                                   android:layout_weight="1"
+                                   android:gravity="center"
+                                   android:textSize="16dp"
+                                   android:textColor="@color/home_text_normal"
+                                   android:text="内容"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="match_parent"/>
+                               <TextView
+                                   android:layout_weight="1"
+                                   android:gravity="center"
+                                   android:textSize="16dp"
+                                   android:textColor="@color/home_text_normal"
+                                   android:text="时间"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="match_parent"/>
+                               <TextView
+                                   android:layout_weight="1.2"
+                                   android:gravity="center"
+                                   android:textSize="16dp"
+                                   android:textColor="@color/home_text_normal"
+                                   android:text="操作人"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="match_parent"/>
+
+                           </LinearLayout>
+
+                       </LinearLayout>
+
+                    <!--视频、动态导航栏-->
+                    <com.dodsport.activity.cardcoupons.membercardreplace.PagerSlidingTabStrip
+                        android:visibility="gone"
+                        android:background="@color/white"
+                        android:id="@+id/scroll_pagerSlidingTabStrip"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        app:pstsIndicatorHeight="1.2dp"/>
+                   </FrameLayout>
+
+                </android.support.design.widget.CollapsingToolbarLayout>
+
+
+            </android.support.design.widget.AppBarLayout>
+
+        </android.support.design.widget.CoordinatorLayout>
+
+        <LinearLayout
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:visibility="gone"
+            android:id="@+id/llayout2"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvMemberCard"
+                android:textSize="16dp"
+                android:textColor="@color/home_text_normal"
+                android:text="会员卡"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <net.lucode.hackware.magicindicator.MagicIndicator
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/magicIndicator2"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp">
+
+            </net.lucode.hackware.magicindicator.MagicIndicator>
+            <View
+                android:layout_marginTop="10dp"
+                android:background="@color/f0f0f0"
+                android:layout_width="match_parent"
+                android:layout_height="1.2dp"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    </com.dodsport.view.LoadingView>
+
+</LinearLayout>

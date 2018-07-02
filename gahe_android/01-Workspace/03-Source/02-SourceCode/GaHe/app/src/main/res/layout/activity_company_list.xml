@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/f0f0f0"
+    >
+
+    <include layout="@layout/head2_view"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:background="@color/white"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:textSize="14dp"
+                android:textColor="@color/home_text_normal"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/tvSelectCompany"
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <ExpandableListView
+            android:childDivider="@null"
+            android:divider="@null"
+            android:id="@+id/elCompanyList"
+            android:layout_width="match_parent"
+            android:background="@color/transparent"
+            android:layout_height="wrap_content">
+        </ExpandableListView>
+
+    </LinearLayout>
+
+
+</LinearLayout>

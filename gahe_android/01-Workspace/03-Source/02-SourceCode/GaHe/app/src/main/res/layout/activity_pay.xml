@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <include layout="@layout/head2_view"/>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/llWXPay"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:textSize="16dp"
+                android:textColor="@color/home_text_normal"
+                android:text="微信支付"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_marginBottom="20dp"
+            android:background="@color/f0f0f0"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+    <LinearLayout
+    android:id="@+id/llAilPay"
+    android:layout_marginLeft="10dp"
+    android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="45dp">
+    <TextView
+
+        android:gravity="center_vertical"
+        android:textSize="16dp"
+        android:textColor="@color/home_text_normal"
+        android:text="支付宝支付"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+</LinearLayout>
+
+        <View
+            android:background="@color/f0f0f0"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

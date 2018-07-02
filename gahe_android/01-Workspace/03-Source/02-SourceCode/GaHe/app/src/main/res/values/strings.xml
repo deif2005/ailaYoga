@@ -1,0 +1,114 @@
+<resources>
+    <string name="app_name">多点运动</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="action_settings">Settings</string>
+    <string name="sans_serif" translatable="false">sans-serif</string>
+
+
+    <!--底部导航栏-->
+    <string name="Entertainment">娱乐 </string>
+    <string name="Information">消息 </string>
+    <string name="Vocational_work">业务</string>
+    <string name="OperatingFloor"> 工作台</string>
+    <string name="Union">联盟</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="start_activity">立即体验</string>
+
+
+    <!--网络请求-->
+    <!-- error -->
+    <string name="wait_dialog_title">正在请求，请稍后…</string>
+    <string name="error_please_check_network">请检查网络。</string>
+    <string name="error_timeout">请求超时，网络不好或者服务器不稳定。</string>
+    <string name="error_not_found_server">未发现指定服务器，清切换网络后重试。</string>
+    <string name="error_url_error">URL错误。</string>
+    <string name="error_not_found_cache">没有找到缓存.</string>
+    <string name="error_unknow">未知错误。</string>
+    <string name="error_response_code">服务器响应码%1$d</string>
+    <string name="error_response_code_dex">服务器响应码%1$d，如果你们服务器在这种情况下也返回数据你可以处理。</string>
+
+
+    <string name="please_agree_to_registration_agreement">请同意用户注册协议</string>
+    <string name="third_party_login">----------------使用第三方登录----------------</string>
+    <string name="telphone_error">请输入正确的手机号码!</string>
+    <string name="password_error">密码长度请保持6到20位</string>
+    <string name="conform_password_error">确认密码错误</string>
+    <string name="code_error">验证码输入错误</string>
+    <string name="agree_to_registration_agreement">我同意</string>
+    <string name="agree_to_agreement">
+    <u>《多点运动助手用户注册协议》</u>
+    </string>
+
+    <string name="registered_code">验证码</string>
+    <string name="please_input_code">六位验证码</string>
+    <string name="request_code">获取验证码</string>
+    <string name="resend_code">%1$d秒后重发</string>
+    <string name="account_get_password">找回密码</string>
+    <string name="account_ok">确 定</string>
+    <string name="account_get_code">验证码</string>
+    <string name="please_input_account_get_code">验证码</string>
+    <string name="already_send_email">已向邮箱发送密码找回邮件，请查阅</string>
+    <string name="title_activity_company_list">CompanyListActivity</string>
+
+    <!--单据 图片选择-->
+    <string name="image">图片</string>
+    <string name="all_image">所有图片</string>
+    <string name="preview">预览</string>
+    <string name="msg_no_camera">无法启用系统相机</string>
+    <string name="msg_amount_limit">已经达到最高选择数量</string>
+    <string name="done">完成</string>
+    <string name="done_with_count">完成(%1$d/%2$d)</string>
+    <string name="image_index">%1$d/%2$d</string>
+    <string name="delete">删除</string>
+    <string name="deleted_a_photo">删除了一张图片</string>
+    <string name="confirm_to_delete">确认删除？</string>
+    <string name="yes">确定</string>
+    <string name="cancel">取消</string>
+    <string name="undo">撤消</string>
+
+
+    <!--权限-->
+    <string name="permission_get_accounts_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_GET_ACCOUNTS
+    </string>
+    <string name="permission_read_phone_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_READ_PHONE_STATE
+    </string>
+    <string name="permission_call_phone_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_CALL_PHONE</string>
+    <string name="permission_camera_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_CAMERA</string>
+    <string name="permission_access_fine_location_hint">
+        没有此权限，无法开启这个功能，请开启权限。PERMISSION_ACCESS_FINE_LOCATION
+    </string>
+    <string name="permission_access_coarse_location_hint">
+        没有此权限，无法开启这个功能，请开启权限。PERMISSION_ACCESS_COARSE_LOCATION
+    </string>
+    <string name="permission_read_external_hint">
+        没有此权限，无法开启这个功能，请开启权限。PERMISSION_READ_EXTERNAL_STORAGE
+    </string>
+    <string name="permission_white_external_hint">
+        没有此权限，无法开启这个功能，请开启权限。PERMISSION_WRITE_EXTERNAL_STORAGE
+    </string>
+    <string name="permission_recode_audio_hint">没有此权限，无法开启这个功能，请开启权限。PERMISSION_RECORD_AUDIO
+    </string>
+
+    <string name="no_camera_permission">没有权限使用摄像头，请开启摄像头权限</string>
+    <string name="no_record_audio_permission">没有权限使用录音，请开启录音权限</string>
+
+    <string name="notifyTitle">提示</string>
+    <string name="notifyMsg">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。</string>
+    <string name="setting">设置</string>
+
+</resources>

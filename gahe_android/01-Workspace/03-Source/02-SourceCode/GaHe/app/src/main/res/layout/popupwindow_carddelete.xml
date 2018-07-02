@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <LinearLayout
+        android:background="@drawable/shape_dialog_bg_five"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="15dp"
+            android:textSize="16dp"
+            android:textColor="@color/home_text_normal"
+            android:text="警告"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_marginTop="2dp"
+            android:background="@color/f0f0f0"
+            android:layout_width="match_parent"
+            android:layout_height="1.2dp"/>
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:scaleType="centerCrop"
+                android:src="@drawable/jinggao"
+                android:background="@color/transparent"
+                android:layout_width="65dp"
+                android:layout_height="65dp" />
+            <LinearLayout
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="是否确认删除"
+                    android:textColor="@color/login_register"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VIP会员计次卡"
+                    android:textColor="@color/home_text_selected"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=",删除后将不可恢复!"
+                    android:textColor="@color/login_register"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <Button
+                android:layout_toLeftOf="@+id/btCancel"
+                android:layout_marginRight="30dp"
+                android:id="@+id/btConservation"
+                android:textSize="14dp"
+                android:text="确 定"
+                android:background="@drawable/shape_red_style"
+                android:textColor="@color/white"
+                android:layout_width="60dp"
+                android:layout_height="30dp" />
+
+            <Button
+                android:layout_marginRight="10dp"
+                android:id="@+id/btCancel"
+                android:layout_alignParentRight="true"
+                android:textSize="14dp"
+                android:text="取 消"
+                android:background="@drawable/shape_cancel_style"
+                android:textColor="@color/white"
+                android:layout_width="60dp"
+                android:layout_height="30dp" />
+
+        </RelativeLayout>
+
+        </LinearLayout>
+
+</LinearLayout>

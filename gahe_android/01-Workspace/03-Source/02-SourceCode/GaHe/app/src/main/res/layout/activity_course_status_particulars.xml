@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+    <include layout="@layout/head2_view"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+        android:layout_marginBottom="40dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_marginLeft="@dimen/dp_22"
+                    android:id="@+id/tvItemText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="教练"
+                    android:textColor="@color/home_text_normal"
+                    android:textSize="14dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:id="@+id/tvItemText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="职称"
+                    android:textColor="@color/home_text_normal"
+                    android:textSize="13dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_marginLeft="-20dp"
+                    android:id="@+id/tvItemText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="日期"
+                    android:textColor="@color/home_text_normal"
+                    android:textSize="13dp"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_marginBottom="@dimen/dp_10"
+            android:background="@color/f0f0f0"
+            android:layout_width="match_parent"
+            android:layout_height="1.2dp"/>
+
+        <com.dodsport.view.LoadingView
+            android:id="@+id/LoadingView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <com.dodsport.weight.waveswiperefreshlayout.WaveSwipeRefreshLayout
+            android:id="@+id/WaveSwipeRefresh_Layout"
+            app:above_wave_color="@color/textNormalColor"
+            app:blow_wave_color="@color/textPressedColor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvCourseStatus"
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+        </com.dodsport.weight.waveswiperefreshlayout.WaveSwipeRefreshLayout>
+        </com.dodsport.view.LoadingView>
+
+
+    </LinearLayout>
+        <LinearLayout
+            android:background="@color/white"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:id="@+id/llBottom"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40">
+            <LinearLayout
+                android:id="@+id/llCourseSignIn"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/shape_login_style"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:textSize="@dimen/dp_14"
+                    android:textColor="@color/white"
+                    android:id="@+id/tvCourseSignIn"
+                    android:text="上课签到"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llCancelCourse"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/shape_red_style"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:textSize="@dimen/dp_14"
+                    android:textColor="@color/white"
+                    android:id="@+id/tvCancelCourse"
+                    android:text="取消课程"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    </LinearLayout>

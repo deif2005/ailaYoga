@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relatview"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <com.dodsport.weight.MultiLineRadioGroup
+        android:id="@+id/MultiLineRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:child_count="8"
+        app:child_margin_horizontal="5.0dip"
+        app:child_margin_vertical="15.0dip"
+        app:gravity="0"
+        app:child_layout="@layout/child"
+        app:single_choice="true">
+
+    </com.dodsport.weight.MultiLineRadioGroup>
+
+</RelativeLayout>

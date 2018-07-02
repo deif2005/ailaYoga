@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/head2_view"/>
+
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <LinearLayout
+                android:background="@color/white"
+                android:layout_weight="1"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="120dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+                <EditText
+                    android:id="@+id/evCourseName"
+                    android:layout_marginLeft="5dp"
+                    android:scrollbars="none"
+                    android:background="@drawable/radio_whitenull_back"
+                    android:textSize="14dp"
+                    android:textColor="@color/home_text_normal"
+                    android:hint="课程名称"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btSearch"
+                android:layout_weight="3"
+                android:text="搜 索"
+                android:textSize="14dp"
+                android:textColor="@color/white"
+                android:layout_marginRight="60dp"
+                android:layout_marginLeft="-130dp"
+                android:background="@drawable/shape_login_style"
+                android:layout_width="60dp"
+                android:layout_height="35dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <LinearLayout
+                    android:layout_weight="0.65"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_marginLeft="15dp"
+                        android:textSize="14dp"
+                        android:textColor="@color/home_text_normal"
+                        android:text="课程"
+                        android:id="@+id/textView1"
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="-10dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:textSize="14dp"
+                        android:textColor="@color/home_text_normal"
+                        android:text="持卡人数"
+                        android:id="@+id/textView2"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="0.95"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:textSize="14dp"
+                        android:textColor="@color/home_text_normal"
+                        android:text="状态"
+                        android:id="@+id/textView3"
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="0.95"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="-1dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="体验课"
+                        android:textColor="@color/home_text_normal"
+                        android:textSize="14dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="0.9"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:textSize="14dp"
+                        android:textColor="@color/home_text_normal"
+                        android:text="可用卡券"
+                        android:id="@+id/textView5"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+                <LinearLayout
+
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:textSize="14dp"
+                        android:textColor="@color/home_text_normal"
+                        android:text="操作"
+                        android:id="@+id/textView6"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:background="@color/f0f0f0"
+                android:layout_width="match_parent"
+                android:layout_height="1.2dp"/>
+            <com.dodsport.view.LoadingView
+                android:id="@+id/card_loadView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                    <RelativeLayout
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/rvCard"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                        <include layout="@layout/layout_error_display"/>
+
+                    </RelativeLayout>
+            </com.dodsport.view.LoadingView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

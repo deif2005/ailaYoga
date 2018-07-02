@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/head2_view"/>
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--名字-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvSubmitName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="张三"
+                android:textColor="@color/home_text_normal"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="待审批"
+                android:textColor="@color/receive_text"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.2dp"
+                android:background="@color/f0f0f0"/>
+
+        </LinearLayout>
+
+        <!--工号-->
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_weight="3"
+                    android:textColor="@color/home_text_normal"
+                    android:id="@+id/tvItemText1"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:text="工        号"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="@color/home_text_normal"
+                    android:id="@+id/tvItem1"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <View
+                android:background="@color/f0f0f0"
+                android:layout_width="match_parent"
+                android:layout_height="1.2dp"/>
+        </LinearLayout>
+
+        <!--入职日期-->
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_weight="3"
+                    android:textColor="@color/home_text_normal"
+                    android:id="@+id/tvItemText2"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:text="入职日期"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="@color/home_text_normal"
+                    android:id="@+id/tvItem2"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <View
+                android:background="@color/f0f0f0"
+                android:layout_width="match_parent"
+                android:layout_height="1.2dp"/>
+        </LinearLayout>
+
+        <!--离职日期-->
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_weight="3"
+                    android:textColor="@color/home_text_normal"
+                    android:id="@+id/tvItemText3"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:text="离职日期"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="@color/home_text_normal"
+                    android:id="@+id/tvItem3"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <View
+                android:background="@color/f0f0f0"
+                android:layout_width="match_parent"
+                android:layout_height="1.2dp"/>
+        </LinearLayout>
+
+        <!--所属岗位-->
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_weight="3"
+                    android:textColor="@color/home_text_normal"
+                    android:id="@+id/tvItemText4"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:text="所属岗位"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="@color/home_text_normal"
+                    android:id="@+id/tvItem4"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <View
+                android:background="@color/f0f0f0"
+                android:layout_width="match_parent"
+                android:layout_height="1.2dp"/>
+        </LinearLayout>
+
+        <!--交接人-->
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_weight="3"
+                    android:textColor="@color/home_text_normal"
+                    android:id="@+id/tvItemText5"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:text="交接人员"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="@color/home_text_normal"
+                    android:id="@+id/tvItem5"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <View
+                android:background="@color/f0f0f0"
+                android:layout_width="match_parent"
+                android:layout_height="1.2dp"/>
+        </LinearLayout>
+
+        <!--离职原因-->
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_weight="3"
+                    android:textColor="@color/home_text_normal"
+                    android:id="@+id/tvItemText6"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:text="离职原因"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="@color/home_text_normal"
+                    android:id="@+id/tvItem6"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <View
+                android:background="@color/f0f0f0"
+                android:layout_width="match_parent"
+                android:layout_height="1.2dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_weight="3"
+                    android:textColor="@color/home_text_normal"
+                    android:id="@+id/tvItemText7"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:text="所交接事项"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="@color/home_text_normal"
+                    android:id="@+id/tvItem7"
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <View
+                android:background="@color/f0f0f0"
+                android:layout_width="match_parent"
+                android:layout_height="1.2dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <!--审批的 同意 拒绝操作-->
+        <RelativeLayout
+            android:layout_below="@+id/layout"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/rlApproveOperation"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <RelativeLayout
+                android:layout_marginBottom="20dp"
+                android:gravity="center_vertical"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="55dp">
+                <View
+                    android:layout_alignParentTop="true"
+                    android:background="@color/f0f0f0"
+                    android:layout_width="match_parent"
+                    android:layout_height="1.2dp"/>
+                <Button
+                    android:background="@color/transparent"
+                    android:id="@+id/btAgree"
+                    android:gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="@color/home_text_selected"
+                    android:textSize="16dp"
+                    android:text="  同 意  "
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"/>
+
+                <Button
+                    android:background="@color/transparent"
+                    android:id="@+id/btRefuse"
+                    android:gravity="center"
+                    android:layout_marginRight="50dp"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/home_text_selected"
+                    android:textSize="16dp"
+                    android:text="  拒 绝  "
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

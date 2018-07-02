@@ -1,0 +1,80 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/head2_view"/>
+        <RelativeLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <net.lucode.hackware.magicindicator.MagicIndicator
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/magicIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp">
+
+            </net.lucode.hackware.magicindicator.MagicIndicator>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_marginRight="30dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/home_title_selected"
+                        android:layout_width="@dimen/dp_10"
+                        android:layout_height="@dimen/dp_10" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_marginRight="30dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/home_title_selected"
+                        android:layout_width="@dimen/dp_10"
+                        android:layout_height="@dimen/dp_10" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_marginRight="30dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@color/home_title_selected"
+                        android:layout_width="@dimen/dp_10"
+                        android:layout_height="@dimen/dp_10" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/ViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v4.view.ViewPager>
+
+    </LinearLayout>
+
+</FrameLayout>

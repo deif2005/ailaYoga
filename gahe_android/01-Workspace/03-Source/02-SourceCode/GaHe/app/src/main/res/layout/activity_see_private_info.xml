@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/head2_view"/>
+
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:id="@+id/llPrivateCoach1"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textSize="16dp"
+                android:textColor="@color/home_text_normal"
+                android:id="@+id/tvPrivateCoach1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="日期"/>
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_weight="1.6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:textColor="@color/home_text_normal"
+                    android:id="@+id/tvEndTime1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="请选择"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <View
+            android:background="@color/f0f0f0"
+            android:layout_width="match_parent"
+            android:layout_height="1.2dp"/>
+
+        <LinearLayout
+            android:id="@+id/llPrivateCoach2"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textSize="16dp"
+                android:textColor="@color/home_text_normal"
+                android:id="@+id/tvPrivateCoach2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="老师信息"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_weight="1.6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <TextView
+                android:textColor="@color/home_text_normal"
+                android:id="@+id/tvEndTime3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:gravity="center_vertical"
+                android:text="请选择"/>
+
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/tvEndTime4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="(高级教练)"/>
+                </LinearLayout>
+
+        </LinearLayout>
+        <View
+            android:background="@color/f0f0f0"
+            android:layout_width="match_parent"
+            android:layout_height="1.2dp"/>
+
+        <LinearLayout
+            android:id="@+id/llPrivateCoach3"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textSize="16dp"
+                android:textColor="@color/home_text_normal"
+                android:id="@+id/tvPrivateCoach3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="教室"/>
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_weight="1.6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <TextView
+                android:textColor="@color/home_text_normal"
+                android:id="@+id/tvEndTime5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:gravity="center_vertical"
+                android:text="请选择"/>
+                </LinearLayout>
+
+        </LinearLayout>
+        <View
+            android:background="@color/f0f0f0"
+            android:layout_width="match_parent"
+            android:layout_height="1.2dp"/>
+
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvCourse2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

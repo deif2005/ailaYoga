@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.dodsport.activity.approve.ApproveActivity">
+
+
+    <include layout="@layout/head2_view"/>
+
+
+
+
+
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:background="@drawable/radio_whitenull_back"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <EditText
+                android:focusableInTouchMode="true"
+                android:textColorHint="@color/userinfo"
+                android:textColor="@color/home_text_normal"
+                android:background="@null"
+                android:hint="姓名、手机号"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+        <LinearLayout
+            android:background="@drawable/shape_login_style"
+            android:gravity="center"
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:textSize="14dp"
+                android:textColor="@color/white"
+                android:background="@color/transparent"
+                android:gravity="center"
+                android:text="搜索"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <net.lucode.hackware.magicindicator.MagicIndicator
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id="@+id/magicIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp">
+
+        </net.lucode.hackware.magicindicator.MagicIndicator>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/approveViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v4.view.ViewPager>
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

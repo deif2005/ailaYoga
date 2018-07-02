@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/head2_view"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textSize="14dp"
+                android:textColor="@color/home_text_normal"
+                android:text="关键词："
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="@drawable/radio_whitenull_back"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/evSearch"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="2"
+                    android:textSize="14dp"
+                    android:textColor="@color/home_text_normal"
+                    android:hint="名称、手机号、卡号"
+                    android:scrollbars="none"
+                    android:background="@color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+            <Button
+                android:id="@+id/btSearch"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="0.2"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/shape_login_style"
+                android:gravity="center"
+                android:text="搜索"
+                android:textSize="14dp"
+                android:textColor="@color/white"
+                android:layout_width="50dp"
+                android:layout_height="25dp"/>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/btActivateACard"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/shape_login_style"
+                    android:gravity="center"
+                    android:textSize="14dp"
+                    android:textColor="@color/white"
+                    android:text="开卡"
+                    android:layout_width="52dp"
+                    android:layout_height="25dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        <com.dodsport.view.LoadingView
+            android:id="@+id/card_loadView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/rvMembershipCard"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+        </com.dodsport.view.LoadingView>
+
+    </LinearLayout>
+
+</LinearLayout>

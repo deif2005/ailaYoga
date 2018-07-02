@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/head2_view"/>
+
+        <LinearLayout
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="16dp"
+                android:textColor="@color/home_text_normal"
+                android:text="当前卡项"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_weight="1.8"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp">
+
+                    <RelativeLayout
+                        android:gravity="center_horizontal"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/shape_member_card_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <View
+                            android:id="@+id/view1"
+                            android:layout_marginTop="20dp"
+                            android:background="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"/>
+
+                        <TextView
+                            android:id="@+id/tvCardName1"
+                            android:gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:layout_below="@+id/view1"
+                            android:text="VIP会员计次卡"
+                            android:textSize="13dp"
+                            android:textColor="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:layout_marginRight="20dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/white"
+                            android:layout_width="60dp"
+                            android:layout_height="10dp"/>
+
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_marginLeft="30dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp">
+                        <TextView
+                            android:id="@+id/text1"
+                            android:textSize="14dp"
+                            android:textColor="@color/home_text_normal"
+                            android:text="剩余次数："
+                            android:layout_weight="1.5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_weight="1."
+                            android:id="@+id/tvText1"
+                            android:text="5 次"
+                            android:textSize="14dp"
+                            android:textColor="@color/home_text_normal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginLeft="30dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp">
+                        <TextView
+                            android:id="@+id/text2"
+                            android:textSize="14dp"
+                            android:textColor="@color/home_text_normal"
+                            android:text="单        价："
+                            android:layout_weight="1.5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:id="@+id/tvText2"
+                            android:text="5 次"
+                            android:textSize="14dp"
+                            android:textColor="@color/home_text_normal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginLeft="30dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp">
+                        <TextView
+                            android:id="@+id/text3"
+                            android:textSize="14dp"
+                            android:textColor="@color/home_text_normal"
+                            android:text="剩余价值："
+                            android:layout_weight="1.5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:id="@+id/tvText3"
+                            android:text="500 元"
+                            android:textSize="14dp"
+                            android:textColor="@color/home_text_normal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1.8"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp">
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:textSize="16dp"
+                        android:textColor="@color/home_text_normal"
+                        android:text="目标卡项"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <RelativeLayout
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_horizontal"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/shape_member_card_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp">
+                        <View
+                            android:id="@+id/view2"
+                            android:layout_marginTop="20dp"
+                            android:background="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"/>
+
+                        <TextView
+                            android:id="@+id/tvCardName2"
+                            android:gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:layout_below="@+id/view2"
+                            android:text="VIP会员计次卡"
+                            android:textSize="13dp"
+                            android:textColor="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <View
+                            android:layout_marginRight="20dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/white"
+                            android:layout_width="60dp"
+                            android:layout_height="10dp"/>
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <include layout="@layout/price_list_view"/>
+
+                    </LinearLayout>
+
+
+                    <!--目标卡项-->
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+
+                        <LinearLayout
+                            android:layout_marginLeft="30dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp">
+                            <TextView
+                                android:id="@+id/text4"
+                                android:textSize="14dp"
+                                android:textColor="@color/home_text_normal"
+                                android:text="剩余次数："
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:layout_weight="1"
+                                android:id="@+id/tvText4"
+                                android:text="5 次"
+                                android:textSize="14dp"
+                                android:textColor="@color/home_text_normal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginLeft="30dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp">
+                            <TextView
+                                android:id="@+id/text5"
+                                android:textSize="14dp"
+                                android:textColor="@color/home_text_normal"
+                                android:text="单        价："
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:layout_weight="1"
+                                android:id="@+id/tvText5"
+                                android:text="5 次"
+                                android:textSize="14dp"
+                                android:textColor="@color/home_text_normal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginLeft="30dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp">
+                            <TextView
+                                android:id="@+id/text6"
+                                android:textSize="14dp"
+                                android:textColor="@color/home_text_normal"
+                                android:text="剩余价值："
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:layout_weight="1"
+                                android:id="@+id/tvText6"
+                                android:text="500 元"
+                                android:textSize="14dp"
+                                android:textColor="@color/home_text_normal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/confirm_item"/>
+
+    </LinearLayout>
+</RelativeLayout>

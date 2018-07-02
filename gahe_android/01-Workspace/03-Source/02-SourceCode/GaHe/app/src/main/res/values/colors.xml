@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--底部文本颜色-->
+    <color name="home_text_normal">#474747</color>
+    <color name="home_text_selected">#49ACEB</color>
+    <!--底部背景色-->
+    <color name="home_bottom_back">#EFF2F3</color>
+    <color name="type_back">#EC3F2D</color>
+
+    <color name="home_title_selected">#ED4040</color>
+    <color name="meedrecord_back">#EB3C22</color>
+    <color name="receive">#E5371E</color>
+    <color name="incmetext_Color">#CE212D</color>
+    <color name="vipmoney_color">#FF3F3F</color>
+    <color name="navigation_bar_color">#FFBFBF</color>
+    <color name="login_register">#ED5242</color>
+
+    <!--主题红（状态栏）-->
+    <color name="theme_color">#EC3F2D</color>
+
+    <color name="receive_text">#FFCF68</color>
+    <color name="back_diaphaneity">#1A000000</color>
+    <!--白色-->
+    <color name="white">#ffffff</color>
+    <color name="bbbbbb">#BBBBBB</color>
+    <color name="eeeeee">#EEEEEE</color>
+    <color name="e_three">#d9d8d8</color>
+    <color name="f0f0f0">#F0F0F0</color>
+    <color name="three">#333333</color>
+    <color name="viewback_color">#BEBEBE</color>
+    <color name="six">#666666</color>
+    <color name="zero">#000000</color>
+    <color name="ash">#999999</color>
+    <color name="tl">#cc000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="translucent">#80000000</color>
+    <color name="trans_five">#c0000000</color>
+    <color name="trans_three_black">#59000000</color>
+    <color name="gray">#ff808080</color>
+    <color name="fcfcfc">#FCFCFC</color>
+    <color name="nine">#999999</color>
+    <color name="textUnableColor">#CCCCCC</color>
+    <color name="textNormalColor">#66ccff</color>
+    <color name="textPressedColor">#66b0ff</color>
+    <color name="detail_color">#49ACEB</color>
+    <color name="textincmeColor">#F5F5F5</color>
+    <color name="loginback_Color">#F8F8F8</color>
+
+    <color name="emptyTitleColor">#8a8a8a</color>
+    <color name="emptyButtonColor">#427fed</color>
+    <color name="d_eight">#D8D8D8</color>
+
+    <color name="textcolor">#FF604B</color>
+    <color name="red">#ffff4444</color>
+    <color name="incmebts_Color">#EB3C2B</color>
+    <color name="expenses_color">#FF4200</color>
+    <color name="incmebt_Color">#FD9369</color>
+    <color name="quanzandanmu_color">#FFD99D</color>
+    <color name="bespeak_bg_color">#FCCE5F</color>
+    <color name="signin_color">#E5C891</color>
+    <color name="bespeak_text_color">#BD5624</color>
+    <color name="revisionclassify_color">#FE6B6B</color>
+    <color name="start_end_color">#FCABA2</color>
+
+    <color name="red_ce">#CE212D</color>
+    <color name="f_one">#f1f1f1</color>
+    <color name="f_seven">#f7f7f7</color>
+    <color name="e_six">#e6e6e6</color>
+    <color name="cccccc">#CCCCCC</color>
+    <color name="logintext">#9D9291</color>
+
+    <color name="fafafa">#fafafa</color>
+
+
+    <color name="photopicker_background">#181819</color>
+    <color name="action_text_color_normal" >#cfcfcf</color>
+    <color name="action_text_color_pressed" >#353535</color>
+    <color name="action_text_color_enabled" >#818585</color>
+    <color name="alertdialog_line">#c6c6c6</color>
+    <color name="view_back">#E4E4E4</color>
+
+
+    <!--pickView颜色-->
+    <color name="pickerview_timebtn_nor">#057dff</color>
+    <color name="pickerview_timebtn_pre">#c2daf5</color>
+    <color name="pickerview_bg_topbar">#f5f5f5</color>
+    <color name="pickerview_topbar_title">#000000</color>
+    <color name="pickerview_wheelview_textcolor_out">#a8a8a8</color>
+    <color name="pickerview_wheelview_textcolor_center">#2a2a2a</color>
+    <color name="pickerview_wheelview_textcolor_divider">#d5d5d5</color>
+    <!--覆盖颜色-->
+    <color name="bgColor_overlay">#60000000</color>
+    <color name="messagetext">#3C2522</color>
+
+    <color name="c_eight">#c8c8c8</color>
+
+    <!--完善资料-->
+    <color name="f_zero">#F0F0F0</color>
+    <color name="perfect_tv_color">#428EED</color>
+
+    <!--资讯-->
+    <color name="hotspottext">#C2C2C2</color>
+    <color name="hottext_color">#878787</color>
+
+    <color name="channel_tv_color">#FF6046</color>
+    
+    <!--财务管理-->
+    <color name="vip_inverse_proportion">#FEF5D9</color>
+    <color name="mall_inverse_proportion">#D9FCFE</color>
+    <color name="recommend_inverse_proportion">#D6FFD9</color>
+    <color name="ad_inverse_proportion">#FFB9B4</color>
+    <color name="chart">#ffd6b8</color>
+    <color name="scale">#BEFB78</color>
+    <color name="userinfo">#939393</color>
+
+
+    <!--日期选择器-->
+    <color name="normal_day">#424242</color>
+    <color name="selected_day_background">#03A9F4</color>
+    <color name="selected_day_text">#FFFFFF</color>
+    <color name="month_day_label_text">#757575</color>
+    <color name="weekends_day">#BDBDBD</color>
+    <color name="current_day_background">#DDDDDD</color>
+    <color name="normal_month">#03A9F4</color>
+
+    <!--审批text-->
+    <color name="status_color">#1EA802</color>
+    <color name="statusno_color">#FE4138</color>
+    <color name="gray_color">#95a5a6</color>
+</resources>

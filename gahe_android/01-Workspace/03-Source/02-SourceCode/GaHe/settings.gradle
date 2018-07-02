@@ -1,0 +1,2 @@
+include ':app','MPChartLib','magicindicator'
+include ':library'

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    >
+    <include layout="@layout/head2_view"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40">
+            <LinearLayout
+                android:layout_weight="1.8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <TextView
+                        android:textColor="@color/home_text_selected"
+                        android:id="@+id/tvDate"
+                        android:layout_marginLeft="10dp"
+                        android:text="请选择日期"
+                        android:textSize="14dp"
+                        android:gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:layout_marginTop="2dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/tvDate"
+                        android:id="@+id/icon"
+                        android:src="@drawable/jiao_zhun_xiang_xia"
+                        android:background="@null"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/radio_whitenull_back"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <EditText
+                        android:layout_marginLeft="5dp"
+                        android:focusableInTouchMode="true"
+                        android:textColorHint="@color/userinfo"
+                        android:textColor="@color/home_text_normal"
+                        android:background="@null"
+                        android:hint="姓名"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/llSearch"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/shape_login_style"
+                    android:gravity="center"
+                    android:layout_weight="3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <Button
+                        android:textSize="13dp"
+                        android:textColor="@color/white"
+                        android:background="@color/transparent"
+                        android:gravity="center"
+                        android:text="搜索"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.dodsport.view.LoadingView
+            android:id="@+id/LoadingView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <com.dodsport.weight.waveswiperefreshlayout.WaveSwipeRefreshLayout
+            android:id="@+id/wsrlyout"
+            app:above_wave_color="@color/textNormalColor"
+            app:blow_wave_color="@color/textPressedColor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvRecord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+        </com.dodsport.weight.waveswiperefreshlayout.WaveSwipeRefreshLayout>
+        </com.dodsport.view.LoadingView>
+
+    </LinearLayout>
+
+</LinearLayout>

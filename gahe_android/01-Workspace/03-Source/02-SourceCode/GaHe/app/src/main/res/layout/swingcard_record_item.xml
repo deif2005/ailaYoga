@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:gravity="center"
+            android:id="@+id/TextItem1"
+            android:layout_weight="1"
+            android:textSize="13dp"
+            android:textColor="@color/home_text_normal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:gravity="center"
+            android:text="2017-05-17 18:00:15"
+            android:id="@+id/TextItem2"
+            android:layout_weight="1"
+            android:textSize="13dp"
+            android:textColor="@color/home_text_normal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:gravity="center"
+            android:text="李老师"
+            android:id="@+id/TextItem3"
+            android:layout_weight="1.2"
+            android:textSize="13dp"
+            android:textColor="@color/home_text_normal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+</LinearLayout>

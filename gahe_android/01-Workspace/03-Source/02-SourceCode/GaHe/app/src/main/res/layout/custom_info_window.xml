@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@color/transparent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:gravity="center"
+        android:background="@color/white"
+        android:layout_width="180dp"
+        android:layout_height="100dp">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/tvAddress"
+            android:text=""
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/home_text_normal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:id="@+id/llRevise"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="修改"
+                android:textColor="@color/home_text_selected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_marginLeft="2dp"
+                android:src="@drawable/xiu_gai"
+                android:background="@null"
+                android:layout_width="15dp"
+                android:layout_height="15dp"/>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+    <View
+        android:layout_marginTop="-1dp"
+        android:background="@drawable/dao_san_jiao"
+        android:layout_width="25dp"
+        android:layout_height="20dp"/>
+</LinearLayout>

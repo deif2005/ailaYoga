@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <include layout="@layout/head2_view"/>
+
+    <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/home_text_normal"
+                android:textSize="16dp"
+                android:text="相册名称"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:background="@drawable/radio_whitenull_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <EditText
+                android:textSize="14dp"
+                android:id="@+id/evAlbumName"
+                android:scrollbars="none"
+                android:background="@color/transparent"
+                android:hint="请输入"
+                android:textColor="@color/home_text_normal"
+                android:gravity="left"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+
+        </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/home_text_normal"
+                android:textSize="16dp"
+                android:text="相册描述"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:background="@drawable/radio_whitenull_back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <EditText
+                android:textSize="14dp"
+                android:id="@+id/evAlbumDescribe"
+                android:scrollbars="none"
+                android:background="@color/transparent"
+                android:hint="请输入"
+                android:textColor="@color/home_text_normal"
+                android:gravity="left"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llOKAdd"
+            android:layout_marginTop="50dp"
+            android:gravity="center"
+            android:background="@drawable/shape_login_style"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <Button
+                android:id="@+id/btOKAdd"
+                android:text="确认添加"
+                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:background="@color/transparent"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/lyout"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <LinearLayout
+
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textSize="13dp"
+                android:id="@+id/tvDate"
+                android:text=""
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"/>
+            <View
+                android:id="@+id/viewDate"
+                android:layout_marginTop="3dp"
+                android:layout_width="130dp"
+                android:layout_height="1.5dp"
+                android:background="@color/home_text_normal"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/home_text_normal"
+                android:gravity="center_vertical"
+                android:textSize="13dp"
+                android:id="@+id/tvTimeInterval"
+                android:text="  上  午  "
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"/>
+            <View
+                android:visibility="gone"
+                android:id="@+id/viewInterval"
+                android:layout_marginTop="3dp"
+                android:background="@color/home_text_normal"
+                android:layout_width="48dp"
+                android:layout_height="1.5dp"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:background="@color/transparent"
+                android:id="@+id/btpopOK"
+                android:textColor="@color/home_text_selected"
+                android:text="  确 定  "
+                android:layout_marginRight="-5dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+
+</LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:gravity="center"
+            android:visibility="gone"
+            android:id="@+id/llpopuplayout"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="260dp">
+
+           <com.dodsport.activity.askforleave.PickerView
+               android:id="@+id/wheelView"
+               android:layout_width="match_parent"
+               android:layout_height="100dp"/>
+
+        </LinearLayout>
+
+
+
+    <com.dodsport.weight.silkcal.DayPickerView
+        xmlns:calendar="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:background="@android:color/white"
+        calendar:drawRoundRect="false"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

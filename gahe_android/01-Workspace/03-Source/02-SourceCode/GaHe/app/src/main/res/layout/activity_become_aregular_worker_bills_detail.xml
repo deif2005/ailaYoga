@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/head2_view"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/llayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <!--名字-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvSubmitName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="张三"
+                        android:textColor="@color/home_text_normal"
+                        android:textSize="14dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="待审批"
+                        android:textColor="@color/receive_text"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1.2dp"
+                        android:background="@color/f0f0f0"/>
+
+                </LinearLayout>
+
+                <!--工号-->
+                <LinearLayout
+                    android:id="@+id/llItem1"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_weight="3"
+                            android:textColor="@color/home_text_normal"
+                            android:id="@+id/tvItemText1"
+                            android:textSize="14dp"
+                            android:gravity="center_vertical"
+                            android:text="工        号"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/home_text_normal"
+                            android:id="@+id/tvItem1"
+                            android:textSize="14dp"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                    </LinearLayout>
+
+                    <View
+                        android:background="@color/f0f0f0"
+                        android:layout_width="match_parent"
+                        android:layout_height="1.2dp"/>
+                </LinearLayout>
+
+                <!--所在部门-->
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_weight="3"
+                            android:textColor="@color/home_text_normal"
+                            android:id="@+id/tvItemText2"
+                            android:textSize="14dp"
+                            android:gravity="center_vertical"
+                            android:text="入职日期"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/home_text_normal"
+                            android:id="@+id/tvItem2"
+                            android:textSize="14dp"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                    </LinearLayout>
+
+                    <View
+                        android:background="@color/f0f0f0"
+                        android:layout_width="match_parent"
+                        android:layout_height="1.2dp"/>
+                </LinearLayout>
+
+                <!--工号-->
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_weight="3"
+                            android:textColor="@color/home_text_normal"
+                            android:id="@+id/tvItemText3"
+                            android:textSize="14dp"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:textColor="@color/home_text_normal"
+                            android:id="@+id/tvItem3"
+                            android:textSize="14dp"
+                            android:gravity="center_vertical"
+                            android:text=""
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                    </LinearLayout>
+
+                    <View
+                        android:background="@color/f0f0f0"
+                        android:layout_width="match_parent"
+                        android:layout_height="1.2dp"/>
+                </LinearLayout>
+
+                <!--对本岗位的理解-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_weight="3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_marginRight="25dp"
+                                android:id="@+id/tvLabel1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="对本岗位的理解"
+                                android:textColor="@color/home_text_normal"
+                                android:textSize="14dp"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:id="@+id/tvLabel2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:text=""
+                            android:textColor="@color/home_text_normal"
+                            android:textSize="14dp"/>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1.2dp"
+                        android:background="@color/f0f0f0"/>
+
+                </LinearLayout>
+
+                <!--试用期内对工作的总结-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_weight="3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_marginRight="25dp"
+                                android:layout_weight="5"
+                                android:id="@+id/tvLabel3"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="试用期内对工作的总结"
+                                android:textColor="@color/home_text_normal"
+                                android:textSize="14dp"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:id="@+id/tvLabel4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:text=""
+                            android:textColor="@color/home_text_normal"
+                            android:textSize="14dp"/>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1.2dp"
+                        android:background="@color/f0f0f0"/>
+
+                </LinearLayout>
+
+                <!--对公司的意见和建议-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_weight="3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_marginRight="25dp"
+                                android:layout_weight="5"
+                                android:id="@+id/tvLabel5"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="对公司的意见和建议"
+                                android:textColor="@color/home_text_normal"
+                                android:textSize="14dp"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:id="@+id/tvLabel6"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="left"
+                            android:text=""
+                            android:textColor="@color/home_text_normal"
+                            android:textSize="14dp"/>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1.2dp"
+                        android:background="@color/f0f0f0"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--审批的 同意 拒绝操作-->
+
+            <RelativeLayout
+                android:layout_below="@+id/llayout"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.2dp"
+                    android:layout_alignParentTop="true"
+                    android:background="@color/f0f0f0"/>
+
+                <Button
+                    android:id="@+id/btAgree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="50dp"
+                    android:background="@color/transparent"
+                    android:gravity="center"
+                    android:text="  同 意  "
+                    android:textColor="@color/home_text_selected"
+                    android:textSize="16dp"/>
+
+                <Button
+                    android:id="@+id/btRefuse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="50dp"
+                    android:background="@color/transparent"
+                    android:gravity="center"
+                    android:text="  拒 绝  "
+                    android:textColor="@color/home_text_selected"
+                    android:textSize="16dp"/>
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+</LinearLayout>

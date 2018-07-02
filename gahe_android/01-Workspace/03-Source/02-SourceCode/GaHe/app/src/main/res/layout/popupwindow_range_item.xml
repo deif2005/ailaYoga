@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp">
+
+    <RelativeLayout
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:layout_margin="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_alignParentLeft="true"
+            android:id="@+id/tvRange"
+            android:textSize="14dp"
+            android:text=""
+            android:textColor="@color/home_text_normal"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
+        <RadioButton
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            style="@style/package_radio_style"
+            android:checked="true"
+            android:layout_toLeftOf="@+id/RadioButton2"
+            android:id="@+id/RadioButton1"
+            android:layout_marginRight="10dp"
+            android:textSize="14dp"
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </RelativeLayout>
+</LinearLayout>

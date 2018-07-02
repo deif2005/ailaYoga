@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <RelativeLayout
+        android:background="@drawable/shape_my_self_write"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/rl_height"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/l"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:gravity="center_vertical"
+                android:text="新建会员卡种类"
+                android:textSize="16dp"
+                android:textColor="@color/home_text_normal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+        <TextView
+            android:text="类型"
+            android:background="@drawable/shape_my_self_write_top"
+            android:id="@+id/photograph"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_above="@+id/line"
+            android:gravity="center_vertical"
+            android:textColor="@color/zero"
+            android:textSize="16sp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/rlCarddType"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <TextView
+                        android:id="@+id/tvCardTypeName"
+                        android:textSize="14dp"
+                        android:textColor="@color/home_text_normal"
+                        android:text="次卡类型"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:id="@+id/ivType"
+                        android:layout_marginRight="20dp"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/xiayibu"
+                        android:background="@color/transparent"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"/>
+                </RelativeLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/llCardType"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvCardTypeName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                    </android.support.v7.widget.RecyclerView>
+
+                    <!--<TextView-->
+                    <!--android:layout_marginLeft="5dp"-->
+                    <!--android:background="@color/home_text_selected"-->
+                    <!--android:id="@+id/tvType1"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:textSize="14dp"-->
+                    <!--android:textColor="@color/home_text_normal"-->
+                    <!--android:text="次卡类型"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="30dp"/>-->
+
+                    <!--<TextView-->
+                    <!--android:layout_marginLeft="5dp"-->
+                    <!--android:id="@+id/tvType2"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:textSize="14dp"-->
+                    <!--android:textColor="@color/home_text_normal"-->
+                    <!--android:text="期限类型"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="30dp"/>-->
+                </LinearLayout>
+                <View
+                    android:background="@color/f0f0f0"
+                    android:layout_width="match_parent"
+                    android:layout_height="1.2dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llReportVisible"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="16dp"
+                    android:gravity="center_vertical"
+                    android:text="名称"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                   />
+
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:background="@drawable/radio_whitenull_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <EditText
+                        android:layout_marginLeft="5dp"
+                        android:singleLine="true"
+                        android:maxLength="15"
+                        android:scrollbars="none"
+                        android:background="@null"
+                        android:id="@+id/evCardName"
+                        android:textSize="14dp"
+                        android:textColor="@color/home_text_normal"
+                        android:hint="名称"
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"/>
+
+                </LinearLayout>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:textSize="16dp"
+                    android:gravity="center_vertical"
+                    android:text="简介"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    />
+
+                <LinearLayout
+                    android:background="@drawable/radio_whitenull_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+                    <EditText
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:scrollbars="none"
+                        android:background="@null"
+                        android:id="@+id/evCardIntroduce"
+                        android:textSize="14dp"
+                        android:textColor="@color/home_text_normal"
+                        android:hint="简介"
+                        android:gravity="left"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/l"
+                android:background="@drawable/shape_my_self_write"
+                android:layout_marginTop="10dp"
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                >
+                <Button
+                    android:id="@+id/btConservation"
+                    android:gravity="center"
+                    android:layout_marginRight="90dp"
+                    android:layout_alignParentRight="true"
+                    android:textSize="16dp"
+                    android:background="@drawable/shape_login_style"
+                    android:text="保存"
+                    android:textColor="@color/white"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"/>
+
+                <Button
+                    android:id="@+id/btCancel"
+                    android:background="@drawable/shape_cancel_style"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="取 消"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>

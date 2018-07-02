@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+              android:orientation="vertical"
+             tools:context="com.dodsport.fragment.entertainmentfragment.EntertainmentFragment"
+              android:descendantFocusability="blocksDescendants"
+    >
+
+
+
+    <include layout="@layout/head2_view"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:descendantFocusability="blocksDescendants"
+        android:id="@+id/rlopRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+
+</LinearLayout>

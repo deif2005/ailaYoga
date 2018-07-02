@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:id="@+id/id_ly"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <include layout="@layout/head2_view"/>
+
+
+    <LinearLayout
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:background="@drawable/radio_whitenull_back"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <EditText
+                    android:focusableInTouchMode="true"
+                    android:textColorHint="@color/userinfo"
+                    android:textColor="@color/home_text_normal"
+                    android:background="@null"
+                    android:hint="姓名、手机号"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/shape_login_style"
+                android:gravity="center"
+                android:layout_weight="3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <Button
+                    android:textSize="14dp"
+                    android:textColor="@color/white"
+                    android:background="@color/transparent"
+                    android:gravity="center"
+                    android:text="搜索"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:id="@+id/tvItem1"
+                    android:textSize="16dp"
+                    android:textColor="@color/home_text_normal"
+                    android:text="客户"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tvItem2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="生日/电话"
+                    android:textColor="@color/home_text_normal"
+                    android:textSize="16dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="right"
+                android:layout_weight="1.1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tvItem3"
+                    android:textSize="16dp"
+                    android:textColor="@color/home_text_normal"
+                    android:text="标签"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:gravity="right"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/tvItem4"
+                    android:textSize="16dp"
+                    android:textColor="@color/home_text_normal"
+                    android:text="操作"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <com.dodsport.view.LoadingView
+            android:id="@+id/LoadingView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+      <com.dodsport.weight.waveswiperefreshlayout.WaveSwipeRefreshLayout
+          android:id="@+id/wsrlyout"
+          app:above_wave_color="@color/textNormalColor"
+          app:blow_wave_color="@color/textPressedColor"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginBottom="20dp"
+            android:id="@+id/archivesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+      </com.dodsport.weight.waveswiperefreshlayout.WaveSwipeRefreshLayout>
+    </com.dodsport.view.LoadingView>
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

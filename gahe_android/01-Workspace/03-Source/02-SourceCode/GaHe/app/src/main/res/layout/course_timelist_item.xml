@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/llCardType1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_selected_background">
+
+            <TextView
+                android:id="@+id/tvCardTypename"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="09:00 - 10:00"
+                android:textColor="@color/home_text_normal"
+                android:textSize="14dp"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/icon_Delete"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignTop="@+id/llCardType1"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="6dp"
+            android:background="@null"
+            android:src="@drawable/shan"/>
+    </RelativeLayout>
+</LinearLayout>

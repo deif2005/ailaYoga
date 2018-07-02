@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="@color/f_seven"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="130dp">
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--用户头像-->
+            <Button
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:text="测试中"
+                android:background="@drawable/shape_null_head"
+                android:id="@+id/btuserhaed"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+
+            <TextView
+                android:id="@+id/Money"
+                android:layout_marginTop="10dp"
+                android:textSize="13dp"
+                android:textColor="@color/zero"
+                android:text="账户余额"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tvmoney"
+                android:layout_marginTop="5dp"
+                android:textSize="12dp"
+                android:textColor="@color/quanzandanmu_color"
+                android:text="￥8888.00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_marginLeft="25dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tvposition"
+                    android:layout_marginTop="-10dp"
+                    android:textSize="13dp"
+                    android:textColor="@color/zero"
+                    android:text="职位：市场部经理"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/tvdepartment"
+                    android:layout_marginTop="10dp"
+                    android:textSize="13dp"
+                    android:textColor="@color/zero"
+                    android:text="部门: 市场部"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:lineSpacingExtra="3dp"
+                        android:textSize="13dp"
+                        android:textColor="@color/zero"
+                        android:text="公司: "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:singleLine="false"
+                        android:id="@+id/tvcompany"
+                        android:lineSpacingExtra="3dp"
+                        android:textSize="13dp"
+                        android:textColor="@color/zero"
+                        android:text="深圳市伽合娱乐健身娱乐有限公司"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

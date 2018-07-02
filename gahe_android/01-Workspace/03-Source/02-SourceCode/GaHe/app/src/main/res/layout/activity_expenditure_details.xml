@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants"
+    android:background="@color/white"
+    tools:context="com.dodsport.activity.expenses.ExpenditureDetailsActivity">
+
+
+    <include layout="@layout/head2_view"/>
+
+    <com.dodsport.view.LoadingView
+        android:id="@+id/ExpenditureDetails_loadView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+            xmlns:ptr="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/pullToRefreshScrollView_ExpenditureDetails"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ptr:ptrAnimationStyle="flip"
+            ptr:ptrMode="both">
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvExpenditureDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:descendantFocusability="afterDescendants">
+
+                    </android.support.v7.widget.RecyclerView>
+
+
+            </ScrollView>
+
+        </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+    </com.dodsport.view.LoadingView>
+
+</LinearLayout>

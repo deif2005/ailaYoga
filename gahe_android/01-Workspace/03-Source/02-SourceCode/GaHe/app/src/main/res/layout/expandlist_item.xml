@@ -1,0 +1,33 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:orientation="vertical"
+    android:background="@color/f0f0f0">
+
+<RelativeLayout
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
+        android:id="@+id/rlex"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shape_dialog_bg_five">
+
+        <TextView
+            android:id="@+id/tv_child_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text=""
+            android:textColor="@color/home_text_normal"
+            android:textSize="20sp"
+            android:gravity="center_vertical"/>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

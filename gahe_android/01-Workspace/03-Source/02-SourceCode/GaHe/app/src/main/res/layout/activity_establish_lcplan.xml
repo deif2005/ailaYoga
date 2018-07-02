@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    >
+    <include layout="@layout/head2_view"/>
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--课程-->
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="课程"
+                android:textSize="14dp"
+                android:textColor="@color/home_text_normal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <LinearLayout
+                    android:layout_marginRight="100dp"
+                    android:id="@+id/llCourse"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:background="@drawable/radio_whitenull_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/tvCourse"
+                        android:text="请选择"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:textSize="14dp"
+                        android:textColor="@color/home_text_normal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                    <ImageView
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginLeft="-30dp"
+                        android:layout_toRightOf="@+id/tvDate"
+                        android:id="@+id/icon1"
+                        android:src="@drawable/xia_la"
+                        android:background="@null"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"/>
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <!--教室-->
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="教室"
+                android:textSize="14dp"
+                android:textColor="@color/home_text_normal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <LinearLayout
+                    android:layout_marginRight="100dp"
+                    android:id="@+id/llClassRoom"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:background="@drawable/radio_whitenull_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/tvClassRoom"
+                        android:text="请选择"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:textSize="14dp"
+                        android:textColor="@color/home_text_normal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                    <ImageView
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginLeft="-30dp"
+                        android:layout_toRightOf="@+id/tvDate"
+                        android:id="@+id/icon2"
+                        android:src="@drawable/xia_la"
+                        android:background="@null"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"/>
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <!--老师-->
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="老师"
+                android:textSize="14dp"
+                android:textColor="@color/home_text_normal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <LinearLayout
+                    android:layout_marginRight="100dp"
+                    android:id="@+id/llTeacher"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:background="@drawable/radio_whitenull_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/tvTeacher"
+                        android:text="请选择"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:textSize="14dp"
+                        android:textColor="@color/home_text_normal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                    <ImageView
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginLeft="-30dp"
+                        android:layout_toRightOf="@+id/tvDate"
+                        android:id="@+id/icon3"
+                        android:src="@drawable/xia_la"
+                        android:background="@null"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"/>
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <!--上课人数-->
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginBottom="10dp"
+                android:textSize="14dp"
+                android:textColor="@color/home_text_normal"
+                android:text="上课人数"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+               <EditText
+                   android:digits="0123456789"
+                   android:id="@+id/evLeast"
+                   android:layout_marginLeft="5dp"
+                   android:gravity="center_vertical"
+                   android:textSize="14dp"
+                   android:textColor="@color/home_text_normal"
+                   android:hint="最少"
+                   android:background="@drawable/radio_whitenull_back"
+                   android:layout_width="100dp"
+                   android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:textSize="14dp"
+                    android:textColor="@color/home_text_normal"
+                    android:text="人"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+                <EditText
+                    android:digits="0123456789"
+                    android:id="@+id/evMaximum"
+                    android:layout_marginLeft="80dp"
+                    android:gravity="center_vertical"
+                    android:textSize="14dp"
+                    android:textColor="@color/home_text_normal"
+                    android:hint="最多"
+                    android:background="@drawable/radio_whitenull_back"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:textSize="14dp"
+                    android:textColor="@color/home_text_normal"
+                    android:text="人"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--开始时间-->
+        <LinearLayout
+
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvDuration"
+                android:text="开课日期和时间"
+                android:textSize="14dp"
+                android:textColor="@color/home_text_normal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:background="@drawable/radio_whitenull_back"
+                android:id="@+id/rlStartTime"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <TextView
+                    android:textColor="@color/home_text_selected"
+                    android:id="@+id/tvDate"
+                    android:text="    请选择    "
+                    android:textSize="14dp"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="-30dp"
+                    android:layout_toRightOf="@+id/tvDate"
+                    android:id="@+id/icon4"
+                    android:src="@drawable/jiao_zhun_xiang_xia"
+                    android:background="@null"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:textSize="15dp"
+                    android:textColor="@color/home_text_normal"
+                    android:text="状态"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <RelativeLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <RadioButton
+                        style="@style/package_radio_style"
+                        android:checked="false"
+                        android:id="@+id/RadioButton1"
+                        android:layout_marginRight="10dp"
+                        android:textSize="15dp"
+                        android:text=" 启用  "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <RadioButton
+                        android:layout_marginLeft="20dp"
+                        style="@style/package_radio_style"
+                        android:id="@+id/RadioButton2"
+                        android:checked="true"
+                        android:layout_marginRight="21dp"
+                        android:layout_alignParentRight="true"
+                        android:textSize="15dp"
+                        android:text=" 禁用  "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_marginLeft="50dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/home_text_normal"
+                    android:text="体验课"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <RelativeLayout
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <RadioButton
+                        style="@style/package_radio_style"
+                        android:checked="true"
+                        android:layout_toLeftOf="@+id/RadioButton4"
+                        android:id="@+id/RadioButton3"
+                        android:layout_marginRight="10dp"
+                        android:textSize="15dp"
+                        android:text=" 是  "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <RadioButton
+                        style="@style/package_radio_style"
+                        android:id="@+id/RadioButton4"
+                        android:layout_marginRight="21dp"
+                        android:layout_alignParentRight="true"
+                        android:textSize="15dp"
+                        android:text=" 否  "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--备注-->
+        <LinearLayout
+            android:id="@+id/llRemarks"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="16dp"
+                android:textColor="@color/home_text_normal"
+                android:text="备注"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/radio_whitenull_back"
+                android:layout_width="match_parent"
+                android:layout_height="130dp">
+                <EditText
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:imeOptions="actionSend|flagNoExtractUi"
+                    android:id="@+id/evRemarks"
+                    android:maxLength="150"
+                    android:gravity="left"
+                    android:textSize="14dp"
+                    android:textColor="@color/home_text_normal"
+                    android:hint="请输入(选填)"
+                    android:background="@null"
+                    android:scrollbars="none"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
+                    <TextView
+                        android:id="@+id/tvRemarksText_ets"
+                        android:layout_alignParentRight="true"
+                        android:textColor="@color/home_text_selected"
+                        android:textSize="12dp"
+                        android:text="150/150"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@+id/l"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_my_self_write"
+            android:gravity="center_vertical"
+            >
+
+            <Button
+                android:visibility="gone"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/btDelete"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="90dp"
+                android:background="@drawable/shape_red_style"
+                android:gravity="center"
+                android:text="删除"
+                android:textColor="@color/white"
+                android:textSize="16dp"/>
+
+            <Button
+                android:id="@+id/btConservation"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="90dp"
+                android:background="@drawable/shape_login_style"
+                android:gravity="center"
+                android:text="保存"
+                android:textColor="@color/white"
+                android:textSize="16dp"/>
+
+            <Button
+                android:id="@+id/btCancel"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/shape_cancel_style"
+                android:gravity="center"
+                android:text="取 消"
+                android:textColor="@color/white"
+                android:textSize="16dp"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
