@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/same.css">
+    <title>员工基础信息</title>
+    <style>
+        .header {
+            margin-bottom: 0;
+        }
+
+        .title {
+            height: 100px;
+            line-height: 100px;
+            padding-left: 20px;
+            padding-right: 40px;
+            float: left;
+        }
+
+        .watch{
+            margin: 0 auto;
+            color: #49aceb;
+            cursor: pointer;
+        }
+        .EmpBox:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .EmpBox > li {
+            height: 55px;
+            line-height: 55px;
+            padding: 0 30px;
+            border-bottom: 1px solid #f0f0f0
+        }
+            .employeeList{
+                min-height: 600px;
+            }
+        .employeeList  li div {
+            float: left;
+            width: 80px;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            vertical-align: middle;
+            margin-right: 30px;
+        }
+        .employeeList  li div:nth-child(2){
+            width: 150px;
+        }
+        .employeeList  li div:nth-child(3) {
+            width: 100px;
+        }
+
+        .employeeList  li div:nth-child(5) {
+            width: 150px;
+        }
+        .employeeList  li:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .employeeList  li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .left{
+            position:absolute;
+            left:30px;
+            top:0;
+            width:110px;
+            height:55px;
+            line-height: 55px
+        }
+
+        .businessList{
+            margin-left:140px;
+            /*min-height: 55px;*/
+        }
+
+
+
+        .businessList li{
+            width: 20%;
+            height: 55px;
+            line-height: 55px;
+            float: left;
+        }
+        /*分页样式*/
+        button {
+            padding: 5px;
+            margin: 5px;
+            width: 35px;
+            height: 35px;
+            background: #ffffff;
+            border: 1px solid #f0f0f0;
+        }
+
+        .prev-btn, .next-btn {
+            padding: 5px;
+            margin: 5px;
+            width: 55px;
+            height: 35px;
+        }
+
+        .first-btn, .last-btn {
+            padding: 5px;
+            margin: 5px;
+            width: 45px;
+            height: 35px;
+        }
+
+        .active-nick {
+            /*color:red;*/
+            background: #49aceb;
+            color: #f0f0f0;
+        }
+
+        input {
+            width: 50px;
+            text-align: center;
+        }
+
+        .btn-box-nick, .paexplain {
+            display: inline-block;
+        }
+
+        .paexplain {
+            margin-left: 30px;
+            color: #939393;
+        }
+
+        .btn-box-nick {
+            margin-left: 25%;
+            color: #49aceb;
+        }
+
+        .seeCancle{
+            width: 70px;
+            height: 30px;
+            display: inline-block;
+            color: #ffffff;
+            vertical-align: middle;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 5px;
+            padding-left: 20px;
+            background: #959596;
+            background-image: url("../images/powerbtn/fan_hui.png");
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            float: right;
+            margin: 20px 20px;
+        }
+        .float{
+            clear: both;
+        }
+        .search{
+            height: 100px;
+            line-height: 100px;
+            float: left;
+        }
+        .searchinput {
+            width: 160px;
+            height: 30px;
+            margin-left: 100px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .searchbtn {
+            height: 30px;
+            width: 90px;
+            background: #49aceb;
+            display: inline-block;
+            color: #ffffff;
+            vertical-align: middle;
+            line-height: 30px;
+            text-align: center;
+            border-bottom-right-radius: 5px;
+            border-top-right-radius: 5px;
+            background-image: url("../images/powerbtn/sou_suo.png");
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            padding-left: 15px;
+            margin-left: -4px;
+        }
+        .top:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<div class="left_side">
+    <iframe name="iframes" id="iframe2" src="../leftNav.html" frameborder="0"></iframe>
+</div>
+<div class="right_side">
+    <div class="header"><span class="dods">多点运动助手后台管理系统</span>
+        <div class="imgdiv"><img class="head_photo" src="../images/tou_xiang.png"></div>
+        <span class="name">陈老师</span>
+        <span class="logout">退出</span>
+    </div>
+    <div class="top" style="border-bottom:1px solid #f0f0f0 ">
+        <div class="title" style="font-weight: bold;font-size: 18px">员工基础信息</div>
+        <div class="search">
+            <input class="searchinput" type="text" placeholder="员工名称">
+            <span class="searchbtn">搜索</span>
+        </div>
+    </div>
+    <div id="seeBackground"
+         style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <ul class="EmpBox" style="max-width: 1000px;background: #ffffff; margin: 60px auto 0;">
+            <li><span style="width: 110px;display: inline-block">姓名：</span><span class="seeName"></span></li>
+            <li><span style="width: 110px;display: inline-block">手机号：</span><span class="seePhoneNum"></span></li>
+            <li><span style="width: 110px;display: inline-block">性别：</span><span class="seeSex"></span></li>
+            <li><span style="width: 110px;display: inline-block">身份证：</span><span class="idCard"></span></li>
+
+            <div style="position: relative;border-bottom: 1px solid #f0f0f0 "><span class="left">已关联门店：</span><ul class="businessList"></ul></div>
+
+            <div class="cancle seeCancle">返回</div>
+
+        </ul>
+    </div>
+
+
+    <ul class="employeeList ">
+
+    </ul>
+    <div class="pagination-nick"></div>
+    <div id="deleteBackground" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div id="alert-box" style="max-width: 450px;background: #ffffff; margin: 300px auto;padding: 30px 0px 5px">
+            <img style="display: block;margin: 0px auto 40px" src="../images/jinggao.png" alt="警告">
+            <div style="color: #ff4138;font-size: 14px;text-align: center">是否确认删除，删除将不可恢复</div>
+            <div class="btnList"><div class="sure deleteSure">确认</div><div class="cancle deleteCancle">取消</div></div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/same.js"></script>
+<script type="text/javascript" src="../js/md5.js"></script>
+<script type="text/javascript">
+    $('.logout').click(function () {
+        logout('../login.html');
+    });
+    var iframe2 = document.getElementById("iframe2");
+    // 父页面获取子页面iframe2的元素
+    iframeIsLoad(iframe2,function(){
+//    iframe2.contentWindow.b();   // 打印出 我是子页面
+        var iframeDom = $("#customer",iframe2.contentWindow.document);
+        var iframeDom2 = $("#customerUl",iframe2.contentWindow.document);
+        var iframeDom3 = $("#empBasic",iframe2.contentWindow.document);
+        iframeDom.addClass('active')
+        iframeDom3.addClass('active')
+        iframeDom2.addClass('menu-open')
+        iframeDom2.css({
+            'display':'block'
+        })
+    });
+    /**
+     * 点击新增员工按钮   弹出录入员工信息框
+     */
+    var seeBackground = document.getElementById('seeBackground');
+    
+    /**
+     * 分页数据请求顾客基础信息列表
+     * @param page
+     */
+    function basicEmployeeList (page) {
+        obj.page = page;
+        obj.token =sessionStorage.getItem('token');
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/listBusinessEmployee",
+            async: false,//设为同步 可以让获取到的数据总数在函数外使用
+            dataType: "json",
+            data: obj,
+            success: function (data) {
+
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code ==4003){
+                    alert('业务异常！');
+                }else if(data.result.code==0){
+                    num = data.datas.count;
+                    $('.employeeList  li').remove();
+                    var employeeList  =data.datas.employeeInfoList;
+                    $('.employeeList ').append('<li style="font-weight: bold"><div>编号</div><div>姓名</div><div>手机号</div><div>性别</div><div>身份证</div><div class="dataOperate">操作</div></li>')
+                    for (var i = 0; i < employeeList .length; i++) {
+                        $('.employeeList ').append('<li><div>' + employeeList [i].baseEmployeeSerialId + '</div><div>' + employeeList [i].employeeName + '</div><div>' + employeeList [i].phoneNum + '</div><div class="showSex"></div><div>'+employeeList [i].idCard+'</div><div class="dataOperate"><span class="watch">查看</span></div></li>')
+                        if(employeeList [i].sex ==1){
+                            $('.showSex').eq(i).text('男')
+                        }else{
+                            $('.showSex').eq(i).text('女')
+                        }
+
+                    }
+                    /**
+                     * 点击查看按钮   弹出查看员工信息框
+                     */
+                    $('.watch').click(function () {
+                        seeBackground.style.display = 'block';//查看弹框显示
+                        var watchIndex = $(this).index('.watch');
+                        var id = employeeList [watchIndex].id;
+
+                        if(employeeList [watchIndex].sex ==1){
+                            $('.seeSex').text('男')
+                        }else{
+                            $('.seeSex').text('女')
+                        }
+
+                        $('.seeName').text(employeeList [watchIndex].employeeName);
+                        $('.seePhoneNum').text(employeeList [watchIndex].phoneNum);
+                        $('.idCard').text(employeeList [watchIndex].idCard);
+                        listStoreInfoByEmployeeId(id);
+                    })
+                }
+
+            }
+        });
+    }
+    $('.cancle').click(function () {
+        seeBackground.style.display = 'none';
+    })
+    function listStoreInfoByEmployeeId(id) {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/listStoreInfoByEmployeeId",
+            async: true,//设为同步 可以让获取到的数据总数在函数外使用
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'id': id
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code ==4003){
+                    alert('业务异常！');
+                }else if(data.result.code==0){
+                    var list = data.datas.storeInfoList;
+                    $('.businessList li').remove();
+                    $('.businessList div').remove();
+                    for(var i=0;i<list.length;i++){
+                        $('.businessList').append('<li>'+list[i].storeName+'</li>')
+                    }
+                    $('.businessList').append('<div class="float"></div>')
+                }
+
+            }
+        });
+    }
+    window.onload = function () {
+        obj = new Object();
+        pagination(basicEmployeeList );
+
+    };
+//根据员工名字模糊查询 基础信息分页数据
+    function searchBasicEmpByName(empName) {
+        name =empName;
+        pagination(basicEmployeeList );
+    }
+$('.searchbtn').click(function () {
+    var empName = $('.searchinput').val();
+    obj.employeeName =empName;
+    searchBasicEmpByName(empName);
+})
+</script>
+</html>

@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/same.css">
+    <title>部门列表</title>
+    <style>
+        .header{
+            margin-bottom: 0px;
+        }
+        .title{
+            min-height: 100px;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 100px;
+            padding-left: 20px;
+            padding-right: 40px;
+        }
+        .title:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .leftcol{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .rightcol{
+            display: inline-block;
+            /*vertical-align: middle;*/
+            float: right;
+        }
+        .leftcol select{
+            /*border: none;*/
+            outline: none;
+        }
+        .titlename{
+            line-height: 14px;
+            margin-right: 50px;
+        }
+        #platform{
+            margin-right: 50px;
+        }
+        .search{
+            display: inline-block;
+            margin-left: 20px;
+        }
+        .searchinput{
+            width: 200px;
+            height: 30px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .searchbtn {
+            height: 30px;
+            width: 90px;
+            background: #49aceb;
+            display: inline-block;
+            color: #ffffff;
+            vertical-align: middle;
+            line-height: 30px;
+            text-align: center;
+            border-bottom-right-radius: 5px;
+            border-top-right-radius: 5px;
+            background-image: url("../../images/powerbtn/sou_suo.png");
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            padding-left: 15px;
+            margin-left: -4px;
+        }
+
+        .addDepBtn{
+            height: 30px;
+            width:120px;
+            background: #49aceb;
+            display: inline-block;
+            color: #ffffff;
+            vertical-align: middle;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 5px;
+            background-image: url('../../images/powerbtn/tian_jia.png');
+            background-repeat: no-repeat;
+            background-position: 4px center;
+            padding-left: 15px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+         .selectDepBtn{
+            height: 30px;
+            width: 120px;
+            background: #49aceb;
+            display: inline-block;
+            color:#ffffff;
+            vertical-align: middle;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 5px;
+            background-image: url("../../images/powerbtn/xuan_ze.png");
+            background-repeat: no-repeat;
+            background-position: 4px center;
+            padding-left: 15px;
+            margin-right: 50px;
+             cursor: pointer;
+        }
+        .listtitle span{
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            margin-right: 30px;
+        }
+        .listtitle{
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .deplist{
+            min-height: 600px;
+        }
+        .deplist  li div{
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            vertical-align: middle;
+            margin-right: 30px;
+        }
+        .deplist  li .dataoperate{
+            width: 150px;
+        }
+        .deplist  li{
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .dataoperate:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .edit{
+            float: left;
+            margin-left:10px;
+            color: #49aceb;
+        }
+        .stop{
+            float: left;
+            margin-left:10px;
+            color: #49aceb;
+        }
+        .delete{
+            float: left;
+            margin-left:10px;
+            color: #49aceb;
+        }
+
+
+        /*分页样式*/
+        button{
+            padding:5px;
+            margin:5px;
+            width: 35px;
+            height: 35px;
+            background: #ffffff;
+            border: 1px solid #f0f0f0;
+        }
+        .prev-btn,.next-btn{
+            padding:5px;
+            margin:5px;
+            width: 55px;
+            height: 35px;
+        }
+        .first-btn,.last-btn{
+            padding:5px;
+            margin:5px;
+            width: 45px;
+            height: 35px;
+        }
+        input{
+            width:50px;
+            text-align:center;
+        }
+        .active-nick{
+            background: #49aceb;
+            color: #f0f0f0;
+        }
+
+        .btn-box-nick,.paexplain{
+            display: inline-block;
+        }
+        .paexplain{
+            margin-left: 30px;
+            color: #939393;
+        }
+        .btn-box-nick{
+            margin-left: 25%;
+            color: #49aceb;
+        }
+
+
+
+        .btnList:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .depContent:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .depContent{
+            border-top: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f0f0f0;
+            padding: 0 30px;
+        }
+
+        .noSelect{
+            margin: 20px auto;
+
+        }
+        .noSelect ul{
+            height: 500px;
+            padding: 30px 10px;
+            overflow: auto;
+            border: 1px solid #939393;
+        }
+
+        .depContent li{
+            margin-bottom: 20px;
+        }
+        .depContent li input{
+            margin-right:30px;
+        }
+        .btnList:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+    </style>
+</head>
+<body>
+<div class="left_side">
+    <iframe name="iframes" id="iframe2" src="../../leftNav.html" frameborder="0"></iframe>
+</div>
+<div class="right_side">
+    <div class="header"><span class="dods">多点运动助手后台管理系统</span><div class="imgdiv"><img class="head_photo" src="../../images/tou_xiang.png" ></div><span class="name">陈老师</span><span class="logout">退出</span></div>
+    <div class="title">
+        <div class="leftcol">
+            <span class="titlename" style="font-weight: bold;font-size: 18px">部门信息</span>
+            <span>平台：</span>
+            <select  id="platform" onChange="selectPlatform();">
+                <option value="">系统信息设置</option>
+                <option value="">商家信息设置</option>
+            </select>
+            <span class="business">商家：</span>
+            <select  id="business" onChange="pagination(getBusinessDepList);">
+                <!--商家下拉列表-->
+            </select>
+
+        </div>
+        <div class="rightcol">
+            <span class="selectDepBtn">选择部门模块</span>
+            <span class="addDepBtn">添加部门模块</span>
+
+        </div>
+    </div>
+
+    <div id="windownbg" style="width: 100%;height: 100%;display: none;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div id="windown-box" style="width: 30%;background: #ffffff; margin: 60px auto;">
+            <div style="height: 55px;line-height: 55px;padding: 0 30px;font-weight: bold ">选择部门模块</div>
+            <div class="depContent">
+                <div class="noSelect">
+                    <ul>
+                       <!--未选择平台部门列表-->
+                    </ul>
+                </div>
+            </div>
+            <div class="btnList"><div class="back">返回</div><div class="modelsure save" id="saveDep">保存</div></div>
+
+
+        </div>
+    </div>
+    <ul class="deplist">
+
+        <!--商家部门列表或平台部门列表展示-->
+    </ul>
+    <!--分页组件容器-->
+    <div class="pagination-nick"></div>
+    <!--添加系统部门-->
+    <div id="addBackground" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div style="max-width: 450px;background: #ffffff; margin: 300px auto">
+            <div style="height: 40px;line-height: 40px;padding: 0 10px;font-weight: bold">添加系统部门</div>
+            <ul class="departmentInfo" style="padding: 10px 20px;border-top:1px solid #f0f0f0;border-bottom: 1px solid #f0f0f0 ">
+                <li style="margin-bottom: 15px"><span style="margin-right: 30px">【系统】</span></li>
+                <li><input class="addDepartmentName" type="text" style="width: 300px ;height: 50px"></li>
+            </ul>
+            <div class="btnList"><div class="back addCancle">返回</div><div class="save addSure">保存</div></div>
+        </div>
+    </div>
+    <!--编辑系统部门-->
+    <div id="editBackground" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div style="max-width: 450px;background: #ffffff; margin: 300px auto">
+            <div style="height: 40px;line-height: 40px;padding: 0 10px;font-weight: bold">编辑系统部门</div>
+            <ul class="departmentInfo" style="padding: 10px 20px;border-top:1px solid #f0f0f0;border-bottom: 1px solid #f0f0f0 ">
+                <li style="margin-bottom: 15px"><span style="margin-right: 30px">【系统】</span></li>
+                <li><input class="editDepartmentName" type="text" style="width: 300px ;height: 50px"></li>
+            </ul>
+            <div class="btnList"><div class="back editCancle">返回</div><div class="save editSure">保存</div></div>
+        </div>
+    </div>
+    <!--添加商家部门-->
+    <div id="addBusiBackground" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div style="max-width: 450px;background: #ffffff; margin: 300px auto">
+            <div style="height: 40px;line-height: 40px;padding: 0 10px;font-weight: bold">添加商家部门</div>
+            <ul class="departmentInfo" style="padding: 10px 20px;border-top:1px solid #f0f0f0;border-bottom: 1px solid #f0f0f0 ">
+                <li class="addbusi" style="margin-bottom: 15px"><span style="margin-right: 30px;display: inline-block;width: 100px">商家编号</span><span>商家名称</span></li>
+                <li><input class="addBusiDepartmentName" type="text" style="width: 300px ;height: 50px"></li>
+            </ul>
+            <div class="btnList"><div class="back addBusiCancle">返回</div><div class="save addBusiSure">保存</div></div>
+        </div>
+    </div>
+    <!--编辑商家部门-->
+    <div id="editBusiBackground" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div style="max-width: 450px;background: #ffffff; margin: 300px auto">
+            <div style="height: 40px;line-height: 40px;padding: 0 10px;font-weight: bold">编辑商家部门</div>
+            <ul class="departmentInfo" style="padding: 10px 20px;border-top:1px solid #f0f0f0;border-bottom: 1px solid #f0f0f0 ">
+                <li class="addbusi"  style="margin-bottom: 15px"><span style="margin-right: 30px;display: inline-block;width: 100px">商家编号</span><span>商家名称</span></li>
+                <li><input class="editBusiDepartmentName" type="text" style="width: 300px ;height: 50px"></li>
+            </ul>
+            <div class="btnList"><div class="back editBusiCancle">返回</div><div class="save editBusiSure">保存</div></div>
+        </div>
+    </div>
+        <!--删除弹框-->
+    <div id="deleteBackground" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div id="alert-box" style="max-width: 450px;background: #ffffff; margin: 300px auto;padding: 30px 0px 5px">
+            <img style="display: block;margin: 0px auto 40px" src="../../images/jinggao.png" alt="警告">
+            <div style="color: #ff4138;font-size: 14px;text-align: center">是否确认删除，删除将不可恢复</div>
+            <div class="btnList"><div class="back deleteCancle">取消</div><div class="save deleteSure">确认</div></div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/same.js"></script>
+<script type="text/javascript" src="../../js/doublebox-bootstrap.js"></script>
+<script type="text/javascript">
+    $('.logout').click(function () {
+        logout('../../login.html');
+    });
+
+    // 父页面获取子页面iframe2的元素
+    var iframe2 = document.getElementById("iframe2");
+
+    iframeIsLoad(iframe2,function(){
+
+//    iframe2.contentWindow.b();   // 打印出 我是子页面
+        var iframeDom = $("#basicSetting",iframe2.contentWindow.document);
+        var iframeDom2 = $("#basicSettingUl",iframe2.contentWindow.document);
+        var iframeDom3 = $("#department",iframe2.contentWindow.document);
+        iframeDom.addClass('active')
+        iframeDom3.addClass('active')
+        iframeDom2.addClass('menu-open')
+        iframeDom2.css({
+            'display':'block'
+        })
+    });
+
+    //获取五个弹出框 系统部门录入框 系统部门编辑框 商家部门录入框 商家部门编辑框 删除框
+    var addBackground = document.getElementById("addBackground");
+    var editBackground = document.getElementById("editBackground");
+    var addBusiBackground = document.getElementById("addBusiBackground");
+    var editBusiBackground = document.getElementById("editBusiBackground");
+    var deleteBackground = document.getElementById("deleteBackground");
+
+//根据下拉列表的选中状态页面进行不同的显示
+    var platform=$("#platform option:selected").text();//下拉列表的显示内容
+    $('.selectDepBtn').hide();//选择按钮隐藏
+    $('#business').hide();
+    $('.business').hide();
+    function selectPlatform() {
+       platform=$("#platform option:selected").text();  //获取选中的项
+        if(platform == '系统信息设置'){
+            $('.selectDepBtn').hide();//选择按钮隐藏
+            $('#business').hide();
+            $('.business').hide();
+            //调用系统平台部门列表函数
+            pagination(getDepartmentList);
+
+        }
+        if(platform == '商家信息设置'){
+            $('.selectDepBtn').show();
+            $('.business').show();
+            $('#business').show();
+            $.ajax({
+                xhrFields: {
+                    withCredentials: true
+                },
+                type: "POST",
+                url: defiUrl+"/api/SystemBase/v1/getAllBusinessInfo",
+                async: false,
+                dataType: "json",
+                data: {
+                    'token':sessionStorage.getItem('token'),
+                    'businessType':1
+                },
+                success: function (data) {
+                    if(data.result.code==4001){
+                        alert('登录信息已过期，请重新登录！');
+                        window.location.href='../../login.html';
+                    }else if(data.result.code==4004){
+                        alert('您太久没操作了，请重新登录！');
+                        window.location.href='../../login.html';
+                    }else if(data.result.code ==4003){
+                        alert('业务异常！');
+                    }else if(data.result.code==0){
+                        $('#business option').remove();
+                        for(var i =0;i<data.datas.businessInfo.length;i++){
+                            $('#business').append('<option class="'+data.datas.businessInfo[i].businessSerialId+'" value="'+data.datas.businessInfo[i].id+'">'+data.datas.businessInfo[i].businessName+'</option>')
+                        }
+                        //调用商家部门列表函数
+                        pagination(getBusinessDepList);
+                    }
+
+                }
+            });
+
+        }
+    }
+    // 点击新增按钮  调用不同的 录入接口
+    $('.addDepBtn').click(function () {
+        if(platform == '系统信息设置'){
+            addBackground.style.display ='block';
+
+            $(".addSure").unbind("click");
+            $(".addCancle").unbind("click");
+            $('.addSure').click(function () {
+                var departmentName = $('.addDepartmentName').val();
+                var creator =sessionStorage.getItem('manageId');
+                if(departmentName!=''){
+                    addDepartmentInfo(departmentName,creator);
+                }else {
+                    alert('请填写内容后提交！');
+                }
+
+            });
+            $('.addCancle').click(function () {
+                addBackground.style.display ='none';
+            })
+
+        }
+        if(platform == '商家信息设置'){
+           var businessId =$("#business option:selected").val();
+            addBusiBackground.style.display ='block';
+            $('.addbusi span').eq(0).html($("#business option:selected")[0].className)//获取商家编号
+            $('.addbusi span').eq(1).html($("#business option:selected").text())//获取商家名称
+            $(".addBusiSure").unbind("click");
+            $(".addBusiCancle").unbind("click");
+            $('.addBusiSure').click(function () {
+                var departmentName = $('.addBusiDepartmentName').val();
+                var creator = sessionStorage.getItem('manageId');
+                if(departmentName!=''){
+                    addBusiDepartmentInfo(departmentName,businessId,creator);
+                }else {
+                    alert('请填写内容后提交！');
+                }
+
+            });
+            $('.addBusiCancle').click(function () {
+                addBusiBackground.style.display ='none';
+            })
+
+
+        }
+
+    });
+
+
+    /**
+     * 系统部门录入接口
+     * @param departmentName 部门名称
+     * @param creator 录入人
+     */
+    function addDepartmentInfo(departmentName,creator) {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/addDepartmentInfo",
+            async: true,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'departmentName': departmentName,
+                'creator':creator
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code ==0){
+                    alert('录入成功');
+                    addBackground.style.display ='none';
+                    $('.addDepartmentName').val('');
+                    pagination(getDepartmentList);
+                }else if(data.result.code ==4003) {
+                    alert('业务异常！');
+                }
+
+
+            }
+        });
+    }
+    /**
+     * 商家部门录入接口
+     * @param departmentName 部门名称
+     * @param businessId 商家id
+     * @param creator 录入人
+     */
+    function addBusiDepartmentInfo(departmentName,businessId,creator) {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/addBusiDepartmentInfo",
+            async: true,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'departmentName': departmentName,
+                'businessId':businessId,
+                'creator':creator
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code ==0){
+                    alert('录入成功');
+                    addBusiBackground.style.display ='none';
+                    $('.addBusiDepartmentName').val('');
+                    pagination(getBusinessDepList);
+                }else if(data.result.code ==4003) {
+                    alert('业务异常！');
+                }
+
+
+            }
+        });
+    }
+
+
+/**
+ * 商家部门批量选择录入接口
+ * @param departmentIdStr 部门id字符串
+ * @param departmentNameStr 部门名称字符串
+ * @param businessId 商家id
+ * @param creator 录入人
+ */
+function moreBusiDepartmentInfo(departmentIdStr,departmentNameStr,businessId,creator) {
+    $.ajax({
+        xhrFields: {
+            withCredentials: true
+        },
+        type: "POST",
+        url: defiUrl+"/api/SystemBase/v1/addBatchBusiDepartmentInfo",
+        async: true,
+        dataType: "json",
+        data: {
+            'token':sessionStorage.getItem('token'),
+            'departmentIdStr': departmentIdStr,
+            'departmentNameStr': departmentNameStr,
+            'businessId':businessId,
+            'creator':creator
+        },
+        success: function (data) {
+            if(data.result.code==4001){
+                alert('登录信息已过期，请重新登录！');
+                window.location.href='../../login.html';
+            }else if(data.result.code==4004){
+                alert('您太久没操作了，请重新登录！');
+                window.location.href='../../login.html';
+            }else if(data.result.code ==0){
+                alert('录入成功');
+                $('#windownbg').hide();
+                pagination(getBusinessDepList);
+            }else if(data.result.code ==4003) {
+                alert('业务异常！');
+            }
+
+
+
+        }
+    });
+}
+    //点击选择部门按钮调用获取部门列表接口
+    $('.selectDepBtn').click(function () {
+        $('#windownbg').show();//选择部门框显示
+        getAllDepartmentInfo();//调用获取所有平台部门列表和所有商家列表
+        $('.back').click(function () {
+            $('#windownbg').hide();
+        })
+    })
+    //所有模块删除已选择的模块 得到可以选择的模块
+    function removeByValue(arr, val) {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].depName == val) {
+                arr.splice(i, 1);
+                break;
+            }
+        }
+    }
+
+$('#saveDep').click(function () {
+    var arr1 = [];//定义一个存放选择部门id的数组
+    var arr2 =[];//定义一个存放选择部门名称的数组
+    for(var i =0;i<$('input[name="noSelectDep"]:checked').parent().length;i++){
+        //多选父级元素的text 跟check顺序相反所以用 像头部插入数组保证顺序一致
+        arr1.unshift($('input[name="noSelectDep"]:checked').parent().eq(i).text())
+    }
+    for(var i =0;i<$('input[name="noSelectDep"]:checked').length;i++){
+        //多选元素的val 跟check顺序一致所以用 像尾部插入数组保证顺序一致
+        arr2.push($('input[name="noSelectDep"]:checked').eq(i).val())
+    }
+    var departmentNameStr = arr1.join(',');//得到选择部门id的，隔开的字符串
+    var departmentIdStr = arr2.join(',');//得到选择部门名称的，隔开的字符串
+    var businessId =$("#business option:selected").val();
+    var creator = sessionStorage.getItem('manageId');
+    moreBusiDepartmentInfo(departmentIdStr,departmentNameStr,businessId,creator)
+})
+
+    /**
+     * 获取所有平台部门的列表
+     */
+    function getAllDepartmentInfo() {
+    $.ajax({
+        xhrFields: {
+            withCredentials: true
+        },
+        type: "POST",
+        url: defiUrl+"/api/SystemBase/v1/getAllDepartmentInfo",
+        async: true,
+        dataType: "json",
+        data: {
+            'token':sessionStorage.getItem('token')
+        },
+        success: function (data) {
+            if(data.result.code==4001){
+                alert('登录信息已过期，请重新登录！');
+                window.location.href='../../login.html';
+            }else if(data.result.code==4004){
+                alert('您太久没操作了，请重新登录！');
+                window.location.href='../../login.html';
+            }else if(data.result.code ==4003){
+                alert('业务异常！');
+            }else if(data.result.code==0){
+                var allDepName = [];
+                //将所有平台部门的名称和id以对象形式添加到数组
+                for(var i=0;i<data.datas.departmentList.length;i++){
+                    var obj = {
+                        'depName':'',
+                        'depId':''
+                    };
+                    obj.depName = data.datas.departmentList[i].depName;
+                    obj.depId = data.datas.departmentList[i].id;
+                    allDepName.push(obj)
+                }
+                getAllBusinessDepartmentInfo(allDepName)//调用获取所有商家部门列表的接口
+            }
+
+        }
+    });
+}
+
+    /**
+     * 获取商家所有部门列表接口
+     * @param arr 平台所有部门的列表
+     */
+    function getAllBusinessDepartmentInfo(arr) {
+        var businessId =$("#business option:selected").val();
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/getAllBusinessDepartmentInfo",
+            async: true,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'businessId':businessId
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code ==4003){
+                    alert('业务异常！');
+                }else if(data.result.code==0){
+                    for (var i = 0;i<data.datas.departmentList.length;i++){
+                        //所有部门中删除已选部门得到未选部门
+                        removeByValue(arr, data.datas.departmentList[i].depName);
+                    }
+                    $('.noSelect ul li').remove();
+                    for(var j =0;j<arr.length;j++){
+                        //将未选部门展示给用户选择
+                        $('.noSelect ul').append('<li><label><input name="noSelectDep" type="checkbox" value="'+arr[j].depId+'" />'+arr[j].depName+'</label></li>')
+                    }
+                }
+
+            }
+        });
+}
+    /**
+     * 获取所有平台分页部门列表接口
+     * @param page 分页页数
+     */
+    function getDepartmentList(page) {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/listDepartmentInfo",
+            async: false,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'page':page
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code ==4003){
+                    alert('业务异常！');
+                }else if(data.result.code==0){
+                    var depList =data.datas.departments;
+                    num = data.datas.count;//分页总数
+                    $('.deplist li').remove();//先删除已选li
+                    $('.deplist').append('<li style="font-weight: bold"><div>编号</div><div>名称</div><div>部门模块</div><div class="dataoperate">操作</div></li>')
+                    for(var i =0;i<depList.length;i++){
+                        //在创建新的li显示未选部门
+                        $('.deplist').append('<li><div class="datanumber">'+depList[i].depSerialId+'</div><div>平台</div><div class="datamodel">'+depList[i].depName+'</div><div class="dataoperate"><span class="edit depEdit" style="cursor: pointer">编辑</span><span class="stop">停用</span><span class="delete depDelete" style="cursor: pointer">删除</span></div></li>')
+
+                    }
+                    $('.depEdit').click(function () {
+                        //编辑点击 出现编辑框
+                        var departmentName = $('.editDepartmentName').val();
+                        var editIndex = $(this).index('.depEdit');//获取当前点击编辑的按钮在所有编辑按钮的索引
+                        var id = depList[editIndex].id;//获取当前点击的id
+                        editBackground.style.display ='block';
+                        $('.editDepartmentName').val(depList[editIndex].depName);
+                        $(".editSure").unbind("click");
+                        $(".editCancle").unbind("click");
+                        $('.editSure').click(function () {
+                            //点击编辑框的确认 调用编辑系统部门接口
+                            if($('.editDepartmentName').val()!=''){
+                                editDep(departmentName,id);
+                            }else {
+                                alert('请填写必填内容再提交！');
+                            }
+
+                        });
+                        $('.editCancle').click(function () {
+                            editBackground.style.display ='none';
+                        })
+                    });
+                    $('.depDelete').click(function () {
+                        //删除按钮点击 出现警示弹框
+                        deleteBackground.style.display ='block';
+                        var deleteIndex = $(this).index('.depDelete');//获取当前点击删除的按钮在所有删除按钮的索引
+                        var id = depList[deleteIndex].id;//获取当前点击的id
+                        $(".deleteSure").unbind("click");
+                        $(".deleteCancle").unbind("click");
+                        $('.deleteSure').click(function () {
+                            //点击删除框的确认 调用删除系统部门接口
+
+                            deleteDep(id);
+                        })
+                        $('.deleteCancle').click(function () {
+                            //点击删除框的取消  弹框消失 不做操作
+                            deleteBackground.style.display ='none';
+                        })
+                    })
+                }
+
+            }
+        });
+    }
+    /**
+     * 获取商家分页部门列表接口
+     * @param businessId 商家id
+     * @param page 分页页数
+     */
+    function getBusinessDepList(page) {
+        var businessId =$("#business option:selected").val();
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/listBusiDepartmentInfo",
+            async: false,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'businessId':businessId,
+                'page':page
+            },
+            success: function (data) {
+
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code ==4003){
+                    alert('业务异常！');
+                }else if(data.result.code==0){
+                    var depList =data.datas.departments;
+                    num = data.datas.count;//分页总数
+                    $('.deplist li').remove();//先删除已选li
+                    $('.deplist').append('<li style="font-weight: bold"><div>编号</div><div>商家名称</div><div>部门模块</div><div class="dataoperate">操作</div></li>')
+                    for(var i =0;i<depList.length;i++){
+                        //在创建新的li显示未选部门
+                        $('.deplist').append('<li><div class="datanumber">'+depList[i].depSerialId+'</div><div>'+$("#business option:selected").text()+'</div><div class="datamodel">'+depList[i].depName+'</div><div class="dataoperate"><span class="edit busiDepEdit" style="cursor: pointer">编辑</span><span class="stop">停用</span><span class="delete busiDepDelete" style="cursor: pointer">删除</span></div></li>')
+
+                    }
+                    $('.busiDepEdit').click(function () {
+                        //编辑点击 出现编辑框
+                        var editIndex = $(this).index('.busiDepEdit');//获取当前点击编辑的按钮在所有编辑按钮的索引
+                        var id = depList[editIndex].id;//获取当前点击的id
+                        editBusiBackground.style.display ='block';
+                        $('.editBusiDepartmentName').val(depList[editIndex].depName)
+                        $('.editbusi span').eq(0).html($("#business option:selected")[0].className)//获取商家编号
+                        $('.editbusi span').eq(1).html($("#business option:selected").text())//获取商家名称
+                        $(".editBusiSure").unbind("click");
+                        $(".editBusiCancle").unbind("click");
+                        $('.editBusiSure').click(function () {
+                            //点击编辑框的确认 调用编辑系统部门接口
+                            var departmentName = $('.editBusiDepartmentName').val();
+                            if(departmentName!=''){
+                                editBusinessDep(departmentName,id);
+                            }else {
+                                alert('请填写必填内容再提交！');
+                            }
+
+                        });
+                        $('.editBusiCancle').click(function () {
+                            editBusiBackground.style.display ='none';
+                        })
+                    })
+                    $('.busiDepDelete').click(function () {
+                        //删除按钮点击 出现警示弹框
+                        var deleteIndex = $(this).index('.busiDepDelete');//获取当前点击删除的按钮在所有删除按钮的索引
+                        var id = depList[deleteIndex].id;//获取当前点击的id
+                        deleteBackground.style.display ='block';
+                        $(".deleteSure").unbind("click");
+                        $(".deleteCancle").unbind("click");
+                        $('.deleteSure').click(function () {
+                            //点击删除框的确认 调用删除系统部门接口
+                            deleteBusinessDep(id);
+                        })
+                        $('.deleteCancle').click(function () {
+                            //点击删除框的取消  弹框消失 不做操作
+                            deleteBackground.style.display ='none';
+                        })
+                    })
+                }
+
+
+            }
+        });
+    }
+
+    /**
+     * 删除平台部门接口
+     * @param id 部门id
+     */
+    function deleteDep(id) {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/deleteDepartment",
+            async: true,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'id':id
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code ==0){
+                    alert('删除成功');
+                    deleteBackground.style.display ='none';
+                    pagination(getDepartmentList);
+                }else if(data.result.code ==4003) {
+                    alert('业务异常！');
+                }
+
+
+            }
+        });
+    }
+
+function editDep(id,departmentName) {
+    $.ajax({
+        xhrFields: {
+            withCredentials: true
+        },
+        type: "POST",
+        url: defiUrl+"/api/SystemBase/v1/editDepartmentInfo",
+        async: true,
+        dataType: "json",
+        data: {
+            'token':sessionStorage.getItem('token'),
+            'id':id,
+            'departmentName':departmentName
+        },
+        success: function (data) {
+            if(data.result.code==4001){
+                alert('登录信息已过期，请重新登录！');
+                window.location.href='../../login.html';
+            }else if(data.result.code==4004){
+                alert('您太久没操作了，请重新登录！');
+                window.location.href='../../login.html';
+            }else if(data.result.code ==0){
+                alert('编辑成功');
+                editBackground.style.display ='none';
+                pagination(getDepartmentList);
+            }else if(data.result.code ==4003) {
+                alert('业务异常！');
+            }
+
+        }
+    });
+}
+
+    /**
+     * 删除商家部门接口
+     * @param id 商家部门id
+     */
+    function deleteBusinessDep(id) {
+    $.ajax({
+        xhrFields: {
+            withCredentials: true
+        },
+        type: "POST",
+        url: defiUrl+"/api/SystemBase/v1/deleteBusinessDepartment",
+        async: true,
+        dataType: "json",
+        data: {
+            'token':sessionStorage.getItem('token'),
+            'id':id
+        },
+        success: function (data) {
+            if(data.result.code==4001){
+                alert('登录信息已过期，请重新登录！');
+                window.location.href='../../login.html';
+            }else if(data.result.code==4004){
+                alert('您太久没操作了，请重新登录！');
+                window.location.href='../../login.html';
+            }else if(data.result.code ==0){
+                alert('删除成功');
+                deleteBackground.style.display ='none';
+                pagination(getBusinessDepList);
+            }else if(data.result.code ==4003) {
+                alert('业务异常！');
+            }
+
+        }
+    });
+}
+    /**
+     * 编辑商家部门接口
+     * @param id 商家部门id
+     * @param departmentName 部门名称
+     */
+function editBusinessDep(id,departmentName) {
+    $.ajax({
+        xhrFields: {
+            withCredentials: true
+        },
+        type: "POST",
+        url: defiUrl+"/api/SystemBase/v1/editBusinessDepartmentInfo",
+        async: true,
+        dataType: "json",
+        data: {
+            'token':sessionStorage.getItem('token'),
+            'id':id,
+            'departmentName':departmentName
+        },
+        success: function (data) {
+            if(data.result.code==4001){
+                alert('登录信息已过期，请重新登录！');
+                window.location.href='../../login.html';
+            }else if(data.result.code==4004){
+                alert('您太久没操作了，请重新登录！');
+                window.location.href='../../login.html';
+            }else if(data.result.code ==0){
+                alert('删除成功');
+                editBusiBackground.style.display ='none';
+                pagination(getBusinessDepList);
+            }else if(data.result.code ==4003) {
+                alert('业务异常！');
+            }
+
+        }
+    });
+}
+
+//初始化加载一次分页数据 默认平台部门数据
+    window.onload = function () {
+        pagination(getDepartmentList)
+
+    }
+
+
+
+</script>
+</html>

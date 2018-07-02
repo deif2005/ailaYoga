@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<form id="uploadForm" action="Upload" method="post" enctype="multipart/form-data">
+    <!--<input id="File1" name="fileupload1" accept="image/gif, image/jpeg" multiple="multiple" type="file"value=""/>-->
+    <!--<input type="file" multiple="true" class="input-sm clear-l-r-padding select-file" data-uploadtype="photo"/>-->
+    <li class="list-group-item disabled select-file-div">
+
+        <input type="file" multiple="true" class="input-sm clear-l-r-padding select-file" data-uploadtype="photo"/>
+    </li>
+    <input id="btnImportOK" type="button" value="上传"/>
+
+</form>
+<!--<li class="list-group-item disabled select-file-div">-->
+
+    <!--<input type="file" multiple="true" class="input-sm clear-l-r-padding select-file" data-uploadtype="photo"/>-->
+<!--</li>-->
+</body>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    function getToken() {
+        $.ajax({
+            type: "POST",
+            url: "http://192.168.1.186:8081/api/common/v1/getToken",
+            async:false,//设为同步 可以让获取到的token在函数外使用
+            dataType: "json",
+            data: {
+                'id':'dodsport',
+                'password':'dodsport',
+            },
+            success: function(data){
+                console.log(data.datas.token);
+                token =data.datas.token;
+                //return data.datas.token;
+            }
+        });
+    }
+    $(document).ready(function () {
+        $("#btnImportOK").click(function () {
+            getToken();
+            var  fd = new FormData();
+            console.log($('.select-file')[0].files.length);
+            for (var i = 0; i < $('.select-file')[0].files.length; i++) {
+
+                fd.append('file['+ i+']', $('.select-file')[0].files[i]);
+            }
+
+           // var fd = new FormData($("#uploadForm")[0]);
+            fd.append('token',token)
+            fd.append('businessId','07b45f9b-d2b8-407a-bac6-5267a24b94c2')
+            fd.append('storeId','cec42010-8328-11e7-bb48-e0071bf36af3')
+            fd.append('employeeId','9bfe455f-b41d-44de-9f24-d63b806501d3')
+            fd.append('description','款项用途')
+            fd.append('account','1000.9')
+            fd.append('approver','5660f5dc-f5b7-4d49-8503-2921be6b7209')
+            $.ajax({
+                type: "POST",
+                data: fd,
+                url: " http://192.168.1.186:8081/api/AdminManage/v1/addExpenseAccountBill",
+                contentType: false,
+                processData: false,
+
+            }).success(function (data) {
+                console.log(data)
+//                if
+//                (data.status) {
+//                    console.log(data.url);
+//                } else {
+//                    console.log(data.msg);
+//                }
+            }).error(function (data) {
+                //alert(data);
+                console.log(data);
+            });
+        });
+    });
+</script>
+</html>

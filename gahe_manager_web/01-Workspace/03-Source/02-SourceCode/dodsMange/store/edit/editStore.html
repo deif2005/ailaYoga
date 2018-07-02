@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/same.css">
+    <title>编辑门店信息</title>
+    <style>
+
+        .col-sm-5,.col-md-5,.col-lg-5{
+            padding: 0px;
+        }
+        .wrap{
+            padding: 0 25px;
+        }
+        /*左边部分样式*/
+        .class1{
+            margin-bottom: 5px;
+        }
+        .inputinfo{
+            width: 60%;
+            height: 35px;
+            line-height: 35px;
+            padding-left: 5px;
+        }
+        .line{
+            margin-bottom: 20px;
+        }
+
+        /*右边部分样式*/
+        .photo:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .upimg{
+            width: 90px;
+            height: 80px;
+            position: relative;
+            z-index: 9999;
+            background: #c5c5c5;
+            text-align: center;
+            line-height: 80px;
+            font-size: 14px;
+            color: #ffffff;
+            font-family: 微软雅黑;
+            font-weight: normal;
+        }
+        #Img1, #Img2, #Img3, #Img4{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            color: transparent;
+            width: 90px;
+            opacity: 0;
+        }
+        .image{
+            float: left;
+            margin-right: 30px;
+        }
+        .tishi{
+            text-align: center;
+        }
+
+        .rightbottom input{
+            display: inline-block;
+            width: 40px;
+            height: 30px;
+            border: 1px solid darkgray ;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .startTime,.endTime,.font{
+            float: left;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .font{
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+        }
+        .time:after{
+            content: '';
+            display: block;
+            clear: both;
+            margin-bottom: 20px;
+        }
+        .searchcity select{
+            height: 32px;
+            line-height: 32px;
+        }
+        .footer{
+            height: 55px;
+            border-top: solid 1px darkgrey;
+            text-align: right;
+            padding-top: 15px;
+        }
+
+        #alert-box label{
+            float: right;
+            margin-bottom: 0;
+        }
+        #alert-box2 label{
+            float: right;
+            margin-bottom: 0;
+        }
+        #alert-box3 label{
+            float: right;
+            margin-bottom: 0;
+        }
+        #alert-box4 label{
+            float: right;
+            margin-bottom: 0;
+        }
+        .upImageBtn{
+            height: 30px;
+            width: 90px;
+            position: relative;
+            z-index: 9999;
+            background: #49aceb;
+            display: inline-block;
+            color:#ffffff;
+            vertical-align: middle;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 5px;
+            background-image: url("../../images/shang_chuan.png");
+            background-repeat: no-repeat;
+            background-position: 4px center;
+            padding-left: 15px;
+
+        }
+    </style>
+</head>
+<body>
+<div class="left_side">
+    <iframe name="iframes" id="iframe2" src="../../leftNav.html" frameborder="0"></iframe>
+</div>
+<div class="right_side">
+    <div class="header"><span class="dods">多点运动助手后台管理系统</span><div class="imgdiv"><img class="head_photo" src="../../images/tou_xiang.png" ></div><span class="name">陈老师</span></div>
+    <div class="wrap row">
+        <div class="left col-lg-5 col-md-5 col-sm-5">
+            <div class="line">
+                <div class="class1">负责人姓名</div>
+                <input class="inputinfo bossName" type="text">
+            </div>
+            <div class="line">
+                <div class="class1">负责人手机号</div>
+                <input class="inputinfo mobilephone" type="text">
+            </div>
+            <div class="line">
+                <div class="class1">负责人邮箱</div>
+                <input class="inputinfo email" type="text">
+            </div>
+            <div class="line">
+                <div class="class1">其他联系方式</div>
+                <input class="inputinfo otherContacs" type="text">
+            </div>
+            <div class="line">
+                <div class="class1">门店名称</div>
+                <input class="inputinfo storeName" type="text">
+            </div>
+            <div class="line">
+                <div class="class1">座机</div>
+                <input class="inputinfo telephone" type="text">
+            </div>
+            <div class="line">
+                <div class="class1">区域选择</div>
+                <div data-toggle="distpicker" class="searchcity" style="display: inline-block">
+                    <select class="province" data-province=""></select>
+                    <select class="city" data-city=""></select>
+                    <select class="district" data-district=""></select>
+                </div>
+            </div>
+            <div class="line">
+                <div class="class1">详细地址</div>
+                <div>
+                    <textarea class="address" name="" style="width: 60%;height: 78px"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="right col-lg-7 col-md-7 col-sm-7">
+            <div>证件照</div>
+            <div class="photo" style="border: 1px solid darkgray;margin-bottom: 100px;padding: 10px 30px;">
+                <form id="uploadForm"  method="post" enctype="multipart/form-data">
+                    <div class="image"><div class="upimg Img1" onclick="javascript:showPhoto('prewatchbackground',urlList1,'getbox1',list1,'box1');">相册</div><div class="tishi">门头照（3张）</div></div>
+                    <div class="image"><div class="upimg Img2" onclick="javascript:showPhoto('prewatchbackground2',urlList2,'getbox2',list2,'box2');">相册</div><div class="tishi">教室照（3张）</div></div>
+                    <div class="image"><div class="upimg Img3" onclick="javascript:showPhoto('prewatchbackground3',urlList3,'getbox3',list3,'box3');">相册</div><div class="tishi">前台照（3张）</div></div>
+                    <div class="image"><div class="upimg Img4" onclick="javascript:showPhoto('prewatchbackground4',urlList4,'getbox4',list4,'box4');">相册</div><div class="tishi">营业执照（1张）</div></div>
+                </form>
+
+            </div>
+            <div class="rightbottom" style="border: 1px solid darkgray;padding: 20px 30px">
+                <div>营业时间</div>
+                <div class="time">
+                    <div class="startTime" style="height: 30px;line-height: 30px"><input type="text" class="starthour">  :  <input type="text" class="startmin"></div>
+                    <div class="font">到</div>
+                    <div class="endTime"><input type="text" class="endhour">  :  <input type="text" class="endmin"></div>
+                </div>
+                <div>产品服务</div>
+                <textarea class="productService" style="width: 70%;height: 130px;margin-top: 10px;border: 1px solid #f0f0f0"></textarea>
+            </div>
+        </div>
+    </div>
+    <div id="prewatchbackground" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div id="alert-box" class="closeBox" style="max-width: 800px;background: #ffffff; margin: 60px auto;">
+            <div style="height: 55px;line-height: 55px;padding: 0 30px;border-bottom: 1px solid #f0f0f0">相册相片<label for="Img1"><span class="upImageBtn"><input class="preimg" id="Img1" multiple="true" type="file"  accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="javascript:setImagePreview('Img1',3,filelist1,'box1','getbox1','box1')">上传图片</span></label></div>
+            <div class="box1" style=" padding: 20px;margin: 0 auto;font-size:0">
+
+            </div>
+            <!--<div class="btnList"><div class="box1sure sure">确认</div><div class="cancle">取消</div></div>-->
+
+
+        </div>
+    </div>
+    <div id="prewatchbackground2" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div id="alert-box2" class="closeBox"  style="max-width: 800px;background: #ffffff; margin: 60px auto;">
+            <div style="height: 55px;line-height: 55px;padding: 0 30px;border-bottom: 1px solid #f0f0f0">相册相片<label for="Img2"><span class="upImageBtn"><input class="preimg" id="Img2" multiple="true" type="file"  accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="javascript:setImagePreview('Img2',3,filelist2,'box2','getbox2','box2')">上传图片</span></label></div>
+            <div class="box2" style=" padding: 20px;margin: 0 auto;font-size:0">
+
+            </div>
+
+        </div>
+    </div>
+    <div id="prewatchbackground3" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div id="alert-box3" class="closeBox"  style="max-width: 800px;background: #ffffff; margin: 60px auto;">
+            <div style="height: 55px;line-height: 55px;padding: 0 30px;border-bottom: 1px solid #f0f0f0">相册相片<label for="Img3"><span class="upImageBtn"><input class="preimg" id="Img3" multiple="true" type="file"  accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="javascript:setImagePreview('Img3',3,filelist3,'box3','getbox3','box3')">上传图片</span></label></div>
+            <div class="box3" style=" padding: 20px;margin: 0 auto;font-size:0">
+
+            </div>
+
+        </div>
+    </div>
+    <div id="prewatchbackground4" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div id="alert-box4" class="closeBox"  style="max-width: 800px;background: #ffffff; margin: 60px auto;">
+            <div style="height: 55px;line-height: 55px;padding: 0 30px;border-bottom: 1px solid #f0f0f0">相册相片<label for="Img4"><span class="upImageBtn"><input class="preimg" id="Img4" multiple="true" type="file"  accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="javascript:setImagePreview('Img4',1,filelist4,'box4','getbox4','box4')">上传图片</span></label></div>
+            <div class="box4" style=" padding: 20px;margin: 0 auto;font-size:0">
+
+            </div>
+
+        </div>
+    </div>
+    <div class="footer">
+        <div class="back">返回</div>
+        <div class="save">保存</div>
+
+    </div>
+</div>
+</body>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/same.js"></script>
+<script type="text/javascript" src="../../js/distpicker.js"></script>
+<script type="text/javascript">
+    var iframe2 = document.getElementById("iframe2");
+
+    iframeIsLoad(iframe2,function(){
+
+//    iframe2.contentWindow.b();   // 打印出 我是子页面
+
+        // 父页面获取子页面iframe2的元素
+
+        var iframeDom = $("#store",iframe2.contentWindow.document);
+        var iframeDom2 = $("#storeul",iframe2.contentWindow.document);
+        var iframeDom3 = $("#busBasicSetting",iframe2.contentWindow.document);
+        iframeDom.addClass('active')
+        iframeDom3.addClass('active')
+        iframeDom2.addClass('menu-open')
+        iframeDom2.css({
+            'display':'block'
+        })
+    });
+//获取门店列表传过来的信息 展示在查看页面
+    $('.bossName').val(sessionStorage.getItem('managerName'))
+    $('.mobilephone').val(sessionStorage.getItem('phoneNum'))
+    $('.telephone').val(sessionStorage.getItem('phoneNum2'))
+    $('.email').val(sessionStorage.getItem('email'))
+    $('.otherContacs').val(sessionStorage.getItem('contactWay'))
+    $('.storeName').val(sessionStorage.getItem('storeName'))
+    $('.address').val(sessionStorage.getItem('address'))
+    $('.productService').val(sessionStorage.getItem('serviceIntroduction'))
+    var str5 =sessionStorage.getItem('area');
+    var areaList = str5.split('##');
+    $('.province').attr('data-province',areaList[0]);
+    $('.city').attr('data-city',areaList[1]);
+    $('.district').attr('data-district',areaList[2]);
+    var str6 = sessionStorage.getItem('startTime');
+    var str7 = sessionStorage.getItem('endTime');
+    $('.starthour').val(str6.substring(0,2));
+    $('.startmin').val(str6.substring(3,5));
+    $('.endhour').val(str7.substring(0,2));
+    $('.endmin').val(str7.substring(3,5));
+    var str1 =sessionStorage.getItem('doorPicture');
+    var str2 =sessionStorage.getItem('classroomPicture');
+    var str3 =sessionStorage.getItem('receptionPicture');
+    var str4 =sessionStorage.getItem('licensePicture');
+    /**
+     * 将获取到相册里的相片展示出来
+     * @param  urlList,filelists,imgid,num
+     */
+    var urlList1 = [];
+    var urlList2 = [];
+    var urlList3 = [];
+    var urlList4 = [];
+    if(str1 != ''){
+        urlList1 = str1.split(';');
+    }
+    if(str2 != ''){
+        urlList2 =  str2.split(';');
+    }
+    if(str3 != ''){
+        urlList3 =  str3.split(';');
+    }
+    if(str4 != ''){
+        urlList4 =  str4.split(';');
+    }
+
+    var list1 =[];
+    var list2 =[];
+    var list3 =[];
+    var list4 =[];
+    console.log(urlList1);
+    console.log(urlList2);
+    console.log(urlList3);
+    console.log(urlList4);
+
+    /**
+     * 将获取到相册里的相片展示出来
+     * @param  urlList,getUrl,delEmpHeadList,album
+     */
+    //相册路径窜 ；开头 要改  导致多了一个img
+    function showPhoto(backObj,urlList,getUrl,list,photo) {
+        $("#"+backObj).show();
+        $('.img'+getUrl).remove();
+        for(var i=0;i<urlList.length;i++){
+            $('.'+photo).append(' <img class="img'+getUrl+'" title="点击图片删除" src="'+urlList[i]+'" alt="服务器图片">')
+
+            $('.img'+getUrl).css({
+                'width':'120px',
+                'height':'120px'
+            });
+        }
+        $('.img'+getUrl).click(function () {
+            var index =  $(this).index('.img'+getUrl);
+            console.log(urlList[index])
+            list.push(urlList[index]);
+            $(this).remove();
+        });
+        $('.closeBox').unbind("click");
+        $('.closeBox').click(function(e){
+            $('#'+backObj).show();
+            e.stopPropagation();//阻止冒泡
+        });
+        $("#"+backObj).unbind("click");
+        $("#"+backObj).click(function(e){
+            $('#'+backObj).hide();
+            e.stopPropagation();//阻止冒泡
+        });
+    }
+
+
+
+    //编辑商家四个相册的照片
+    var  filelist1 = [];
+    var  filelist2 = [];
+    var  filelist3 = [];
+    var  filelist4 = [];
+    var prewatchbackground = document.getElementById("prewatchbackground");
+    //新建一个函数实现上传图片预览
+    /**
+     * 获取商家相册相片接口
+     * @param imgid 商家相册区分id
+     * @param num 每个相册图片限制数
+     * @param filelists 存放四个相册相片的数组
+     */
+    function setImagePreview(imgid,num,filelists,name,getUrl,photo) {
+        var docObj = document.getElementById(imgid);//获取每个相册上传图片的控件对象
+//        var imgList = [].concat(docObj.files)
+        console.log($('.img'+name).length)
+        console.log($('.img'+getUrl).length)
+        if (docObj.files && docObj.files[0]) {//通过这个控件是否选取图片判断
+
+            //imgObjPreview.src = docObj.files[0].getAsDataURL();
+            //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
+            //imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+            if(docObj.files.length<=(num-$('.img'+name).length-$('.img'+getUrl).length)){//选取的图片数量等于 限制数量时
+
+                for (var i = 0; i <docObj.files.length ; i++) {//将控件选取的图片循环显示在预览框中
+                    filelists.push(docObj.files[i]);
+
+                    $('.'+photo).append('<img class="img'+name+'" title="点击图片删除" src="'+window.URL.createObjectURL(docObj.files[i])+'" alt="">');
+
+//                    $('.img'+i)[0].src = window.URL.createObjectURL(docObj.files[i]);//获取本地选取的图片地址
+                    $('.img'+name).css({
+                        'width':'120px',
+                        'height':'120px'
+                    })
+                }
+            }else {
+                alert('最多上传'+num+'张照片');
+            }
+            console.log( filelists.length)
+            console.log($('.img'+name).length)
+            //点击预览中的图片会删除 这张照片 对应存放这个相册的数组也会少一张
+            $('.img'+name).click(function () {
+                var index =  $(this).index('.img'+name);
+
+                filelists.splice(index,1)
+                $(this).remove();
+            })
+
+
+        }
+
+    }
+
+
+
+
+    /**
+     * 将四个相册上传选中的拖 添加到formdata中
+     * @param arr 每个相册选中的相片数组
+     * @param name 区分每个相册的名字
+     * @param obj formdata对象
+     */
+    function up(arr,name,obj) {
+        for (var i = 0; i < arr.length; i++) {
+
+            obj.append(name+'00' + (i+1) , arr[i]);
+        }
+    }
+
+    /**
+     * 门店信息编辑接口
+     * @param managerName 负责人名称
+     * @param storeName 门店名称
+     * @param area 省市区
+     * @param address 详细地址
+     * @param phoneNum 负责人手机
+     * @param id 门店id
+     * @param phoneNum2 老板电话
+     * @param email 负责人邮箱
+     * @param contactWay 其他联系方式
+     * @param startTime 营业时间 开始
+     * @param endTime 营业时间 结束
+     * @param serviceIntroduction  产品服务
+     */
+
+    function editStore(obj) {
+
+
+        $.ajax({
+            type: "POST",
+            data: obj,
+            url: " http://192.168.1.168:8081/api/SystemBase/v1/editStoreInfo",
+            async:true,//设为同步 可以让获取到的token在函数外使用
+            contentType: false,
+            processData: false
+
+        }).success(function (data) {
+            console.log(data);
+            if(data.result.code==0){
+                alert('编辑成功！');
+                location.reload();
+            }else {
+                alert('编辑失败！');
+            }
+        }).error(function (data) {
+            console.log(data);
+        });
+
+    }
+    //点击保存 先执行上传图片的接口 然后将成功后四个相册id返回值作为参数 调用 门店编辑的接口
+    $('.save').click(function () {
+        var managerName =$('.bossName').val();
+        var phoneNum =$('.mobilephone').val();
+        var email =$('.email').val();
+        var contactWay =$('.otherContacs').val();
+        var storeName =$('.storeName').val();
+        var phoneNum2 =$('.telephone').val();
+        var serviceIntroduction =$('.productService').val();
+        var id = sessionStorage.getItem('id');//最好的门店1
+        var  startTime = $('.starthour').val()+ ':'+$('.startmin').val();
+        var endTime = $('.endhour').val()+ ':'+$('.endmin').val();
+        var provinc = $('.province').val();
+        var city = $('.city').val();
+        var district = $('.district').val();
+        var address =$('.address').val();
+        var area = provinc +'##'+ city +'##'+  district;
+        var fd = new FormData();
+        up(filelist1,'doorPicture',fd);
+        up(filelist2,'classroomPicture',fd);
+        up(filelist3,'receptionPicture',fd);
+        up(filelist4,'licensePicture',fd);
+        var delDoorPicture = list1.join(';');
+        var delClassroomPicture = list2.join(';');
+        var delReceptionPicture = list3.join(';');
+        var delLicensePicture = list4.join(';');
+        console.log(delDoorPicture)
+        console.log(delClassroomPicture)
+        console.log(delReceptionPicture)
+        console.log(delLicensePicture)
+        fd.append('delDoorPicture',delDoorPicture);
+        fd.append('delClassroomPicture', delClassroomPicture);
+        fd.append('delReceptionPicture', delReceptionPicture);
+        fd.append('delLicensePicture', delLicensePicture);
+        fd.append('id', id);
+        fd.append('storeName', storeName);
+        fd.append('managerName',managerName);
+        fd.append('phoneNum2', phoneNum2);
+        fd.append('phoneNum', phoneNum);
+        fd.append('email', email);
+        fd.append('contactWay', contactWay);
+        fd.append('area', area);
+        fd.append('address', address);
+        fd.append('startTime', startTime);
+        fd.append('endTime', endTime);
+        fd.append('serviceIntroduction', serviceIntroduction);
+        //调用新增门店的函数
+        editStore(fd)
+    });
+    $('.back').click(function () {
+        window.history.go(-1);
+    })
+
+</script>
+</html>

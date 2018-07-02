@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/same.css">
+    <link rel="stylesheet" href="css/yearmonth.css">
+    <title>工作台</title>
+
+    <style type="text/css">
+
+        .wrap{
+            padding: 20px;
+        }
+        /*三个展示业绩框*/
+        .showdiv{
+            border: 1px solid #4b646f;
+            height: 145px;
+            border-radius: 5px;
+        }
+        .space{
+            height: 100%;
+        }
+        .row{
+            margin: 0;
+            padding: 0;
+        }
+        .showdiv_left{
+            width: 60px;
+            float: left;
+        }
+        .showdiv_left_month{
+            font-size: 14px;
+        }
+        .showdiv_right{
+            float: right;
+            font-size: 14px;
+            text-align: right;
+        }
+        .showdiv_left_img{
+            margin-top: 15px;
+
+        }
+        .showdiv_left_img img{
+            border-radius: 5px;
+        }
+        .showdiv_left_month{
+            margin-top: 20px;
+        }
+
+        p{
+            margin: 0;
+        }
+        .showdiv_right{
+            padding-top: 15px;
+        }
+        .sellfont,.allsellfont{
+            margin-bottom: 8px;
+        }
+        .showdiv_right_top{
+            margin-bottom: 15px;
+        }
+
+        /*根据城市搜索瑜伽馆第二个板块*/
+        .search {
+            font-size: 14px;
+            width: 100%;
+            height: 38px;
+            line-height: 38px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        .searchfont{
+            margin-right: 15px;
+        }
+        .city{
+            padding: 0;
+        }
+        .city div{
+            float:left ;
+            vertical-align: middle;
+        }
+        .searchstord input,.searchstord div{
+            float: left;
+            vertical-align: middle;
+        }
+        .city .sure{
+            background: #49aceb;
+            padding-left: 8px;
+            padding-right: 8px;
+            border-radius: 5px;
+            text-align: center;
+            color: #ffffff;
+            margin-left: 30px;
+            width: 90px;
+            cursor: pointer;
+        }
+        .searchstord input{
+            height: 38px;
+            border: 1px solid #8aa4af;
+            padding: 0;
+            padding-left: 15px;
+        }
+        .searchcity select{
+            height: 30px;
+        }
+
+        .searchstord div{
+            width: 80px;
+            background: #49aceb;
+            padding-left: 8px;
+            padding-right: 8px;
+            border-radius: 0 5px 5px 0;
+            text-align: center;
+            color: #ffffff;
+        }
+        .namemonth{
+            /*width: 100%;*/
+            height: 30px;
+            line-height: 30px;
+        }
+        .namemonth div{
+            float: left;
+            vertical-align: middle;
+        }
+        .namemonth input{
+            color:#49aceb;
+            vertical-align: middle;
+            height: 30px;
+            font-size: 14px;
+            border: none;
+
+        }
+        .testdiv{
+            margin-left: 10px;
+        }
+        .stordname{
+            display: inline-block;
+            font-size: 14px;
+            width: 150px;
+        }
+        #main{
+            width: 100%;
+        }
+
+        .namerow{
+            height: 30px;
+            margin-bottom: 50px;
+            line-height: 30px;
+            font-size: 18px;
+            color: #7abfef;
+            text-align: center;
+        }
+        .storeName{
+            border: 1px solid #7abfef;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .storeName1{
+            border: 1px solid #7abfef;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .storeName:hover{
+            background: #7abfef;
+            color: #ffffff;
+        }
+        .storeName1:hover{
+            background: #7abfef;
+            color: #ffffff;
+        }
+        .pagination>li>a{
+            margin-right: 15px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="left_side">
+    <iframe id="iframe2" src="leftNav.html" frameborder="0"></iframe>
+</div>
+<div class="right_side">
+    <div class="header"><span class="dods">多点运动助手后台管理系统</span><div class="imgdiv"><img class="head_photo" src="images/tou_xiang.png" ></div><span class="name">陈老师</span><span class="logout">退出</span></div>
+    <div class="wrap">
+        <div class="billdiv row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 sell row">
+                <div class="col-sm-9 col-md-9 col-lg-9 first showdiv">
+                    <div class="showdiv_left">
+                        <div class="showdiv_left_img"><img src="images/sell.png" alt=""></div>
+                        <div class="showdiv_left_month">2017年8月</div>
+                    </div>
+                    <div class="showdiv_right">
+                        <div class="showdiv_right_top">
+                            <p class="sellfont">商家本月销售额</p>
+                            <span class="sellnum">￥88888</span>
+                        </div>
+                        <div class="showdiv_right_bottom">
+                            <p class="allsellfont">商家累计销售额</p>
+                            <span class="allsellnum">￥9999999</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 space"></div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 achievement row">
+                <div class="col-sm-9 col-md-9 col-lg-9 second showdiv">
+                    <div class="showdiv_left">
+                        <div class="showdiv_left_img"><img src="images/sell.png" alt=""></div>
+                        <div class="showdiv_left_month">2017年8月</div>
+                    </div>
+                    <div class="showdiv_right">
+                        <div class="showdiv_right_top">
+                            <p class="sellfont">商家本月销售额</p>
+                            <span class="sellnum">￥88888</span>
+                        </div>
+                        <div class="showdiv_right_bottom">
+                            <p class="allsellfont">商家累计销售额</p>
+                            <span class="allsellnum">￥9999999</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 space"></div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 addbusiness row">
+                <div class="col-sm-9 col-md-9 col-lg-9 third showdiv">
+                    <div class="showdiv_left">
+                        <div class="showdiv_left_img"><img src="images/sell.png" alt=""></div>
+                        <div class="showdiv_left_month">2017年8月</div>
+                    </div>
+                    <div class="showdiv_right">
+                        <div class="showdiv_right_top">
+                            <p class="sellfont">商家本月销售额</p>
+                            <span class="sellnum">￥88888</span>
+                        </div>
+                        <div class="showdiv_right_bottom">
+                            <p class="allsellfont">商家累计销售额</p>
+                            <span class="allsellnum">￥9999999</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3 space"></div>
+            </div>
+        </div>
+        <div class="search row">
+            <div class="col-sm-8 col-md-8 col-lg-8 city">
+                <div class="searchfont">查询商家：</div>
+                <div data-toggle="distpicker" class="searchcity">
+                    <select style="margin-right:20px " data-province="广东省"></select>
+                    <select style="margin-right:20px " data-city="深圳市"></select>
+                    <select data-district="龙岗区"></select>
+                </div>
+                <div class="sure">确认筛选</div>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4 searchstord">
+                <input type="text" placeholder="门店名称">
+                <div class="searchstord_div">搜索</div>
+            </div>
+        </div>
+        <div class="baobiao">
+            <div class="namemonth">
+                <div class="stordname">诺姆瑜伽馆龙岗分馆</div>
+                <div class="testdiv"><input class="test" value="2018-09" style="width: 80px"/></div>
+            </div>
+            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+            <div class="row">
+                <div id="main" class="col-sm-12 col-md-12 col-lg-12" style="height:450px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--弹出选择门店-->
+    <div id="windownbg" style="width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;padding:20px;position: absolute;top: 0px;left: 0px">
+        <div id="windown-box" style="height: 510px;background: #ffffff;position: absolute;bottom: 20px;left: 20px;right: 20px;padding-top: 50px">
+            <div class="row namerow">
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName"></div></div>
+            </div>
+            <div class="row namerow">
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName"></div></div>
+            </div>
+            <div class="row namerow">
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName"></div></div>
+            </div>
+            <div class="row namerow">
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName"></div></div>
+            </div>
+            <nav aria-label="Page navigation"  style="text-align: center">
+                <ul class="pagination pagination-lg" >
+                    <li class="disabled">
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">6</a></li>
+                    <li><a href="#">7</a></li>
+                    <li><a href="#">8</a></li>
+                    <li><a href="#">9</a></li>
+                    <li><a href="#">10</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!--弹出选择门店-->
+    <div id="windownbg1" style="width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;padding:20px;position: absolute;top: 0px;left: 0px">
+        <div id="windown1-box" style="height: 510px;background: #ffffff;position: absolute;bottom: 20px;left: 20px;right: 20px;padding-top: 50px">
+            <div class="row namerow">
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName1"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName1"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName1"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName1"></div></div>
+            </div>
+            <div class="row namerow">
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName1"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName1"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName1"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName1"></div></div>
+            </div>
+            <div class="row namerow">
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName1"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName1"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName1"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName1"></div></div>
+            </div>
+            <div class="row namerow">
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName1"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName1"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName1"></div></div>
+                <div class="col-sm-3 col-md-3 col-lg-3"><div class="storeName1"></div></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/same.js"></script>
+<script type="text/javascript" src="js/distpicker.js"></script>
+<script type="text/javascript" src="js/yearmonth.js"></script>
+<script type="text/javascript" src="js/echarts.common.min.js"></script>
+<script>
+    var iframe2 = document.getElementById("iframe2");
+    iframeIsLoad(iframe2,function(){
+        // 父页面获取子页面iframe2的元素
+        var iframeDom = $("#index",iframe2.contentWindow.document);
+        iframeDom.addClass('active')
+    });
+    function chart() {
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var dataAxis = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31',];
+        var data1 = ['1','5','7','8','15','17','19','25','29','30','31','32','39','44','45','50','57','58','67','70','75','76','90','100','120','125','127','130',]
+        var data2 = ['1','3','5','7','9','11','13','18','19','25','31','32','34','39','40','46','50','52','53','55','60','64','68','69','75','76','77','80','89','90','96',]
+
+        option = {
+            color: ['#3398DB'],
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            legend: {
+                data:['本月新增会员数（人）','本月累计销售额（万）'],
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    data : dataAxis,
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                }
+            ],
+            yAxis : [
+                {
+                    type: 'value',
+                    name: '本月新增会员数（人）',
+                    position: 'left',
+                    axisLabel: {
+                        formatter: '{value} '
+                    }
+                },
+                {
+                    type: 'value',
+                    name: '本月累计销售额（万）',
+//                    min: 0,
+//                    max: 500,
+                    // position: 'right',
+                    axisLabel: {
+                        formatter: '{value} '
+                    }
+                },
+            ],
+            series : [
+                {
+                    name:'本月新增会员数（人）',
+                    type:'line',
+//                    barWidth: '20%',
+                    yAxis: 1,
+                    itemStyle:{normal:{color:'#d14a61'}},
+                    data:data1
+                },
+                {
+                    name:'本月累计销售额（万）',
+                    type:'line',
+                    yAxisIndex: 1,
+                    data:data2
+                }
+
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    }
+    chart();
+
+    $('#windownbg').hide();
+    var datas = 16
+    $('.sure').click(function () {
+        $('#windownbg').show();
+        for(var i = 0; i < datas; i++){
+            $('.storeName').eq(i).html('诺母瑜伽馆龙岗分馆' + i)
+        }
+    })
+    //点击选择商家和门店
+    $('.storeName').click(function () {
+        $('#windownbg').hide();
+        $('.stordname').html($(this).text())
+    })
+    //点击搜索门店
+    var data = 5;
+    $('#windownbg1').hide();
+    $('.searchstord_div').click(function () {
+        $('#windownbg1').show();
+        $('.Page').hide();
+        for(var i = 0; i < data; i++){
+//                $('.storeName').eq(i).html('万店瑜伽馆分馆' + i);
+            $('.storeName1').eq(i).html('万店瑜伽馆龙岗分馆' + i)
+        }
+        for(var j = 0; j < 16;j++){
+            if( $('.storeName1').eq(j).text() == ''){
+                $('.storeName1').eq(j).hide();
+            }
+        }
+    });
+    $('.storeName1').click(function () {
+        $('#windownbg1').hide();
+        $('.stordname').html($(this).text())
+    });
+    $('.logout').click(function () {
+        logout('login.html');
+    });
+</script>
+</html>

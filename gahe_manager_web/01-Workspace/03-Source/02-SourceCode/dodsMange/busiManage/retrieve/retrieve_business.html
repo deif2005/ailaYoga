@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/same.css">
+    <title>查询商家信息</title>
+    <style>
+        .col-sm-5,.col-md-5,.col-lg-5{
+            padding: 0px;
+        }
+        .wrap{
+            padding: 0 25px;
+        }
+
+        .line{
+            margin-bottom: 60px;
+        }
+        .line div{
+            float: left;
+        }
+        .line>:first-child{
+            width: 100px;
+        }
+        .line:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        /*右边部分样式*/
+        .photo:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .upimg{
+            width: 90px;
+            height: 80px;
+            position: relative;
+            z-index: 9999;
+            background: #c5c5c5;
+            text-align: center;
+            line-height: 80px;
+            font-size: 14px;
+            color: #ffffff;
+            font-family: 微软雅黑;
+            font-weight: normal;
+        }
+        .image{
+            float: left;
+            margin-right: 30px;
+        }
+        .tishi{
+            text-align: center;
+        }
+
+        .rightbottom input{
+            display: inline-block;
+            width: 40px;
+            height: 30px;
+            border: 1px solid #f0f0f0 ;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .searchcity div{
+            height: 32px;
+            line-height: 32px;
+            margin-right: 20px;
+        }
+        .footer{
+            height: 55px;
+            border-top: solid 1px #f0f0f0;
+            text-align: right;
+            padding-top: 15px;
+        }
+
+        .back{
+            background: #95A5A6;
+            border-radius: 5px;
+            width: 70px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            display: inline-block;
+            color: #ffffff;
+            margin-right: 20px;
+            padding-left: 20px;
+            background-image: url("../../images/powerbtn/fan_hui.png");
+            background-repeat: no-repeat;
+            background-position: 10px center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="left_side">
+    <iframe name="iframes" id="iframe2" src="../../leftNav.html" frameborder="0"></iframe>
+</div>
+<div class="right_side">
+    <div class="header"><span class="dods">多点运动助手后台管理系统</span><div class="imgdiv"><img class="head_photo" src="../../images/tou_xiang.png" ></div><span class="name">陈老师</span><span class="logout">退出</span></div>
+    <div class="wrap row">
+        <div class="left col-lg-5 col-md-5 col-sm-5">
+            <div class="line">
+                <div class="class1"><span style="color: #ff4138">*</span>老板姓名：</div>
+                <div class="inputinfo bossName"></div>
+            </div>
+            <div class="line">
+                <div class="class1"><span style="color: #ff4138">*</span>老板手机号：</div>
+                <div class="inputinfo mobilephone"></div>
+            </div>
+            <div class="line">
+                <div class="class1">老板邮箱：</div>
+                <div class="inputinfo email"></div>
+            </div>
+            <div class="line">
+                <div class="class1">其他联系方式：</div>
+                <div class="inputinfo otherContacs"></div>
+            </div>
+            <div class="line">
+                <div class="class1"><span style="color: #ff4138">*</span>商家名：</div>
+                <div class="inputinfo businessName"></div>
+            </div>
+            <div class="line">
+                <div class="class1">座机：</div>
+                <div class="inputinfo telephone"></div>
+            </div>
+            <div class="line">
+                <div class="class1"><span style="color: #ff4138">*</span>客户类别：</div>
+                <label style="margin-right: 20px"><input style="vertical-align: middle;margin: 0 5px 0 0" name="customer" type="radio" value="1"/>已签约客户</label><label style="margin-right: 20px"><input  style="vertical-align: middle;margin: 0 5px 0 0" name="customer" type="radio" value="2"/>待开发客户</label><label><input style="vertical-align: middle;margin: 0 5px 0 0" name="customer" type="radio" value="3"/>体验客户</label>
+            </div>
+        </div>
+        <div class="right col-lg-7 col-md-7 col-sm-7">
+            <div>证件照</div>
+            <div class="photo" style="border: 1px solid #f0f0f0;margin-bottom: 80px;padding: 10px 30px;">
+                <form id="uploadForm"  method="post" enctype="multipart/form-data">
+                    <div class="image" style="cursor: pointer"><img class="upimg Img1" onclick="javascript:showPhoto('prewatchbackground',urlList1,'getbox1','box1');"><div class="tishi">营业执照</div></div>
+                    <div class="image" style="cursor: pointer"><img class="upimg Img2" onclick="javascript:showPhoto('prewatchbackground2',urlList2,'getbox2','box2');"><div class="tishi">身份证正面</div></div>
+                    <div class="image" style="cursor: pointer"><img class="upimg Img3" onclick="javascript:showPhoto('prewatchbackground3',urlList3,'getbox3','box3');"><div class="tishi">身份证反面</div></div>
+                    <div class="image" style="cursor: pointer"><img class="upimg Img4" onclick="javascript:showPhoto('prewatchbackground4',urlList4,'getbox4','box4');"><div class="tishi">商家logo</div></div>
+                </form>
+
+
+            </div>
+            <div class="line">
+                <div class="class1">区域选择：</div>
+                <div>
+                    <div class="province" style="float: left"></div>
+                    <div class="city" style="float: left"></div>
+                    <div class="district" style="float: left"></div>
+                </div>
+            </div>
+            <div class="line">
+                <div class="class1">详细地址：</div>
+                <div class="address" style="width: 60%;height: 78px"></div>
+            </div>
+            <div class="rightbottom" style="border: 1px solid #f0f0f0;padding: 20px 30px">
+                <div>商家简介</div>
+                <div class="businessRemark" style="width: 70%;height: 130px;margin-top: 10px;border: 1px solid #f0f0f0"></div>
+            </div>
+        </div>
+    </div>
+    <div id="prewatchbackground" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div id="alert-box" class="closeBox" style="max-width: 800px;background: #ffffff; margin: 60px auto;">
+            <div style="height: 55px;line-height: 55px;padding: 0 30px;border-bottom: 1px solid #f0f0f0">相册相片</div>
+            <div class="box1" style=" padding: 20px;margin: 0 auto;font-size:0">
+
+            </div>
+
+        </div>
+    </div>
+    <div id="prewatchbackground2" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div id="alert-box2" class="closeBox" style="max-width: 800px;background: #ffffff; margin: 60px auto;">
+            <div style="height: 55px;line-height: 55px;padding: 0 30px;border-bottom: 1px solid #f0f0f0">相册相片</div>
+            <div class="box2" style=" padding: 20px;margin: 0 auto;font-size:0">
+
+            </div>
+
+        </div>
+    </div>
+    <div id="prewatchbackground3" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div id="alert-box3" class="closeBox" style="max-width: 800px;background: #ffffff; margin: 60px auto;">
+            <div style="height: 55px;line-height: 55px;padding: 0 30px;border-bottom: 1px solid #f0f0f0">相册相片</div>
+            <div class="box3" style=" padding: 20px;margin: 0 auto;font-size:0">
+
+            </div>
+
+        </div>
+    </div>
+    <div id="prewatchbackground4" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div id="alert-box4" class="closeBox" style="max-width: 800px;background: #ffffff; margin: 60px auto;">
+            <div style="height: 55px;line-height: 55px;padding: 0 30px;border-bottom: 1px solid #f0f0f0">相册相片</div>
+            <div class="box4" style=" padding: 20px;margin: 0 auto;font-size:0">
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer" style="margin-top: 100px">
+        <div class="back">返回</div>
+    </div>
+</div>
+</body>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/same.js"></script>
+<script type="text/javascript" src="../../js/distpicker.js"></script>
+<script type="text/javascript">
+    $('.logout').click(function () {
+        logout('../../login.html');
+    });
+    var iframe2 = document.getElementById("iframe2");
+
+    iframeIsLoad(iframe2,function(){
+
+//    iframe2.contentWindow.b();   // 打印出 我是子页面
+
+        // 父页面获取子页面iframe2的元素
+
+        var iframeDom = $("#business",iframe2.contentWindow.document);
+        var iframeDom2 = $("#businessul",iframe2.contentWindow.document);
+        var iframeDom3 = $("#busBasicSetting",iframe2.contentWindow.document);
+        iframeDom.addClass('active')
+        iframeDom3.addClass('active')
+        iframeDom2.addClass('menu-open')
+        iframeDom2.css({
+            'display':'block'
+        })
+//    iframeDom2.style.display="block";这是jq对象不能用js方法
+    });
+    //使客户类别不能选择
+    $("input:radio[name='customer']").attr("disabled","true");
+    if(sessionStorage.getItem('customTypeWatch')=='1'){
+        $("input:radio[name='customer'][value='1']").attr("checked","checked");
+    }else if(sessionStorage.getItem('customTypeWatch')=='2'){
+        $("input:radio[name='customer'][value='2']").attr("checked","checked");
+    }else {
+        $("input:radio[name='customer'][value='3']").attr("checked","checked");
+    }
+    $('.bossName').text(sessionStorage.getItem('ownerWatch'));
+    $('.mobilephone').text(sessionStorage.getItem('phoneNumBusiWatch'));
+    $('.telephone').text(sessionStorage.getItem('phoneNum2BusiWatch'));
+    $('.email').text(sessionStorage.getItem('emailBusiWatch'));
+    $('.otherContacs').text(sessionStorage.getItem('otherInformationWatch'));
+    $('.businessName').text(sessionStorage.getItem('businessNameWatch'));
+    $('.address').text(sessionStorage.getItem('addressBusiWatch'));
+    $('.businessRemark').text(sessionStorage.getItem('remarkWatch'));
+    var str5 =sessionStorage.getItem('areaBusiWatch');
+    var areaList = str5.split('##');
+    $('.province').text(areaList[0]);
+    $('.city').text(areaList[1]);
+    $('.district').text(areaList[2]);
+
+    var str1 =sessionStorage.getItem('BusinessPictureWatch');
+    var str2 =sessionStorage.getItem('IdcardPictureAWatch');
+    var str3 =sessionStorage.getItem('IdcardPictureBWatch');
+    var str4 =sessionStorage.getItem('LogoWatch');
+    var urlList1 = [];
+    var urlList2 = [];
+    var urlList3 = [];
+    var urlList4 = [];
+    if(str1 != ''){
+
+        urlList1.push(str1);
+        $('.Img1').attr('src',str1);
+    }else {
+        $('.Img1').attr('src','../../images/album.png');
+    }
+    if(str2 != ''){
+
+        urlList2.push(str2);
+        $('.Img2').attr('src',str2);
+    }else {
+        $('.Img2').attr('src','../../images/album.png');
+    }
+    if(str3 != ''){
+        urlList3.push(str3);
+        $('.Img3').attr('src',str3);
+    }else {
+        $('.Img3').attr('src','../../images/album.png');
+    }
+    if(str4 != ''){
+        urlList4.push(str4);
+        $('.Img4').attr('src',str4);
+    }else {
+        $('.Img4').attr('src','../../images/album.png');
+    }
+
+    function showPhoto(backObj,urlList,getUrl,photo) {
+        $("#"+backObj).show();
+        $('.img'+getUrl).remove();
+        for(var i=0;i<urlList.length;i++){
+            $('.'+photo).append(' <img class="img'+getUrl+'" title="点击图片删除" src="'+urlList[i]+'" alt="服务器图片">')
+
+            $('.img'+getUrl).css({
+                'width':'120px',
+                'height':'120px'
+            });
+        }
+
+        $('.closeBox').unbind("click");
+        $('.closeBox').click(function(e){
+            $('#'+backObj).show();
+            e.stopPropagation();//阻止冒泡
+        });
+        $("#"+backObj).unbind("click");
+        $("#"+backObj).click(function(e){
+            $('#'+backObj).hide();
+            e.stopPropagation();//阻止冒泡
+        });
+    }
+//    //点击关闭相册
+//        $('.closebum').click(function () {
+//            var albumbackground = document.getElementById("albumbackground");
+//            albumbackground.style.display ='none';
+//        })
+    //点击返回  返回商家列表页并刷新
+    $('.back').click(function () {
+        window.history.go(-1);
+    })
+
+</script>
+</html>

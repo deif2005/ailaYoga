@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/same.css">
+    <title>角色列表</title>
+    <style>
+        .header{
+            margin-bottom: 0px;
+        }
+        .title{
+            height: 100px;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 100px;
+            padding-left: 20px;
+            padding-right: 40px;
+        }
+
+        .leftcol{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .rightcol{
+            display: inline-block;
+            vertical-align: middle;
+            float: right;
+        }
+        .leftcol select{
+            /*border: none;*/
+            outline: none;
+        }
+        .titlename{
+            line-height: 14px;
+            margin-right: 50px;
+        }
+        .rightcol .RoleName{
+            height: 30px;
+            border: 1px solid #f0f0f0;
+            width: 210px;
+        }
+        .rightcol .addRoleBtn{
+            height: 30px;
+            width: 90px;
+            background: #49aceb;
+            display: inline-block;
+            color:#ffffff;
+            vertical-align: middle;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 5px;
+            background-image: url("../images/powerbtn/tian_jia.png");
+            background-repeat: no-repeat;
+            background-position: 4px center;
+            padding-left: 15px;
+            margin-left: 25px;
+            cursor: pointer;
+        }
+
+
+        .RoleList  li div{
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            vertical-align: middle;
+            margin-right: 30px;
+        }
+        .RoleList  li{
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .dataoperate:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .edit{
+            float: left;
+            margin-left:10px;
+            color: #49aceb;
+        }
+        .edit a{
+            color: #49aceb;
+        }
+        .delete{
+            float: left;
+            margin-left:10px;
+            color: #49aceb;
+        }
+
+
+        /*分页样式*/
+        button{
+            padding:5px;
+            margin:5px;
+            width: 35px;
+            height: 35px;
+            background: #ffffff;
+            border: 1px solid #f0f0f0;
+        }
+        .prev-btn,.next-btn{
+            padding:5px;
+            margin:5px;
+            width: 55px;
+            height: 35px;
+        }
+        .first-btn,.last-btn{
+            padding:5px;
+            margin:5px;
+            width: 45px;
+            height: 35px;
+        }
+        .active-nick{
+            /*color:red;*/
+            background: #49aceb;
+            color: #f0f0f0;
+        }
+        input{
+            width:50px;
+            text-align:center;
+        }
+        .btn-box-nick,.paexplain{
+            display: inline-block;
+        }
+        .paexplain{
+            margin-left: 30px;
+            color: #939393;
+        }
+        .btn-box-nick{
+            margin-left: 25%;
+            color: #49aceb;
+        }
+        .RoleList{
+            min-height: 600px;
+        }
+    </style>
+</head>
+<body>
+<div class="left_side">
+    <iframe name="iframes" id="iframe2" src="../leftNav.html" frameborder="0"></iframe>
+</div>
+<div class="right_side">
+    <div class="header"><span class="dods">多点运动助手后台管理系统</span><div class="imgdiv"><img class="head_photo" src="../images/tou_xiang.png" ></div><span class="name">陈老师</span><span class="logout">退出</span></div>
+    <div class="title">
+        <div class="leftcol">
+            <span class="titlename" style="font-weight: bold;font-size: 18px">角色录入</span>
+            <span>平台：</span>
+            <select id="platform" onChange="selectPlatform();" style="margin-right: 20px">
+                <option value="1">管理端</option>
+                <option value="2">商家端</option>
+            </select>
+            <span class="business">商家：</span>
+            <select  id="business" onChange="changeBusiness();">
+                <!--商家下拉列表-->
+            </select>
+        </div>
+        <div class="rightcol">
+
+            <span class="addRoleBtn">添加角色</span>
+        </div>
+    </div>
+
+    <ul class="RoleList">
+
+    </ul>
+    <div class="pagination-nick"></div>
+
+
+    <div id="deleteBackground" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div id="alert-box" style="max-width: 450px;background: #ffffff; margin: 300px auto;padding: 30px 0px 5px">
+            <img style="display: block;margin: 0px auto 40px" src="../images/jinggao.png" alt="警告">
+            <div style="color: #ff4138;font-size: 14px;text-align: center">是否确认删除，删除将不可恢复</div>
+            <div class="btnList"><div class="back deleteCancle">取消</div><div class="save deleteSure">确认</div></div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/same.js"></script>
+<script type="text/javascript">
+    $('.logout').click(function () {
+        logout('../login.html');
+    });
+    var iframe2 = document.getElementById("iframe2");
+
+    iframeIsLoad(iframe2,function(){
+
+//    iframe2.contentWindow.b();   // 打印出 我是子页面
+
+        // 父页面获取子页面iframe2的元素
+
+        var iframeDom = $("#powerManage",iframe2.contentWindow.document);
+        var iframeDom2 = $("#powerManageUl",iframe2.contentWindow.document);
+        var iframeDom3 = $("#role",iframe2.contentWindow.document);
+        iframeDom.addClass('active')
+        iframeDom3.addClass('active')
+        iframeDom2.addClass('menu-open')
+        iframeDom2.css({
+            'display':'block'
+        })
+    });
+    //获取弹出框  删除框
+
+    var deleteBackground = document.getElementById("deleteBackground");
+    function getAllBusi() {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/getAllBusinessInfo",
+            async: false,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'businessType':1
+            },
+            success: function (data) {
+
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code ==4003){
+                    alert('业务异常！');
+                }else if(data.result.code==0){
+                    $('#business option').remove();
+                    for(var i =0;i<data.datas.businessInfo.length;i++){
+                        $('#business').append('<option class="'+data.datas.businessInfo[i].businessSerialId+'" value="'+data.datas.businessInfo[i].id+'">'+data.datas.businessInfo[i].businessName+'</option>')
+                    }
+                    businessId = $("#business option:selected").val();
+                    pagination(getRoleList);
+                }
+            }
+        });
+    }
+    //根据下拉列表的选中状态页面进行不同的显示
+
+    function selectPlatform() {
+        platform=$("#platform option:selected").val();  //获取选中的项
+        if(platform == '2'){
+            $('#business').show();
+            $('.business').show();
+            getAllBusi();
+
+        }
+        if(platform == '1'){
+            $('#business').hide();
+            $('.business').hide();
+            businessId = null;
+            pagination(getRoleList);
+            $('.bsName1').text('平台名称');
+            $('.bsName2').text('平台');
+        }
+
+    }
+
+    function  changeBusiness() {
+        businessId = $("#business option:selected").val();
+        platform=$("#platform option:selected").val();
+        pagination(getRoleList)
+    }
+    /**
+     * 删除平台模块接口
+     * @param id 模块id
+     * @param platform
+     */
+    function deleteRole(id,platform) {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/Authority/v1/deleteUserRole",
+            async: true,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'id':id,
+                'platform':platform
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code ==0){
+                    alert('删除成功');
+                    deleteBackground.style.display ='none';
+                    pagination(getRoleList);
+                }else if(data.result.code ==4003){
+                    alert('业务异常！');
+                }
+
+            }
+        });
+    }
+
+
+
+
+
+
+    function getRoleList(page) {
+
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/Authority/v1/listUserRole",
+            async: false,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'businessId':businessId,
+                'platform':platform,
+                'page':page
+            },
+            success: function (data) {
+                console.log(data);
+                num = data.datas.count;
+                $('.RoleList li').remove();
+                var list =data.datas.userRoleList;
+                $('.RoleList').append('<li style="font-weight: bold"><div class="bsName1">商家名称</div><div>角色代码</div><div>角色名称</div><div class="dataoperate">操作</div></li>')
+                for(var i =0;i<list.length;i++){
+                    $('.RoleList').append('<li><div class="bsName2">'+$("#business option:selected").text()+'</div><div>'+list[i].roleCode+'</div><div>'+list[i].roleName+'</div><div class="dataoperate"><span class="edit RoleEdit" style="cursor: pointer">编辑</span><span class="delete RoleDelete" style="cursor: pointer">删除</span></div></li>')
+                    /**
+                     * sessionStorage.setItem('str1', str1);本地存储数据 编辑 录入角色的时候取值
+                     */
+                    $('.RoleEdit').click(function () {
+                        sessionStorage.setItem('platEdit', $("#platform option:selected").val());
+
+
+
+                        if($("#platform option:selected").val() =='2'){
+                            sessionStorage.setItem('busiIdEdit', $("#business option:selected").val());
+                            sessionStorage.setItem('busiNameEdit', $("#business option:selected").text());
+                        }else{
+                            sessionStorage.setItem('busiIdEdit', '');
+                            sessionStorage.setItem('busiNameEdit', '');
+                        }
+
+                        var editIndex = $(this).index('.RoleEdit');//获取当前点击编辑的按钮在所有编辑按钮的索引
+                        sessionStorage.setItem('idEdit', list[editIndex].id);
+                        sessionStorage.setItem('roleCodeEdit', list[editIndex].roleCode);
+                        sessionStorage.setItem('roleNameEdit', list[editIndex].roleName);
+                        sessionStorage.setItem('modelEdit', list[editIndex].modelSerialIdstr);
+                        sessionStorage.setItem('functionEdit', list[editIndex].functionSerialIdstr);
+                        sessionStorage.setItem('detailEdit', list[editIndex].detailSerialIdstr);
+                        window.location.href='editRole.html';
+                    })
+                    $('.RoleDelete').click(function () {
+                        //删除按钮点击 出现警示弹框
+                        deleteBackground.style.display ='block';
+                        var deleteIndex = $(this).index('.RoleDelete');//获取当前点击删除的按钮在所有删除按钮的索引
+                        $(".deleteSure").unbind("click");
+                        $(".deleteCancle").unbind("click");
+                        $('.deleteSure').click(function () {
+                            //点击删除框的确认 调用删除系统模块接口
+
+                            var id = list[deleteIndex].id;//获取当前点击的id
+                            deleteRole(id,platform);
+                        })
+                        $('.deleteCancle').click(function () {
+                            //点击删除框的取消  弹框消失 不做操作
+                            deleteBackground.style.display ='none';
+                        })
+                    })
+                }
+
+
+            }
+        });
+    }
+    
+        window.onload = function () {
+            platform=$("#platform option:selected").val();//下拉列表的显示内容
+            if(platform == '2'){
+                $('#business').show();
+                $('.business').show();
+                getAllBusi();
+
+            }
+            if(platform == '1'){
+                $('#business').hide();
+                $('.business').hide();
+                businessId = null;
+                pagination(getRoleList);
+                $('.bsName1').text('平台名称');
+                $('.bsName2').text('平台');
+            }
+
+
+        };
+    //新增角色按钮  缓存商家名称和id到  新增角色页面
+    $('.addRoleBtn').click(function () {
+        sessionStorage.setItem('plat', $("#platform option:selected").val());
+        if($("#platform option:selected").val() =='2'){
+            sessionStorage.setItem('busiId', $("#business option:selected").val());
+            sessionStorage.setItem('busiName', $("#business option:selected").text());
+        }else{
+            sessionStorage.setItem('busiId', '');
+            sessionStorage.setItem('busiName', '');
+        }
+        window.location.href='createRole.html';
+    })
+</script>
+</html>

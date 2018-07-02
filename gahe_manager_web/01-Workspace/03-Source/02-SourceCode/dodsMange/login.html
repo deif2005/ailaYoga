@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>登录</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: url("images/login/bei_jing.png") no-repeat;
+            background-size: 100% 100%;
+        }
+        .view{
+            width: 790px;
+            height: 510px;
+            background: #ffffff;
+            margin: 200px auto;
+        }
+        .left,.right{
+            float: left;
+        }
+        .left{
+            width: 356px;
+            height: 510px;
+            position: relative;
+            background: #f4b900;
+            background-image: url("images/login/logo.png") ,url("images/login/kou_hao.png") ;
+            background-repeat: no-repeat;
+            background-position: 90px 113px,40px 360px;
+        }
+        .yuan{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            position: absolute;
+            background: #f4b900;
+            top:50%;
+            left: 100%;
+            margin-top: -25px;
+            margin-left: -25px;
+        }
+        .right{
+            width: 434px;
+        }
+        h2{
+            margin: 100px auto 90px;
+            text-align: center;
+            color: #dddddd;
+            width: 178px;
+            height: 30px;
+            background: url("images/login/APP_ming.png");
+        }
+        .userphone,.password{
+            margin-left: 60px;
+            padding-left: 38px;
+            height: 36px;
+        }
+        .password{
+            margin-top: 24px;
+        }
+        .userphone input,.password input{
+            padding-left: 10px;
+            width: 240px;
+            height: 35px;
+            border: none;
+            border-bottom: 1px solid #939393;
+            font-size: 18px;
+            outline: none;
+            color: #474747;
+        }
+        .userphone{
+            background: url("images/login/shou_ji_hao.png") no-repeat;
+            background-position: 0px 7px;
+        }
+        .password{
+            background: url("images/login/mi_ma.png") no-repeat;
+            background-position: 0px 7px;
+        }
+        /*
+        兼容火狐谷歌ie浏览器的输入框默认提示文字
+        */
+        .right input::-webkit-input-placeholder{
+            color: #939393;
+        }
+        .right input::-moz-placeholder{
+            color: #939393;
+        }
+        .right input:-ms-input-placeholder{
+            color: #939393;
+        }
+        .login{
+            display: block;
+            width: 180px;
+            height: 30px;
+            border-radius: 10px;
+            margin: 40px auto;
+            background: #f4b900;
+            text-align: center;
+            line-height: 30px;
+            margin-bottom: 18px;
+            border: none;
+            color: #ffffff;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .forgotpw a{
+            color: #474747;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .forgotpw{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="view">
+        <div class="left">
+            <div class="yuan"></div>
+        </div>
+        <div class="right">
+            <h2></h2>
+            <div class="userphone"><input id="phone" type="text" placeholder="请输入手机号"><span class="phonetishi"></span></div>
+            <div class="password"><input type="password" placeholder="请输用户密码(6-20位)"><span class="pwdtishi"></span></div>
+            <input style="cursor: pointer" type="button" value="登录" class="login">
+            <div class="forgotpw"><a href="#">忘记密码</a></div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/same.js"></script>
+<script type="text/javascript" src="js/md5.js"></script>
+<script type="text/javascript">
+
+function checkUser() {
+    if($('#phone').val()=='admin'){
+        alert('admin用户不能修改密码！')
+    }else {
+        sessionStorage.setItem('userName',$('#phone').val());//缓存用户名到忘记密码页面
+        window.location.href='forgetPassword.html';
+    }
+
+}
+$(".forgotpw a").click(function () {
+    checkUser()
+})
+
+    /**
+     * 检验手机号格式
+     * @returns {boolean}
+     */
+    function checkPhone1(obj,phone){
+        if( phone == ''){
+            obj.html('号码不能为空');
+            obj.css({
+                'color':'red',
+                'fontSize':'12px'
+            })
+            return false;
+        }else if(phone == 'admin'){
+            obj.html('');
+            return true
+        }
+        else if(!(/^1[34578]\d{9}$/.test(phone))){
+            obj.html('号码格式有误');
+            obj.css({
+                'color':'red',
+                'fontSize':'12px'
+            });
+            return false;
+        }
+        else {
+            obj.html('');
+            return true;
+        }
+    }
+$('#phone').focus(function () {
+    $('.phonetishi').html('');
+})
+
+
+    /**
+     * 检查密码是否为6-20位
+     * @param newpsd
+     * @param obj
+     * @returns {boolean}
+     */
+    function checkpwd(newpsd,obj) {
+//        var reg = /^(?![\d]+$)(?![a-zA-Z]+$)(?![^\da-zA-Z]+$).{6,20}$/i;
+        var reg = /^([a-z0-9\.\@\!\#\$\%\^\&\*\(\)]){6,20}$/i;
+        if (!(reg.test(newpsd))) {
+            obj.html('6-20位字母数字组合');
+            obj.css({
+                'color':'red',
+                'fontSize':'12px'
+            });
+            return false;
+        } else {
+            obj.html('');
+            return true;
+        }
+    }
+
+
+    //按钮事件
+        $('.login').click(function () {
+            console.log(111)
+            if(checkPhone1($('.phonetishi'),$('#phone').val())){
+                var phoneNum = $('#phone').val();
+                var password =hex_md5($('#phone').val()+$('.password input').val());
+                $('.login').blur();
+                login(phoneNum,password);
+            }
+
+        });
+    //回车提交事件
+    $("body").keydown(function() {
+        if (event.keyCode == "13") {//keyCode=13是回车键
+            $('.login').click();
+        }
+    });
+
+    //登录函数
+    function login(phoneNum,password) {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/userLogin",
+            async: false,
+            dataType: "json",
+            data: {
+                'userId': phoneNum,
+                'password':password
+            },
+            success: function (data) {
+                if(data.result.code == 5003){
+                    alert('账号或密码错误！');
+                }else if(data.result.code == 4003){
+                    alert('业务异常');
+                }else if(data.result.code == 0){
+                    getToken('dodsport','dodsport');
+                    sessionStorage.setItem('manageName',data.datas.managerUser.employeeName);
+                    sessionStorage.setItem('manageId',data.datas.managerUser.id);
+                    sessionStorage.setItem('menuList',JSON.stringify(data.datas.platformMenusList));
+                    sessionStorage.setItem('isLogin',true);
+                    window.location.href = 'index.html';
+                }
+
+            }
+        });
+    }
+</script>
+</html>

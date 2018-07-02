@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/same.css">
+    <link rel="stylesheet" href="../css/layui.css">
+    <title>角色权限录入</title>
+    <style>
+        .header {
+            margin-bottom: 0;
+        }
+
+        .title {
+            height: 100px;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 100px;
+            padding-left: 20px;
+            padding-right: 40px;
+        }
+
+        .leftcol {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .roleinputname {
+            width: 115px;
+            height: 30px;
+        }
+
+        .rightcol {
+            display: inline-block;
+            vertical-align: middle;
+            float: right;
+        }
+
+        .leftcol select {
+            /*border: none;*/
+            outline: none;
+            text-align: center;
+        }
+
+        .titlename {
+            line-height: 14px;
+            margin-right: 50px;
+        }
+
+        .businessname {
+            margin-right: 50px;
+        }
+
+        #rolecode {
+            margin-right: 50px;
+        }
+
+        #firstUl{
+            min-height: 600px;
+        }
+        #firstUl{
+            width: 80%;
+            margin: 50px auto;
+            border: 1px solid #f0f0f0;
+            padding-top: 20px;
+        }
+        .firstLi div span {
+            margin-right: 40px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .secondLi input {
+            margin-right: 40px;
+        }
+        .layui-tree-branch,.layui-tree-leaf{
+            display: none;
+        }
+        #firstUl input{
+            width: 15px;
+            height: 15px;
+        }
+        .layui-tree li a cite {
+            margin-left: 50px;
+
+        }
+        .layui-tree li  .layui-show a cite{
+            margin-left: 70px;
+        }
+        .layui-tree li  .layui-show  li .layui-show a cite{
+            margin-left: 100px;
+        }
+        .layui-tree li, .layui-show li{
+            margin-bottom: 6px;
+        }
+        .layui-tree li{
+            background: #f0f0f0;
+            margin-bottom: 0
+        }
+        .layui-show{
+            background: #ffffff;
+        }
+        .layui-show li{
+            background: #ffffff;
+        }
+        .layui-show li:nth-child(1){
+            margin-top: 4px;
+        }
+        .layui-tree li ul {
+            padding-left: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="left_side">
+    <iframe name="iframes" id="iframe2" src="../leftNav.html" frameborder="0"></iframe>
+</div>
+<div class="right_side">
+    <div class="header"><span class="dods">多点运动助手后台管理系统</span>
+        <div class="imgdiv"><img class="head_photo" src="../images/tou_xiang.png"></div>
+        <span class="name">陈老师</span>
+        <span class="logout">退出</span>
+    </div>
+    <div class="title">
+        <div class="leftcol">
+            <span class="titlename" style="font-weight: bold;font-size: 18px">添加角色</span>
+            <span class="businessname">sss</span>
+            <span class="rolefont">角色代码:</span>
+            <select id="rolecode">
+                <option value="">ROLE_BOSS</option>
+                <option value="">ROLE_MANAGER</option>
+                <option value="">ROLE_TEACHER</option>
+                <option value="">ROLE_EMPLOYEE</option>
+            </select>
+            <span class="rolefont">角色名称:</span>
+            <input type="text"  class="roleinputname">
+
+        </div>
+
+    </div>
+    <div>
+        <ul id="firstUl">
+
+        </ul>
+        <div class="btnList"><div class="back">返回</div><div class="save">保存</div></div>
+    </div>
+
+</div>
+</body>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/same.js"></script>
+<script type="text/javascript" src="../js/layui.js"></script>
+<script type="text/javascript">
+
+    $('.logout').click(function () {
+        logout('../login.html');
+    });
+
+    var iframe2 = document.getElementById("iframe2");
+    iframeIsLoad(iframe2,function(){
+        // 父页面获取子页面iframe2的元素
+        var iframeDom = $("#powerManage",iframe2.contentWindow.document);
+        var iframeDom2 = $("#powerManageUl",iframe2.contentWindow.document);
+        var iframeDom3 = $("#role",iframe2.contentWindow.document);
+        iframeDom.addClass('active')
+        iframeDom3.addClass('active')
+        iframeDom2.addClass('menu-open')
+        iframeDom2.css({
+            'display':'block'
+        })
+    });
+      var platform = sessionStorage.getItem('plat');
+      if(platform =='1'){
+          $('.businessname').hide();
+      }else {
+          $('.businessname').show();
+          $('.businessname').text(sessionStorage.getItem('busiName'));
+      }
+    //对象去重
+    function objSame(arr1) {
+
+        var hash = {};
+        arr1 = arr1.reduce(function(item, next) {
+            hash[next.name] ? '' : hash[next.name] = true && item.push(next);
+            return item
+        }, [])
+
+
+            return arr1;
+    }
+    //遍历出细节列表
+    function getArr(arr1,arr2) {
+
+        for(var i =0;i<arr1.length;i++){
+            var  detailList = new Array();
+            for(var j =0;j<arr2.length;j++){
+                if(arr1[i].functionSerialId==arr2[j].functionSerialId){
+                    var detailObj = new Object();
+                    detailObj.name =arr2[j].detailName;
+                    detailObj.checked = false;
+                    detailObj.detailSerialId = arr2[j].detailSerialId;
+                    detailList.push(detailObj);
+
+
+                }
+            }
+            arr1[i].children =objSame(detailList);
+            arr = arr.concat(arr1[i].children)
+
+        }
+    }
+
+    function listFunctionDetail(platform) {
+
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/Authority/v1/listFunctionDetail",
+            async: true,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'platform':platform
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code ==4003){
+                    alert('业务异常！');
+                }else if(data.result.code==0){
+                    var list = data.datas.functionDetailList;
+                    var modelList1 = new Array();
+                    var modelList2 = new Array();
+
+                    var functionList2 = new Array();
+                    var functionList3 = new Array();
+                    arr =[];
+
+                    //遍历出模块列表
+                    for(var i=0;i<list.length;i++){
+                        var modelObj = new Object();
+                        modelObj.name =list[i].modelName;
+                        modelObj.checked = false;
+                        modelObj.modelSerialId = list[i].modelSerialId;
+                        modelObj.x = list[i].modelSerialId;
+                        modelList1.push(modelObj);
+                    }
+
+                    modelList2 = objSame(modelList1);//所有不重复的模块列表
+
+                    //遍历出模块下面功能列表
+                    for(var m=0;m< modelList2.length;m++){
+                        var functionList1 = new Array();
+                        for(var n=0;n<list.length;n++){
+                            if(modelList2[m].modelSerialId==list[n].modelSerialId){
+                                var functionObj = new Object();
+                                functionObj.name =list[n].functionName;
+                                functionObj.checked = false;
+                                functionObj.functionSerialId = list[n].functionSerialId;
+                                functionObj.x =list[n].functionSerialId;
+                                functionList1.push(functionObj);
+
+                            }
+                        }
+                        modelList2[m].children =objSame(functionList1);
+                        functionList3 = functionList3.concat(modelList2[m].children)
+
+                        //遍历出细节列表
+                        getArr(modelList2[m].children,list)
+                    }
+
+                    layui.use('tree', function () {
+
+                        var tree = layui.tree({
+                            elem: '#firstUl', //指定元素，生成的树放到哪个元素上
+                            check: 'checkbox', //勾选风格
+                            skin: 'as', //设定皮肤
+                            drag: true,//点击每一项时是否生成提示信息
+                            checkboxName: 'aa[]',//复选框的name属性值
+                            checkboxStyle: "",//设置复选框的样式，必须为字符串，css样式怎么写就怎么写
+                            click: function (item) { //点击节点回调
+                                console.log(item)
+                            },
+                            onchange: function () {//当当前input发生变化后所执行的回调
+
+//                          console.log($(this).is(':checked'))
+                            },
+                            nodes:  modelList2
+                        });
+                        $('#firstUl > li >input').addClass('firstPut')
+                        $('#firstUl > li >ul>li>input').addClass('secondPut')
+                        $('#firstUl > li >ul>li>ul>li>input').addClass('thirdPut')
+
+
+
+                        $('.save').click(function () {
+                            var modelstr = [];
+                            var funstr = [];
+                            var detailstr =[];
+                            for(var i=0;i<modelList2.length;i++){
+
+                                if($('.firstPut').eq(i).is(':checked') == true){
+                                    modelstr.push(modelList2[i].modelSerialId)
+                                }
+                            }
+                            for(var i=0;i<functionList3.length;i++){
+                                if($('.secondPut').eq(i).is(':checked')){
+                                    funstr.push(functionList3[i].functionSerialId)
+                                }
+                            }
+                            for(var i=0;i<arr.length;i++){
+                                if($('.thirdPut').eq(i).is(':checked')){
+                                    detailstr.push(arr[i].detailSerialId)
+                                }
+                            }
+                            var modelSerialIdstr = modelstr.join(',');//将模块编号数组转换成，号隔开的字符串
+                            var functionSerialIdstr = funstr.join(',');//将功能编号数组转换成，号隔开的字符串
+                            var detailSerialIdstr = detailstr.join(',');//将细节编号数组转换成，号隔开的字符串
+                            var businessId =sessionStorage.getItem('busiId');
+                            var roleName = $('.roleinputname').val();
+                            var roleCode = $("#rolecode option:selected").text();
+                            console.log(modelSerialIdstr);
+                            console.log(functionSerialIdstr);
+                            console.log(detailSerialIdstr);
+                            addUserRole(roleName,roleCode,businessId,modelSerialIdstr,functionSerialIdstr,detailSerialIdstr,platform);
+                        })
+                    });
+                }
+
+            }
+        });
+    }
+    listFunctionDetail(sessionStorage.getItem('plat'))
+
+
+
+
+        //ajax从服务器获取所有模块列表数据
+        function addUserRole(roleName,roleCode,businessId,modelSerialIdstr,functionSerialIdstr,detailSerialIdstr,platform) {
+            $.ajax({
+                xhrFields: {
+                    withCredentials: true
+                },
+                type: "POST",
+                url: defiUrl+"/api/Authority/v1/addUserRole",
+                async: true,
+                dataType: "json",
+                data: {
+                    'token':sessionStorage.getItem('token'),
+                    'roleName':roleName,
+                    'roleCode':roleCode,
+                    'businessId':businessId,
+                    'modelSerialIdstr':modelSerialIdstr,
+                    'functionSerialIdstr':functionSerialIdstr,
+                    'detailSerialIdstr':detailSerialIdstr,
+                    'platform': platform
+                },
+                success: function (data) {
+                    if(data.result.code==4001){
+                        alert('登录信息已过期，请重新登录！');
+                        window.location.href='../login.html';
+                    }else if(data.result.code==4004){
+                        alert('您太久没操作了，请重新登录！');
+                        window.location.href='../login.html';
+                    }else if(data.result.code ==0){
+                        alert('录入成功');
+                        location.reload();
+                    }else if(data.result.code ==4003) {
+                        alert('业务异常！');
+                    }
+
+                }
+            });
+        }
+    $('.back').click(function () {
+        window.history.go(-1);
+    })
+
+</script>
+</html>

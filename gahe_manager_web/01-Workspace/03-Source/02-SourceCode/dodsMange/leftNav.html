@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="http://www.jq22.com/jquery/font-awesome.4.6.0.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="css/sidebar-menu.css">
+    <title>Title</title>
+    <style>
+        /*谷歌滚动条 start*/
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 4px;
+            background-color: #F5F5F5;
+        }
+        /*定义滚动条轨道 内阴影+圆角*/
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            background: #fff ;
+        }
+        /*定义滑块 内阴影+圆角*/
+        ::-webkit-scrollbar-thumb {
+            border-radius: 3px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color:rgba(7, 170, 247, 0.7);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            border-radius: 3px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color:rgba(7, 170, 247, 1);
+        }
+
+        @-moz-document url-prefix(http://),url-prefix(https://) {
+            /* 滚动条颜色 */
+            scrollbar {
+                -moz-appearance: none !important;
+                background: rgb(0,255,0) !important;
+            }
+            /* 滚动条按钮颜色 */
+            thumb,scrollbarbutton {
+                -moz-appearance: none !important;
+                background-color: rgb(0,0,255) !important;
+            }
+            /* 鼠标悬停时按钮颜色 */
+
+            thumb:hover,scrollbarbutton:hover {
+                -moz-appearance: none !important;
+                background-color: rgb(255,0,0) !important;
+            }
+            /* 隐藏上下箭头 */
+            scrollbarbutton {
+                display: none !important;
+            }
+            /* 纵向滚动条宽度 */
+            scrollbar[orient="vertical"] {
+                min-width: 5px !important;
+            }
+        }
+
+        html,body{
+             height: 100%;
+             overflow-y: auto;
+             overflow-x: hidden;
+         }
+        .main-sidebar{
+            height: 100%;
+            background-color: #304152;
+        }
+        .sidebar-menu{
+            background-color: #304152;
+        }
+         .sidebar-menu img{
+             /*width: 25px;*/
+             /*height: 20px;*/
+         }
+        .sidebar-menu > li > a{
+            color: #ffffff;
+            font-size: 14px;
+        }
+        .sidebar-menu li{
+            margin-bottom: 20px;
+        }
+        .sidebar-menu > li > .treeview-menu{
+            background-color: #304152;
+        }
+        .sidebar-menu .treeview-menu > li > a{
+            color: #ffffff;
+            font-size: 14px;
+            padding-left: 45px;
+            margin-top: 20px;
+        }
+        /*.icon{*/
+            /*margin-right: 20px;*/
+        /*}*/
+        .logo{
+            width: 200px;
+            height: 180px;
+            background-image: url("images/logo.png");
+            background-repeat: no-repeat;
+        }
+        .treeview-menu span{
+            padding-left: 10px;
+        }
+         .treeview-menu .active{
+             border-left: 3px solid #3c8dbc;
+             padding-left: 7px;
+         }
+    </style>
+</head>
+<body>
+<aside class="main-sidebar">
+    <div class="logo"></div>
+    <section  class="sidebar">
+        <ul class="sidebar-menu">
+            <!--<li class="header">主导航</li>-->
+            <li id="index" class="treeview" ishow="false">
+                <a href="index.html" target="_parent">
+                    <img style="margin-right: 20px" class="icon" src="images/icon/gong_zuo_tai.png" alt=""> <span class="firstMenu">工作台</span>
+                </a>
+
+            </li>
+            <li id="business" class="treeview" ishow="false">
+                <a href="#">
+                    <img style="margin-right: 16px" class="icon" src="images/icon/shang_jia_guan_li.png" alt="">
+                    <span class="firstMenu">商家管理</span>
+                    <i class="fa fa-angle-right pull-right"></i>
+                </a>
+                <ul id="businessul" class="treeview-menu">
+                    <li ishow="false"><a href="busiManage/businessList.html" target="_parent"><span id="busBasicSetting" class="secondMenu">商家基础信息设置</span></a></li>
+                    <li ishow="false"><a href="busiManage/memberManage.html" target="_parent"> <span id="busMember" class="secondMenu">商家会员管理</span></a></li>
+                </ul>
+            </li>
+            <li class="treeview" id="message" ishow="false">
+                <a href="message.html" target="_parent">
+                    <img class="icon" src="images/icon/xiao_xi_guan_li.png" alt=""><span class="firstMenu">消息管理</span>
+                </a>
+            </li>
+            <li class="treeview" ishow="false">
+                <a href="#">
+                    <img class="icon" src="images/icon/ye_wu_guan_li.png" alt="">
+                    <span class="firstMenu">业务管理</span>
+                    <i class="fa fa-angle-right pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+
+                </ul>
+            </li>
+            <li class="treeview" id="customer" ishow="false">
+                <a href="#">
+                    <img style="margin-right: 20px" class="icon" src="images/icon/hui_yuan_guan_li.png" alt=""> <span class="firstMenu">客户管理</span>
+                    <i class="fa fa-angle-right pull-right"></i>
+                </a>
+                <ul class="treeview-menu" id="customerUl">
+                    <li ishow="false"><a href="customerManage/customerBasic.html" target="_parent"><span id="customerBasic" class="secondMenu">客户基础信息</span></a></li>
+                    <li ishow="false"><a href="customerManage/employeeBasic.html" target="_parent"><span id="empBasic" class="secondMenu">员工基础信息</span></a></li>
+                </ul>
+            </li>
+            <li class="treeview" ishow="false">
+                <a href="#">
+                    <img class="icon" src="images/icon/xi_tong_guan_li.png" alt=""> <span class="firstMenu">系统管理</span>
+                    <i class="fa fa-angle-right pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+
+                </ul>
+            </li>
+            <li class="treeview" id="powerManage" ishow="false">
+                <a href="#">
+                    <img style="margin-right: 22px" class="icon" src="images/icon/hou_tai_quan_xian_guan_li.png" alt=""><span class="firstMenu">权限管理</span>
+                    <i class="fa fa-angle-right pull-right"></i>
+                </a>
+                <ul class="treeview-menu" id="powerManageUl">
+                    <li ishow="false"><a href="powerSetting/createModel.html" target="_parent"><span id="model" class="secondMenu">模块录入</span></a></li>
+                    <li ishow="false"><a href="powerSetting/createFunction.html" target="_parent"> <span id="function" class="secondMenu">功能录入</span></a></li>
+                    <li ishow="false"><a href="powerSetting/createDetail.html" target="_parent"><span id="detail"  class="secondMenu">细节录入</span></a></li>
+                    <li ishow="false"><a href="powerSetting/listRole.html" target="_parent"><span id="role"  class="secondMenu">角色录入</span></a></li>
+                </ul>
+            </li>
+            <li class="treeview" id="basicSetting" ishow="false">
+                <a href="#">
+                    <img style="margin-right: 21px" class="icon" src="images/icon/ji_chu_xin_xi_she_zhi.png" alt=""><span class="firstMenu">基础信息设置</span>
+                    <i class="fa fa-angle-right pull-right"></i>
+                </a>
+                <ul class="treeview-menu" id="basicSettingUl">
+                    <li ishow="false"><a href="basicSetting/retrueve/departmentList.html" target="_parent"><span id="department" class="secondMenu">部门模块录入</span></a></li>
+                    <li ishow="false"><a href="basicSetting/retrueve/positionList.html" target="_parent"> <span id="position" class="secondMenu">岗位模块录入</span></a></li>
+                    <li ishow="false"><a href="basicSetting/retrueve/courseTypeList.html" target="_parent"><span id="CourseType" class="secondMenu">商家课程分类录入</span></a></li>
+                    <li ishow="false"><a href="basicSetting/retrueve/claassroomList.html" target="_parent"><span id="classroom" class="secondMenu">门店教室录入</span></a></li>
+                    <li ishow="false"><a href="busiManage/businessBasicSetting.html" target="_parent"><span id="busBasic" class="secondMenu">商家基础设置</span></a></li>
+                    <li ishow="false"><a href="basicSetting/retrueve/manageEmployeeList.html" target="_parent"><span id="manageEmp" class="secondMenu">管理端员工录入</span></a></li>
+                    <!--<li><a href="basicSetting/retrueve/paymentList.html" target="_parent"><span id="payment">薪酬模块录入</span></a></li>-->
+                </ul>
+            </li>
+
+
+
+
+            <!--<li class="treeview">-->
+                <!--<a href="#">-->
+                    <!--<img class="icon" src="images/icon/gong_zuo_tai.png" alt=""> <span>多级</span>-->
+                    <!--<i class="fa fa-angle-right pull-right"></i>-->
+                <!--</a>-->
+                <!--<ul class="treeview-menu">-->
+                    <!--<li><a href="#"><i class="fa fa-circle-o"></i> 一级</a></li>-->
+                    <!--<li>-->
+                        <!--<a href="#"><i class="fa fa-circle-o"></i> 一级 <i class="fa fa-angle-right pull-right"></i></a>-->
+                        <!--<ul class="treeview-menu">-->
+                            <!--<li><a href="#"><i class="fa fa-circle-o"></i> 二级</a></li>-->
+                            <!--<li>-->
+                                <!--<a href="#"><i class="fa fa-circle-o"></i> 二级 <i class="fa fa-angle-right pull-right"></i></a>-->
+                                <!--<ul class="treeview-menu">-->
+                                    <!--<li><a href="#"><i class="fa fa-circle-o"></i> 三级</a></li>-->
+                                    <!--<li><a href="#"><i class="fa fa-circle-o"></i> 三级</a></li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+                    <!--<li><a href="#"><i class="fa fa-circle-o"></i> 一级</a></li>-->
+                <!--</ul>-->
+            <!--</li>-->
+
+
+        </ul>
+    </section>
+</aside>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/sidebar-menu.js"></script>
+<script type="text/javascript">
+
+var sessionList = JSON.parse(sessionStorage.getItem('menuList'));
+console.log(sessionList)
+    function isSame(arr) {
+        var res = [];
+        var json = {};
+        for (var i = 0; i < arr.length; i++) {
+            if (!json[arr[i]]) {
+                res.push(arr[i]);
+                json[arr[i]] = 1;
+            }
+        }
+        return res;
+    }
+
+    var  modelList =[];
+
+        for (var i = 0; i < sessionList.length; i++) {
+            modelList.push(sessionList[i].modelName)
+        }
+
+    //模块名去重
+    modelList = isSame(modelList)
+    console.log(modelList);
+
+//遍历出模块下面的功能列表
+var functionList = [];//功能数组
+        for(var i =0;i<modelList.length;i++){
+
+            for(var j=0;j<sessionList.length;j++){
+                if(modelList[i]==sessionList[j].modelName){
+                    functionList.push(sessionList[j].functionName)
+                }
+
+            }
+
+        }
+for(var i=0;i<$('.firstMenu').length;i++){
+    if($.inArray($('.firstMenu').eq(i).text(),modelList)!=-1){
+        $('.treeview').eq(i).attr('ishow','true');
+    }else {
+        $('.treeview').eq(i).attr('ishow','false')
+    }
+}
+
+for(var i=0;i<$('.secondMenu').length;i++){
+    if($.inArray($('.secondMenu').eq(i).text(),functionList)!=-1){
+        $('.treeview-menu li').eq(i).attr('ishow','true');
+    }else {
+        $('.treeview-menu li').eq(i).attr('ishow','false');
+    }
+}
+console.log(functionList)
+for(var i=0;i<$('.treeview').length;i++){
+    if( $('.treeview').eq(i).attr('ishow')=='true'){
+        $('.treeview').eq(i).show();
+        for(var j=0;j<$('.treeview-menu > li').length;j++){
+            if( $('.treeview-menu > li').eq(j).attr('ishow')=='true'){
+                $('.treeview-menu > li').eq(j).show();
+            }else {
+                $('.treeview-menu > li').eq(j).hide();
+            }
+        }
+    }else {
+        $('.treeview').eq(i).hide();
+    }
+    $('#index').show();
+}
+
+//共用菜单的启用
+    $.sidebarMenu($('.sidebar-menu'));
+
+    $('.treeview-menu a span').click(function () {
+        $('.treeview-menu a span').removeClass('active');
+        $(this).addClass('active');
+    });
+</script>
+</html>

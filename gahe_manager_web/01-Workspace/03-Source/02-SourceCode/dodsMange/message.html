@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/same.css">
+    <title>消息管理</title>
+
+    <style type="text/css">
+
+        .left{
+            font-size: 18px;
+        }
+        /*.right{*/
+            /*height: 800px;*/
+            /*!*background: green;*!*/
+        /*}*/
+        .record{
+            border: 1px solid #939393;
+        }
+        .row{
+            padding: 0 35px;
+            margin: 0px;
+        }
+        .col-sm-6 ,.col-md-6 ,.col-lg-6{
+            padding: 0px;
+        }
+        label{
+            font-weight: normal;
+            display: inline-block;
+            height: 90px;
+            line-height: 90px;
+        }
+        .saved{
+            height: 50px;
+            line-height: 50px;
+        }
+        .choose{
+            height: 60px;
+            line-height: 60px;
+            padding-left: 20px;
+            border-bottom: 1px solid #939393;
+        }
+        .record label{
+            margin-left: 35px;
+        }
+        .record input{
+            margin-right: 25px;
+        }
+        .list{
+            border-bottom: 1px solid #939393;
+        }
+        nav{
+            margin-left: 35px;
+            text-align: center;
+        }
+        .pagination>li>a{
+            margin-right: 10px;
+        }
+        .tishi{
+            font-size: 14px;
+            color: #939393;
+            text-align: center;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+        .h1{
+            width: 100%;
+            margin-bottom: 25px;
+            height: 26px;
+            line-height: 26px;
+            font-size: 14px;
+            margin-top: 0;
+        }
+        .h2{
+            width: 100%;
+            margin-bottom: 20px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            margin-top: 0px;
+        }
+        .textarea{
+            width: 100%;
+            height: 180px;
+            margin-bottom: 10px;
+        }
+        .roat{
+            height: 50px;
+            line-height: 50px;
+            font-size: 18px;
+        }
+        .edit{
+            height: 30px;
+            line-height: 30px;
+            font-size: 18px;
+
+        }
+        .butn{
+            width: 90px;
+            height: 38px;
+            border: 0;
+            padding: 0;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 18px;
+            text-align: right;
+            padding: 0 10px;
+
+        }
+        .delete{
+            background: #ff4138;
+            background-image: url("images/btn/delete.png");
+            background-repeat: no-repeat;
+            background-position: 10px 8px;
+        }
+        .save{
+            background: #49aceb;
+            float: right;
+            margin-right: 30px;
+            background-image: url("images/btn/delete.png");
+            background-repeat: no-repeat;
+            background-position: 10px 8px;
+        }
+        .pesend{
+            background: #00b6c0;
+            float: right;
+            background-image: url("images/btn/delete.png");
+            background-repeat: no-repeat;
+            background-position: 10px 8px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="left_side">
+    <iframe name="iframes" id="iframe2" src="leftNav.html" frameborder="0"></iframe>
+</div>
+<div class="right_side">
+    <div class="header"><span class="dods">多点运动助手后台管理系统</span><div class="imgdiv"><img class="head_photo" src="images/tou_xiang.png" ></div><span class="name">陈老师</span></div>
+    <div class="row">
+        <div class="left col-sm-6 col-md-6 col-lg-6">
+            <div class="saved">已保存</div>
+            <form action="" method="get" class="record">
+                <div class="choose">选择</div>
+                <div class="list"><label><input name="news" type="radio" value="" /></label><br/></div>
+                <div class="list"><label><input name="news" type="radio" value="" /></label><br/></div>
+                <div class="list"><label><input name="news" type="radio" value="" /></label><br/></div>
+                <div class="list"><label><input name="news" type="radio" value="" /></label><br/></div>
+                <div class="list"><label><input name="news" type="radio" value="" /></label><br/></div>
+                <div class="list"><label><input name="news" type="radio" value="" /></label><br/></div>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">6</a></li>
+                        <li><a href="#">7</a></li>
+                        <li><a href="#">8</a></li>
+                        <li><a href="#">9</a></li>
+                        <li><a href="#">10</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="tishi">当前显示1到6条，总共300条，(总计50页)</div>
+            </form>
+        </div>
+        <div class="right col-sm-6 col-md-6 col-lg-6 row">
+            <div class="space col-sm-2 col-md-2 col-lg-2"></div>
+            <div class="send col-sm-10 col-md-10 col-lg-10">
+                <div class="roat">商家端系统消息</div>
+                <div class="edit">编辑消息</div>
+                <input type="text" class="h1" placeholder="标题">
+                <textarea class="textarea" placeholder="正文"></textarea>
+                <input type="text" class="h2" placeholder="标签（仅供系统级参数填写）">
+                <div class="btntype">
+                    <button class="butn delete">删除</button>
+                    <button class="butn pesend">发送</button>
+                    <button class="butn save">保存</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/same.js"></script>
+<script type="text/javascript">
+    var iframe2 = document.getElementById("iframe2");
+    iframeIsLoad(iframe2,function(){
+        // 父页面获取子页面iframe2的元素
+        var iframeDom = $("#message",iframe2.contentWindow.document);
+        iframeDom.addClass('active')
+    });
+    //模拟分页的数据
+    var data = [
+        {'title':'【活动】 九月二日，诺姆瑜伽联盟，万人瑜伽大赛开始啦','content':' “万店瑜伽”――谷歌杯中国大学生公益创意大赛是由谷歌（Google）发起，通过征集公益创意、资助获奖项目的形式，以促进社会公益事业发展、倡导大学生积极投身社会公益为目的的比赛。大赛将以大学生为主体，通过对他们公益创意的评选、优化、引导和资助，共同实现“创意改善社会，公益温暖中国”的主旨。'},
+        {'title':'【活动】 九月三日，诺姆瑜伽联盟，万人瑜伽大赛开始啦','content':' “诺母瑜伽”――谷歌杯中国大学生公益创意大赛是由谷歌（Google）发起，通过征集公益创意、资助获奖项目的形式，以促进社会公益事业发展、倡导大学生积极投身社会公益为目的的比赛。大赛将以大学生为主体，通过对他们公益创意的评选、优化、引导和资助，共同实现“创意改善社会，公益温暖中国”的主旨。'},
+        {'title':'【活动】 九月四日，诺姆瑜伽联盟，万人瑜伽大赛开始啦','content':' “联盟瑜伽”――谷歌杯中国大学生公益创意大赛是由谷歌（Google）发起，通过征集公益创意、资助获奖项目的形式，以促进社会公益事业发展、倡导大学生积极投身社会公益为目的的比赛。大赛将以大学生为主体，通过对他们公益创意的评选、优化、引导和资助，共同实现“创意改善社会，公益温暖中国”的主旨。'},
+        {'title':'【活动】 九月五日，诺姆瑜伽联盟，万人瑜伽大赛开始啦','content':' “万科大厦”――谷歌杯中国大学生公益创意大赛是由谷歌（Google）发起，通过征集公益创意、资助获奖项目的形式，以促进社会公益事业发展、倡导大学生积极投身社会公益为目的的比赛。大赛将以大学生为主体，通过对他们公益创意的评选、优化、引导和资助，共同实现“创意改善社会，公益温暖中国”的主旨。'},
+        {'title':'【活动】 九月六日，诺姆瑜伽联盟，万人瑜伽大赛开始啦','content':' “万达广场”――谷歌杯中国大学生公益创意大赛是由谷歌（Google）发起，通过征集公益创意、资助获奖项目的形式，以促进社会公益事业发展、倡导大学生积极投身社会公益为目的的比赛。大赛将以大学生为主体，通过对他们公益创意的评选、优化、引导和资助，共同实现“创意改善社会，公益温暖中国”的主旨。'},
+        {'title':'【活动】 九月七日，诺姆瑜伽联盟，万人瑜伽大赛开始啦','content':' “深圳地铁”――谷歌杯中国大学生公益创意大赛是由谷歌（Google）发起，通过征集公益创意、资助获奖项目的形式，以促进社会公益事业发展、倡导大学生积极投身社会公益为目的的比赛。大赛将以大学生为主体，通过对他们公益创意的评选、优化、引导和资助，共同实现“创意改善社会，公益温暖中国”的主旨。'}
+    ]
+    //将数据写入分页列表
+    for (var i = 0; i < 6; i++){
+        $('label').eq(i).html ( $('label').eq(i).html () + data[i].title);
+    }
+    //点击选择信息列表 右边显示对应的标题和详情信息
+    $('input[name="news"]').click(function () {
+        var index = $(this).index('input');
+        $('.h1').val(data[index].title);
+        $('textarea').val(data[index].content);
+    })
+</script>
+</html>

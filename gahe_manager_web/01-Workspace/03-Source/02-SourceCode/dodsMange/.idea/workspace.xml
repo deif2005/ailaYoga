@@ -1,0 +1,1027 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/powerSetting/createModel.html" line="119" />
+    <bookmark url="file://$PROJECT_DIR$/customerManage/employeeBasic.html" line="292" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" readonly="true" id="9d64f9af-7084-420b-84bf-3daeb9c8d7d7" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="dodsManage" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="same.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/same.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="48" />
+              <folding>
+                <marker date="1512121045894" expanded="true" signature="784:794" ph="..." />
+                <marker date="1512121045894" expanded="true" signature="958:968" ph="..." />
+                <marker date="1512121045894" expanded="true" signature="2581:2585" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="businessList.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/busiManage/businessList.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3855">
+              <caret line="455" column="23" lean-forward="true" selection-start-line="455" selection-start-column="23" selection-end-line="455" selection-end-column="23" />
+              <folding>
+                <marker date="1512100293420" expanded="true" signature="10801:10816" ph="..." />
+                <marker date="1512100293420" expanded="true" signature="10853:10868" ph="..." />
+                <marker date="1512100293420" expanded="true" signature="10906:10921" ph="..." />
+                <marker date="1512100293420" expanded="true" signature="10960:10975" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="31">
+              <caret line="231" column="37" lean-forward="true" selection-start-line="231" selection-start-column="37" selection-end-line="231" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="resetPassword.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resetPassword.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="76">
+              <caret line="164" column="0" lean-forward="true" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="memberManage.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/busiManage/memberManage.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="71">
+              <caret line="1100" column="54" lean-forward="false" selection-start-line="1100" selection-start-column="54" selection-end-line="1100" selection-end-column="54" />
+              <folding>
+                <marker date="1512121188619" expanded="true" signature="21535:21552" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="24188:24205" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="24460:24477" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="24555:24571" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="24671:24688" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="24887:24904" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="25475:25538" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="25670:25688" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="25704:25743" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="25830:25900" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="29700:29717" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="29989:30006" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="30076:30092" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="30192:30209" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="30410:30427" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="30999:31062" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="31206:31224" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="31240:31279" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="31360:31430" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="43401:43418" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="43468:43484" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="43591:43608" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="44067:44130" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="44252:44270" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="44286:44325" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="44368:44384" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="50495:50512" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="50723:50740" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="50805:50821" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="50909:50926" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="51091:51108" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="51595:51658" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="51768:51786" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="51802:51841" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="51907:51977" ph="..." />
+                <marker date="1512121188619" expanded="true" signature="52065:52080" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manageEmployeeList.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/basicSetting/retrueve/manageEmployeeList.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="319" column="95" lean-forward="true" selection-start-line="319" selection-start-column="95" selection-end-line="319" selection-end-column="95" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="employeeList.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/busiManage/store/employee/employeeList.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="271">
+              <caret line="967" column="10" lean-forward="false" selection-start-line="967" selection-start-column="10" selection-end-line="967" selection-end-column="10" />
+              <folding>
+                <marker date="1512115693470" expanded="true" signature="44338:44371" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>editcard</find>
+      <find>editCard</find>
+      <find>签约客户必须添加卡</find>
+      <find>hide</find>
+      <find>editEMp</find>
+      <find>addCard</find>
+      <find>该号码</find>
+      <find>editBusiEmployeeInfo</find>
+      <find>che</find>
+      <find>editEM</find>
+      <find>phonePrompt</find>
+      <find>checkP</find>
+      <find>编辑</find>
+      <find>编辑成功</find>
+      <find>checkPhone</find>
+      <find>必填</find>
+      <find>mobilephone</find>
+      <find>ajax</find>
+      <find>deleteb</find>
+      <find>../login.html</find>
+      <find>$('.logout')</find>
+      <find>switch</find>
+      <find>陈老师</find>
+      <find>myDate</find>
+      <find>getDate</find>
+      <find>Birthday</find>
+      <find>editBirthday</find>
+      <find>entry</find>
+      <find>addDate</find>
+      <find>addBirthday</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>seeBackground</replace>
+      <replace>storeName</replace>
+      <replace>deleteBackground</replace>
+      <replace>businessList</replace>
+      <replace>storeList</replace>
+      <replace>../../../</replace>
+      <replace>empListByStoreId</replace>
+      <replace>storeEmp</replace>
+      <replace>addEmployeeBtn</replace>
+      <replace>btnList</replace>
+      <replace>detailUri</replace>
+      <replace>addDetailUri</replace>
+      <replace>editDetailUri</replace>
+      <replace>192.168.1.168:8081</replace>
+      <replace>8081</replace>
+      <replace>8080</replace>
+      <replace>8081/api</replace>
+      <replace>1.168</replace>
+      <replace>logo.png</replace>
+      <replace>昵称</replace>
+      <replace>tou-xiang.png</replace>
+      <replace>tou_xiang.png</replace>
+      <replace>font-size: 14px</replace>
+      <replace>url</replace>
+      <replace>min-height: 600px</replace>
+      <replace>defiUrl+</replace>
+      <replace>defiUrl</replace>
+      <replace>getUrl</replace>
+      <replace>../../../login.html</replace>
+      <replace>../../login.html</replace>
+    </replaceStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/busiManage/create/createBusinessPayment.html" />
+        <option value="$PROJECT_DIR$/busiManage/store/create/createStorePayment.html" />
+        <option value="$PROJECT_DIR$/ceshi/desk.html" />
+        <option value="$PROJECT_DIR$/ceshi/message副本.html" />
+        <option value="$PROJECT_DIR$/ceshi/prewatch.html" />
+        <option value="$PROJECT_DIR$/message.html" />
+        <option value="$PROJECT_DIR$/store/businessStorelist.html" />
+        <option value="$PROJECT_DIR$/store/create/createStore.html" />
+        <option value="$PROJECT_DIR$/store/create/createStorePayment.html" />
+        <option value="$PROJECT_DIR$/store/edit/editStore.html" />
+        <option value="$PROJECT_DIR$/store/employee/employeeList.html" />
+        <option value="$PROJECT_DIR$/store/retrieve/employeeListShow.html" />
+        <option value="$PROJECT_DIR$/store/retrieve/retrieve_store.html" />
+        <option value="$PROJECT_DIR$/busiManage/store/retrieve/employeeListShow.html" />
+        <option value="$PROJECT_DIR$/css/layui.css" />
+        <option value="$PROJECT_DIR$/css/sidebar-menu.css" />
+        <option value="$PROJECT_DIR$/css/yearmonth.css" />
+        <option value="$PROJECT_DIR$/leftNav.html" />
+        <option value="$PROJECT_DIR$/css/same.css" />
+        <option value="$PROJECT_DIR$/basicSetting/retrueve/paymentList.html" />
+        <option value="$PROJECT_DIR$/forgetPassword.html" />
+        <option value="$PROJECT_DIR$/resetPassword.html" />
+        <option value="$PROJECT_DIR$/js/jquery.min.js" />
+        <option value="$PROJECT_DIR$/basicSetting/retrueve/storeEmployeeList.html" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/busiManage/businessList.html" />
+        <option value="$PROJECT_DIR$/busiManage/create/createBusiness.html" />
+        <option value="$PROJECT_DIR$/busiManage/store/retrieve/retrieve_store.html" />
+        <option value="$PROJECT_DIR$/busiManage/store/edit/editStore.html" />
+        <option value="$PROJECT_DIR$/busiManage/store/create/createStore.html" />
+        <option value="$PROJECT_DIR$/busiManage/store/storeList.html" />
+        <option value="$PROJECT_DIR$/busiManage/businessBasicSetting.html" />
+        <option value="$PROJECT_DIR$/busiManage/retrieve/retrieve_business.html" />
+        <option value="$PROJECT_DIR$/busiManage/edit/editBusiness.html" />
+        <option value="$PROJECT_DIR$/basicSetting/retrueve/positionList.html" />
+        <option value="$PROJECT_DIR$/basicSetting/retrueve/claassroomList.html" />
+        <option value="$PROJECT_DIR$/basicSetting/retrueve/courseTypeList.html" />
+        <option value="$PROJECT_DIR$/basicSetting/retrueve/departmentList.html" />
+        <option value="$PROJECT_DIR$/customerManage/customerBasic.html" />
+        <option value="$PROJECT_DIR$/customerManage/employeeBasic.html" />
+        <option value="$PROJECT_DIR$/powerSetting/listRole.html" />
+        <option value="$PROJECT_DIR$/powerSetting/editRole.html" />
+        <option value="$PROJECT_DIR$/powerSetting/createRole.html" />
+        <option value="$PROJECT_DIR$/powerSetting/createModel.html" />
+        <option value="$PROJECT_DIR$/powerSetting/createFunction.html" />
+        <option value="$PROJECT_DIR$/powerSetting/createDetail.html" />
+        <option value="$PROJECT_DIR$/busiManage/store/employee/employeeList.html" />
+        <option value="$PROJECT_DIR$/basicSetting/retrueve/manageEmployeeList.html" />
+        <option value="$PROJECT_DIR$/login.html" />
+        <option value="$PROJECT_DIR$/js/same.js" />
+        <option value="$PROJECT_DIR$/busiManage/memberManage.html" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="334" />
+    <option name="y" value="203" />
+    <option name="width" value="1474" />
+    <option name="height" value="1030" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="dodsManage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dodsManage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dodsManage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dodsManage" type="462c0819:PsiDirectoryNode" />
+              <item name="basicSetting" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dodsManage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dodsManage" type="462c0819:PsiDirectoryNode" />
+              <item name="basicSetting" type="462c0819:PsiDirectoryNode" />
+              <item name="retrueve" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dodsManage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dodsManage" type="462c0819:PsiDirectoryNode" />
+              <item name="busiManage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dodsManage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dodsManage" type="462c0819:PsiDirectoryNode" />
+              <item name="busiManage" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dodsManage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dodsManage" type="462c0819:PsiDirectoryNode" />
+              <item name="busiManage" type="462c0819:PsiDirectoryNode" />
+              <item name="store" type="462c0819:PsiDirectoryNode" />
+              <item name="employee" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dodsManage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dodsManage" type="462c0819:PsiDirectoryNode" />
+              <item name="customerManage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dodsManage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dodsManage" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dodsManage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dodsManage" type="462c0819:PsiDirectoryNode" />
+              <item name="powerSetting" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MAjun" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
+    <property name="JavaScriptPreferStrict" value="false" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="nodejs_interpreter_path" value="$PROJECT_DIR$/../node" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\APP\dodsManage\images" />
+      <recent name="D:\APP\dodsManage\busiManage" />
+      <recent name="D:\APP\managedods\js" />
+      <recent name="D:\APP\managedods" />
+      <recent name="D:\APP\managedods\js\lay\modules" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\APP\dodsManage\store\employee" />
+      <recent name="D:\APP\managedods\js" />
+      <recent name="D:\APP\managedods\ceshi" />
+      <recent name="D:\APP\managedods\测试" />
+      <recent name="D:\APP\managedods\store" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.createStore.html?_ijt=f9djmvjmpcnghbcru35cu7krja (1)">
+    <configuration name="createBusiness.html?_ijt=7scnp83nq4nokg7i5ur4msqmg9" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://192.168.1.119:8081/dodsManage/busiManage/create/createBusiness.html?_ijt=7scnp83nq4nokg7i5ur4msqmg9" />
+    <configuration name="createBusiness.html?_ijt=ebl75n7979iq5dr27nfqrdsnmh" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://192.168.1.119:8081/dodsManage/busiManage/create/createBusiness.html?_ijt=ebl75n7979iq5dr27nfqrdsnmh" />
+    <configuration name="createBusiness.html?_ijt=vdri95kei3k9squtqnrhu3j92s" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://192.168.1.119:8081/dodsManage/busiManage/create/createBusiness.html?_ijt=vdri95kei3k9squtqnrhu3j92s" />
+    <configuration name="createStore.html?_ijt=f9djmvjmpcnghbcru35cu7krja (1)" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://192.168.1.119:8081/dodsManage/busiManage/store/create/createStore.html?_ijt=f9djmvjmpcnghbcru35cu7krja" />
+    <configuration name="createStore.html?_ijt=f9djmvjmpcnghbcru35cu7krja" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://192.168.1.119:8081/dodsManage/busiManage/store/create/createStore.html?_ijt=f9djmvjmpcnghbcru35cu7krja" />
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.createBusiness.html?_ijt=ebl75n7979iq5dr27nfqrdsnmh" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.createBusiness.html?_ijt=vdri95kei3k9squtqnrhu3j92s" />
+      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.createBusiness.html?_ijt=7scnp83nq4nokg7i5ur4msqmg9" />
+      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.createStore.html?_ijt=f9djmvjmpcnghbcru35cu7krja" />
+      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.createStore.html?_ijt=f9djmvjmpcnghbcru35cu7krja (1)" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.createStore.html?_ijt=f9djmvjmpcnghbcru35cu7krja (1)" />
+        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.createStore.html?_ijt=f9djmvjmpcnghbcru35cu7krja" />
+        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.createBusiness.html?_ijt=7scnp83nq4nokg7i5ur4msqmg9" />
+        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.createBusiness.html?_ijt=vdri95kei3k9squtqnrhu3j92s" />
+        <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.createBusiness.html?_ijt=ebl75n7979iq5dr27nfqrdsnmh" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration useDefault="false">C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9d64f9af-7084-420b-84bf-3daeb9c8d7d7" name="Default" comment="" />
+      <created>1504167878190</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1504167878190</updated>
+      <workItem from="1504167879670" duration="4654000" />
+      <workItem from="1504227173511" duration="8010000" />
+      <workItem from="1504332417972" duration="11183000" />
+      <workItem from="1504487189992" duration="14056000" />
+      <workItem from="1504595440918" duration="3009000" />
+      <workItem from="1504661443221" duration="1914000" />
+      <workItem from="1504664808589" duration="26977000" />
+      <workItem from="1504745688196" duration="29619000" />
+      <workItem from="1504832990060" duration="9246000" />
+      <workItem from="1504849386246" duration="2574000" />
+      <workItem from="1504852413300" duration="11154000" />
+      <workItem from="1505091093264" duration="26295000" />
+      <workItem from="1505177865493" duration="24214000" />
+      <workItem from="1505264316500" duration="11938000" />
+      <workItem from="1505352186483" duration="20700000" />
+      <workItem from="1505379655021" duration="4283000" />
+      <workItem from="1505436334379" duration="25109000" />
+      <workItem from="1505526936762" duration="19863000" />
+      <workItem from="1505695967307" duration="35354000" />
+      <workItem from="1505782308991" duration="33136000" />
+      <workItem from="1505868878539" duration="737000" />
+      <workItem from="1505869845200" duration="26770000" />
+      <workItem from="1505955490986" duration="8055000" />
+      <workItem from="1506042265813" duration="15969000" />
+      <workItem from="1506132182761" duration="18792000" />
+      <workItem from="1506301056408" duration="31681000" />
+      <workItem from="1506387338047" duration="22886000" />
+      <workItem from="1506473834764" duration="25624000" />
+      <workItem from="1506560349280" duration="24078000" />
+      <workItem from="1506647037353" duration="21846000" />
+      <workItem from="1506733680028" duration="18009000" />
+      <workItem from="1507510646217" duration="32087000" />
+      <workItem from="1507597066408" duration="23929000" />
+      <workItem from="1507682880268" duration="30483000" />
+      <workItem from="1507769198705" duration="30195000" />
+      <workItem from="1507855978036" duration="27773000" />
+      <workItem from="1507946810410" duration="23566000" />
+      <workItem from="1508115556519" duration="34154000" />
+      <workItem from="1508202160295" duration="25082000" />
+      <workItem from="1508288642348" duration="15097000" />
+      <workItem from="1508319081073" duration="6494000" />
+      <workItem from="1508373747157" duration="27729000" />
+      <workItem from="1508460862614" duration="24712000" />
+      <workItem from="1508551264688" duration="19143000" />
+      <workItem from="1508720390512" duration="28609000" />
+      <workItem from="1508806648556" duration="27571000" />
+      <workItem from="1508892846835" duration="37589000" />
+      <workItem from="1508979524259" duration="23819000" />
+      <workItem from="1509066089889" duration="25156000" />
+      <workItem from="1509156969827" duration="18274000" />
+      <workItem from="1509186438095" duration="27000" />
+      <workItem from="1509324440499" duration="1868000" />
+      <workItem from="1509326338676" duration="2157000" />
+      <workItem from="1509331008021" duration="185000" />
+      <workItem from="1509331216187" duration="15468000" />
+      <workItem from="1509411402989" duration="25615000" />
+      <workItem from="1509498699802" duration="14192000" />
+      <workItem from="1509583534631" duration="31530000" />
+      <workItem from="1509670455219" duration="29982000" />
+      <workItem from="1509760960458" duration="24324000" />
+      <workItem from="1509929765682" duration="28723000" />
+      <workItem from="1510016029693" duration="26752000" />
+      <workItem from="1510103199109" duration="34270000" />
+      <workItem from="1510189748980" duration="22986000" />
+      <workItem from="1510275761506" duration="21452000" />
+      <workItem from="1510365948914" duration="21092000" />
+      <workItem from="1510534730062" duration="38329000" />
+      <workItem from="1510620975102" duration="26336000" />
+      <workItem from="1510707754612" duration="33606000" />
+      <workItem from="1510750085905" duration="1118000" />
+      <workItem from="1510794386669" duration="23734000" />
+      <workItem from="1510880592538" duration="26416000" />
+      <workItem from="1510915103661" duration="1926000" />
+      <workItem from="1510970902561" duration="16473000" />
+      <workItem from="1511139729667" duration="23943000" />
+      <workItem from="1511225931622" duration="7251000" />
+      <workItem from="1511313236871" duration="19960000" />
+      <workItem from="1511350964095" duration="2887000" />
+      <workItem from="1511399169489" duration="626000" />
+      <workItem from="1511400302886" duration="15941000" />
+      <workItem from="1511485781726" duration="1805000" />
+      <workItem from="1511488510679" duration="24213000" />
+      <workItem from="1511575039524" duration="5155000" />
+      <workItem from="1511831203700" duration="31559000" />
+      <workItem from="1511917218292" duration="25437000" />
+      <workItem from="1511944966093" duration="82000" />
+      <workItem from="1511945063942" duration="12346000" />
+      <workItem from="1512004127064" duration="22874000" />
+      <workItem from="1512089952129" duration="25162000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1706999000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="334" y="203" width="1474" height="1030" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21100278" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32883435" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32886723" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31620112" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.49570552" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32883435" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.50429446" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33742332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32883435" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32886723" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32883435" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21100278" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3171008" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.49570552" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.50429446" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33742332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="多点助手后台管理系统" />
+    <option name="LAST_COMMIT_MESSAGE" value="多点助手后台管理系统" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="36" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/busiManage/store/create/createStorePayment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="142" column="124" lean-forward="false" selection-start-line="142" selection-start-column="124" selection-end-line="142" selection-end-column="124" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ceshi/desk.html" />
+    <entry file="file://$PROJECT_DIR$/ceshi/message副本.html" />
+    <entry file="file://$PROJECT_DIR$/ceshi/prewatch.html" />
+    <entry file="file://$PROJECT_DIR$/message.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="140" column="118" lean-forward="false" selection-start-line="140" selection-start-column="118" selection-end-line="140" selection-end-column="118" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/retrieve/retrieve_store.html" />
+    <entry file="file://$PROJECT_DIR$/store/retrieve/employeeListShow.html" />
+    <entry file="file://$PROJECT_DIR$/store/employee/employeeList.html" />
+    <entry file="file://$PROJECT_DIR$/store/edit/editStore.html" />
+    <entry file="file://$PROJECT_DIR$/store/create/createStorePayment.html" />
+    <entry file="file://$PROJECT_DIR$/store/create/createStore.html" />
+    <entry file="file://$PROJECT_DIR$/store/businessStorelist.html" />
+    <entry file="file://$PROJECT_DIR$/images/icon/gong_zuo_tai.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/sidebar-menu.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="29" column="4" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/yearmonth.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="18" column="99" lean-forward="false" selection-start-line="18" selection-start-column="99" selection-end-line="18" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/layui.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7517">
+          <caret line="378" column="1" lean-forward="true" selection-start-line="378" selection-start-column="1" selection-end-line="378" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/busiManage/store/retrieve/employeeListShow.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="244" column="12" lean-forward="false" selection-start-line="244" selection-start-column="12" selection-end-line="244" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/leftNav.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="107" column="10" lean-forward="false" selection-start-line="107" selection-start-column="10" selection-end-line="107" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/same.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/basicSetting/retrueve/paymentList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="411" column="17" lean-forward="false" selection-start-line="411" selection-start-column="17" selection-end-line="411" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/forgetPassword.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="170" column="17" lean-forward="false" selection-start-line="170" selection-start-column="17" selection-end-line="170" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/jquery.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="5" column="7344" lean-forward="false" selection-start-line="5" selection-start-column="7340" selection-end-line="5" selection-end-column="7344" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/basicSetting/retrueve/storeEmployeeList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="988" column="51" lean-forward="false" selection-start-line="988" selection-start-column="51" selection-end-line="988" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="681">
+          <caret line="482" column="29" lean-forward="true" selection-start-line="482" selection-start-column="29" selection-end-line="482" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/busiManage/store/retrieve/retrieve_store.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="203" column="4" lean-forward="false" selection-start-line="203" selection-start-column="4" selection-end-line="205" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/busiManage/store/edit/editStore.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="264" column="7" lean-forward="false" selection-start-line="264" selection-start-column="7" selection-end-line="264" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/busiManage/store/create/createStore.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="252" column="4" lean-forward="false" selection-start-line="252" selection-start-column="4" selection-end-line="252" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/busiManage/store/storeList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="253" column="35" lean-forward="true" selection-start-line="253" selection-start-column="35" selection-end-line="253" selection-end-column="35" />
+          <folding>
+            <marker date="1512110139108" expanded="true" signature="10886:10901" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/busiManage/businessBasicSetting.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="77" column="32" lean-forward="true" selection-start-line="77" selection-start-column="32" selection-end-line="77" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/busiManage/create/createBusiness.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="496" column="7" lean-forward="true" selection-start-line="496" selection-start-column="7" selection-end-line="496" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/busiManage/retrieve/retrieve_business.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="209" column="16" lean-forward="false" selection-start-line="209" selection-start-column="4" selection-end-line="209" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/busiManage/edit/editBusiness.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="706">
+          <caret line="588" column="7" lean-forward="true" selection-start-line="588" selection-start-column="7" selection-end-line="588" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/basicSetting/retrueve/positionList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="342" column="35" lean-forward="true" selection-start-line="342" selection-start-column="35" selection-end-line="342" selection-end-column="35" />
+          <folding>
+            <marker date="1512110301295" expanded="true" signature="27369:27386" ph="..." />
+            <marker date="1512110301295" expanded="true" signature="27830:27845" ph="..." />
+            <marker date="1512110301295" expanded="true" signature="27927:27942" ph="..." />
+            <marker date="1512110301295" expanded="true" signature="31381:31398" ph="..." />
+            <marker date="1512110301295" expanded="true" signature="31887:31902" ph="..." />
+            <marker date="1512110301295" expanded="true" signature="31988:32003" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/basicSetting/retrueve/departmentList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="351" column="35" lean-forward="true" selection-start-line="351" selection-start-column="35" selection-end-line="351" selection-end-column="35" />
+          <folding>
+            <marker date="1512110343678" expanded="true" signature="27042:27059" ph="..." />
+            <marker date="1512110343678" expanded="true" signature="27468:27483" ph="..." />
+            <marker date="1512110343678" expanded="true" signature="27560:27575" ph="..." />
+            <marker date="1512110343678" expanded="true" signature="30973:30990" ph="..." />
+            <marker date="1512110343678" expanded="true" signature="31444:31459" ph="..." />
+            <marker date="1512110343678" expanded="true" signature="31540:31555" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/basicSetting/retrueve/courseTypeList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="197" column="35" lean-forward="true" selection-start-line="197" selection-start-column="35" selection-end-line="197" selection-end-column="35" />
+          <folding>
+            <marker date="1512110339205" expanded="true" signature="15119:15136" ph="..." />
+            <marker date="1512110339205" expanded="true" signature="15580:15595" ph="..." />
+            <marker date="1512110339205" expanded="true" signature="15662:15677" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/basicSetting/retrueve/claassroomList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="207" column="35" lean-forward="true" selection-start-line="207" selection-start-column="35" selection-end-line="207" selection-end-column="35" />
+          <folding>
+            <marker date="1512110332399" expanded="true" signature="17726:17743" ph="..." />
+            <marker date="1512110332399" expanded="true" signature="18247:18262" ph="..." />
+            <marker date="1512110332399" expanded="true" signature="18329:18344" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customerManage/employeeBasic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="247" column="32" lean-forward="true" selection-start-line="247" selection-start-column="32" selection-end-line="247" selection-end-column="32" />
+          <folding>
+            <marker date="1512110412362" expanded="true" signature="9237:9254" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customerManage/customerBasic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="216" column="32" lean-forward="true" selection-start-line="216" selection-start-column="32" selection-end-line="216" selection-end-column="32" />
+          <folding>
+            <marker date="1512110405512" expanded="true" signature="8248:8265" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/powerSetting/createDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="234" column="0" lean-forward="true" selection-start-line="234" selection-start-column="0" selection-end-line="234" selection-end-column="0" />
+          <folding>
+            <marker date="1512110492528" expanded="true" signature="19821:19838" ph="..." />
+            <marker date="1512110492528" expanded="true" signature="20147:20162" ph="..." />
+            <marker date="1512110492528" expanded="true" signature="20214:20229" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/powerSetting/createFunction.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="217" column="7" lean-forward="false" selection-start-line="217" selection-start-column="7" selection-end-line="217" selection-end-column="7" />
+          <folding>
+            <marker date="1512110479835" expanded="true" signature="15800:15817" ph="..." />
+            <marker date="1512110479835" expanded="true" signature="16134:16149" ph="..." />
+            <marker date="1512110479835" expanded="true" signature="16203:16218" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/powerSetting/createModel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="213" column="7" lean-forward="false" selection-start-line="213" selection-start-column="7" selection-end-line="213" selection-end-column="7" />
+          <folding>
+            <marker date="1512110470510" expanded="true" signature="14079:14096" ph="..." />
+            <marker date="1512110470510" expanded="true" signature="14401:14416" ph="..." />
+            <marker date="1512110470510" expanded="true" signature="14467:14482" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/powerSetting/createRole.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="156" column="0" lean-forward="true" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/powerSetting/editRole.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="156" column="7" lean-forward="true" selection-start-line="156" selection-start-column="7" selection-end-line="156" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/powerSetting/listRole.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="182" column="4" lean-forward="true" selection-start-line="182" selection-start-column="4" selection-end-line="184" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1512110445021" expanded="true" signature="10084:10101" ph="..." />
+            <marker date="1512110445021" expanded="true" signature="10491:10506" ph="..." />
+            <marker date="1512110445021" expanded="true" signature="10556:10571" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resetPassword.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="164" column="0" lean-forward="true" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/busiManage/store/employee/employeeList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="967" column="10" lean-forward="false" selection-start-line="967" selection-start-column="10" selection-end-line="967" selection-end-column="10" />
+          <folding>
+            <marker date="1512115693470" expanded="true" signature="44338:44371" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/basicSetting/retrueve/manageEmployeeList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="319" column="95" lean-forward="true" selection-start-line="319" selection-start-column="95" selection-end-line="319" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/busiManage/businessList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3855">
+          <caret line="455" column="23" lean-forward="true" selection-start-line="455" selection-start-column="23" selection-end-line="455" selection-end-column="23" />
+          <folding>
+            <marker date="1512100293420" expanded="true" signature="10801:10816" ph="..." />
+            <marker date="1512100293420" expanded="true" signature="10853:10868" ph="..." />
+            <marker date="1512100293420" expanded="true" signature="10906:10921" ph="..." />
+            <marker date="1512100293420" expanded="true" signature="10960:10975" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="231" column="37" lean-forward="true" selection-start-line="231" selection-start-column="37" selection-end-line="231" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/same.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="48" />
+          <folding>
+            <marker date="1512121045894" expanded="true" signature="784:794" ph="..." />
+            <marker date="1512121045894" expanded="true" signature="958:968" ph="..." />
+            <marker date="1512121045894" expanded="true" signature="2581:2585" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/busiManage/memberManage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="71">
+          <caret line="1100" column="54" lean-forward="false" selection-start-line="1100" selection-start-column="54" selection-end-line="1100" selection-end-column="54" />
+          <folding>
+            <marker date="1512121188619" expanded="true" signature="21535:21552" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="24188:24205" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="24460:24477" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="24555:24571" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="24671:24688" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="24887:24904" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="25475:25538" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="25670:25688" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="25704:25743" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="25830:25900" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="29700:29717" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="29989:30006" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="30076:30092" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="30192:30209" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="30410:30427" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="30999:31062" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="31206:31224" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="31240:31279" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="31360:31430" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="43401:43418" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="43468:43484" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="43591:43608" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="44067:44130" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="44252:44270" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="44286:44325" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="44368:44384" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="50495:50512" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="50723:50740" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="50805:50821" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="50909:50926" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="51091:51108" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="51595:51658" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="51768:51786" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="51802:51841" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="51907:51977" ph="..." />
+            <marker date="1512121188619" expanded="true" signature="52065:52080" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/same.css">
+    <title>商家会员管理</title>
+    <style>
+        .header {
+            margin-bottom: 0;
+        }
+
+        .title {
+            height: 100px;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 100px;
+            padding-left: 20px;
+            padding-right: 40px;
+        }
+
+        .leftcol {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .rightcol {
+            display: inline-block;
+            vertical-align: middle;
+            float: right;
+        }
+
+        .leftcol select {
+            /*border: none;*/
+            outline: none;
+        }
+
+
+
+        .businessname {
+            line-height: 14px;
+            margin-right: 50px;
+        }
+
+        .rightcol .addMemBtn {
+            height: 30px;
+            width: 90px;
+            background: #49aceb;
+            display: inline-block;
+            color: #ffffff;
+            vertical-align: middle;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 5px;
+            background-image: url("../images/powerbtn/tian_jia.png");
+            background-repeat: no-repeat;
+            background-position: 4px center;
+            padding-left: 15px;
+            margin-left: 25px;
+            cursor: pointer;
+        }
+
+        .listtitle div {
+            float: left;
+            width: 80px;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            margin-right: 30px;
+        }
+
+        .listtitle div:nth-child(3) {
+            width: 100px;
+        }
+
+        .listtitle:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .listtitle {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+
+        .memberList li div {
+            float: left;
+            width: 80px;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            vertical-align: middle;
+            margin-right: 30px;
+        }
+
+        .memberList li div:nth-child(2) {
+            width: 100px;
+        }
+        .memberList li div:nth-child(3) {
+            width: 150px;
+        }
+        /*.memberList li div:nth-child(6) {*/
+            /*overflow: hidden;*/
+            /*text-overflow: ellipsis;*/
+            /*white-space: nowrap;*/
+        /*}*/
+        /*.memberList li div:nth-child(7) {*/
+            /*overflow: hidden;*/
+            /*text-overflow: ellipsis;*/
+            /*white-space: nowrap;*/
+        /*}*/
+        .memberList li div:last-child {
+            width: 150px;
+        }
+        .memberList li:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .memberList li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dataoperate:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .edit {
+            float: left;
+            margin-left: 10px;
+            color: #49aceb;
+            cursor: pointer;
+        }
+
+        .watch {
+            float: left;
+            margin-left: 10px;
+            color: #49aceb;
+            cursor: pointer;
+        }
+
+        .delete {
+            float: left;
+            margin-left: 10px;
+            color: #49aceb;
+            cursor: pointer;
+        }
+
+        /*分页样式*/
+        button {
+            padding: 5px;
+            margin: 5px;
+            width: 35px;
+            height: 35px;
+            background: #ffffff;
+            border: 1px solid #f0f0f0;
+        }
+
+        .prev-btn, .next-btn {
+            padding: 5px;
+            margin: 5px;
+            width: 55px;
+            height: 35px;
+        }
+
+        .first-btn, .last-btn {
+            padding: 5px;
+            margin: 5px;
+            width: 45px;
+            height: 35px;
+        }
+
+        .active-nick {
+            /*color:red;*/
+            background: #49aceb;
+            color: #f0f0f0;
+        }
+
+        input {
+            width: 50px;
+            text-align: center;
+        }
+
+        .btn-box-nick, .paexplain {
+            display: inline-block;
+        }
+
+        .paexplain {
+            margin-left: 30px;
+            color: #939393;
+        }
+
+        .btn-box-nick {
+            margin-left: 25%;
+            color: #49aceb;
+        }
+
+        /*弹出添加或编辑的页面*/
+        .memBox:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .memBox li {
+            height: 55px;
+            line-height: 55px;
+            padding: 0 30px;
+            border-bottom: 1px solid #f0f0f0
+        }
+
+        .testdiv input{
+            color:#49aceb;
+            vertical-align: middle;
+            height: 30px;
+            font-size: 14px;
+            border: none;
+        }
+
+        #businessList{
+            margin-right: 50px;
+        }
+        #businessList,#storeList{
+            /*border: none;*/
+        }
+        .photo:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .save,.back{
+            width: 70px;
+            height: 30px;
+            display: inline-block;
+            color: #ffffff;
+            vertical-align: middle;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 5px;
+            padding-left: 20px;
+            float: right;
+            margin: 20px 20px;
+        }
+        .save{
+            background: #49aceb;
+            background-image: url("../images/powerbtn/bao_cun.png");
+            background-repeat: no-repeat;
+            background-position: 10px center;
+        }
+        .back{
+            background: #959596;
+            background-image: url("../images/powerbtn/fan_hui.png");
+            background-repeat: no-repeat;
+            background-position: 10px center;
+        }
+        .remark{
+            position: relative;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .left{
+            position:absolute;
+            left:30px;
+            top:0;
+            width:110px;
+            height:55px;
+            line-height: 55px
+        }
+
+        .addMemberRemark{
+            margin: 20px 30px 20px 110px;
+
+            height: 80px;
+            width: 88%;
+            border: 1px solid #f0f0f0;
+            padding-left: 10px;
+
+        }
+        .editMemberRemark{
+            margin: 20px 30px 20px 110px;
+
+            height: 80px;
+            width: 88%;
+            border: 1px solid #f0f0f0;
+            padding-left: 10px;
+
+        }
+        .seeMemberRemark{
+            margin: 20px 30px 20px 110px;
+
+            height: 80px;
+            width: 88%;
+            border: 1px solid #f0f0f0;
+            padding-left: 10px;
+
+        }
+        .memCardName{
+            height: 20px;
+            margin-right: 20px;
+            vertical-align: middle;
+        }
+        .status{
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .cardType{
+            display: inline-block;
+            height: 20px;
+            width: 60px;
+            background: #f0f0f0;
+            vertical-align: middle;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        label{
+            line-height: 55px;
+        }
+        .deleteCard{
+            float: right;
+            margin: 15px 0;
+        }
+        .deleteCarded{
+            float: right;
+            margin: 15px 0;
+        }
+        .memberList{
+            min-height: 600px;
+        }
+    </style>
+</head>
+<body>
+<div class="left_side">
+    <iframe name="iframes" id="iframe2" src="../leftNav.html" frameborder="0"></iframe>
+</div>
+<div class="right_side">
+    <div class="header"><span class="dods">多点运动助手后台管理系统</span>
+        <div class="imgdiv"><img class="head_photo" src="../images/tou_xiang.png"></div>
+        <span class="name">陈老师</span>
+        <span class="logout">退出</span>
+    </div>
+
+    <div class="title">
+        <div class="leftcol">
+            <span style="font-weight: bold;font-size: 18px;margin-right: 50px">商家会员管理</span>
+        </div>
+        商家：<select id="businessList" onChange="changeBusiness();">
+            <!--商家列表-->
+
+        </select>
+       门店： <select id="storeList" onChange="pagination(listMember);">
+            <!--门店列表-->
+
+        </select>
+        <div class="rightcol">
+            <span class="addMemBtn">添加会员</span>
+        </div>
+    </div>
+    <div id="addBackground"
+         style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <ul class="memBox" style="max-width: 1000px;background: #ffffff; margin: 60px auto 0;">
+            <li><span style="width: 110px;display: inline-block"><span style="color: #ff4138">*</span>昵称：</span><input class="addName" type="text" style="width: 210px;height: 30px;border: 1px solid #f0f0f0"></li>
+            <li><span style="width: 110px;display: inline-block"><span style="color: #ff4138">*</span>手机号：</span><input class="addPhoneNum" type="text" style="width: 210px;height: 30px;border: 1px solid #f0f0f0"><span class="phonePrompt" style="color: red;margin-left: 10px"></span></li>
+            <li><span style="width: 110px;display: inline-block"><span style="color: #ff4138">*</span>性别：</span><label><input name="addSex" type="radio" value="1"/>男</label><label><input name="addSex" type="radio" value="2"/>女</label></li>
+            <li><span style="width: 110px;display: inline-block">生日：</span><input class="addBirthday" type="date" value="2017-12-01" style="border: none;height: 30px;width: 130px;color: #49aceb"/></li>
+            <li><span style="width: 110px;display: inline-block"><span style="color: #ff4138">*</span>标签：</span>
+                <select name="addMemTag" class="addMemTag">
+                    <option value="1">潜在客户</option>
+                    <option value="2">意向客户</option>
+                    <option value="3">目标客户</option>
+                    <option value="4">待签约客户</option>
+                    <option value="5">签约客户</option>
+                </select>
+            </li>
+            <div class="remark">
+                <div class="left">会员备注：</div>
+                <textarea placeholder="(选填)" class="addMemberRemark" ></textarea>
+            </div>
+            <div style="padding: 0 30px;height: 55px;line-height: 55px;border-bottom: 1px solid #f0f0f0"><span style="width: 90px">关联会员卡：</span><img class="addCard"  style="float: right;cursor: pointer;margin: 15px 0" src="../images/add.png" alt="添加卡"></div>
+            <ul class="addCardList memBoxUl">
+
+            </ul>
+            <div class="back addBack">返回</div>
+            <div class="save addSave">保存</div>
+
+
+        </ul>
+    </div>
+
+    <div id="editBackground"
+         style="display: none; width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <ul class="memBox" style="max-width: 1000px;background: #ffffff; margin: 60px auto 0;">
+            <li><span style="width: 110px;display: inline-block"><span style="color: #ff4138">*</span>昵称：</span><input class="editName" type="text" style="width: 210px;height: 30px;border: 1px solid #f0f0f0"></li>
+            <li><span style="width: 110px;display: inline-block"><span style="color: #ff4138">*</span>手机号：</span><input class="editPhoneNum" type="text" style="width: 210px;height: 30px;border: 1px solid #f0f0f0"><span class="phonePrompt1" style="color: red;margin-left: 10px"></span></li>
+            <li><span style="width: 110px;display: inline-block"><span style="color: #ff4138">*</span>性别：</span><label><input name="editSex" type="radio" value="1"/>男</label><label><input name="editSex" type="radio" value="2"/>女</label></li>
+            <li><span style="width: 110px;display: inline-block">生日：</span><input class="editBirthday" type="date" value="2017-12-01" style="border: none;height: 30px;width: 130px;color: #49aceb"/></li>
+            <li><span style="width: 110px;display: inline-block"><span style="color: #ff4138">*</span>标签：</span>
+                <select name="editMemTag" class="editMemTag">
+                    <option value="1">潜在客户</option>
+                    <option value="2">意向客户</option>
+                    <option value="3">目标客户</option>
+                    <option value="4">待签约客户</option>
+                    <option value="5">签约客户</option>
+                </select>
+            </li>
+            <div class="remark">
+                <div class="left">会员备注：</div>
+                <textarea placeholder="(选填)" class="editMemberRemark" ></textarea>
+            </div>
+            <div style="padding: 0 30px;height: 55px;line-height: 55px;border-bottom: 1px solid #f0f0f0"><span style="width: 90px">关联会员卡：</span><img class="editCard" style="float: right;cursor: pointer;margin: 15px 0" src="../images/add.png" alt="添加卡"></div>
+            <ul class="editCardList memBoxUl">
+
+            </ul>
+            <div class="back editBack">返回</div>
+            <div class="save editSave">保存</div>
+
+
+        </ul>
+    </div>
+    <div id="seeBackground"
+         style="display: none; width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <ul class="memBox" style="max-width: 1000px;background: #ffffff; margin: 60px auto 0;">
+            <li><span style="width: 110px;display: inline-block"><span style="color: #ff4138">*</span>昵称：</span><span class="seeName" ></span></li>
+            <li><span style="width: 110px;display: inline-block"><span style="color: #ff4138">*</span>手机号：</span><span class="seePhoneNum" ></span></li>
+            <li><span style="width: 110px;display: inline-block"><span style="color: #ff4138">*</span>性别：</span><span class="seeSex" ></span></li>
+            <li><span style="width: 110px;display: inline-block">生日：</span><span class="seeBirthday" ></span></li>
+            <li><span style="width: 110px;display: inline-block"><span style="color: #ff4138">*</span>标签：</span><span class="seeMemTag" ></span></li>
+            <div class="remark">
+                <div class="left">会员备注：</div>
+                <div class="seeMemberRemark" ></div>
+            </div>
+            <div style="padding: 0 30px;height: 55px;line-height: 55px;border-bottom: 1px solid #f0f0f0"><span style="width: 90px">关联会员卡：</span></div>
+            <ul class="seeCardList memBoxUl">
+
+            </ul>
+            <div class="back seeBack">返回</div>
+
+
+        </ul>
+    </div>
+
+    <ul class="memberList">
+        <!--门店会员列表信息-->
+    </ul>
+    <div class="pagination-nick"></div>
+    <div id="deleteBackground" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div style="max-width: 450px;background: #ffffff; margin: 300px auto;padding: 30px 0px 5px">
+            <img style="display: block;margin: 0px auto 40px" src="../images/jinggao.png" alt="警告">
+            <div style="color: #ff4138;font-size: 14px;text-align: center">是否确认删除，删除将不可恢复</div>
+            <div class="btnList"><div class="back deleteCancle">取消</div><div class="save deleteSure">确认</div></div>
+        </div>
+    </div>
+
+</div>
+</body>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/same.js"></script>
+<script type="text/javascript">
+
+    // 父页面获取子页面iframe2的元素
+    var iframe2 = document.getElementById("iframe2");
+
+    iframeIsLoad(iframe2,function(){
+//    iframe2.contentWindow.b();   // 打印出 我是子页面
+        var iframeDom = $("#business",iframe2.contentWindow.document);
+        var iframeDom2 = $("#businessul",iframe2.contentWindow.document);
+        var iframeDom3 = $("#busMember",iframe2.contentWindow.document);
+        iframeDom.addClass('active')
+        iframeDom3.addClass('active')
+        iframeDom2.addClass('menu-open')
+        iframeDom2.css({
+            'display':'block'
+        })
+    });
+    //获取 当前时间
+//    var myDate =getDate();
+//    var myDate = new Date();
+//    var Y= myDate.getFullYear();    //获取完整的年份(4位,1970-????)
+//    var M =  myDate.getMonth();       //获取当前月份(0-11,0代表1月)
+//    var D =   myDate.getDate();
+    //录入手机号校验
+    $('.addPhoneNum').bind('blur',function () {
+        checkPhone($('.addPhoneNum').val(),'.phonePrompt');
+    });
+    $('.addPhoneNum').bind('focus',function () {
+        $('.phonePrompt').text('');
+    });
+
+    //编辑手机号校验
+    $('.editPhoneNum').bind('blur',function () {
+        checkPhone($('.editPhoneNum').val(),'.phonePrompt1');
+    });
+    $('.editPhoneNum').bind('focus',function () {
+        $('.phonePrompt1').text('');
+    });
+
+    //切换商家
+    function changeBusiness() {
+        var businessId = $("#businessList option:selected").val();
+        getAllStoreInfo(businessId);
+    }
+    //获取所有商家列表
+    function getAllBusinessInfo() {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/getAllBusinessInfo",
+            async: false,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'businessType':1
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code ==4003){
+                    alert('业务异常！');
+                }else if(data.result.code ==0){
+                    for(var i =0;i<data.datas.businessInfo.length;i++){
+                        $('#businessList').append('<option value="'+data.datas.businessInfo[i].id+'">'+data.datas.businessInfo[i].businessName+'</option>')
+                    }
+                    var businessId = $("#businessList option:selected").val();
+                    getAllStoreInfo(businessId);
+                }
+
+            }
+        });
+    }
+    //获取所有门店列表
+    function getAllStoreInfo(businessId) {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/getAllStoreInfo",
+            async: false,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'businessId':businessId
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code ==4003){
+                    alert('业务异常！');
+                }else if(data.result.code ==0){
+                    $('#storeList option').remove();
+                    for(var i =0;i<data.datas.businessInfo.length;i++){
+                        $('#storeList').append('<option value="'+data.datas.businessInfo[i].id+'">'+data.datas.businessInfo[i].storeName+'</option>')
+                    }
+                    pagination(listMember)
+                }
+
+            }
+        });
+    }
+
+
+
+    /**
+     * 点击新增员工按钮   弹出录入会员框
+     */
+    var addBackground = document.getElementById('addBackground');
+    /**
+     * 点击编辑按钮   弹出编辑会员框
+     */
+    var seeBackground = document.getElementById('seeBackground');
+
+
+    /**
+     * 点击编辑按钮   弹出编辑会员框
+     */
+    var editBackground = document.getElementById('editBackground');
+
+    /**
+     * 点击取消弹窗消失
+     */
+    $('.back').click(function () {
+        addBackground.style.display = 'none';//录入弹框消失
+        seeBackground.style.display = 'none';//查看弹框消失
+        editBackground.style.display = 'none';//编辑弹框消失
+
+    })
+    /**
+     * 门店会员分页数据请求
+     * @param page
+     */
+    function listMember(page) {
+        var storeId =$("#storeList option:selected").val()
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/listMemberInfoByStoreId",
+            async: false,//设为同步
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'storeId': storeId,
+                'page': page
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code ==4003){
+                    alert('业务异常！');
+                }else if(data.result.code==0){
+                    num = data.datas.count;
+                    $('.memberList li').remove();
+                    var memberList =data.datas.memberList;
+                    $('.memberList').append('<li style="font-weight: bold"><div>编号</div><div>商家名称</div><div>门店名称</div><div>昵称</div><div>手机号</div><div>性别</div><div class="dataoperate">操作</div></li>')
+                    for (var i = 0; i < memberList.length; i++) {
+
+                        $('.memberList').append('<li><div>' + memberList[i].memberSerialId + '</div><div>' + memberList[i].businessName + '</div><div>' + memberList[i].storeName + '</div><div>' + memberList[i].nickName + '</div><div>' + memberList[i].phoneNum + '</div><div class="showSex"></div><div class="dataoperate"><span class="watch">查看</span><span class="edit">编辑</span><span class="delete">删除</span></div></li>')
+                        if(memberList[i].sex ==1){
+                            $('.showSex').eq(i).text('男')
+                        }else{
+                            $('.showSex').eq(i).text('女')
+                        }
+
+                    }
+                    /**
+                     * 点击编辑按钮   弹出编辑员工信息框
+                     */
+
+                    $('.edit').click(function () {
+                        editBackground.style.display = 'block';//编辑弹框显示
+                        var editIndex = $(this).index('.edit');
+                        var businessId = $("#businessList option:selected").val();
+                        var id =memberList[editIndex].id;
+                        var userId =memberList[editIndex].userId;
+                        listCard(businessId);
+                        var times = 0;
+                        //会员信息 写入
+                        $('.editName').val(memberList[editIndex].nickName);
+                        $('.editPhoneNum').val(memberList[editIndex].phoneNum);
+
+                        $('.editBirthday').val(memberList[editIndex].birthday);
+                        $(".editMemTag").val(memberList[editIndex].memberTags);
+                        $('.editMemberRemark').val(memberList[editIndex].remark);
+
+                        if(memberList[editIndex].sex ==1){
+                            $("input:radio[name='editSex'][value='1']").attr("checked","checked");
+                        }else{
+                            $("input:radio[name='editSex'][value='2']").attr("checked","checked");
+                        }
+                        var memberId =memberList[editIndex].id;
+                        listMemberCardByMemberId(memberId,businessId);//调用根据会员id获取会员卡列表函数
+                        $('.memBoxUl li').remove();
+                        for(var i =0;i<memCardByMemList.length;i++){
+                            $('.editCardList').append('<li class="getLi">\n' +
+                                '                    <span  class="memCardName getmemCardName" style="line-height: 20px">\n' +
+                                '                    </span>\n' +
+                                '                    <span class="cardType getcardType"></span>\n' +
+                                '                    <span class="times" style="margin-left: 20px"><span>剩余次数</span>:<input class="editTimes geteditTimes"  type="text" style="margin-left: 3px"></span>\n' +
+                                '                    <span class="cardStatus" style="margin-left: 20px">\n' +
+                                '                        <span>卡状态</span>:\n' +
+                                '                        <select name="status" class="status getstatus" style="line-height: 20px">\n' +
+                                '                            <option value="1">正常</option>\n' +
+                                '                            <option value="2">请假</option>\n' +
+                                '                            <option value="3">停卡</option>\n' +
+                                '                        </select>\n' +
+                                '                    </span>\n' +
+                                '                    <input class="isStart  getisStart" name="isStart" type="checkbox" value="1"  style=" width: 20px;vertical-align: middle;margin: 0;margin-right: 5px"/><span class="isView getisView">开启有效期</span> \n' +
+                                '                    <span class="date" style="margin-right: 20px"> <span style="display: inline-block;margin-left: 20px">有效期至:</span><input  class="endDate getendDate" type="date" value="2015-09-24" style="margin-left: 5px;border: none;height: 30px;width: 130px;color: #49aceb"/></span>\n' +
+                                '                    <img class="deleteCarded" src="../images/delete.png" alt="删除卡">\n' +
+                                '                </li>');
+                            //会员存在的会员卡信息 写入
+                            $('.getLi').eq(i).attr('id',memCardByMemList[i].id);
+                            $('.memCardName').eq(i).attr('memCardId',memCardByMemList[i].membcardId);
+                            $('.memCardName').eq(i).attr('memCardType',memCardByMemList[i].membcardType);
+                            $('.memCardName').eq(i).text(memCardByMemList[i].membcardName);//会员存在的会员卡名称
+                            $('.status').eq(i).val(memCardByMemList[i].cardStatus);//会员存在的会员卡状态
+                            if(memCardByMemList[i].membcardType =='1'){
+                                $('.cardType').eq(i).text('次卡');
+                                $('.times').eq(i).show();
+                                $('.editTimes').eq(i).val(memCardByMemList[i].times);
+                                $('.isStart').eq(i).show();
+                                $('.isView').eq(i).show();
+                                if(memCardByMemList[i].validityTime==''){
+                                    $('.date').eq(i).hide();
+                                }else {
+                                    $(" .getisStart").eq(i).attr("checked","checked");
+                                    $('.endDate').eq(i).val(memCardByMemList[i].validityTime.substring(0,10));
+                                }
+
+                            }else {
+                                $('.cardType').eq(i).text('期限卡');
+                                $('.times').eq(i).hide();
+                                $('.date').eq(i).show();
+                                $('.isStart').eq(i).hide();
+                                $('.isView').eq(i).hide();
+                                $('.endDate').eq(i).val(memCardByMemList[i].validityTime.substring(0,10));
+                            }
+                            $('.memCardName').change(function () {
+                                var index = $(this).index('.memCardName');
+                                if($(this).find("option:selected").val() =='1'){
+                                    $('.cardType').eq(index).text('次卡');
+                                    $('.times').eq(index).show();
+                                    $('.isStart').eq(index).show();
+                                    $('.isView').eq(index).show();
+                                    $('.date').eq(index).hide();
+
+                                }else {
+                                    $('.cardType').eq(index).text('期限卡');
+                                    $('.times').eq(index).hide();
+                                    $('.date').eq(index).show();
+                                    $('.isStart').eq(index).hide();
+                                    $('.isView').eq(index).hide();
+                                }
+                            })
+                            $('.isStart').change(function () {
+                                var index = $(this).index('.isStart');
+                                if($(this).is(':checked') == true){
+                                    $('.date').eq(index).show();
+                                }else {
+                                    $('.date').eq(index).hide();
+                                }
+                            })
+
+                        }
+                        $(".editCard").unbind("click");
+                        $('.editCard').click(function () {
+                            $('.editCardList').append('<li class="addLi">\n' +
+                                '                    <select name="memCardName" class="memCardName clickMemCardName" style="line-height: 16px">\n' +
+                                '                    </select>\n' +
+                                '                    <span class="cardType clickCardType">次卡</span>\n' +
+                                '                    <span class="times clickTimes" style="margin-left: 20px"><span>剩余次数</span>:<input class="clickEditTimes"  type="text" style="margin-left: 3px"></span>\n' +
+                                '                    <span class="cardStatus" style="margin-left: 20px">\n' +
+                                '                        <span>卡状态</span>:\n' +
+                                '                        <select name="status" class="status clickStatus" style="line-height: 16px">\n' +
+                                '                            <option value="1">正常</option>\n' +
+                                '                            <option value="2">请假</option>\n' +
+                                '                            <option value="3">停卡</option>\n' +
+                                '                        </select>\n' +
+                                '                    </span>\n' +
+                                '                    <input class="isStart clickIsStart" name="isStart" type="checkbox" value="1"  style=" width: 20px;vertical-align: middle;margin: 0;margin-right: 5px"/><span class="isView clickIsView">开启有效期</span> \n' +
+                                '                    <span class="date clickDate" style="margin-right: 20px"> <span style="display: inline-block;margin-left: 20px">有效期至:</span><input  class="clickEndDate" type="date" value="2015-09-24" style="margin-left: 5px;border: none;height: 30px;width: 130px;color: #49aceb"/></span>\n' +
+                                '                    <img class="deleteCard" src="../images/delete.png" alt="删除卡">\n' +
+                                '                </li>');
+                            // $('.clickMemCardName').eq(times).find("option").remove();
+                            for(var i= 0;i<memCards.length;i++){
+                                $('.clickMemCardName').eq(times).append('<option id="'+memCards[i].id+'" value="'+memCards[i].membcardType+'">'+memCards[i].membcardName+'</option>')
+                            }
+                            var val = $('.clickMemCardName').eq(times).find("option:selected").val();
+                            if(val =='1'){
+                                $('.clickDate').eq(times).hide();
+                                $('.clickCardType').eq(times).text('次卡');
+                                $('.clickTimes').eq(times).show();
+
+                                $('.clickIsStart').eq(times).show();
+                                $('.clickIsView').eq(times).show();
+
+                            }else {
+                                $('.clickCardType').eq(times).text('期限卡');
+                                $('.clickTimes').eq(times).hide();
+                                $('.clickDate').eq(times).show();
+                                $('.clickIsStart').eq(times).hide();
+                                $('.clickIsView').eq(times).hide();
+                            }
+                            times ++;
+                            $('.memCardName').change(function () {
+                                var index = $(this).index('.memCardName');
+                                if($(this).find("option:selected").val() =='1'){
+                                    $('.cardType').eq(index).text('次卡');
+                                    $('.times').eq(index).show();
+                                    $('.isStart').eq(index).show();
+                                    $('.isView').eq(index).show();
+                                    $('.date').eq(index).hide();
+
+                                }else {
+                                    $('.cardType').eq(index).text('期限卡');
+                                    $('.times').eq(index).hide();
+                                    $('.date').eq(index).show();
+                                    $('.isStart').eq(index).hide();
+                                    $('.isView').eq(index).hide();
+                                }
+                            })
+                            $('.isStart').change(function () {
+                                var index = $(this).index('.isStart');
+                                if($(this).is(':checked') == true){
+                                    $('.date').eq(index).show();
+                                }else {
+                                    $('.date').eq(index).hide();
+                                }
+                            })
+                        });
+                        //点击删除新添加的卡
+                        $(".deleteCard").unbind("click");
+                        $('.deleteCard').click(function () {
+                            var deleteIndex = $(this).index('.deleteCard');
+                            $('.addLi').eq(deleteIndex).remove();
+                        })
+                        //点击删除存在的卡
+                        var deleteOldCard =[];
+                        $(".deleteCarded").unbind("click");
+                        $('.deleteCarded').click(function () {
+                            var deletedIndex = $(this).index('.deleteCarded');
+                            deleteOldCard.push($('.getLi').eq(deletedIndex).attr('id'));
+                            $('.getLi').eq(deletedIndex).remove();
+                        })
+
+
+
+                        $(".editSave").unbind("click");
+                        $(".editBack").unbind("click");
+                        $('.editSave').click(function () {
+                            if(deleteOldCard.length>1){
+                                var delCardStr =deleteOldCard.join(',');
+                            }else {
+                                var delCardStr =deleteOldCard[0];
+                            }
+                            var businessId = $("#businessList option:selected").val();
+                            var storeId = $("#storeList option:selected").val();
+                            var addEditCards =new  Array();
+                            var updateEditCards =new  Array();
+                            var nickName =$('.editName').val();
+                            var phoneNum =$('.editPhoneNum').val();
+                            var sex =$('input[name="editSex"]:checked').val();
+                            var birthday = $('.editBirthday').val();
+                            var memberTags =$(".editMemTag option:selected").val();
+                            var remark =$('.editMemberRemark').val();
+                            for(var i =0;i< $('.getLi').length;i++){
+                                var obj = new  Object();
+                                obj.id =$('.getLi').eq(i).attr('id');//会员关系id
+                                obj.membcardId  = $('.getmemCardName').eq(i).attr('memCardId');//卡id
+                                obj.membcardType  = $('.getmemCardName').eq(i).attr('memCardType');//卡类型
+                                obj.cardStatus = $('.getstatus').eq(i).find("option:selected").val()
+                                if($('.getmemCardName').eq(i).attr('memCardType')=='1'){
+                                    obj.times  = $('.geteditTimes').eq(i).val();//次数
+                                    if($('.getisStart').eq(i).is(':checked') ==true){
+                                        obj.validityType  = '1';//是否有效
+                                        obj.validityTime  = $('.getendDate').eq(i).val();//有效时间
+                                    }else {
+                                        obj.validityType  = '0';//是否有效
+                                        obj.validityTime  = null;//有效时间
+                                    }
+                                }else {
+                                    obj.validityType  =null;
+                                    obj.times  =null;
+                                    obj.validityTime  = $('.getendDate').eq(i).val();//有效时间
+                                }
+                                updateEditCards.push(obj);
+
+                            }
+                            var updateMemberCardListStr =JSON.stringify( updateEditCards);
+                            for(var i =0;i< $('.addLi').length;i++){
+                                var obj = new  Object();
+                                obj.id =null;//会员关系id
+                                obj.membcardId  = $('.clickMemCardName').eq(i).find("option:selected").attr('id');//卡id
+                                obj.membcardType  = $('.clickMemCardName').eq(i).find("option:selected").val();//卡类型
+                                obj.cardStatus = $('.clickStatus').eq(i).find("option:selected").val();
+                                console.log($('.clickMemCardName').eq(i).find("option:selected").val())
+                                console.log($('.clickEditTimes').eq(i).val());
+                                console.log($('.clickIsStart').eq(i).is(':checked'));
+                                if($('.clickMemCardName').eq(i).find("option:selected").val()=='1'){
+                                    obj.times  = $('.clickEditTimes').eq(i).val();//次数
+                                    if($('.clickIsStart').eq(i).is(':checked') ==true){
+                                        obj.validityType  = '1';//是否有效
+                                        obj.validityTime  = $('.clickEndDate').eq(i).val();//有效时间
+                                    }else {
+                                        obj.validityType  = '0';//是否有效
+                                        obj.validityTime  = null;//有效时间
+                                    }
+                                }else {
+                                    obj.validityType  =null;
+                                    obj.times  =null;
+                                    obj.validityTime  = $('.clickEndDate').eq(i).val();//有效时间
+                                }
+                                addEditCards.push(obj);
+
+                            }
+                            var addMemberCardListStr =JSON.stringify(addEditCards);
+                            if(nickName!=''&&phoneNum!=''&&sex!=undefined){
+                                if(checkPhone(phoneNum)){
+                                    if(memberTags==5&&updateEditCards.length==0&&addEditCards.length==0){
+                                        alert('签约客户必须添加卡！')
+                                    }else {
+                                        editMemberInfoAndCardInfo(id,userId,businessId,storeId,nickName,sex,birthday,phoneNum,memberTags,updateMemberCardListStr,addMemberCardListStr,delCardStr,remark);
+                                    }
+                                }else {
+                                    alert('手机号有误！')
+                                }
+                            }else {
+                                alert('请输入必填项！')
+                            }
+
+                        });
+
+                        $('.editBack').click(function () {
+                            editBackground.style.display ='none';
+                        })
+                    })
+                    /**
+                     * 点击查看按钮   弹出查看员工信息框
+                     */
+
+                    $('.watch').click(function () {
+                        seeBackground.style.display = 'block';//编辑弹框显示
+                        var seeIndex = $(this).index('.watch');
+                        var businessId = $("#businessList option:selected").val();
+                        //会员信息 写入
+                        $('.seeName').text(memberList[seeIndex].nickName);
+                        $('.seePhoneNum').text(memberList[seeIndex].phoneNum);
+                        $('.seeBirthday').text(memberList[seeIndex].birthday);
+                        $('.seeMemberRemark').text(memberList[seeIndex].remark);
+                        //switch 语句用于基于不同的条件来执行不同的动作
+                        var tag = '';
+                        switch (memberList[seeIndex].memberTags)
+                        {
+                            case '1':
+                                tag ='潜在客户';
+                                break;
+                            case '2':
+                                tag ='意向客户';
+                                break;
+                            case '3':
+                                tag ='目标客户';
+                                break;
+                            case '4':
+                                tag ='待签约客户';
+                                break;
+                            case '5':
+                                tag ='签约客户';
+                                break;
+                        }
+                        $(".seeMemTag").text(tag);
+
+                        if(memberList[seeIndex].sex ==1){
+                            $('.seeSex').text('男');
+
+                        }else{
+                            $('.seeSex').text('女');
+                        }
+                        var memberId =memberList[seeIndex].id;
+                        listMemberCardByMemberId(memberId,businessId);//调用根据会员id获取会员卡列表函数
+                        $('.memBoxUl li').remove();
+                        for(var i =0;i<memCardByMemList.length;i++){
+                            $('.seeCardList').append('<li>\n' +
+                                '                    <span name="memCardName" class="memCardName" >\n' +
+                                '                    </span>\n' +
+                                '                    <span class="cardType"></span>\n' +
+                                '                    <span class="times" style="margin-left: 20px"><span>剩余次数</span>:<span class="seeTimes" style="margin-left: 3px"></span></span>\n' +
+                                '                    <span class="cardStatus" style="margin-left: 20px">\n' +
+                                '                        <span>卡状态</span>:\n' +
+                                '                        <span name="status" class="status">\n' +
+
+                                '                        </span>\n' +
+                                '                    </span>\n' +
+                                '                    <input class="isStart seeIsStart" name="isStart" type="checkbox" value="1"  style=" width: 20px;vertical-align: middle;margin: 0;margin-right: 5px"/><span class="isView">开启有效期</span> \n' +
+                                '                    <span class="date" style="margin-right: 20px"> <span style="display: inline-block;margin-left: 20px">有效期至:</span><span class="endDate" style="margin-left: 5px"></span></span>\n' +
+                                '                </li>');
+                            //会员存在的会员卡信息 写入
+                            $('.memCardName').eq(i).text(memCardByMemList[i].membcardName);//会员存在的会员卡名称
+                            switch(memCardByMemList[i].cardStatus)
+                            {
+                                case '1':
+                                    $('.status').eq(i).text('正常');
+                                    break;
+                                case '2':
+                                    $('.status').eq(i).text('请假');
+                                    break;
+                                case '3':
+                                    $('.status').eq(i).text('停卡');
+                                    break;
+                            }
+                            if(memCardByMemList[i].membcardType =='1'){
+                                $('.cardType').eq(i).text('次卡');
+                                $('.times').eq(i).show();
+                                $('.seeTimes').eq(i).text(memCardByMemList[i].times);
+                                $('.isStart').eq(i).show();
+                                $('.isView').eq(i).show();
+                                if(memCardByMemList[i].validityTime==''){
+                                    $('.date').eq(i).hide();
+                                }else {
+//                                $("input:radio[name='isStart'][value='1']").attr("checked","checked");
+                                    $(".seeIsStart").eq(i).attr("checked","checked");
+                                    $('.endDate').eq(i).text(memCardByMemList[i].validityTime.substring(0,10));
+                                }
+
+                            }else {
+                                $('.cardType').eq(i).text('期限卡');
+                                $('.times').eq(i).hide();
+                                $('.date').eq(i).show();
+                                $('.isStart').eq(i).hide();
+                                $('.isView').eq(i).hide();
+                                $('.endDate').eq(i).text(memCardByMemList[i].validityTime.substring(0,10));
+                            }
+
+                        }
+                        $(".seeBack").unbind("click");
+                        $('.seeBack').click(function () {
+                            seeBackground.style.display ='none';
+                        })
+
+                    })
+                    $('.delete').click(function () {
+                        deleteBackground.style.display ='block';
+                        //点击删除  弹出删除警示框
+                        var deleteIndex = $(this).index('.delete');
+                        var id= memberList[deleteIndex].id;
+                        var businessId = $("#businessList option:selected").val();
+
+                        //删除警示框 确认 调用删除接口 取消 弹框消失不做操作
+                        $(".deleteSure").unbind("click");
+                        $('.deleteSure').click(function () {
+                            deleteBackground.style.display ='none';
+                            deleteMember(id,businessId);
+                        })
+                        $(".deleteCancle").unbind("click");
+                        $('.deleteCancle').click(function () {
+                            deleteBackground.style.display ='none';
+                        })
+                    })
+                }
+            }
+        });
+    }
+    function listMemberCardByMemberId(id,businessId) {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/listMemberCardByMemberId",
+            async: false,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'id':id,
+                'businessId': businessId
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code ==4003){
+                    alert('业务异常！');
+                }else if(data.result.code==0){
+                    memCardByMemList =data.datas.memberCardRelationList;
+                }
+
+            }
+        });
+    }
+    function listCard(businessId) {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/listMemberCard",
+            async: false,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'businessId': businessId
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code ==4003){
+                    alert('业务异常！');
+                }else if(data.result.code==0){
+                    memCards = data.datas.memberCardList;
+                }
+
+
+            }
+        });
+    }
+    $('.addMemBtn').click(function () {
+        addBackground.style.display = 'block';//录入弹框显示
+        //$('.addBirthday').val(myDate);
+        var businessId = $("#businessList option:selected").val();
+        listCard(businessId);
+        var times = 0;
+
+        $(".addCard").unbind("click");
+        $('.memBoxUl li').remove();
+        $('.addCard').click(function () {
+            var memberTags =$(".addMemTag option:selected").val();
+            if(memberTags=='5'){
+                $('.addCardList').append('<li>\n' +
+                    '                    <select name="memCardName" class="memCardName" style="line-height: 20px">\n' +
+                    '                    </select>\n' +
+                    '                    <span class="cardType">次卡</span>\n' +
+                    '                    <span class="times" style="margin-left: 20px"><span>剩余次数</span>:<input  class="addTimes"  type="text" style="margin-left: 3px"></span>\n' +
+                    '                    <span class="cardStatus" style="margin-left: 20px">\n' +
+                    '                        <span>卡状态</span>:\n' +
+                    '                        <select name="status" class="status" style="line-height: 20px">\n' +
+                    '                            <option value="1">正常</option>\n' +
+                    '                            <option value="2">请假</option>\n' +
+                    '                            <option value="3">停卡</option>\n' +
+                    '                        </select>\n' +
+                    '                    </span>\n' +
+                    '                    <input class="isStart" name="isStart" type="checkbox" value="1"  style=" width: 20px;vertical-align: middle;margin: 0;margin-right: 5px"/><span class="isView">开启有效期</span> \n' +
+                    '                    <span class="date" style="margin-right: 20px"> <span style="display: inline-block;margin-left: 20px">有效期至:</span><input  class="endDate" type="date" value="" style="margin-left: 5px;border: none;height: 30px;width: 130px;color: #49aceb"/></span>\n' +
+                    '                    <img class="deleteCard" style="cursor: pointer" src="../images/delete.png" alt="删除卡">\n' +
+                    '                </li>');
+
+                // $('.memCardName option').remove();
+                for(var i= 0;i<memCards.length;i++){
+                    $('.memCardName').eq(times).append('<option id="'+memCards[i].id+'" value="'+memCards[i].membcardType+'">'+memCards[i].membcardName+'</option>')
+                }
+
+                var val = $('.memCardName').eq(times).find("option:selected").val();
+                if(val =='1'){
+                    $('.date').eq(times).hide();
+                    $('.cardType').eq(times).text('次卡');
+                    $('.times').eq(times).show();
+
+                    $('.isStart').eq(times).show();
+                    $('.isView').eq(times).show();
+
+                }else {
+                    $('.cardType').eq(times).text('期限卡');
+                    $('.times').eq(times).hide();
+                    $('.date').eq(times).show();
+                    $('.isStart').eq(times).hide();
+                    $('.isView').eq(times).hide();
+                }
+                times ++;
+                $('.memCardName').change(function () {
+                    var index = $(this).index('.memCardName');
+                    if($(this).find("option:selected").val() =='1'){
+                        $('.cardType').eq(index).text('次卡');
+                        $('.times').eq(index).show();
+                        $('.isStart').eq(index).show();
+                        $('.isView').eq(index).show();
+                        $('.date').eq(index).hide();
+
+                    }else {
+                        $('.cardType').eq(index).text('期限卡');
+                        $('.times').eq(index).hide();
+                        $('.date').eq(index).show();
+                        $('.isStart').eq(index).hide();
+                        $('.isView').eq(index).hide();
+                    }
+                });
+                $('.isStart').change(function () {
+                    var index = $(this).index('.isStart');
+                    if($(this).is(':checked') == true){
+                        $('.date').eq(index).show();
+                    }else {
+                        $('.date').eq(index).hide();
+                    }
+                });
+            }else {
+                alert('非签约客户无关联卡！');
+            }
+            //点击删除这一张卡
+            $(".deleteCard").unbind("click");
+            $('.deleteCard').click(function () {
+                var deleteIndex = $(this).index('deleteCard');
+                $('.addCardList li').eq(deleteIndex).remove();
+            });
+        });
+
+
+
+        $(".addBack").unbind("click");
+        $(".addBack").click(function () {
+            addBackground.style.display ='none';
+            $('.addName').val('');
+            $('.addPhoneNum').val('');
+            $('.addMemberRemark').val('');
+            $('.addCardList li').remove();
+        });
+        $(".addSave").unbind("click");
+        $('.addSave').click(function () {
+            var businessId = $("#businessList option:selected").val();
+            var storeId = $("#storeList option:selected").val();//最好的门店2
+            var creator =sessionStorage.getItem('manageId');//马军
+//            var memberCardListObj =new  Object();
+            var cards =new  Array();
+            var nickName =$('.addName').val();
+            var phoneNum =$('.addPhoneNum').val();
+            var sex =$('input[name="addSex"]:checked').val();
+            var birthday = $('.addBirthday').val();
+            var memberTags =$(".addMemTag option:selected").val();
+            var remark =$('.addMemberRemark').val();
+            for(var i =0;i<$('.addCardList li').length;i++){
+                var obj = new  Object();
+                obj.id =null;
+                obj.membcardId  = $('.memCardName').eq(i).find("option:selected").attr('id');//卡id
+                obj.membcardType  = $('.memCardName').eq(i).find("option:selected").val();//卡类型
+                obj.cardStatus = $('.status').eq(i).find("option:selected").val()
+                if($('.memCardName').eq(i).find("option:selected").val()=='1'){
+                    obj.times  = $('.addTimes').eq(i).val();//次数
+                    if($('.isStart').eq(i).is(':checked') ==true){
+                        obj.validityType  = '1';//是否有效
+                        obj.validityTime  = $('.endDate').eq(i).val();//有效时间
+                    }else {
+                        obj.validityType  = '2';//是否有效
+                        obj.validityTime  = null;//有效时间
+                    }
+                }else {
+                    obj.times =null;
+                    obj.validityType  = null;
+                    obj.validityTime  = $('.endDate').eq(i).val();//有效时间
+                }
+                cards.push(obj);
+
+
+
+            }
+//            memberCardListObj.cardList =cards;
+            var memberCardListStr = JSON.stringify(cards);
+            if(nickName!=''&&phoneNum!=''&&sex!=undefined){
+                if(checkPhone(phoneNum)){
+                    if(memberTags==5&&cards.length==0){
+                        alert('签约客户必须添加卡！');
+                    }else {
+                        addMemberInfoAndCardInfo(businessId,storeId,nickName,sex,birthday,phoneNum,memberTags,memberCardListStr,creator,remark);
+                    }
+                }else {
+                    alert('手机号有误！');
+                }
+            }else {
+                alert('请输入必填项！');
+            }
+
+        })
+    });
+
+
+    function addMemberInfoAndCardInfo(businessId,storeId,nickName,sex,birthday,phoneNum,memberTags,memberCardListStr,creator,remark) {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/addMemberInfoAndCardInfo",
+            async: true,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'businessId': businessId,
+                'storeId':storeId,
+                'nickName':nickName,
+                'sex':sex,
+                'birthday':birthday,
+                'phoneNum':phoneNum,
+                'memberTags':memberTags,
+                'memberCardListStr':memberCardListStr,
+                'creator':creator,
+                'remark':remark
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code ==5016){
+                    alert('该号码已存在！');
+                }else if(data.result.code ==0){
+                    alert('录入成功');
+                    //录入框消失
+                    addBackground.style.display = 'none';
+                    //重新分页请求
+                    pagination(listMember);
+                    //录入框信息删除
+                    $('.addName').val('');
+                    $('.addPhoneNum').val('');
+                    $('.addMemberRemark').val('');
+                    $('.addCardList li').remove();
+                }else if(data.result.code ==4003) {
+                    alert('业务异常！');
+                }
+
+            }
+        });
+    }
+    function editMemberInfoAndCardInfo(id,userId,businessId,storeId,nickName,sex,birthday,phoneNum,memberTags,updateMemberCardListStr,addMemberCardListStr,delCardStr,remark) {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/editMemberInfoAndCardInfo",
+            async: true,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'id':id,
+                'userId':userId,
+                'businessId': businessId,
+                'storeId':storeId,
+                'nickName':nickName,
+                'sex':sex,
+                'birthday':birthday,
+                'phoneNum':phoneNum,
+                'memberTags':memberTags,
+                'updateMemberCardListStr':updateMemberCardListStr,
+                'addMemberCardListStr':addMemberCardListStr,
+                'delCardStr':delCardStr,
+                'remark':remark
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code ==0){
+                    alert('编辑成功！');
+                    editBackground.style.display ='none';
+                    pagination(listMember);
+                }else if(data.result.code ==4003) {
+                    alert('业务异常！');
+                }else if(data.result.code=='5018'){
+                    alert('该号码已存在！');
+                }
+            }
+        });
+    }
+    function deleteMember(id,businessId) {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/deleteBusinessMember",
+            async: true,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'id':id,
+                'businessId':businessId
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../login.html';
+                }else if(data.result.code ==0){
+                    alert('删除成功');
+                    deleteBackground.style.display ='none';
+                    pagination(listMember);
+                }else if(data.result.code ==4003) {
+                    alert('业务异常！');
+                }
+
+
+            }
+        });
+    }
+
+    window.onload = function () {
+        getAllBusinessInfo();
+    }
+    $('.logout').click(function () {
+        logout('../login.html');
+    });
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="83cd1a5b-7eab-4293-8fe9-4f7562a4af81" name="tomcat" url="http://192.168.1.119:8081/dodsManage">
+        <fileTransfer host="192.168.1.119" port="8081">
+          <option name="port" value="8081" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

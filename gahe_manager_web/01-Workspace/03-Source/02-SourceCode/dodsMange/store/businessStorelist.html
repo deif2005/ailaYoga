@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/same.css">
+    <title>商家门店列表信息</title>
+    <style>
+        .header{
+            margin-bottom: 0px;
+        }
+        .title{
+            height: 100px;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 100px;
+            padding-left: 20px;
+            padding-right: 40px;
+        }
+
+        .leftcol{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .rightcol{
+            display: inline-block;
+            vertical-align: middle;
+            float: right;
+        }
+        .leftcol select{
+            border: none;
+            outline: none;
+        }
+        .businessName{
+            line-height: 14px;
+            margin-right: 50px;
+        }
+
+        .rightcol .addstorebtn{
+            height: 30px;
+            width: 90px;
+            background: #49aceb;
+            display: inline-block;
+            color:#ffffff;
+            vertical-align: middle;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 5px;
+            background-image: url("../images/powerbtn/tian_jia.png");
+            background-repeat: no-repeat;
+            background-position: 4px center;
+            padding-left: 15px;
+            margin-left: 25px;
+        }
+        .listtitle span{
+            /*display: inline-block;*/
+            font-weight: bold;
+            float: left;
+            width: 100px;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            margin-right: 30px;
+        }
+        .listtitle span:nth-child(4){
+            width: 400px;
+            text-align: center;
+
+        }
+        .listtitle:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .listtitle{
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .storeList{
+            min-height: 500px;
+        }
+        .pagination-nick{
+            border-top: 1px solid #f0f0f0;
+        }
+        .storeList  li div{
+            /*display: inline-block;*/
+            float: left;
+            width: 100px;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            vertical-align: middle;
+            margin-right: 30px;
+        }
+        .storeList  li div:nth-child(4){
+            width: 400px;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .storeList  li div:nth-child(5){
+            width: 260px;
+        }
+        .storeList  li div:nth-child(2) img{
+            width: 44px;
+            height: 44px;
+            border: none;
+        }
+        .storeList  li:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .storeList  li{
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .dataoperate:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .edit{
+            float: left;
+            margin-left: 10px;
+            color: #49aceb;
+            cursor: pointer;
+        }
+
+        .watch{
+            float: left;
+            margin-left: 10px;
+            color: #49aceb;
+            cursor: pointer;
+        }
+
+        .employee{
+            float: left;
+            margin-left: 10px;
+            color: #49aceb;
+            cursor: pointer;
+        }
+
+        .delete{
+            float: left;
+            margin-left:10px;
+            color: #49aceb;
+        }
+        .setPayment{
+            float: left;
+            margin-left:10px;
+            color: #49aceb;
+        }
+
+        /*分页样式*/
+        button{
+            padding:5px;
+            margin:5px;
+            width: 35px;
+            height: 35px;
+            background: #ffffff;
+            border: 1px solid #f0f0f0;
+        }
+        .prev-btn,.next-btn{
+            padding:5px;
+            margin:5px;
+            width: 55px;
+            height: 35px;
+        }
+        .first-btn,.last-btn{
+            padding:5px;
+            margin:5px;
+            width: 45px;
+            height: 35px;
+        }
+        .active-nick{
+            /*color:red;*/
+            background: #49aceb;
+            color: #f0f0f0;
+        }
+        input{
+            width:50px;
+            text-align:center;
+        }
+        .btn-box-nick,.paexplain{
+            display: inline-block;
+        }
+        .paexplain{
+            margin-left: 30px;
+            color: #939393;
+        }
+        .btn-box-nick{
+            margin-left: 25%;
+            color: #49aceb;
+        }
+
+    </style>
+</head>
+<body>
+<div class="left_side">
+    <iframe name="iframes" id="iframe2" src="../leftNav.html" frameborder="0"></iframe>
+</div>
+<div class="right_side">
+    <div class="header"><span class="dods">多点运动助手后台管理系统</span><div class="imgdiv"><img class="head_photo" src="../images/tou_xiang.png" ></div><span class="name">陈老师</span></div>
+    <div class="title">
+        <div class="leftcol">
+            <span class="businessName">商家名称</span>
+
+        </div>
+        <div class="rightcol">
+            <a href="create/createStore.html"><span class="addstorebtn">添加门店</span></a>
+        </div>
+    </div>
+    <div class="listtitle">
+        <span>门店编号</span>
+        <span>门头照</span>
+        <span>门店名</span>
+        <span>地址</span>
+        <span>操作</span>
+    </div>
+    <ul class="storeList">
+
+    </ul>
+    <div class="pagination-nick"></div>
+    <div id="deleteBackground" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div id="alert-box" style="max-width: 450px;background: #ffffff; margin: 300px auto;padding: 30px 0px 5px">
+            <img style="display: block;margin: 0px auto 40px" src="../images/jinggao.png" alt="警告">
+            <div style="color: #ff4138;font-size: 14px;text-align: center">是否确认删除，删除将不可恢复</div>
+            <div class="btnList"><div class="sure deleteSure">确认</div><div class="cancle deleteCancle">取消</div></div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/same.js"></script>
+<script type="text/javascript">
+    var iframe2 = document.getElementById("iframe2");
+
+    iframeIsLoad(iframe2,function(){
+
+//    iframe2.contentWindow.b();   // 打印出 我是子页面
+
+        // 父页面获取子页面iframe2的元素
+
+        var iframeDom = $("#business",iframe2.contentWindow.document);
+        var iframeDom2 = $("#businessul",iframe2.contentWindow.document);
+        var iframeDom3 = $("#busBasicSetting",iframe2.contentWindow.document);
+        iframeDom.addClass('active')
+        iframeDom3.addClass('active')
+        iframeDom2.addClass('menu-open')
+        iframeDom2.css({
+            'display':'block'
+        })
+    });
+    $('.businessName').text(sessionStorage.getItem('businessName'))
+    /**
+     * 获取门店列表接口
+     * @param page 分页页数
+     */
+    function listStore(page) {
+        console.log(sessionStorage.getItem('businessId'))
+        var businessId =sessionStorage.getItem('businessId');
+        $.ajax({
+            type: "POST",
+            url: "http://192.168.1.168:8081/api/SystemBase/v1/listStoreInfo",
+            async: false,//设为同步 可以让获取到的token在函数外使用
+            dataType: "json",
+            data: {
+                'businessId': businessId,
+                'page': page
+            },
+            success: function (data) {
+                console.log(data)
+                num = data.datas.recordCount;
+                var storeLists = data.datas.businessInfo;
+                //创建分页数据li时 先删除之前的li
+                $('.storeList li').remove();
+                //创建分页数据列表
+                for(var i =0;i<storeLists.length;i++){
+                    if(storeLists[i].doorPicture != ''){
+                        var srcList =storeLists[i].doorPicture.split(';');
+                    }else {
+                        var srcList =[];
+                    }
+                    var areas = storeLists[i].area.split('##');
+                    $('.storeList').append('<li><div>'+storeLists[i].storeSerialId+'</div><div><img src="'+srcList[0]+'" alt=""></div><div>'+storeLists[i].storeName+'</div><div>'+areas[0]+areas[1]+storeLists[i].address+'</div><div class="dataoperate"><span class="watch">查看</span><span class="edit">编辑</span><span class="employee">员工</span><span class="delete" style="cursor: pointer">删除</span></div></li>')
+
+                }
+                //每个查看按钮  触发删除事件
+                $('.watch').click(function () {
+
+                    var watchIndex = $(this).index('.watch');
+                    sessionStorage.setItem('idWatch', storeLists[watchIndex].id);
+                    sessionStorage.setItem('storeNameWatch', storeLists[watchIndex].storeName);
+                    sessionStorage.setItem('managerNameWatch', storeLists[watchIndex].managerName);
+                    sessionStorage.setItem('phoneNumWatch', storeLists[watchIndex].phoneNum);
+                    sessionStorage.setItem('phoneNum2Watch', storeLists[watchIndex].phoneNum2);
+                    sessionStorage.setItem('emailWatch', storeLists[watchIndex].email);
+                    sessionStorage.setItem('contactWayWatch', storeLists[watchIndex].contactWay);
+                    sessionStorage.setItem('areaWatch', storeLists[watchIndex].area);
+                    sessionStorage.setItem('addressWatch', storeLists[watchIndex].address);
+                    sessionStorage.setItem('startTimeWatch', storeLists[watchIndex].startTime);
+                    sessionStorage.setItem('endTimeWatch', storeLists[watchIndex].endTime);
+                    sessionStorage.setItem('serviceIntroductionWatch', storeLists[watchIndex].serviceIntroduction);
+                    sessionStorage.setItem('doorPictureWatch', storeLists[watchIndex].doorPicture);
+                    sessionStorage.setItem('classroomPictureWatch', storeLists[watchIndex].classroomPicture);
+                    sessionStorage.setItem('receptionPictureWatch', storeLists[watchIndex].receptionPicture);
+                    sessionStorage.setItem('licensePictureWatch', storeLists[watchIndex].licensePicture);
+                    window.location.href='../store/retrieve/retrieve_store.html';
+                });
+                $('.edit').click(function () {
+
+                    var editIndex = $(this).index('.edit');
+                    sessionStorage.setItem('id', storeLists[editIndex].id);
+                    sessionStorage.setItem('storeName', storeLists[editIndex].storeName);
+                    sessionStorage.setItem('managerName', storeLists[editIndex].managerName);
+                    sessionStorage.setItem('phoneNum', storeLists[editIndex].phoneNum);
+                    sessionStorage.setItem('phoneNum2', storeLists[editIndex].phoneNum2);
+                    sessionStorage.setItem('email', storeLists[editIndex].email);
+                    sessionStorage.setItem('contactWay', storeLists[editIndex].contactWay);
+                    sessionStorage.setItem('area', storeLists[editIndex].area);
+                    sessionStorage.setItem('address', storeLists[editIndex].address);
+                    sessionStorage.setItem('startTime', storeLists[editIndex].startTime);
+                    sessionStorage.setItem('endTime', storeLists[editIndex].endTime);
+                    sessionStorage.setItem('serviceIntroduction', storeLists[editIndex].serviceIntroduction);
+                    sessionStorage.setItem('doorPicture', storeLists[editIndex].doorPicture);
+                    sessionStorage.setItem('classroomPicture', storeLists[editIndex].classroomPicture);
+                    sessionStorage.setItem('receptionPicture', storeLists[editIndex].receptionPicture);
+                    sessionStorage.setItem('licensePicture', storeLists[editIndex].licensePicture);
+                    window.location.href='../store/edit/editStore.html';
+                });
+                $('.employee').click(function () {
+                    var employeeIndex = $(this).index('.employee');
+                    sessionStorage.setItem('businessName', storeLists[employeeIndex].storeName);
+                    window.location.href='../store/employeeList.html';
+                })
+                //每个删除按钮  触发删除事件
+                $('.delete').click(function () {
+                    var deleteBackground = document.getElementById("deleteBackground");
+                    deleteBackground.style.display ='block';
+                    //点击删除  弹出删除警示框
+                    var deleteIndex = $(this).index('.delete');
+                    var id= storeLists[deleteIndex].id;
+                    //删除警示框 确认 调用删除接口 取消 弹框消失不做操作
+                    $(".deleteSure").unbind("click");
+                    $('.deleteSure').click(function () {
+
+                        deleteStore(id);
+                    })
+                    $(".deleteCancle").unbind("click");
+                    $('.deleteCancle').click(function () {
+                        deleteBackground.style.display ='none';
+                    })
+                })
+
+            }
+        });
+    }
+
+//页面加载调用 获取分页数据
+    window.onload = function () {
+        pagination(listStore);
+
+    }
+    function deleteStore(id) {
+        $.ajax({
+            type: "POST",
+            url: "http://192.168.1.168:8081/api/SystemBase/v1/deleteStore",
+            async: true,
+            dataType: "json",
+            data: {
+                'id':id
+            },
+            success: function (data) {
+                console.log(data);
+                if(data.result.code==0){
+                    alert('编辑成功！');
+                    location.reload();
+                }
+            }
+        });
+    }
+</script>
+</html>

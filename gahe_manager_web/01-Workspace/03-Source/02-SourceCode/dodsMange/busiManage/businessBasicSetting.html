@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/same.css">
+    <title>商家基础设置</title>
+    <style>
+        .header{
+            margin-bottom: 0px;
+        }
+        .title{
+            min-height: 100px;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 100px;
+            padding-left: 20px;
+            padding-right: 40px;
+        }
+        .title:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+
+        .titlename{
+            line-height: 14px;
+            margin-right: 50px;
+            vertical-align: middle;
+        }
+        .setting li{
+            margin: 50px 100px;
+        }
+        .setting li input{
+            margin: 0 5px;
+        }
+        .day{
+            height: 30px;
+            width: 60px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="left_side">
+    <iframe name="iframes" id="iframe2" src="../leftNav.html" frameborder="0"></iframe>
+</div>
+
+<div class="right_side">
+    <div class="header"><span class="dods">多点运动助手后台管理系统</span><div class="imgdiv"><img class="head_photo" src="../images/tou_xiang.png" ></div><span class="name">陈老师</span><span class="logout">退出</span></div>
+    <div class="title">
+        <span class="titlename" style="font-size: 18px;font-weight: bold">商家基础设置</span>
+        <select  id="businessList" >
+            <option value="">商家1</option>
+            <option value="">商家2</option>
+        </select>
+
+    </div>
+    <ul class="setting">
+
+        <li>能提前<input class="day" type="text" >天预约课程（最长设置6天）</li>
+        <li>开课前<input class="day" type="text">分钟停止预约和停止取消预约</li>
+        <li>会员请假<input class="day" type="text">元/月</li>
+        <li>请假最长时间是<input class="day" type="text">月（最长设置12个月）</li>
+        <li>最多请假<input class="day" type="text">次（0次表示不限制次数）</li>
+    </ul>
+    <div class="footer">
+        <div class="back">返回</div>
+        <div class="save">保存</div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/same.js"></script>
+<script type="text/javascript">
+    $('.logout').click(function () {
+        logout('../login.html');
+    });
+    var iframe2 = document.getElementById("iframe2");
+
+    iframeIsLoad(iframe2,function(){
+
+//    iframe2.contentWindow.b();   // 打印出 我是子页面
+
+        // 父页面获取子页面iframe2的元素
+
+        var iframeDom = $("#basicSetting",iframe2.contentWindow.document);
+        var iframeDom2 = $("#basicSettingUl",iframe2.contentWindow.document);
+        var iframeDom3 = $("#busBasic",iframe2.contentWindow.document);
+        iframeDom.addClass('active')
+        iframeDom3.addClass('active')
+        iframeDom2.addClass('menu-open')
+        iframeDom2.css({
+            'display':'block'
+        })
+    });
+
+
+
+
+</script>
+</html>

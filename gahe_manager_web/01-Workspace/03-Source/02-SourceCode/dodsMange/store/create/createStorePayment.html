@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/same.css">
+    <title>薪酬基础信息设置</title>
+    <style>
+        /*内容区样式*/
+        .content{
+            padding: 0 30px;
+        }
+        .content .title:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .content li span:nth-child(1){
+            display: inline-block;
+          width: 100px;
+        }
+
+        .title div{
+            float: left;
+            font-size: 14px;
+        }
+        .title div:nth-child(1){
+            font-weight: bold;
+            font-size: 18px;
+            margin-right: 100px;
+        }
+        input{
+            height: 30px;
+            width: 110px;
+            margin-right: 10px;
+        }
+        .senioritySalary{
+            width: 60px;
+            margin-left: 20px;
+        }
+        .content:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .leftUl ,.rightUl{
+            float: left;
+            font-size: 14px;
+        }
+        .rightUl{
+            margin-left: 200px;
+        }
+        .leftUl li,.rightUl li{
+            margin-top: 20px;
+        }
+        /* 加班样式*/
+        .leftUl .workOvertimeLi li{
+            margin-top: 10px;
+        }
+        .workOvertimeLi:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .workOvertimeLi input{
+            width: 50px;
+        }
+        /* 业绩样式*/
+        .rightUl .achievementLi li{
+            margin-top: 10px;
+        }
+        .achievementLi:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .achievementLi input{
+            width: 75px;
+        }
+        /* 团课 ,私教样式*/
+        .rightUl .courseLi li{
+            margin-top: 10px;
+        }
+        .courseLi:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .rightUl .courseLi li:last-child span{
+            width: 180px;
+        }
+        .rightUl .courseLi li:last-child input{
+            width: 40px;
+        }
+        /*底部样式*/
+        .footer{
+            height: 55px;
+            border-top: solid 1px darkgrey;
+            text-align: right;
+            padding-top: 15px;
+        }
+        .save{
+            background: #49aceb;
+            border-radius: 5px;
+            width: 90px;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            display: inline-block;
+            font-size: 16px;
+            color: #ffffff;
+            margin-right: 20px;
+            padding-left: 20px;
+            background-image: url("../../images/powerbtn/fan_hui.png");
+            background-repeat: no-repeat;
+            background-position: 10px center;
+        }
+        .backlast{
+            background: #95A5A6;
+            border-radius: 5px;
+            width: 90px;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            display: inline-block;
+            font-size: 16px;
+            color: #ffffff;
+            margin-right: 20px;
+            padding-left: 20px;
+            background-image: url("../../images/powerbtn/fan_hui.png");
+            background-repeat: no-repeat;
+            background-position: 10px center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="left_side">
+    <iframe name="iframes" id="iframe2" src="../../leftNav.html" frameborder="0"></iframe>
+</div>
+<div class="right_side">
+    <div class="header"><span class="dods">多点运动助手后台管理系统</span><div class="imgdiv"><img class="head_photo" src="../../images/tou_xiang.png" ></div><span class="name">陈老师</span></div>
+    <div class="content">
+        <div class="title"><div>设置薪酬</div><div>门店：诺姆瑜伽馆分馆</div></div>
+        <ul class="leftUl">
+            <li><span>无责底薪</span><input class="basicSalary" type="text">元</li>
+            <li><span>岗位工资</span><input class="positionSalary" type="text">元</li>
+            <li><span>工龄工资</span>每满一年加<input class="senioritySalary" type="text">元</li>
+            <li><span>考勤工资</span><input class="attendanceSalary" type="text">元</li>
+            <li><span>房补</span><input class="housingAllowance" type="text">元</li>
+            <li><span>餐补</span><input class="mealAllowance" type="text">元</li>
+            <li><span>话补</span><input class="telephoneAllowance" type="text">元</li>
+            <li><span>交通补助</span><input class="trafficAllowance" type="text">元</li>
+            <li><span>全勤奖</span><input class="totalManagement" type="text">元</li>
+            <li><span>管理津贴</span><input class="manageAllowance" type="text">元</li>
+            <li><span>其他</span><input class="other" type="text"></li>
+            <li class="workOvertimeLi">
+                <span style="float: left;margin-top: 15px">加班费</span>
+                <ul class="workOvertime" style="float: left">
+                    <li><span>平时加班</span><input class="nomal" type="text">元/h</li>
+                    <li><span>周末加班</span><input class="weekend" type="text">元/h</li>
+                    <li><span>节假日加班</span><input class="festival" type="text">元/h</li>
+                </ul>
+
+            </li>
+
+
+        </ul>
+        <ul class="rightUl">
+            <li><span>固定提成点</span><input class="fixed" type="text">%</li>
+            <li class="achievementLi">
+                <span style="float: left;margin-top: 15px">阶梯提成</span>
+                <ul class="achievement" style="float: left">
+                    <li><span>业绩满</span><input class="first" type="text">元 提成<input type="text">%</li>
+                    <li><span>业绩满</span><input class="second" type="text">元 提成<input type="text">%</li>
+                    <li><span>业绩满</span><input class="third" type="text">元 提成<input type="text">%</li>
+                </ul>
+
+            </li>
+            <li class="courseLi">
+                <span style="float: left;margin-top: 15px">团课提成</span>
+                <ul style="float: left">
+                    <li><span>高级教练</span><input class="senior" type="text">元/节课</li>
+                    <li><span>中级教练</span><input class="middle" type="text">元/节课</li>
+                    <li><span>初级教练</span><input class="primary" type="text">元/节课</li>
+                    <li><span>兼职教练为以上设置的</span><input class="partJob" type="text">倍</li>
+                </ul>
+
+            </li>
+            <li class="courseLi">
+                <span style="float: left;margin-top: 15px">私教提成</span>
+                <ul style="float: left">
+                    <li><span>高级教练</span><input class="senior" type="text">元/节课</li>
+                    <li><span>中级教练</span><input class="middle" type="text">元/节课</li>
+                    <li><span>初级教练</span><input class="primary" type="text">元/节课</li>
+                    <li><span>兼职教练为以上设置的</span><input class="partJob" type="text">倍</li>
+                </ul>
+
+            </li>
+            <li><span>代扣社保</span><input class="socialSecurity" type="text">元</li>
+            <li><span>代扣公积金</span><input class="accumulationFund" type="text">元</li>
+            <li><span>扣个人所得税</span><input class="revenue" type="text">元</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <div class="save">保存</div>
+        <div class="backlast">返回</div>
+    </div>
+</div>
+</body>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/same.js"></script>
+<script type="text/javascript" src="../../distpicker.js"></script>
+<script type="text/javascript">
+
+    var iframe2 = document.getElementById("iframe2");
+
+    iframeIsLoad(iframe2,function(){
+
+//    iframe2.contentWindow.b();   // 打印出 我是子页面
+
+        // 父页面获取子页面iframe2的元素
+
+        var iframeDom = $("#business",iframe2.contentWindow.document);
+        var iframeDom2 = $("#businessul",iframe2.contentWindow.document);
+        var iframeDom3 = $("#busBasicSetting",iframe2.contentWindow.document);
+        iframeDom.addClass('active')
+        iframeDom3.addClass('active')
+        iframeDom2.addClass('menu-open')
+        iframeDom2.css({
+            'display':'block'
+        })
+    });
+
+
+
+</script>
+</html>

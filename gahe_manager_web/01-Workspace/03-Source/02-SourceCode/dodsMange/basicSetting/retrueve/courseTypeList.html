@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/same.css">
+    <title>商家课程分类</title>
+    <style>
+        .header{
+            margin-bottom: 0px;
+        }
+        .title{
+            min-height: 100px;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 100px;
+            padding-left: 20px;
+            padding-right: 40px;
+            position: relative;
+        }
+        .title:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+
+        .titlename{
+            line-height: 14px;
+            margin-right: 50px;
+        }
+
+        .addCourseTypeBtn{
+            position: absolute;
+            top: 50%;
+            right: 40px;
+            height: 30px;
+            width: 120px;
+            background: #49aceb;
+            color: #ffffff;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 5px;
+            background-image: url('../../images/powerbtn/tian_jia.png');
+            background-repeat: no-repeat;
+            background-position: 4px center;
+            padding-left: 15px;
+            cursor: pointer;
+            transform:translate(0 ,-50%);
+            -ms-transform:translate(0 ,-50%); 	/* IE 9 */
+            -moz-transform:translate(0 ,-50%); 	/* Firefox */
+            -webkit-transform:translate(0 ,-50%); /* Safari 和 Chrome */
+            -o-transform:translate(0 ,-50%); 	/* Opera */
+        }
+        .CourseTypelist{
+            min-height: 600px;
+        }
+        .CourseTypelist  li div{
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            vertical-align: middle;
+            margin-right: 30px;
+        }
+        .CourseTypelist  li .dataoperate{
+            width: 150px;
+        }
+        .CourseTypelist  li{
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .dataoperate:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .edit{
+            float: left;
+            margin-left:10px;
+            color: #49aceb;
+        }
+        .stop{
+            float: left;
+            margin-left:10px;
+            color: #49aceb;
+        }
+        .delete{
+            float: left;
+            margin-left:10px;
+            color: #49aceb;
+        }
+
+
+        /*分页样式*/
+        button{
+            padding:5px;
+            margin:5px;
+            width: 35px;
+            height: 35px;
+            background: #ffffff;
+            border: 1px solid #f0f0f0;
+        }
+        .prev-btn,.next-btn{
+            padding:5px;
+            margin:5px;
+            width: 55px;
+            height: 35px;
+        }
+        .first-btn,.last-btn{
+            padding:5px;
+            margin:5px;
+            width: 45px;
+            height: 35px;
+        }
+        input{
+            width:50px;
+            text-align:center;
+        }
+        .active-nick{
+            background: #49aceb;
+            color: #f0f0f0;
+        }
+
+        .btn-box-nick,.paexplain{
+            display: inline-block;
+        }
+        .paexplain{
+            margin-left: 30px;
+            color: #939393;
+        }
+        .btn-box-nick{
+            margin-left: 25%;
+            color: #49aceb;
+        }
+
+
+        #businessList{
+            /*border: none;*/
+        }
+
+    </style>
+</head>
+<body>
+<div class="left_side">
+    <iframe name="iframes" id="iframe2" src="../../leftNav.html" frameborder="0"></iframe>
+</div>
+<div class="right_side">
+    <div class="header"><span class="dods">多点运动助手后台管理系统</span><div class="imgdiv"><img class="head_photo" src="../../images/tou_xiang.png" ></div><span class="name">陈老师</span><span class="logout">退出</span></div>
+    <div class="title">
+            <span class="titlename" style="font-weight: bold;font-size: 18px">商家课程分类</span>
+            <span>商家：</span>
+            <select id="businessList" onChange="changeBusiness();">
+
+            </select>
+
+            <span class="addCourseTypeBtn">添加课程分类</span>
+
+    </div>
+    <ul class="CourseTypelist">
+    <!--商家课程分类列表信息-->
+
+    </ul>
+    <div class="pagination-nick"></div>
+    <div id="addBackground" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div style="max-width: 450px;background: #ffffff; margin: 300px auto">
+            <div style="height: 40px;line-height: 40px;padding: 0 10px;font-weight: bold">添加课程分类</div>
+            <ul class="courseInfo" style="padding: 10px 20px;border-top:1px solid #f0f0f0;border-bottom: 1px solid #f0f0f0 ">
+                <li class="addbusi" style="margin-bottom: 15px"><span style="margin-right: 30px;display: inline-block;width: 100px">商家编号</span><span>商家名称</span></li>
+                <li><input class="addCourseName" type="text" style="width: 300px ;height: 50px"></li>
+            </ul>
+            <div class="btnList"><div class="back addCancle">返回</div><div class="save addSure">保存</div></div>
+        </div>
+    </div>
+    <div id="editBackground" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div style="max-width: 450px;background: #ffffff; margin: 300px auto">
+            <div style="height: 40px;line-height: 40px;padding: 0 10px;font-weight: bold">编辑课程分类</div>
+            <ul class="courseInfo" style="padding: 10px 20px;border-top:1px solid #f0f0f0;border-bottom: 1px solid #f0f0f0 ">
+                <li class="editbusi" style="margin-bottom: 15px"><span style="margin-right: 30px;display: inline-block;width: 100px">商家编号</span><span>商家名称</span></li>
+                <li><input class="editCourseName" type="text" style="width: 300px ;height: 50px"></li>
+            </ul>
+            <div class="btnList"><div class="back editCancle">返回</div><div class="save editSure">保存</div></div>
+        </div>
+    </div>
+    <div id="deleteBackground" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div style="max-width: 450px;background: #ffffff; margin: 300px auto;padding: 30px 0px 5px">
+            <img style="display: block;margin: 0px auto 40px" src="../../images/jinggao.png" alt="警告">
+            <div style="color: #ff4138;font-size: 14px;text-align: center">是否确认删除，删除将不可恢复</div>
+            <div class="btnList"><div class="back deleteCancle">取消</div><div class="save deleteSure">确认</div></div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/same.js"></script>
+<script type="text/javascript">
+    $('.logout').click(function () {
+        logout('../../login.html');
+    });
+    var iframe2 = document.getElementById("iframe2");
+
+    iframeIsLoad(iframe2,function(){
+
+//    iframe2.contentWindow.b();   // 打印出 我是子页面
+
+        // 父页面获取子页面iframe2的元素
+
+        var iframeDom = $("#basicSetting",iframe2.contentWindow.document);
+        var iframeDom2 = $("#basicSettingUl",iframe2.contentWindow.document);
+        var iframeDom3 = $("#CourseType",iframe2.contentWindow.document);
+        iframeDom.addClass('active')
+        iframeDom3.addClass('active')
+        iframeDom2.addClass('menu-open')
+        iframeDom2.css({
+            'display':'block'
+        })
+    });
+
+    function changeBusiness() {
+        pagination(listCourseType);
+    }
+    /**
+     * 获取所有商家列表
+     */
+    function getAllBusinessInfo() {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/getAllBusinessInfo",
+            async: false,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'businessType':1
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code ==4003){
+                    alert('业务异常！');
+                }else if(data.result.code==0){
+                    for(var i =0;i<data.datas.businessInfo.length;i++){
+                        $('#businessList').append('<option class="'+data.datas.businessInfo[i].businessSerialId+'" value="'+data.datas.businessInfo[i].id+'">'+data.datas.businessInfo[i].businessName+'</option>')
+                    }
+                    pagination(listCourseType);
+                }
+
+            }
+        });
+    }
+    //获取三个弹出框 录入框 编辑框 录入框
+    var addBackground = document.getElementById("addBackground");
+    var editBackground = document.getElementById("editBackground");
+    var deleteBackground = document.getElementById("deleteBackground");
+
+//点击新增按钮调用商家课程分类接口
+    $('.addCourseTypeBtn').click(function () {
+        addBackground.style.display ='block';
+        $('.addbusi span').eq(0).html($("#businessList option:selected")[0].className)//获取商家编号
+        $('.addbusi span').eq(1).html($("#businessList option:selected").text())//获取商家名称
+        $(".addSure").unbind("click");
+        $(".addCancle").unbind("click");
+        $('.addSure').click(function () {
+            var courseTypeName = $('.addCourseName').val();
+            var businessId =$("#businessList option:selected").val();
+            var creator = sessionStorage.getItem('manageId');
+            if(courseTypeName!=''){
+                addCourseType(courseTypeName,businessId,creator);
+            }else {
+                alert('请填写内容后提交！');
+            }
+
+        });
+        $('.addCancle').click(function () {
+            addBackground.style.display ='none';
+        })
+    })
+
+    /**
+     * 新增商家课程分类接口
+     * @param courseTypeName
+     * @param businessId
+     * @param creator
+     */
+    function addCourseType(courseTypeName,businessId,creator) {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/addCourseType",
+            async: true,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'courseTypeName': courseTypeName,
+                'businessId':businessId,
+                'creator':creator
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code ==0){
+                    alert('录入成功');
+                    addBackground.style.display ='none';
+                    $('.addCourseName').val('');
+                    pagination(listCourseType);
+                }else if(data.result.code ==4003) {
+                    alert('业务异常！');
+                }
+
+
+            }
+        });
+    }
+    /**
+     * 编辑商家课程分类接口
+     * @param courseTypeName
+     * @param id
+     */
+    function editCourseType(courseTypeName,id) {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/editCourseType",
+            async: true,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'courseTypeName': courseTypeName,
+                'id':id
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code ==0){
+                    alert('编辑成功');
+                    editBackground.style.display ='none';
+                    pagination(listCourseType);
+                }else if(data.result.code ==4003) {
+                    alert('业务异常！');
+                }
+
+
+            }
+        });
+    }
+    /**
+     * 删除商家课程分类接口
+     * @param id
+     */
+    function deleteCourseType(id) {
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/deleteCourseType",
+            async: true,
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'id':id
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code ==0){
+                    alert('删除成功');
+                    deleteBackground.style.display ='none';
+                    pagination(listCourseType);
+                }else if(data.result.code ==4003) {
+                    alert('业务异常！');
+                }
+
+
+            }
+        });
+    }
+    /**
+     * 获取商家课程分类列表接口  分页数据
+     * @param page 分页页数
+     */
+    function listCourseType(page) {
+        var businessId =$("#businessList option:selected").val();
+        $.ajax({
+            xhrFields: {
+                withCredentials: true
+            },
+            type: "POST",
+            url: defiUrl+"/api/SystemBase/v1/listCourseType",
+            async: false,//设为同步 可以让获取到的token在函数外使用
+            dataType: "json",
+            data: {
+                'token':sessionStorage.getItem('token'),
+                'businessId':businessId,
+                'page': page
+            },
+            success: function (data) {
+                if(data.result.code==4001){
+                    alert('登录信息已过期，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code==4004){
+                    alert('您太久没操作了，请重新登录！');
+                    window.location.href='../../login.html';
+                }else if(data.result.code ==4003){
+                    alert('业务异常！');
+                }else if(data.result.code==0){
+                    num = data.datas.count;
+                    $('.CourseTypelist li').remove();
+                    $('.CourseTypelist').append('<li style="font-weight: bold"><div>编号</div><div>商家名称</div><div>课程分类</div><div class="dataoperate">操作</div></li>')
+                    for(var i =0;i<data.datas.courseTypeList.length;i++){
+                        $('.CourseTypelist').append('<li><div>'+data.datas.courseTypeList[i].coursetypeSerialId+'</div><div>'+$("#businessList option:selected").text()+'</div><div>'+data.datas.courseTypeList[i].courseTypeName+'</div><div class="dataoperate"><span class="edit" style="cursor: pointer">编辑</span><span class="stop">停用</span><span class="delete" style="cursor: pointer">删除</span></div></li>')
+
+                    }
+                    $('.delete').click(function () {
+                        //点击删除  弹出删除警示框
+                        deleteBackground.style.display ='block';
+                        var deleteIndex = $(this).index('.delete');
+                        var ids = data.datas.courseTypeList[deleteIndex].id;
+                        //删除警示框 确认 调用删除接口 取消 弹框消失不做操作
+                        $(".deleteSure").unbind("click");
+                        $(".deleteCancle").unbind("click");
+                        $('.deleteSure').click(function () {
+                            //调用商家平台部门列表函数
+                            deleteCourseType(ids);
+                        })
+                        $('.deleteCancle').click(function () {
+                            deleteBackground.style.display ='none';
+                        })
+                    })
+                    $('.edit').click(function () {
+                        editBackground.style.display ='block';
+
+                        $('.editbusi span').eq(0).html($("#businessList option:selected")[0].className)//获取商家编号
+                        $('.editbusi span').eq(1).html($("#businessList option:selected").text())//获取商家名称
+                        var editIndex = $(this).index('.edit');
+                        var ids = data.datas.courseTypeList[editIndex].id;
+                        $('.editCourseName').val(data.datas.courseTypeList[editIndex].courseTypeName)
+                        $(".editSure").unbind("click");
+                        $(".editCancle").unbind("click");
+                        $('.editSure').click(function () {
+                            var courseTypeName = $('.editCourseName').val();
+                            if(courseTypeName!=''){
+                                editCourseType(courseTypeName,ids);
+                            }else {
+                                alert('请填写内任何后提交！');
+                            }
+
+                        });
+                        $('.editCancle').click(function () {
+                            editBackground.style.display ='none';
+                        })
+                    })
+                }
+
+
+            }
+        });
+    }
+
+    window.onload = function () {
+        getAllBusinessInfo();
+    }
+
+
+
+</script>
+</html>

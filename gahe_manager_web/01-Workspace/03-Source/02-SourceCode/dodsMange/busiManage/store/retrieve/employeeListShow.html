@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/same.css">
+    <title>门店员工信息</title>
+    <style>
+        .header {
+            margin-bottom: 0;
+        }
+
+        .title {
+            height: 100px;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 100px;
+            padding-left: 20px;
+            padding-right: 40px;
+        }
+
+        .leftcol {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .rightcol {
+            display: inline-block;
+            vertical-align: middle;
+            float: right;
+        }
+
+        .leftcol select {
+            /*border: none;*/
+            outline: none;
+        }
+
+
+        .search{
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+
+        .searchinput {
+            width: 240px;
+            height: 30px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .searchbtn {
+            height: 30px;
+            width: 90px;
+            background: #49aceb;
+            display: inline-block;
+            color: #ffffff;
+            vertical-align: middle;
+            line-height: 30px;
+            text-align: center;
+            border-bottom-right-radius: 5px;
+            border-top-right-radius: 5px;
+            background-image: url("../../images/powerbtn/sou_suo.png");
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            padding-left: 15px;
+            margin-left: -4px;
+        }
+
+        .businessname {
+            line-height: 14px;
+            margin-right: 50px;
+        }
+
+        .rightcol .addemployeebtn {
+            height: 30px;
+            width: 90px;
+            background: #49aceb;
+            display: inline-block;
+            color: #ffffff;
+            vertical-align: middle;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 5px;
+            background-image: url("../../images/powerbtn/tian_jia.png");
+            background-repeat: no-repeat;
+            background-position: 4px center;
+            padding-left: 15px;
+            margin-left: 25px;
+        }
+
+        .listtitle div {
+            float: left;
+            width: 80px;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            margin-right: 30px;
+        }
+
+        .listtitle div:nth-child(3) {
+            width: 100px;
+        }
+
+        .listtitle:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .listtitle {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+
+        .employeelist li div {
+            float: left;
+            width: 80px;
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+            vertical-align: middle;
+            margin-right: 30px;
+        }
+
+        .employeelist li div:nth-child(3) {
+            width: 100px;
+        }
+        .employeelist li div:nth-child(6) {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .employeelist li div:nth-child(7) {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .employeelist li div:last-child {
+            width: 150px;
+        }
+        .employeelist li:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .employeelist li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dataoperate:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .edit {
+            float: left;
+            margin-left: 10px;
+            color: #49aceb;
+            cursor: pointer;
+        }
+
+        .watch {
+            float: left;
+            margin-left: 10px;
+            color: #49aceb;
+            cursor: pointer;
+        }
+
+        .delete {
+            float: left;
+            margin-left: 10px;
+            color: #49aceb;
+            cursor: pointer;
+        }
+
+        /*分页样式*/
+        button {
+            padding: 5px;
+            margin: 5px;
+            width: 35px;
+            height: 35px;
+            background: #ffffff;
+            border: 1px solid #f0f0f0;
+        }
+
+        .prev-btn, .next-btn {
+            padding: 5px;
+            margin: 5px;
+            width: 55px;
+            height: 35px;
+        }
+
+        .first-btn, .last-btn {
+            padding: 5px;
+            margin: 5px;
+            width: 45px;
+            height: 35px;
+        }
+
+        .active-nick {
+            /*color:red;*/
+            background: #49aceb;
+            color: #f0f0f0;
+        }
+
+        input {
+            width: 50px;
+            text-align: center;
+        }
+
+        .btn-box-nick, .paexplain {
+            display: inline-block;
+        }
+
+        .paexplain {
+            margin-left: 30px;
+            color: #939393;
+        }
+
+        .btn-box-nick {
+            margin-left: 25%;
+            color: #49aceb;
+        }
+
+        /*弹出添加或编辑的页面*/
+
+        .EmpBox li {
+            height: 55px;
+            line-height: 55px;
+            padding: 0 30px;
+            border-bottom: 1px solid #f0f0f0
+        }
+        .EmpBox .divli{
+            height: 55px;
+            line-height: 55px;
+            padding: 0 30px;
+            border-bottom: 1px solid #f0f0f0
+        }
+        .testdiv input{
+            color:#49aceb;
+            vertical-align: middle;
+            height: 30px;
+            font-size: 14px;
+            border: none;
+        }
+
+
+        /*点击展开按钮出现角色 部门职位列表*/
+        .depul,.roleul,.positionul{
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3% 0 3% 3%;
+            border: 1px solid #f0f0f0;
+            display: none;
+        }
+        .depul:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .roleul:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .positionul:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .EmpBox .depul li{
+            width: 10%;
+            border: 1px solid #49aceb;
+            border-radius: 5px;
+            color: #49aceb;
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            margin-right: 2%;
+            float: left;
+            padding: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .EmpBox .roleul li{
+            width: 10%;
+            border: 1px solid #49aceb;
+            border-radius: 5px;
+            color: #49aceb;
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            margin-right: 2%;
+            float: left;
+            padding: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .EmpBox .positionul li{
+            width: 10%;
+            border: 1px solid #49aceb;
+            border-radius: 5px;
+            color: #49aceb;
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            margin-right: 2%;
+            float: left;
+            padding: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        #businessList{
+            margin-right: 50px;
+        }
+        #businessList,#storeList{
+            border: none;
+        }
+        .photo:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .upimg{
+            width: 90px;
+            height: 80px;
+            position: relative;
+            z-index: 9999;
+            background: #c5c5c5;
+            text-align: center;
+            line-height: 80px;
+            font-size: 14px;
+            color: #ffffff;
+            font-family: 微软雅黑;
+            font-weight: normal;
+        }
+        #Img1,#Img2,#Img3,#Img4{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            color: transparent;
+            width: 90px;
+            opacity: 0;
+        }
+        .image{
+            float: left;
+            margin-right: 30px;
+        }
+        .tishi{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="left_side">
+    <iframe name="iframes" id="iframe2" src="../../leftNav.html" frameborder="0"></iframe>
+</div>
+<div class="right_side">
+    <div class="header"><span class="dods">多点运动助手后台管理系统</span>
+        <div class="imgdiv"><img class="head_photo" src="../../images/tou_xiang.png"></div>
+        <span class="name">陈老师</span></div>
+    <div class="title">
+        <div class="leftcol">
+            <span class="businessname">员工信息展示</span>
+        </div>
+        <select id="businessList" onChange="changeBusiness();">
+            <!--商家列表-->
+
+        </select>
+        <select id="storeList" onChange="pagination(EmpListByStoreId);">
+            <!--门店列表-->
+
+        </select>
+        <div class="rightcol">
+            <span class="addemployeebtn">添加员工</span>
+        </div>
+    </div>
+    <div id="addEmployBackground"
+         style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <ul class="EmpBox" style="max-width: 1000px;background: #ffffff; margin: 60px auto 0;">
+            <li><span style="width: 90px;display: inline-block">姓名</span><input class="addName" type="text" style="width: 210px;height: 30px;border: 1px solid #f0f0f0"></li>
+            <li><span style="width: 90px;display: inline-block">电话</span><input class="addPhoneNum" type="text" style="width: 210px;height: 30px;border: 1px solid #f0f0f0"></li>
+            <li><span style="width: 90px;display: inline-block">性别</span><label><input name="sex" type="radio" value="1"/>男</label><label><input name="sex" type="radio" value="2"/>女</label></li>
+            <li><span style="width: 90px;display: inline-block">入职日期</span><input class="addDate" type="date" value="2015-09-24" style="border: none;height: 30px;width: 130px;color: #49aceb"/></li>
+            <li><span style="width: 90px;display: inline-block">证件号</span><input class="addIdCard" type="text" style="width: 210px;height: 30px;border: 1px solid #f0f0f0"></li>
+            <li><span style="width: 90px;display: inline-block">就职状态</span><label><input name="empRela" type="radio" value="1"/>兼职</label><label><input name="empRela" type="radio" value="2"/>全职</label></li>
+            <li><span style="width: 90px;display: inline-block">是否教练</span><label><input name="coachExists" type="radio" value="1"/>否</label><label><input name="coachExists" type="radio" value="2"/>是</label></li>
+            <li><span style="width: 90px;display: inline-block">职称</span><label><input name="jobTitle" type="radio" value="3"/>高级教练</label><label><input name="jobTitle" type="radio" value="2"/>中级教练</label><label><input name="jobTitle" type="radio" value="1"/>初级教练</label></li>
+            <div class="roleli"><div class="divli"><span style="width: 90px;display: inline-block">角色</span><span class="addSelecedRole"></span><img class="rolebtn" src="../../images/yincan.png" alt="隐藏角色列表" style="float: right;margin-top: 15px"></div><ul class="roleul"></ul></div>
+            <div class="depli"><div class="divli"><span style="width: 90px;display: inline-block">部门</span><span class="addSelecedDep"></span><img class="depbtn" src="../../images/yincan.png" alt="隐藏部门列表" style="float: right;margin-top: 15px"></div><ul class="depul"></ul></div>
+            <div class="positionli"><div class="divli"><span style="width: 90px;display: inline-block">岗位</span><span class="addSelecedPosition"></span><img class="positionbtn" src="../../images/yincan.png" alt="隐藏岗位列表" style="float: right;margin-top: 15px"></div><ul class="positionul"></ul></div>
+            <div class="remark">
+                <div>教练简介</div>
+                <textarea class="addCoachRemark" style="width: 100%;height: 130px;margin-top: 10px;"></textarea>
+            </div>
+            <div>证件照</div>
+            <div class="photo" style="border: 1px solid #f0f0f0;margin-bottom: 60px;padding: 10px 30px;">
+                <form id="uploadForm"  method="post" enctype="multipart/form-data">
+                    <div class="image"><label for="Img1"><div class="upimg"><input class="preimg" id="Img1" multiple="true" type="file" onchange="javascript:setImagePreview('Img1',1,filelist1,'doorsure','doorcancle');"  accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">上传图片</div></label><div class="tishi">个人头像</div></div>
+                    <div class="image"><label for="Img2"><div class="upimg"><input class="preimg" id="Img2" multiple="true" type="file" onchange="javascript:setImagePreview('Img2',9,filelist2,'classroomsure','classroomcancle');" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">上传图片</div></label><div class="tishi">教学照片</div></div>
+                </form>
+            </div>
+
+            <div class="sure addSure">确认</div>
+            <div class="cancle addCancle">取消</div>
+
+        </ul>
+    </div>
+    <div id="seeEmployBackground"
+         style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <ul class="EmpBox" style="max-width: 1000px;background: #ffffff; margin: 60px auto 0;">
+            <li><span style="width: 90px;display: inline-block">姓名</span><span class="seeName"></span></li>
+            <li><span style="width: 90px;display: inline-block">电话</span><span class="seePhoneNum"></span></li>
+            <li><span style="width: 90px;display: inline-block">性别</span><span class="seeSex"></span></li>
+            <li><span style="width: 90px;display: inline-block">入职日期</span><span class="seeEntryDate"></span></li>
+            <li><span style="width: 90px;display: inline-block">证件号</span><span class="seeIdCard"></span></li>
+            <li><span style="width: 90px;display: inline-block">就职状态</span><span class="seeEmpRela"></span></li>
+            <li><span style="width: 90px;display: inline-block">是否教练</span><span class="seeCoachExists"></span></li>
+            <li><span style="width: 90px;display: inline-block">职称</span><span class="seeJobTitle"></span></li>
+            <li><span style="width: 90px;display: inline-block">角色</span><span class="seeRoleName"></span></li>
+            <li><span style="width: 90px;display: inline-block">部门</span><span class="seeDepName"></span></li>
+            <li><span style="width: 90px;display: inline-block">岗位</span><span class="seePositionName"></span></li>
+            <div class="remark">
+                <div>教练简介</div>
+                <div class="SeeCoachRemark" style="width: 100%;height: 130px;margin-top: 10px;"></div>
+            </div>
+
+            <div class="cancle seeCancle">返回</div>
+
+        </ul>
+    </div>
+    <div id="editEmployBackground"
+         style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <ul class="EmpBox" style="max-width: 1000px;background: #ffffff; margin: 60px auto 0;">
+            <li><span style="width: 90px;display: inline-block">姓名</span><input class="editName" type="text" style="width: 210px;height: 30px;border: 1px solid #f0f0f0"></li>
+            <li><span style="width: 90px;display: inline-block">电话</span><input class="editPhoneNum" type="text" style="width: 210px;height: 30px;border: 1px solid #f0f0f0"></li>
+            <li><span style="width: 90px;display: inline-block">性别</span><label><input name="sex" type="radio" value="1"/>男</label><label><input name="sex" type="radio" value="2"/>女</label></li>
+            <li><span style="width: 90px;display: inline-block">入职日期</span><input class="editDate" type="date" value="" style="border: none;height: 30px;width: 130px;color: #49aceb"/></li>
+            <li><span style="width: 90px;display: inline-block">证件号</span><input class="editIdCard" type="text" style="width: 210px;height: 30px;border: 1px solid #f0f0f0"></li>
+            <li><span style="width: 90px;display: inline-block">就职状态</span><label><input name="empRela" type="radio" value="1"/>兼职</label><label><input name="empRela" type="radio" value="2"/>全职</label></li>
+            <li><span style="width: 90px;display: inline-block">是否教练</span><label><input name="coachExists" type="radio" value="1"/>否</label><label><input name="coachExists" type="radio" value="2"/>是</label></li>
+            <li><span style="width: 90px;display: inline-block">职称</span><label><input name="jobTitle" type="radio" value="3"/>高级教练</label><label><input name="jobTitle" type="radio" value="2"/>中级教练</label><label><input name="jobTitle" type="radio" value="1"/>初级教练</label></li>
+            <div class="roleli"><div class="divli"><span style="width: 90px;display: inline-block">角色</span><span class="editSelecedRole"></span><img class="rolebtn" src="../../images/yincan.png" alt="隐藏角色列表" style="float: right;margin-top: 15px"></div><ul class="roleul"></ul></div>
+            <div class="depli"><div class="divli"><span style="width: 90px;display: inline-block">部门</span><span class="editSelecedDep"></span><img class="depbtn" src="../../images/yincan.png" alt="隐藏部门列表" style="float: right;margin-top: 15px"></div><ul class="depul"></ul></div>
+            <div class="positionli"><div class="divli"><span style="width: 90px;display: inline-block">岗位</span><span class="editSelecedPosition"></span><img class="positionbtn" src="../../images/yincan.png" alt="隐藏岗位列表" style="float: right;margin-top: 15px"></div><ul class="positionul"></ul></div>
+            <div class="remark">
+                <div>教练简介</div>
+                <textarea class="editCoachRemark" style="width: 100%;height: 130px;margin-top: 10px;"></textarea>
+            </div>
+            <div>证件照</div>
+            <div class="photo" style="border: 1px solid #f0f0f0;margin-bottom: 60px;padding: 10px 30px;">
+                <form id="uploadForm1"  method="post" enctype="multipart/form-data">
+                    <div class="image"><label for="Img3"><div class="upimg"><input class="preimg" id="Img3" multiple="true" type="file" onchange="javascript:setImagePreview('Img3',1,filelist3,'doorsure','doorcancle');"  accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">上传图片</div></label><div class="tishi">个人头像</div></div>
+                    <div class="image"><label for="Img4"><div class="upimg"><input class="preimg" id="Img4" multiple="true" type="file" onchange="javascript:setImagePreview('Img4',9,filelist4,'classroomsure','classroomcancle');" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">上传图片</div></label><div class="tishi">教学照片</div></div>
+                </form>
+            </div>
+            <div class="sure editSure">确认</div>
+            <div class="cancle editCancle">取消</div>
+        </ul>
+    </div>
+
+    <ul class="employeelist">
+        <!--门店员工列表信息-->
+    </ul>
+    <div class="pagination-nick"></div>
+    <div id="deleteBackground" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div style="max-width: 450px;background: #ffffff; margin: 300px auto;padding: 30px 0px 5px">
+            <img style="display: block;margin: 0px auto 40px" src="../../images/jinggao.png" alt="警告">
+            <div style="color: #ff4138;font-size: 14px;text-align: center">是否确认删除，删除将不可恢复</div>
+            <div class="btnList"><div class="sure deleteSure">确认</div><div class="cancle deleteCancle">取消</div></div>
+        </div>
+    </div>
+    <div id="prewatchbackground" style=" display: none;width: 100%;height: 100%;filter:alpha(opacity=0);background: rgba(222,222,222,0.5);z-index: 999901;position: absolute;top: 0px;left: 0px">
+        <div id="alert-box" style="max-width: 800px;background: #ffffff; margin: 60px auto;">
+            <div style="height: 55px;line-height: 55px;padding: 0 30px;border-bottom: 1px solid #f0f0f0">已选相片</div>
+            <div class="prewatch-box" style=" padding: 20px;margin: 0 auto;font-size:0"></div>
+
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/same.js"></script>
+<script type="text/javascript">
+    // 父页面获取子页面iframe2的元素
+    var iframe2 = document.getElementById("iframe2");
+
+    iframeIsLoad(iframe2,function(){
+//    iframe2.contentWindow.b();   // 打印出 我是子页面
+        var iframeDom = $("#basicSetting",iframe2.contentWindow.document);
+        var iframeDom2 = $("#basicSettingUl",iframe2.contentWindow.document);
+        var iframeDom3 = $("#storeEmp",iframe2.contentWindow.document);
+        iframeDom.addClass('active')
+        iframeDom3.addClass('active')
+        iframeDom2.addClass('menu-open')
+        iframeDom2.css({
+            'display':'block'
+        })
+    });
+
+    function changeBusiness() {
+        var businessId = $("#businessList option:selected").val();
+        getAllStoreInfo(businessId);
+    }
+    //获取所有商家列表
+    function getAllBusinessInfo() {
+        $.ajax({
+            type: "POST",
+            url: "http://192.168.1.168:8081/api/SystemBase/v1/getAllBusinessInfo",
+            async: false,
+            dataType: "json",
+            data: {
+                'businessType':1
+            },
+            success: function (data) {
+                console.log(data);
+                for(var i =0;i<data.datas.businessInfo.length;i++){
+                    $('#businessList').append('<option value="'+data.datas.businessInfo[i].id+'">'+data.datas.businessInfo[i].businessName+'</option>')
+                }
+                var businessId = $("#businessList option:selected").val();
+                getAllStoreInfo(businessId)
+            }
+        });
+    }
+    //获取所有门店列表
+    function getAllStoreInfo(businessId) {
+        $.ajax({
+            type: "POST",
+            url: "http://192.168.1.168:8081/api/SystemBase/v1/getAllStoreInfo",
+            async: false,
+            dataType: "json",
+            data: {
+                'businessId':businessId
+            },
+            success: function (data) {
+                console.log(data);
+                $('#storeList option').remove();
+                for(var i =0;i<data.datas.businessInfo.length;i++){
+                    $('#storeList').append('<option value="'+data.datas.businessInfo[i].id+'">'+data.datas.businessInfo[i].storeName+'</option>')
+                }
+                pagination(EmpListByStoreId)
+            }
+        });
+    }
+
+    //上传门店四个相册的照片
+    var  filelist1 = [];
+    var  filelist2 = [];
+    //编辑的两个相册
+    var  filelist3 = [];
+    var  filelist4 = [];
+    var prewatchbackground = document.getElementById("prewatchbackground");
+    //新建一个函数实现上传图片预览
+    /**
+     * 上传图片预览容器
+     * @param imgid 相册控件id
+     * @param num  每个相册图片数量
+     * @param filelists 存放每个相册图片的数组
+     */
+    function setImagePreview(imgid,num,filelists,classsure,classcancle) {
+        var docObj = document.getElementById(imgid);//获取每个相册上传图片的控件对象
+//        var imgList = [].concat(docObj.files)
+//        console.log(docObj.files)
+
+        if (docObj.files && docObj.files[0]) {//通过这个控件是否选取图片判断
+
+            //imgObjPreview.src = docObj.files[0].getAsDataURL();
+            //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
+            //imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+            filelists.length = 0;
+//            console.log(docObj.files[0])
+            if(docObj.files.length<=num){//选取的图片数量等于 限制数量时
+                prewatchbackground.style.display ='block';//显示预览图片框
+                $('.prewatch-box img').remove();
+                for (var i = 0; i <docObj.files.length ; i++) {//将控件选取的图片循环显示在预览框中
+                    filelists.push(docObj.files[i]);
+
+                    $('.prewatch-box').append(' <img class="img'+i+'" src="" alt="">')
+
+                    $('.img'+i)[0].src = window.URL.createObjectURL(docObj.files[i]);//获取本地选取的图片地址
+                    $('.img'+i)[0].width = 120;
+                    $('.img'+i)[0].height = 120;
+
+
+                }
+                $('.btnList').remove();
+                $('#alert-box').append(' <div class="btnList"><div class="modelsure sure">确认</div><div class="cancle">取消</div></div>')
+                $('.sure').addClass(classsure)
+                //点击确认将选取图片 存在数组中 便于后面点击保存时提交上传图片
+                $('.'+ classsure).click(function () {
+                    prewatchbackground.style.display ='none';
+                    console.log(filelists)
+                })
+                $('.cancle').addClass(classcancle)
+                //点击取消将存放这个相册的数组清空
+                $('.'+ classcancle).click(function () {
+                    filelists.length = 0;
+                    prewatchbackground.style.display ='none';
+                    console.log(filelists)
+                })
+
+            }
+            //点击预览中的图片会删除 这张照片 对应存放这个相册的数组也会少一张
+            $('.prewatch-box img').click(function () {
+                var index =  $(this).index('.prewatch-box img');
+
+                filelist.splice(index,1)
+                $(this).remove();
+            })
+
+
+        }
+
+    }
+
+
+    /**
+     * 将四个相册上传选中的拖 添加到formdata中
+     * @param arr 每个相册选中的相片数组
+     * @param name 区分每个相册的名字
+     * @param obj formdata对象
+     */
+    function up(arr,name,obj) {
+        for (var i = 0; i < arr.length; i++) {
+
+            obj.append(name+'00' + (i+1) , arr[i]);
+        }
+    }
+    /**
+     * 点击新增员工按钮   弹出录入员工信息框
+     */
+    var addEmployBackground = document.getElementById('addEmployBackground');
+    $('.addemployeebtn').click(function () {
+        addEmployBackground.style.display = 'block';//录入弹框显示
+    })
+    /**
+     * 查看员工信息框
+     */
+    var seeEmployBackground = document.getElementById('seeEmployBackground');
+    /**
+     * 编辑员工信息框
+     */
+    var editEmployBackground = document.getElementById('editEmployBackground');
+    /**
+     * 删除员工信息框
+     */
+    var deleteBackground = document.getElementById("deleteBackground");
+
+
+
+    //创建部门列表并展示
+    function createdep(arr) {
+        for(var i = 0; i < arr.length; i++){
+            $('.depul').append('<li>'+arr[i].depName+'</li>')
+            if( $('.addSelecedDep').text() !=''){
+
+                if($('.depul li').eq(i).text() ==$('.addSelecedDep').text() ){
+                    $('.depul li').eq(i).css({
+                        'background':'#49aceb',
+                        'color':'#ffffff'
+                    })
+                }
+            }
+        }
+
+        //创建模块之后 点击选择模块改变状态是否选中
+        $('.depul li').click(function () {
+            $('.depul').hide();
+            $('.addSelecedDep').text($(this).text());
+            $('.editSelecedDep').text($(this).text())
+            for(var j=0;j<arr.length;j++){
+                if($('.addSelecedDep').text() ==arr[j].depName){
+                    depId = arr[j].id;
+                    editDepId =arr[j].id;
+                }
+            }
+        })
+
+    }
+    //创建角色列表并展示
+    function createRole(arr) {
+        for(var i = 0; i < arr.length; i++){
+            $('.roleul').append('<li>'+arr[i].roleName+'</li>')
+            if( $('.addSelecedRole').text() !=''){
+
+                if($('.roleul li').eq(i).text() ==$('.addSelecedRole').text() ){
+                    $('.roleul li').eq(i).css({
+                        'background':'#49aceb',
+                        'color':'#ffffff'
+                    })
+                }
+            }
+        }
+
+        //创建模块之后 点击选择模块改变状态是否选中
+        $('.roleul li').click(function () {
+            $('.roleul').hide();
+            $('.addSelecedRole').text($(this).text());
+            $('.editSelecedRole').text($(this).text())
+            for(var j=0;j<arr.length;j++){
+                if($('.addSelecedRole').text() ==arr[j].roleName){
+                    roleId = arr[j].id;
+                    editRoleId =arr[j].id;
+                }
+            }
+        })
+
+    }
+    //创建岗位列表并展示
+    function createPosition(arr) {
+        for(var i = 0; i < arr.length; i++){
+            $('.positionul').append('<li>'+arr[i].positionName+'</li>')
+            if( $('.addSelecedPosition').text() !=''){
+
+                if($('.positionul li').eq(i).text() ==$('.addSelecedPosition').text() ){
+                    $('.positionul li').eq(i).css({
+                        'background':'#49aceb',
+                        'color':'#ffffff'
+                    })
+                }
+            }
+
+        }
+        //创建模块之后 点击选择模块改变状态是否选中
+        $('.positionul li').click(function () {
+            $('.positionul').hide();
+            $('.addSelecedPosition').text($(this).text());
+            $('.editSelecedPosition').text($(this).text());
+            for(var j=0;j<arr.length;j++){
+                if($('.addSelecedPosition').text() ==arr[j].positionName){
+                    positionId = arr[j].id;
+                    editPositionId = arr[j].id;
+                }
+            }
+
+        })
+
+
+    }
+
+    /**
+     * 获取商家部门列表接口
+     * @param businessId
+     */
+    function getDeplist(businessId) {
+        $.ajax({
+            type: "POST",
+            url: "http://192.168.1.168:8081/api/SystemBase/v1/getAllBusinessDepartmentInfo",
+            async: false,//设为同步 可以让获取到的token在函数外使用
+            dataType: "json",
+            data: {
+                'businessId': businessId
+            },
+            success: function (data) {
+                console.log(data)
+                $('.depul').show();
+                $('.depul li').remove();
+                createdep(data.datas.departmentList);
+
+            }
+        });
+    }
+
+    $('.depbtn').click(function () {
+        var businessId = '80a2aa90-2205-4453-8760-b395fb48746a';
+        getDeplist(businessId)
+
+    })
+
+    /**
+     * 获取商家角色列表接口
+     * @param businessId
+     */
+    function getRole(businessId) {
+        $.ajax({
+            type: "POST",
+            url: "http://192.168.1.168:8081/api/Authority/v1/listUserRole",
+            async: false,//设为同步 可以让获取到的token在函数外使用
+            dataType: "json",
+            data: {
+                'businessId': businessId,
+                'platform':2
+            },
+            success: function (data) {
+                console.log(data)
+                $('.roleul').show();
+                $('.roleul li').remove();
+                createRole(data.datas.userRoleList);
+            }
+        });
+    }
+    $('.rolebtn').click(function () {
+        var businessId = '80a2aa90-2205-4453-8760-b395fb48746a';
+        getRole(businessId);
+    })
+    /**
+     * 获取商家职位列表接口
+     * @param businessId
+     */
+    function getPosition(businessId) {
+        $.ajax({
+            type: "POST",
+            url: "http://192.168.1.168:8081/api/SystemBase/v1/getAllBusiPositionInfo",
+            async: false,//设为同步 可以让获取到的token在函数外使用
+            dataType: "json",
+            data: {
+                'businessId': businessId
+            },
+            success: function (data) {
+                console.log(data)
+                $('.positionul').show();
+                $('.positionul li').remove();
+                createPosition(data.datas.positionList);
+            }
+        });
+    }
+    $('.positionbtn').click(function () {
+        var businessId = '80a2aa90-2205-4453-8760-b395fb48746a';
+        getPosition(businessId)
+    })
+
+    /**
+     * 点击确认按钮之后提交员工基本信息
+     * @param businessId
+     * @param storeId
+     * @param employeeName 员工姓名
+     * @param phoneNum 员工电话
+     * @param idCard 员工身份证号
+     * @param entryDate 入职日期
+     * @param depId 部门id
+     * @param positionId 员工职位id号
+     * @param roleId 角色id
+     * @param empRela 员工角色编号 1全职，2兼职
+     * @param sex 员工性别; 1男，2女，3未知
+     * @param creator 创建人
+     * @param coachExists 是否是教练:1.否;2.是
+     * @param jobTitle 教练职称:1:初级教练;2:中级教练;3:高级教练
+     * @param selfIntroduction  自我介绍
+     */
+    $('.addSure').click(function () {
+        var fd = new FormData();
+        up(filelist1,'empHead',fd);
+        up(filelist2,'empPicture',fd);
+        var businessId = '80a2aa90-2205-4453-8760-b395fb48746a';//运动联盟
+        var storeId = '4340b0a8-7cdf-4634-b516-a79aef833fff';//最好的门店1
+        var employeeName = $('.addName').val();
+        var phoneNum = $('.addPhoneNum').val();
+        var  idCard=$('.addIdCard').val();
+        var entryDate = $('.addDate').val();
+        var empRela = $('input[name="empRela"]:checked').val();
+        var sex =$('input[name="sex"]:checked').val();
+        var coachExists = $('input[name="coachExists"]:checked').val();
+        var jobTitle = $('input[name="jobTitle"]:checked').val();
+        var selfIntroduction = $('.addCoachRemark').val()
+        var creator =sessionStorage.getItem('manageId');
+        var birthday = '2017-10-27';
+        var  empType = '1';
+        fd.append('businessId', businessId);
+        fd.append('storeId', storeId);
+        fd.append('employeeName', employeeName);
+        fd.append('phoneNum', phoneNum);
+        fd.append('idCard', idCard);
+        fd.append('birthday', birthday);
+        fd.append('empType', empType);
+        fd.append('entryDate', entryDate);
+        fd.append('empRela', empRela);
+        fd.append('sex', sex);
+        fd.append('coachExists', coachExists);
+        fd.append('jobTitle', jobTitle);
+        fd.append('selfIntroduction', selfIntroduction);
+        fd.append('creator', creator);
+        fd.append('depId', depId);
+        fd.append('positionId', positionId);
+        fd.append('roleId', roleId);
+        $.ajax({
+            type: "POST",
+            data: fd,
+            url: "http://192.168.1.168:8081/api/SystemBase/v1/addEmployeeInfo",
+            async:true,//设为同步 可以让获取到的token在函数外使用
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                console.log(data)
+                if(data.result.code==0){
+                    alert('录入成功！');
+                    $('.addName').val('');
+                    $('.addPhoneNum').val('');
+                    $('.addIdCard').val('');
+                    $('.addDate').val('');
+                    $('.addSelecedDep').text('')
+                    $('.addSelecedRole').text('')
+                    $('.addSelecedPosition').text('')
+                }
+
+
+            }
+        });
+    })
+
+    /**
+     * 点击确认按钮之后提交员工基本信息
+     * @param id
+     * @param employeeName 员工姓名
+     * @param phoneNum 员工电话
+     * @param idCard 员工身份证号
+     * @param entryDate 入职日期
+     * @param depId 部门id
+     * @param positionId 员工职位id号
+     * @param roleId 角色id
+     * @param empRela 员工角色编号 1全职，2兼职
+     * @param sex 员工性别; 1男，2女，3未知
+     * @param birthday 生日
+     * @param isCoach 是否是教练:1.否;2.是
+     * @param jobTitle 教练职称:1:初级教练;2:中级教练;3:高级教练
+     * @param selfIntroduction  自我介绍
+     */
+
+    function editBusiEmployeeInfo(id,employeeName,phoneNum,idCard,entryDate,empRela,sex,birthday,selfIntroduction,depId,positionId,roleId,relationId,empType,isCoach,jobTitle) {
+        var fd = new FormData();
+
+//        up(filelist3,'empHead',fd);
+//        up(filelist4,'empPicture',fd);
+        fd.append('id', id);
+        fd.append('employeeName', employeeName);
+        fd.append('phoneNum', phoneNum);
+        fd.append('idCard', idCard);
+        fd.append('entryDate', entryDate);
+        fd.append('empRela', empRela);
+        fd.append('sex', sex);
+        fd.append('birthday', birthday);
+        fd.append('selfIntroduction', selfIntroduction);
+        fd.append('depId', depId);
+        fd.append('positionId', positionId);
+        fd.append('roleId', roleId);
+        fd.append('relationId', relationId);
+        fd.append('empType', empType);
+        fd.append('isCoach', isCoach);
+        fd.append('jobTitle', jobTitle);
+        $.ajax({
+            type: "POST",
+            data: fd,
+            url: " http://192.168.1.168:8081/api/SystemBase/v1/editBusiEmployeeInfo",
+            async:true,//设为同步 可以让获取到的token在函数外使用
+            contentType: false,
+            processData: false
+
+        }).success(function (data) {
+            console.log(data);
+        }).error(function (data) {
+            console.log(data);
+        });
+    }
+    function deleteEmp(relationId) {
+        $.ajax({
+            type: "POST",
+            url: "http://192.168.1.168:8081/api/SystemBase/v1/deleteBusiEmployeeInfo",
+            async: false,//设为同步 可以让获取到的token在函数外使用
+            dataType: "json",
+            data: {
+                'relationId':relationId
+            },
+            success: function (data) {
+                console.log(data)
+
+            }
+        });
+    }
+    /**
+     * 点击取消弹窗消失
+     */
+    $('.cancle').click(function () {
+        addEmployBackground.style.display = 'none';//录入弹框消失
+        seeEmployBackground.style.display = 'none';//查看弹框消失
+        editEmployBackground.style.display = 'none';//编辑弹框消失
+        $('.addName').val('');
+        $('.addPhoneNum').val('');
+        $('.addIdCard').val('');
+        $('.addDate').val('');
+        $('.addSelecedDep').text('')
+        $('.addSelecedRole').text('')
+        $('.addSelecedPosition').text('')
+    })
+    /**
+     * 门店员工分页数据请求
+     * @param page
+     */
+    function EmpListByStoreId(page) {
+        var storeId =$("#storeList option:selected").val()
+        $.ajax({
+            type: "POST",
+            url: "http://192.168.1.168:8081/api/SystemBase/v1/listBusiEmployeeByStoreId",
+            async: false,//设为同步
+            dataType: "json",
+            data: {
+                'storeId': storeId,
+                'page': page
+            },
+            success: function (data) {
+                console.log(data)
+                num = data.datas.count;
+                $('.employeelist li').remove();
+                var employeeList =data.datas.responseEmployeeList;
+                $('.employeelist').append('<li><div>工号</div><div>门店名称</div><div>姓名</div><div>电话</div><div>性别</div><div>部门</div><div>岗位</div><div>就职状态</div><div>角色</div><div class="dataoperate">操作</div></li>')
+                for (var i = 0; i < employeeList.length; i++) {
+
+                    $('.employeelist').append('<li><div>' + employeeList[i].employeeSerialId + '</div><div>门店名称</div><div>' + employeeList[i].employeeName + '</div><div>' + employeeList[i].phoneNum + '</div><div class="showSex">' + employeeList[i].sex + '</div><div>' + employeeList[i].depName + '</div><div>' + employeeList[i].positionName + '</div><div class="showEmpRela">' + employeeList[i].empRela + '</div><div>' + employeeList[i].roleName + '</div><div class="dataoperate"><span class="watch">查看</span><span class="edit">编辑</span><span class="delete">删除</span></div></li>')
+                    if(employeeList[i].sex ==1){
+                        $('.showSex').text('男')
+                    }else{
+                        $('.showSex').text('女')
+                    }
+                    if(employeeList[i].empRela==2){
+                        $('.showEmpRela').text('全职')
+                    }else{
+                        $('.showEmpRela').text('兼职')
+                    }
+                }
+                /**
+                 * 点击编辑按钮   弹出编辑员工信息框
+                 */
+
+                $('.edit').click(function () {
+                    editEmployBackground.style.display = 'block';//编辑弹框显示
+                    var editIndex = $(this).index('.edit');
+                    var id = employeeList[editIndex].empId; //员工的empId就是  编辑接口的 id  员工的Id就是  编辑接口的 relationId
+                    var relationId = employeeList[editIndex].id;
+                    if(employeeList[editIndex].sex ==1){
+                        $("input:radio[name='sex'][value='1']").attr("checked","checked");
+                    }else{
+                        $("input:radio[name='sex'][value='2']").attr("checked","checked");
+                    }
+                    if(employeeList[editIndex].empRela==1){
+                        $("input:radio[name='empRela'][value='1']").attr("checked","checked");
+                    }else{
+                        $("input:radio[name='empRela'][value='2']").attr("checked","checked");
+                    }
+                    if(employeeList[editIndex].isCoach ==1){
+                        $("input:radio[name='coachExists'][value='1']").attr("checked","checked");
+                    }else{
+                        $("input:radio[name='coachExists'][value='2']").attr("checked","checked");
+                    }
+                    if(employeeList[editIndex].jobTitle==1){
+                        $("input:radio[name='jobTitle'][value='1']").attr("checked","checked");
+                    }if(employeeList[editIndex].jobTitle==2){
+                        $("input:radio[name='jobTitle'][value='2']").attr("checked","checked");
+                    }else{
+                        $("input:radio[name='jobTitle'][value='3']").attr("checked","checked");
+                    }
+
+                    $('.editName').val(employeeList[editIndex].employeeName);
+                    $('.editPhoneNum').val(employeeList[editIndex].phoneNum);
+                    $('.editDate').val(employeeList[editIndex].entryDate.substring(0,10) );
+                    $('.editIdCard').val(employeeList[editIndex].idCard);
+                    editRoleId = employeeList[editIndex].roleId
+                    $('.editSelecedRole').text(employeeList[editIndex].roleName);
+                    editDepId = employeeList[editIndex].depId
+                    $('.editSelecedDep').text(employeeList[editIndex].depName);
+                    editPositionId = employeeList[editIndex].positionId
+                    $('.editSelecedPosition').text(employeeList[editIndex].positionName);
+
+                    $(".editSure").unbind("click");
+                    $(".editCancle").unbind("click");
+                    $('.editSure').click(function () {
+                        //调用编辑教室函数
+                        var employeeName = $('.editName').val();
+                        var phoneNum = $('.editPhoneNum').val();
+                        var  idCard=$('.editIdCard').val();
+                        var sex =$('input[name="sex"]:checked').val();
+                        var isCoach = $('input[name="coachExists"]:checked').val();
+                        var entryDate = $('.addDate').val();
+                        var empType = '1';
+                        var empRela = $('input[name="empRela"]:checked').val();
+                        var jobTitle = $('input[name="jobTitle"]:checked').val();
+                        var selfIntroduction = $('.addCoachRemark').val();
+                        var birthday = '2017-10-27';
+                        editBusiEmployeeInfo(id,employeeName,phoneNum,idCard,entryDate,empRela,sex,birthday,selfIntroduction,editDepId,editPositionId,editRoleId,relationId,empType,isCoach,jobTitle)
+                    })
+                    $('.editCancle').click(function () {
+                        editBackground.style.display ='none';
+                    })
+                })
+                /**
+                 * 点击查看按钮   弹出查看员工信息框
+                 */
+
+                $('.watch').click(function () {
+                    seeEmployBackground.style.display = 'block';//录入弹框显示
+                    var indexs = $(this).index('.watch');
+                    if(employeeList[indexs].sex ==1){
+                        $('.seeSex').text('男')
+                    }else{
+                        $('.seeSex').text('女')
+                    }
+                    if(employeeList[indexs].empRela==1){
+                        $('.seeEmpRela').text('全职')
+                    }else{
+                        $('.seeEmpRela').text('兼职')
+                    }
+                    if(employeeList[indexs].isCoach ==1){
+                        $('.seeCoachExists').text('否')
+                    }else{
+                        $('.seeCoachExists').text('是')
+                    }
+                    if(employeeList[indexs].jobTitle==1){
+                        $('.seeJobTitle').text('初级教练')
+                    }if(employeeList[indexs].jobTitle==2){
+                        $('.seeJobTitle').text('中级教练')
+                    }else{
+                        $('.seeJobTitle').text('高级教练')
+                    }
+
+
+                    $('.seeName').text(employeeList[indexs].employeeName);
+                    $('.seePhoneNum').text(employeeList[indexs].phoneNum);
+                    $('.seeEntryDate').text(employeeList[indexs].entryDate.substring(0,10) );
+                    $('.seeIdCard').text(employeeList[indexs].idCard);
+                    $('.seeRoleName').text(employeeList[indexs].roleName);
+                    $('.seeDepName').text(employeeList[indexs].depName);
+                    $('.seePositionName').text(employeeList[indexs].positionName)
+                })
+                $('.delete').click(function () {
+
+                    //点击删除  弹出删除警示框
+                    var deleteIndex = $(this).index('.delete');
+                    var relationId= employeeList[deleteIndex].id;
+                    deleteBackground.style.display ='block';
+                    //删除警示框 确认 调用删除接口 取消 弹框消失不做操作
+                    $(".deleteSure").unbind("click");
+                    $('.deleteSure').click(function () {
+
+                        deleteEmp(relationId);
+                    })
+                    $(".deleteCancle").unbind("click");
+                    $('.deleteCancle').click(function () {
+                        deleteBackground.style.display ='none';
+                    })
+                })
+            }
+        });
+    }
+
+
+    window.onload = function () {
+        getAllBusinessInfo();
+    }
+
+
+
+
+
+</script>
+</html>
